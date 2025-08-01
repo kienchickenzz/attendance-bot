@@ -1,0 +1,27 @@
+# docs
+cases/
+conductify_ai/
+flowise/
+
+# env
+.env
+
+# dependencies
+**/.venv
+uv.lock
+**/volumes
+
+# build
+**/__pycache__
+**/dist
+
+# editor
+**/.vscode
+
+# dependencies
+**/node_modules
+
+# bot
+.localConfigs.playground
+.localConfigs
+**/*.zip

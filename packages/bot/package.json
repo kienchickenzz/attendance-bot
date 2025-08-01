@@ -1,0 +1,44 @@
+{
+    "name": "attendance-bot",
+    "version": "1.0.0",
+    "description": "Microsoft 365 Agent",
+    "author": "Nguyen Duc Kien <nguyenduckien2508@gmail.com>",
+    "engines": {
+        "node": "18 || 20 || 22"
+    },
+    "license": "MIT",
+    "main": "dist/index",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "dev:teamsfx": "env-cmd --silent -f .localConfigs pnpm run dev",
+        "dev:teamsfx:testtool": "env-cmd --silent -f .localConfigs.playground pnpm run dev",
+        "dev:teamsfx:launch-testtool": "env-cmd --silent -f env/.env.playground teamsapptester start",
+        "dev": "nodemon --exec node --inspect=9239 --signal SIGINT -r ts-node/register ./src/index.ts",
+        "build": "tsc --build",
+        "start": "node ./dist/index.js",
+        "watch": "nodemon --exec \"npm run start\"",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "@microsoft/agents-hosting": "^0.2.14",
+        "@microsoft/teams-ai": "^1.7.0",
+        "axios": "^1.11.0",
+        "botbuilder": "^4.23.1",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.0",
+        "express": "^5.0.1",
+        "winston": "^3.9.0"
+    },
+    "devDependencies": {
+        "@microsoft/teams-app-test-tool": "^0.2.15",
+        "@types/express": "^5.0.0",
+        "@types/node": "^18.0.0",
+        "env-cmd": "^10.1.0",
+        "nodemon": "^3.1.7",
+        "shx": "^0.3.3",
+        "ts-node": "^10.7.0",
+        "typescript": "^5.4.5"
+    },
+    "keywords": []
+}

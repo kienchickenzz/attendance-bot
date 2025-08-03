@@ -6,11 +6,9 @@ requires-python = ">=3.10,<4.0"
 dependencies = [
     "requests==2.32.4",
     "python-dotenv==1.1.0",
-
     # Fastapi
     "fastapi==0.115.12",
     "fastapi-cli==0.0.7",
-
     # Fastapi's dependencies
     "email_validator==2.2.0",
     "httptools==0.6.4",
@@ -21,23 +19,19 @@ dependencies = [
     "uvloop==0.21.0",
     "watchfiles==1.0.5",
     "websockets==15.0.1",
-
     "pydantic>=2.0.0",
     "pydantic-settings>=2.0.0",
-
     # Database
     "psycopg[binary]<4.0.0,>=3.1.13",
     "sqlmodel<1.0.0,>=0.0.21",
     "alembic<2.0.0,>=1.12.1",
-
+    # Session
+    "redis>=6.2.0",
     # Langchain
     "numpy==2.2.6",
-
     "langchain==0.3.25",
     "langchain-google-genai==2.1.5",
-
     "langchain-ollama==0.3.3",
-
 ]
 
 [tool.uv]

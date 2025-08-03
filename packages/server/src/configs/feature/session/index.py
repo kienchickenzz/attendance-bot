@@ -13,14 +13,14 @@ class SessionConfig( BaseSettings ):
         description="",
     )
     
-    REDIS_USERNAME: str = Field(
-        description="",
-    )
-
     REDIS_PASSWORD: str = Field(
         description="",
     )
 
     REDIS_DB: str = Field(
+        description="",
+    )
+
+    REDIS_TTL: int = Field(
         description="",
     )

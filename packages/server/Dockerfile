@@ -1,42 +1,56 @@
-FROM python:3.10-alpine
+FROM python:3.12-slim-bookworm AS base
 
-ENV PYTHONUNBUFFERED=1
-
-WORKDIR /app/
+WORKDIR /app/server
 
 # Install uv
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
-COPY --from=ghcr.io/astral-sh/uv:0.5.11 /uv /uvx /bin/
+ENV UV_VERSION=0.7.11
+RUN pip install --no-cache-dir uv==${UV_VERSION}
 
-# Place executables in the environment at the front of the path
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#using-the-environment
-ENV PATH="/app/.venv/bin:$PATH"
 
-# Compile bytecode
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#compiling-bytecode
-ENV UV_COMPILE_BYTECODE=1
+FROM base AS packages
 
-# uv Cache
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#caching
-ENV UV_LINK_MODE=copy
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends gcc g++ libc-dev libffi-dev libgmp-dev libmpfr-dev libmpc-dev
 
-COPY ./pyproject.toml ./uv.lock /app/
+# Install Python dependencies
+COPY pyproject.toml uv.lock ./
+RUN uv sync --locked
 
-# Install dependencies
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
-RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen
 
-ENV PYTHONPATH=/app
+FROM base AS production
 
-COPY ./src /app/src
-COPY ./migrations /app/migrations
+EXPOSE 5001
 
-# Sync the project
-# Ref: https://docs.astral.sh/uv/guides/integration/docker/#intermediate-layers
-RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync
+# set timezone
+ENV TZ=UTC
 
-EXPOSE 8000
+WORKDIR /app/server
 
-CMD [ "uv", "run", "fastapi", "run", "src/index.py" ]
+RUN \
+    apt-get update \
+    # Install dependencies
+    && apt-get install -y --no-install-recommends \
+        # basic environment
+        curl nodejs libgmp-dev libmpfr-dev libmpc-dev \
+        # For Security
+        expat libldap-2.5-0 perl libsqlite3-0 zlib1g \
+        # install a package to improve the accuracy of guessing mime type and file extension
+        media-types \
+        # install libmagic to support the use of python-magic guess MIMETYPE
+        libmagic1 \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy Python environment and packages
+ENV VIRTUAL_ENV=/app/server/.venv
+COPY --from=packages ${VIRTUAL_ENV} ${VIRTUAL_ENV}
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
+
+# Copy source code
+COPY . /app/server/
+
+# Copy entrypoint
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT [ "/bin/bash", "/entrypoint.sh" ]

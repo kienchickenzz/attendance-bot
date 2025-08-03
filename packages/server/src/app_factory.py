@@ -10,7 +10,7 @@ from routes.index import router
 from errors.internal_error import InternalError
 
 
-def create_app():
+def create_app() -> FastAPI:
 
     start_time = time.perf_counter()
 
@@ -55,15 +55,17 @@ def create_app():
     return app
 
 
-def initialize_extensions( app ):
+def initialize_extensions( app: FastAPI ):
     from extensions import (
         ext_logging,
         ext_database,
+        ext_session,
     )
 
     extensions = [
         ext_logging,
         ext_database,
+        ext_session,
     ]
     for ext in extensions:
         short_name = ext.__name__.split( "." )[ -1 ]

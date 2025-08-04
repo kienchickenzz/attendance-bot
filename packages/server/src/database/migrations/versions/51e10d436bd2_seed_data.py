@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 import random
 
 def generate_attendance_data( 
-    start_date, end_date, user_email="duckien@gmail.com", user_name="Nguyen Duc Kien" 
+    start_date, end_date, user_email="ndkien.ts@cmc.com.vn", user_name="Nguyen Duc Kien" 
 ):
 
     start_dt = datetime.strptime( start_date, '%Y-%m-%d' )
@@ -81,8 +81,8 @@ def upgrade() -> None:
         sa.Column('is_late', sa.Boolean, default=False),
     )
 
-    start_date = "2025-07-01"
-    end_date = "2025-07-31"
+    start_date = "2025-06-01"
+    end_date = "2025-08-31"
     demo_records = generate_attendance_data(start_date, end_date)
     
     if demo_records:

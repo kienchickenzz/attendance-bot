@@ -34,6 +34,10 @@ class SearchTimeResponse( BaseModel ):
 # ----------
 
 
+class LateData( BaseModel ):
+    date: str = Field()
+    is_late: bool = Field()
+
 class SearchLateStatusRequest( BaseModel ):
     filter: Dict[ str, Any ] = Field(
         description="Dictionary containing metadata field-value pairs to filter by",
@@ -68,7 +72,7 @@ class SearchLateCountsRequest( BaseModel ):
     )
 
 class SearchLateCountsResponse( BaseModel ):
-    data: List[ str ] = Field()
+    data: List[ LateData ] = Field()
 
 
 # ----------

@@ -39,8 +39,8 @@ def init():
         
         # Connection pool configuration
         poolclass=QueuePool,
-        pool_size=app_config.SQLALCHEMY_POOL_SIZE,
-        pool_recycle=app_config.SQLALCHEMY_POOL_RECYCLE,
+        # pool_size=app_config.SQLALCHEMY_POOL_SIZE,
+        # pool_recycle=app_config.SQLALCHEMY_POOL_RECYCLE,
         
         
         # PostgreSQL specific settings
@@ -52,7 +52,7 @@ def init():
         },
         
         # Logging configuration
-        echo=app_config.SQLALCHEMY_ECHO
+        # echo=app_config.SQLALCHEMY_ECHO
     )
     
     logging.info( "PostgreSQL engine created successfully" )

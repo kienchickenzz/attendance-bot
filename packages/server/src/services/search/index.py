@@ -6,7 +6,7 @@ from typing import List
 
 from models.search import SearchRequest, TimeData
 from models.search import SearchLateStatusRequest
-from models.search import SearchLateCountsRequest
+from models.search import SearchLateCountsRequest, LateData
 from models.search import SearchAttendanceCountsRequest, AttendanceData
 from models.search import SearchAttendanceStatusRequest
 from errors.internal_error import InternalError
@@ -79,7 +79,7 @@ def search_time( request: SearchRequest, db: SessionDep ) -> List[ TimeData ]:
         )
 
 
-def search_late( request: SearchLateCountsRequest, db: SessionDep ) -> List[ str ]:
+def search_late( request: SearchLateCountsRequest, db: SessionDep ) -> List[ LateData ]:
     try:
         filter_data = request.filter
         user_email = filter_data[ 'user_email' ]
@@ -90,14 +90,16 @@ def search_late( request: SearchLateCountsRequest, db: SessionDep ) -> List[ str
         end_datetime_iso = f"{ end_date } 23:59:59" # YYYY-MM-DD HH:MM:SS
 
         sql_query = text( """
-            SELECT DISTINCT DATE(checkin_time) as late_date
+            SELECT DISTINCT 
+                DATE(checkin_time) as attendance_date,
+                bool_or(is_late) as is_late
             FROM employee_attendance 
             WHERE 
                 user_email = :user_email
                 AND checkin_time >= :start_datetime
                 AND checkin_time <= :end_datetime
-                AND is_late = true
-            ORDER BY late_date ASC
+            GROUP BY DATE(checkin_time)
+            ORDER BY attendance_date ASC
         """ )
 
         # Bước 4: Chuẩn bị parameters cho query
@@ -112,19 +114,24 @@ def search_late( request: SearchLateCountsRequest, db: SessionDep ) -> List[ str
 
         # Bước 6: Transform database results thành list of date strings
         # PostgreSQL DATE() function trả về date objects, cần convert thành strings
-        late_dates = []
+        late_data_list = []
         for record in raw_records:
-            # record.late_date là một date object từ PostgreSQL
+            # record.attendance_date là một date object từ PostgreSQL
             # Convert sang string format YYYY-MM-DD như requirement
-            date_str = record.late_date.strftime('%Y-%m-%d')
-            late_dates.append(date_str)
+            date_str = record.attendance_date.strftime( '%Y-%m-%d' )
 
+            late_data = LateData(
+                date=date_str,
+                is_late=record.is_late  # bool_or() trả về boolean
+            )
+            late_data_list.append( late_data )
+
+            logging.debug( late_data )
+            
         # Bước 7: Logging để monitoring và debugging
-        logging.info(f"Found {len(late_dates)} late days for user {user_email}")
-        if late_dates:
-            logging.debug(f"Late dates: {late_dates}")
+        logging.info( f"Found { len( late_data_list ) } late days for user { user_email }" )
         
-        return late_dates
+        return late_data_list
         
     except Exception as e:
         logging.error( f"Error searching by metadata: { str( e ) }" )
@@ -201,6 +208,7 @@ def search_attendance( request: SearchAttendanceCountsRequest, db: SessionDep ) 
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             message=f"Error searching by metadata: { str( e ) }"
         )
+
 
 def calculate_attendance_value( checkin_time, checkout_time ) -> float:
     """

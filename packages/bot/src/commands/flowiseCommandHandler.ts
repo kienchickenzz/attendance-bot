@@ -5,6 +5,7 @@ import {
 
 import logger from '../utils/logger'
 import { getCurrentMember } from "../utils/index"
+import { InternalError } from "../errors/internal_error/index"
 
 export interface UserInfo {
     userId?: string
@@ -47,19 +48,33 @@ export class FlowiseCommandHandler {
             userName: fullName,
             email: member.email,
         }
+
+        const maxRetries = 3
+
+        for ( let attempt = 1; attempt <= maxRetries; attempt++ ) {
         
-        try {
-            return await this._queryFlowise( userMessage, userInfo )
-        } catch ( error ) {
-            console.error( "Error calling Flowise API:", error )
-            return "Xin lỗi, hiện tại tôi gặp sự cố kỹ thuật. Vui lòng thử lại sau."
+            try {
+                logger.info( `Attempting to query Flowise (attempt ${ attempt }/${ maxRetries })` )
+
+                return await this._queryFlowise( userMessage, userInfo )
+            } catch ( error ) {
+
+                logger.error( `Flowise query failed on attempt ${ attempt }: ${ error }` )
+
+                if ( attempt === maxRetries ) {
+                    logger.error( `All ${ maxRetries } attempts failed for Flowise query` )
+                    return "Xin lỗi, bên em vừa gặp chút vấn đề với đường truyền mạng. Anh/chị gửi lại thông tin vừa rồi giúp em nhé."
+                }
+            }
         }
+
+        return ""
     }
 
     async _queryFlowise( 
         question: string,
         userInfo: UserInfo,
-     ): Promise< string > {
+    ): Promise< string > {
         
         const fullQuestion = [
             question,
@@ -84,7 +99,7 @@ export class FlowiseCommandHandler {
 
         // TODO: Implement custom Error object
         if ( !response.ok ) {
-            throw new Error( `HTTP error! status: ${ response.status }` )
+            throw new InternalError( 500, `HTTP error! status: ${ response.status }` )
         }
 
         const result: any = await response.json()

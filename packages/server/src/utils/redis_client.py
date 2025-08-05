@@ -19,7 +19,7 @@ def _build_redis_url() -> str:
     
     return url
 
-async def init():
+def init():
 
     global _redis_client
     
@@ -31,7 +31,7 @@ async def init():
     
     redis_url = _build_redis_url()
     
-    _redis_client = await Redis.from_url(
+    _redis_client = Redis.from_url(
         redis_url,
         encoding="utf-8",
         decode_responses=True,
@@ -59,9 +59,9 @@ async def close_redis_client():
         _redis_client = None
         logging.info( "Redis client connection closed" )
         
-async def get_redis_client() -> Redis:
+def get_redis_client() -> Redis:
 
     if _redis_client is None:
-        await init()
+        init()
     
     return _redis_client

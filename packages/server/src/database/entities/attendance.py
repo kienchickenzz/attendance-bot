@@ -11,3 +11,4 @@ class EmployeeAttendance( Base ):
     checkin_time = Column( DateTime, nullable=False )
     checkout_time = Column( DateTime, nullable=True )
     is_late = Column( Boolean, default=False )
+    attendance_count = Column( Integer, nullable=False )

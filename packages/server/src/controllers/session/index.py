@@ -1,14 +1,10 @@
 from fastapi import status
 
-import json
-
 import logging
 
 from models.session import UpsertSessionRequest
-from models.session import GetSessionResponse, SessionContext
 
 from utils.index import RedisDep
-from configs.index import app_config
 
 from services.session import index as session_service
 

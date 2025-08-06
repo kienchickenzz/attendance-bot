@@ -6,6 +6,7 @@ class SessionContext( BaseModel ):
     start_date: Optional[ str ] = None
     end_date: Optional[ str ] = None
     topic: Optional[ str ] = None
+    prev_question: Optional[ str ] = None
 
 class UpsertSessionRequest( BaseModel ):
     session_id: Optional[ str ] = None

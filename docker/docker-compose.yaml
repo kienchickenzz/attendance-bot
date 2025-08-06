@@ -80,8 +80,8 @@ services:
         - bot-network
         ports:
         - "3978:3978"
-        env_file:
-        - .env
+        # env_file:
+        # - .env
         extra_hosts:
         - "host.docker.internal:host-gateway" 
 

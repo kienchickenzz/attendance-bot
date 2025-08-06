@@ -54,12 +54,12 @@ async def get_session(
         ttl = await redis.ttl( session_id )
         
         valid_fields = {
-            field: session_data.get(field) 
-            for field in ['start_date', 'end_date', 'topic'] 
-            if field in session_data and session_data[field]
+            field: session_data.get( field ) 
+            for field in [ 'start_date', 'end_date', 'topic', 'prev_question' ] 
+            if field in session_data and session_data[ field ]
         }
         
-        session_context = SessionContext(**valid_fields)
+        session_context = SessionContext( **valid_fields )
         
         logging.info( f"Retrieved session '{ session_id }', TTL: { ttl }s" )
         return GetSessionResponse(

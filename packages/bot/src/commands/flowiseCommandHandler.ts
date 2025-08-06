@@ -17,9 +17,10 @@ export class FlowiseCommandHandler {
     flowiseEndpoint: string
 
     constructor() {
-        logger.info('FLOWISE_URL from env:', process.env.FLOWISE_URL);
-        this.flowiseEndpoint = process.env.FLOWISE_URL || 
-            "http://localhost:3000/api/v1/prediction/c96a680e-88e6-4698-a4e9-2b4104834abc";
+        if ( !process.env.FLOWISE_URL ) {
+            throw new InternalError( 500, 'FLOWISE_URL environment variable is required but not set' )
+        }
+        this.flowiseEndpoint = process.env.FLOWISE_URL 
         logger.info( this.flowiseEndpoint )
     }
 

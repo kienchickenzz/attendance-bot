@@ -37,7 +37,7 @@ async def upsert_session(
         if not session_data:
             raise InternalError(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                message="At least one data field (start_date, end_date, or topic) must be provided"
+                message="At least one data field (start_date, end_date, topic or prev_question) must be provided"
             )
         
         logging.debug( request.data )

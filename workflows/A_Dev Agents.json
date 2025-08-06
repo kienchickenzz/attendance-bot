@@ -235,6 +235,14 @@
             {
               "key": "topic",
               "value": ""
+            },
+            {
+              "key": "prev_question",
+              "value": ""
+            },
+            {
+              "key": "current_time",
+              "value": ""
             }
           ],
           "startPersistState": false
@@ -261,8 +269,8 @@
     {
       "id": "conditionAgentAgentflow_0",
       "position": {
-        "x": -3671.450172338478,
-        "y": 8.190010886776179
+        "x": -3284.922917129502,
+        "y": 38.45193122342198
       },
       "data": {
         "id": "conditionAgentAgentflow_0",
@@ -360,7 +368,7 @@
         "inputAnchors": [],
         "inputs": {
           "conditionAgentModel": "chatGoogleGenerativeAI",
-          "conditionAgentInstructions": "<p>Phân tích câu hỏi của người dùng và xác định họ đang muốn hỏi về chủ đề gì để đưa ra phản hồi phù hợp.</p><p>Quy tắc xác định:</p><ul><li><p>Nếu người dùng đang chào hỏi, ví dụ: hello, hi, chào, xin chào, em ơi, có ai không, chào em, v. v. thì xác định <strong>greeting</strong></p></li><li><p>Nếu người dùng nói nhảm, tán tỉnh, yêu cầu viết thơ, viết code, kể chuyện hài, hoặc nói về các chủ đề không liên quan đến chấm công (attendance) thì xác định <strong>off_topic</strong></p></li><li><p>Nếu người dùng hỏi về việc chấm công ví dụ: </p><ul><li><p>Hôm nay tôi đã check-in chưa? </p></li><li><p>Tuần này tôi làm được bao nhiêu giờ? </p></li><li><p>Tôi thường check-in lúc nào? </p></li><li><p>Tôi đã làm đủ giờ chưa?</p></li></ul></li></ul><p>hoặc có các từ khóa như check in, check out, đi muộn, số ngày công, v.v. thì xác định <strong>attendance</strong></p><ul><li><p>Ngoài ra, nếu người dùng <strong>không nhắc trực tiếp đến các từ khóa attendance</strong> nhưng lại đề cập đến <strong>mốc thời gian cụ thể hoặc tương đối</strong> như: <strong>hôm trước, hôm nay, hôm qua, tuần này, thứ 4 vừa rồi, thứ 6 tuần trước, tháng trước, v.v.</strong></p></li></ul><p>thì cũng xác định <strong>attendance</strong>, vì có khả năng người dùng đang tiếp tục trao đổi về chủ đề chấm công đã được nhắc đến trước đó.</p>",
+          "conditionAgentInstructions": "<p>Dựa vào ngữ cảnh hiện tại, hãy phân tích câu hỏi của người dùng và xác định họ đang muốn hỏi về chủ đề gì để đưa ra phản hồi phù hợp.</p><p>Ngữ cảnh hiện tại:</p><ul><li><p>Tên người dùng: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_name\" data-label=\"$flow.state.user_name\">{{ $flow.state.user_name }}</span></p></li><li><p>Email người dùng: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_email\" data-label=\"$flow.state.user_email\">{{ $flow.state.user_email }}</span></p></li><li><p>Câu hỏi trước đó: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.prev_question\" data-label=\"$flow.state.prev_question\">{{ $flow.state.prev_question }}</span></p></li></ul><p>Quy tắc xác định:</p><ul><li><p>Nếu người dùng đang chào hỏi, ví dụ: hello, hi, chào, xin chào, em ơi, có ai không, chào em, v. v. thì xác định <strong>greeting</strong></p></li><li><p>Nếu người dùng nói nhảm, tán tỉnh, yêu cầu viết thơ, viết code, kể chuyện hài, hoặc nói về các chủ đề không liên quan đến chấm công (attendance) thì xác định <strong>off topic</strong></p></li><li><p>Nếu người dùng hỏi về thông tin <strong>của người khác</strong> (không phải chính họ), thì phân loại là <strong>out of scope</strong>.</p><ul><li><p>Ví dụ: với ngữ cảnh hiện tại - tên người dùng là Nguyen Duc Kien, email người dùng là duckien2508@gmail.com</p><ul><li><p>Câu: <em>Hôm qua Nguyen Dinh Giang có đi muộn không? </em>sẽ là<em> </em><strong>out of scope</strong></p></li><li><p>Câu: <em>Hieu tuần này check-in lúc mấy giờ? </em>sẽ là<em> </em><strong>out of scope</strong></p></li></ul></li><li><p><strong>Ngoại lệ</strong>: Nếu câu hỏi có chứa tên hoặc biến thể của tên người dùng, ví dụ:</p><ul><li><p><em>Nguyen Duc Kien hôm nay đã check-in chưa?</em></p></li><li><p><em>Duc Kien có đi muộn không?</em></p></li><li><p><em>Kien đã làm đủ giờ chưa?</em></p></li></ul></li><li><p>thì vẫn được coi là người dùng đang đề cập đến <strong>chính họ </strong>và sẽ là <strong>attendance</strong></p></li></ul></li><li><p>Nếu người dùng hỏi về việc chấm công ví dụ:</p><ul><li><p>Hôm nay tôi đã check-in chưa?</p></li><li><p>Tuần này tôi làm được bao nhiêu giờ?</p></li><li><p>Tôi thường check-in lúc nào?</p></li><li><p>Tôi đã làm đủ giờ chưa?</p></li></ul></li></ul><p>hoặc có các từ khóa như check in, check out, đi muộn, số ngày công, v.v. thì xác định <strong>attendance</strong></p><ul><li><p>Ngoài ra, nếu người dùng <strong>không nhắc trực tiếp đến các từ khóa attendance</strong> nhưng lại đề cập đến <strong>mốc thời gian cụ thể hoặc tương đối</strong> như: <strong>hôm trước, hôm nay, hôm qua, tuần này, thứ 4 vừa rồi, thứ 6 tuần trước, tháng trước, v.v.</strong></p></li></ul><p>thì cũng xác định <strong>attendance</strong>, vì có khả năng người dùng đang tiếp tục trao đổi về chủ đề chấm công đã được nhắc đến trước đó.</p>",
           "conditionAgentInput": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_question\" data-label=\"$flow.state.user_question\">{{ $flow.state.user_question }}</span> </p>",
           "conditionAgentScenarios": [
             {
@@ -368,6 +376,9 @@
             },
             {
               "scenario": "off topic"
+            },
+            {
+              "scenario": "out of scope"
             },
             {
               "scenario": "attendance"
@@ -409,6 +420,12 @@
             "label": 2,
             "name": 2,
             "description": "Condition 2"
+          },
+          {
+            "id": "conditionAgentAgentflow_0-output-3",
+            "label": 3,
+            "name": 3,
+            "description": "Condition 3"
           }
         ],
         "outputs": {
@@ -418,19 +435,19 @@
       },
       "type": "agentFlow",
       "width": 199,
-      "height": 100,
+      "height": 120,
       "selected": false,
       "positionAbsolute": {
-        "x": -3671.450172338478,
-        "y": 8.190010886776179
+        "x": -3284.922917129502,
+        "y": 38.45193122342198
       },
       "dragging": false
     },
     {
       "id": "directReplyAgentflow_0",
       "position": {
-        "x": -3409.258207218956,
-        "y": 52.3186805079354
+        "x": -2893.430019662494,
+        "y": 48.192055007483674
       },
       "data": {
         "id": "directReplyAgentflow_0",
@@ -469,16 +486,16 @@
       "height": 65,
       "selected": false,
       "positionAbsolute": {
-        "x": -3409.258207218956,
-        "y": 52.3186805079354
+        "x": -2893.430019662494,
+        "y": 48.192055007483674
       },
       "dragging": false
     },
     {
       "id": "llmAgentflow_0",
       "position": {
-        "x": -3416.787906701905,
-        "y": -42.66783636269173
+        "x": -2896.833093644991,
+        "y": -60.54988019798242
       },
       "data": {
         "id": "llmAgentflow_0",
@@ -793,173 +810,16 @@
       "height": 72,
       "selected": false,
       "positionAbsolute": {
-        "x": -3416.787906701905,
-        "y": -42.66783636269173
-      },
-      "dragging": false
-    },
-    {
-      "id": "conditionAgentAgentflow_1",
-      "position": {
-        "x": -3413.347201339111,
-        "y": 155.14938166437105
-      },
-      "data": {
-        "id": "conditionAgentAgentflow_1",
-        "label": "Is self inquiry?",
-        "version": 1.1,
-        "name": "conditionAgentAgentflow",
-        "type": "ConditionAgent",
-        "color": "#ff8fab",
-        "baseClasses": [
-          "ConditionAgent"
-        ],
-        "category": "Agent Flows",
-        "description": "Utilize an agent to split flows based on dynamic conditions",
-        "inputParams": [
-          {
-            "label": "Model",
-            "name": "conditionAgentModel",
-            "type": "asyncOptions",
-            "loadMethod": "listModels",
-            "loadConfig": true,
-            "id": "conditionAgentAgentflow_1-input-conditionAgentModel-asyncOptions",
-            "display": true
-          },
-          {
-            "label": "Instructions",
-            "name": "conditionAgentInstructions",
-            "type": "string",
-            "description": "A general instructions of what the condition agent should do",
-            "rows": 4,
-            "acceptVariable": true,
-            "placeholder": "Determine if the user is interested in learning about AI",
-            "id": "conditionAgentAgentflow_1-input-conditionAgentInstructions-string",
-            "display": true
-          },
-          {
-            "label": "Input",
-            "name": "conditionAgentInput",
-            "type": "string",
-            "description": "Input to be used for the condition agent",
-            "rows": 4,
-            "acceptVariable": true,
-            "default": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"question\" data-label=\"question\">{{ question }}</span> </p>",
-            "id": "conditionAgentAgentflow_1-input-conditionAgentInput-string",
-            "display": true
-          },
-          {
-            "label": "Scenarios",
-            "name": "conditionAgentScenarios",
-            "description": "Define the scenarios that will be used as the conditions to split the flow",
-            "type": "array",
-            "array": [
-              {
-                "label": "Scenario",
-                "name": "scenario",
-                "type": "string",
-                "placeholder": "User is asking for a pizza"
-              }
-            ],
-            "default": [
-              {
-                "scenario": ""
-              },
-              {
-                "scenario": ""
-              }
-            ],
-            "id": "conditionAgentAgentflow_1-input-conditionAgentScenarios-array",
-            "display": true
-          },
-          {
-            "label": "Override System Prompt",
-            "name": "conditionAgentOverrideSystemPrompt",
-            "type": "boolean",
-            "description": "Override initial system prompt for Condition Agent",
-            "optional": true,
-            "id": "conditionAgentAgentflow_1-input-conditionAgentOverrideSystemPrompt-boolean",
-            "display": true
-          },
-          {
-            "label": "Node System Prompt",
-            "name": "conditionAgentSystemPrompt",
-            "type": "string",
-            "rows": 4,
-            "optional": true,
-            "acceptVariable": true,
-            "default": "<p>You are part of a multi-agent system designed to make agent coordination and execution easy. Your task is to analyze the given input and select one matching scenario from a provided set of scenarios.</p>\n    <ul>\n        <li><strong>Input</strong>: A string representing the user's query, message or data.</li>\n        <li><strong>Scenarios</strong>: A list of predefined scenarios that relate to the input.</li>\n        <li><strong>Instruction</strong>: Determine which of the provided scenarios is the best fit for the input.</li>\n    </ul>\n    <h2>Steps</h2>\n    <ol>\n        <li><strong>Read the input string</strong> and the list of scenarios.</li>\n        <li><strong>Analyze the content of the input</strong> to identify its main topic or intention.</li>\n        <li><strong>Compare the input with each scenario</strong>: Evaluate how well the input's topic or intention aligns with each of the provided scenarios and select the one that is the best fit.</li>\n        <li><strong>Output the result</strong>: Return the selected scenario in the specified JSON format.</li>\n    </ol>\n    <h2>Output Format</h2>\n    <p>Output should be a JSON object that names the selected scenario, like this: <code>{\"output\": \"<selected_scenario_name>\"}</code>. No explanation is needed.</p>\n    <h2>Examples</h2>\n    <ol>\n       <li>\n            <p><strong>Input</strong>: <code>{\"input\": \"Hello\", \"scenarios\": [\"user is asking about AI\", \"user is not asking about AI\"], \"instruction\": \"Your task is to check if the user is asking about AI.\"}</code></p>\n            <p><strong>Output</strong>: <code>{\"output\": \"user is not asking about AI\"}</code></p>\n        </li>\n        <li>\n            <p><strong>Input</strong>: <code>{\"input\": \"What is AIGC?\", \"scenarios\": [\"user is asking about AI\", \"user is asking about the weather\"], \"instruction\": \"Your task is to check and see if the user is asking a topic about AI.\"}</code></p>\n            <p><strong>Output</strong>: <code>{\"output\": \"user is asking about AI\"}</code></p>\n        </li>\n        <li>\n            <p><strong>Input</strong>: <code>{\"input\": \"Can you explain deep learning?\", \"scenarios\": [\"user is interested in AI topics\", \"user wants to order food\"], \"instruction\": \"Determine if the user is interested in learning about AI.\"}</code></p>\n            <p><strong>Output</strong>: <code>{\"output\": \"user is interested in AI topics\"}</code></p>\n        </li>\n    </ol>\n    <h2>Note</h2>\n    <ul>\n        <li>Ensure that the input scenarios align well with potential user queries for accurate matching.</li>\n        <li>DO NOT include anything other than the JSON in your response.</li>\n    </ul>",
-            "description": "Expert use only. Modifying this can significantly alter agent behavior. Leave default if unsure",
-            "show": {
-              "conditionAgentOverrideSystemPrompt": true
-            },
-            "id": "conditionAgentAgentflow_1-input-conditionAgentSystemPrompt-string",
-            "display": true
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "conditionAgentModel": "chatGoogleGenerativeAI",
-          "conditionAgentInstructions": "<p>Hãy xác định xem câu hỏi của người dùng có đề cập đến thông tin về thời gian hay không.</p><p>Quy tắc xác định:</p><ul><li><p><strong>Nếu người dùng có đề cập đến thông tin thời gian </strong>bao gồm ngày, tháng, năm, tuần, hoặc các từ khóa chỉ mốc thời gian cụ thể hoặc tương đối như:</p><ul><li><p>“hôm nay”, “ngày mai”, “hôm qua”</p></li><li><p>“tuần này”, “tháng trước”, “quý này”</p></li><li><p>“ngày 1/8”, “tháng 7”, “năm 2025”</p></li><li><p>“lúc 8 giờ”, “9h sáng”, “chiều nay”</p></li><li><p>“trong 3 ngày gần đây”, “7 ngày qua”, “cuối tuần”</p></li></ul></li></ul><p>thì xác định <strong>Có đề cập đến thời gian</strong></p><ul><li><p><strong>Nếu người dùng không đề cập đến bất kỳ thời gian nào, </strong>câu hỏi không có thông tin thời gian, không thể xác định được mốc thời gian liên quan, ví dụ:</p><ul><li><p>“Tôi đã check-in chưa?”</p></li><li><p>“Tôi check-out mấy giờ?”</p></li><li><p>“Giờ vào là lúc nào?”</p></li><li><p>\"Tôi đi muộn không?\"</p></li></ul></li></ul><p>hoặc không chứa các từ khóa thời gian như “hôm nay”, “ngày”, “tháng”, “tuần”, v.v. thì xác định <strong>Không đề cập đến thời gian</strong></p>",
-          "conditionAgentInput": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_question\" data-label=\"$flow.state.user_question\">{{ $flow.state.user_question }}</span> </p>",
-          "conditionAgentScenarios": [
-            {
-              "scenario": "Người dùng hỏi về người khác"
-            },
-            {
-              "scenario": "Không đề cập đến thời gian"
-            }
-          ],
-          "conditionAgentOverrideSystemPrompt": true,
-          "conditionAgentModelConfig": {
-            "cache": "",
-            "modelName": "gemini-2.0-flash",
-            "customModelName": "",
-            "temperature": 0.9,
-            "streaming": true,
-            "maxOutputTokens": "",
-            "topP": "",
-            "topK": "",
-            "safetySettings": "",
-            "baseUrl": "",
-            "allowImageUploads": "",
-            "conditionAgentModel": "chatGoogleGenerativeAI"
-          },
-          "undefined": "",
-          "conditionAgentSystemPrompt": "<p>You are part of a multi-agent system designed to make agent coordination and execution easy. Your task is to analyze the given input and select one matching scenario from a provided set of scenarios.</p><ul><li><p><strong>Input</strong>: A string representing the user's query, message or data.</p></li><li><p><strong>Scenarios</strong>: A list of predefined scenarios that relate to the input.</p></li><li><p><strong>Instruction</strong>: Determine which of the provided scenarios is the best fit for the input.</p></li></ul><h2>Steps</h2><ol><li><p><strong>Read the input string</strong> and the list of scenarios.</p></li><li><p><strong>Analyze the content of the input</strong> to identify its main topic or intention.</p></li><li><p><strong>Compare the input with each scenario</strong>: Evaluate how well the input's topic or intention aligns with each of the provided scenarios and select the one that is the best fit.</p></li><li><p><strong>Output the result</strong>: Return the selected scenario in the specified JSON format.</p></li></ol><h2>Output Format</h2><p>Output should be a JSON object that names the selected scenario, like this: <code>{\"output\": \"\"}</code>. No explanation is needed.</p><h2>Examples</h2><ol><li><p><strong>Input</strong>: <code>{\"input\": \"Hello\", \"scenarios\": [\"user is asking about AI\", \"user is not asking about AI\"], \"instruction\": \"Your task is to check if the user is asking about AI.\"}</code></p><p><strong>Output</strong>: <code>{\"output\": \"user is not asking about AI\"}</code></p></li><li><p><strong>Input</strong>: <code>{\"input\": \"What is AIGC?\", \"scenarios\": [\"user is asking about AI\", \"user is asking about the weather\"], \"instruction\": \"Your task is to check and see if the user is asking a topic about AI.\"}</code></p><p><strong>Output</strong>: <code>{\"output\": \"user is asking about AI\"}</code></p></li><li><p><strong>Input</strong>: <code>{\"input\": \"Can you explain deep learning?\", \"scenarios\": [\"user is interested in AI topics\", \"user wants to order food\"], \"instruction\": \"Determine if the user is interested in learning about AI.\"}</code></p><p><strong>Output</strong>: <code>{\"output\": \"user is interested in AI topics\"}</code></p></li></ol><h2>Note</h2><ul><li><p>Ensure that the input scenarios align well with potential user queries for accurate matching.</p></li><li><p>DO NOT include anything other than the JSON in your response.</p></li></ul>"
-        },
-        "outputAnchors": [
-          {
-            "id": "conditionAgentAgentflow_1-output-0",
-            "label": "Condition Agent",
-            "name": "conditionAgentAgentflow"
-          },
-          {
-            "id": "conditionAgentAgentflow_1-output-1",
-            "label": "Condition Agent",
-            "name": "conditionAgentAgentflow"
-          }
-        ],
-        "outputs": {
-          "conditionAgentAgentflow": ""
-        },
-        "selected": false
-      },
-      "type": "agentFlow",
-      "width": 199,
-      "height": 80,
-      "selected": false,
-      "positionAbsolute": {
-        "x": -3413.347201339111,
-        "y": 155.14938166437105
+        "x": -2896.833093644991,
+        "y": -60.54988019798242
       },
       "dragging": false
     },
     {
       "id": "directReplyAgentflow_1",
       "position": {
-        "x": -3140.589551568917,
-        "y": 120.02728892675262
+        "x": -2894.0921323794973,
+        "y": 158.0888070637507
       },
       "data": {
         "id": "directReplyAgentflow_1",
@@ -999,8 +859,8 @@
       "height": 65,
       "selected": false,
       "positionAbsolute": {
-        "x": -3140.589551568917,
-        "y": 120.02728892675262
+        "x": -2894.0921323794973,
+        "y": 158.0888070637507
       },
       "dragging": false
     },
@@ -2013,8 +1873,8 @@
     {
       "id": "llmAgentflow_3",
       "position": {
-        "x": 2966.2659699692244,
-        "y": 344.6204683710786
+        "x": 2489.426728757516,
+        "y": 362.87268813037844
       },
       "data": {
         "id": "llmAgentflow_3",
@@ -2290,7 +2150,7 @@
           "llmMessages": [
             {
               "role": "system",
-              "content": "<h1>Role</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_role\" data-label=\"$flow.state.assistant_role\">{{ $flow.state.assistant_role }}</span></p><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_skill\" data-label=\"$flow.state.assistant_skill\">{{ $flow.state.assistant_skill }}</span></p><h1>Tone</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_tone\" data-label=\"$flow.state.assistant_tone\">{{ $flow.state.assistant_tone }}</span></p><h1>Cách xưng hô trong Tiếng Việt</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.vn_pronoun\" data-label=\"$flow.state.vn_pronoun\">{{ $flow.state.vn_pronoun }}</span></p><h1>Task</h1><p>Dựa vào nội dung câu hỏi của người dùng và các thông tin ngữ cảnh hiện tại, hãy trả lời câu hỏi của người dùng.</p><p>Ngữ cảnh hiện tại:</p><ul><li><p>Ngày hiện tại: <span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_14\" data-label=\"customFunctionAgentflow_14\">{{ customFunctionAgentflow_14 }}</span> </p></li></ul><ul><li><p><span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_7\" data-label=\"customFunctionAgentflow_7\">{{ customFunctionAgentflow_7 }}</span></p></li></ul><h1>Câu hỏi</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_question\" data-label=\"$flow.state.user_question\">{{ $flow.state.user_question }}</span></p>"
+              "content": "<h1>Role</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_role\" data-label=\"$flow.state.assistant_role\">{{ $flow.state.assistant_role }}</span></p><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_skill\" data-label=\"$flow.state.assistant_skill\">{{ $flow.state.assistant_skill }}</span></p><h1>Tone</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_tone\" data-label=\"$flow.state.assistant_tone\">{{ $flow.state.assistant_tone }}</span></p><h1>Cách xưng hô trong Tiếng Việt</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.vn_pronoun\" data-label=\"$flow.state.vn_pronoun\">{{ $flow.state.vn_pronoun }}</span></p><h1>Task</h1><p>Dựa vào nội dung câu hỏi của người dùng và các thông tin ngữ cảnh hiện tại, hãy trả lời câu hỏi của người dùng.</p><p>Ngữ cảnh hiện tại:</p><ul><li><p>Ngày hiện tại: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.current_time\" data-label=\"$flow.state.current_time\">{{ $flow.state.current_time }}</span> </p></li></ul><ul><li><p><span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_7\" data-label=\"customFunctionAgentflow_7\">{{ customFunctionAgentflow_7 }}</span></p></li></ul><h1>Câu hỏi</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_question\" data-label=\"$flow.state.user_question\">{{ $flow.state.user_question }}</span></p>"
             }
           ],
           "llmEnableMemory": true,
@@ -2299,7 +2159,7 @@
           "llmUpdateState": "",
           "llmModelConfig": {
             "cache": "",
-            "modelName": "gemini-2.5-flash-preview-05-20",
+            "modelName": "gemini-2.0-flash",
             "customModelName": "",
             "temperature": 0.9,
             "streaming": true,
@@ -2324,12 +2184,12 @@
         "selected": false
       },
       "type": "agentFlow",
-      "width": 283,
+      "width": 199,
       "height": 72,
       "selected": false,
       "positionAbsolute": {
-        "x": 2966.2659699692244,
-        "y": 344.6204683710786
+        "x": 2489.426728757516,
+        "y": 362.87268813037844
       },
       "dragging": false
     },
@@ -3342,7 +3202,7 @@
     {
       "id": "llmAgentflow_7",
       "position": {
-        "x": 2964.8364660466273,
+        "x": 2487.997224834918,
         "y": 610.5775704009312
       },
       "data": {
@@ -3619,7 +3479,7 @@
           "llmMessages": [
             {
               "role": "system",
-              "content": "<h1>Role</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_role\" data-label=\"$flow.state.assistant_role\">{{ $flow.state.assistant_role }}</span></p><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_skill\" data-label=\"$flow.state.assistant_skill\">{{ $flow.state.assistant_skill }}</span></p><h1>Tone</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_tone\" data-label=\"$flow.state.assistant_tone\">{{ $flow.state.assistant_tone }}</span></p><h1>Cách xưng hô trong Tiếng Việt</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.vn_pronoun\" data-label=\"$flow.state.vn_pronoun\">{{ $flow.state.vn_pronoun }}</span></p><h1>Task</h1><p>Dựa vào nội dung câu hỏi của người dùng và các thông tin ngữ cảnh hiện tại, hãy trả lời câu hỏi của người dùng.</p><p>Ngữ cảnh hiện tại:</p><ul><li><p>Ngày hiện tại: <span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_17\" data-label=\"customFunctionAgentflow_17\">{{ customFunctionAgentflow_17 }}</span> </p></li></ul><ul><li><p><span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_22\" data-label=\"customFunctionAgentflow_22\">{{ customFunctionAgentflow_22 }}</span></p></li></ul>"
+              "content": "<h1>Role</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_role\" data-label=\"$flow.state.assistant_role\">{{ $flow.state.assistant_role }}</span></p><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_skill\" data-label=\"$flow.state.assistant_skill\">{{ $flow.state.assistant_skill }}</span></p><h1>Tone</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_tone\" data-label=\"$flow.state.assistant_tone\">{{ $flow.state.assistant_tone }}</span></p><h1>Cách xưng hô trong Tiếng Việt</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.vn_pronoun\" data-label=\"$flow.state.vn_pronoun\">{{ $flow.state.vn_pronoun }}</span></p><h1>Task</h1><p>Dựa vào nội dung câu hỏi của người dùng và các thông tin ngữ cảnh hiện tại, hãy trả lời câu hỏi của người dùng.</p><p>Ngữ cảnh hiện tại:</p><ul><li><p>Ngày hiện tại: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.current_time\" data-label=\"$flow.state.current_time\">{{ $flow.state.current_time }}</span> </p></li></ul><ul><li><p><span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_22\" data-label=\"customFunctionAgentflow_22\">{{ customFunctionAgentflow_22 }}</span></p></li></ul>"
             }
           ],
           "llmEnableMemory": true,
@@ -3630,7 +3490,7 @@
           "llmUpdateState": "",
           "llmModelConfig": {
             "cache": "",
-            "modelName": "gemini-2.5-flash-preview-05-20",
+            "modelName": "gemini-2.0-flash",
             "customModelName": "",
             "temperature": 0.9,
             "streaming": true,
@@ -3655,11 +3515,11 @@
         "selected": false
       },
       "type": "agentFlow",
-      "width": 283,
+      "width": 199,
       "height": 72,
       "selected": false,
       "positionAbsolute": {
-        "x": 2964.8364660466273,
+        "x": 2487.997224834918,
         "y": 610.5775704009312
       },
       "dragging": false
@@ -4293,7 +4153,7 @@
       },
       "data": {
         "id": "loopAgentflow_9",
-        "label": "Back to Query Data",
+        "label": "Back to Does Counter reach Limit?",
         "version": 1,
         "name": "loopAgentflow",
         "type": "Loop",
@@ -4333,7 +4193,7 @@
         "selected": false
       },
       "type": "agentFlow",
-      "width": 197,
+      "width": 295,
       "height": 65,
       "selected": false,
       "positionAbsolute": {
@@ -4624,8 +4484,8 @@
     {
       "id": "llmAgentflow_12",
       "position": {
-        "x": 2967.001717698934,
-        "y": 942.2311373619756
+        "x": 2494.72553142705,
+        "y": 887.4744780840759
       },
       "data": {
         "id": "llmAgentflow_12",
@@ -4901,7 +4761,7 @@
           "llmMessages": [
             {
               "role": "system",
-              "content": "<h1>Role</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_role\" data-label=\"$flow.state.assistant_role\">{{ $flow.state.assistant_role }}</span></p><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_skill\" data-label=\"$flow.state.assistant_skill\">{{ $flow.state.assistant_skill }}</span></p><h1>Tone</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_tone\" data-label=\"$flow.state.assistant_tone\">{{ $flow.state.assistant_tone }}</span></p><h1>Cách xưng hô trong Tiếng Việt</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.vn_pronoun\" data-label=\"$flow.state.vn_pronoun\">{{ $flow.state.vn_pronoun }}</span></p><h1>Task</h1><p>Dựa vào nội dung câu hỏi của người dùng và các thông tin ngữ cảnh hiện tại, hãy trả lời câu hỏi của người dùng.</p><p>Ngữ cảnh hiện tại:</p><ul><li><p>Ngày hiện tại: <span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_23\" data-label=\"customFunctionAgentflow_23\">{{ customFunctionAgentflow_23 }}</span> </p></li></ul><ul><li><p><span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_32\" data-label=\"customFunctionAgentflow_32\">{{ customFunctionAgentflow_32 }}</span></p></li></ul>"
+              "content": "<h1>Role</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_role\" data-label=\"$flow.state.assistant_role\">{{ $flow.state.assistant_role }}</span></p><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_skill\" data-label=\"$flow.state.assistant_skill\">{{ $flow.state.assistant_skill }}</span></p><h1>Tone</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.assistant_tone\" data-label=\"$flow.state.assistant_tone\">{{ $flow.state.assistant_tone }}</span></p><h1>Cách xưng hô trong Tiếng Việt</h1><p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.vn_pronoun\" data-label=\"$flow.state.vn_pronoun\">{{ $flow.state.vn_pronoun }}</span></p><h1>Task</h1><p>Dựa vào nội dung câu hỏi của người dùng và các thông tin ngữ cảnh hiện tại, hãy trả lời câu hỏi của người dùng.</p><p>Ngữ cảnh hiện tại:</p><ul><li><p>Ngày hiện tại: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.current_time\" data-label=\"$flow.state.current_time\">{{ $flow.state.current_time }}</span> </p></li></ul><ul><li><p><span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_32\" data-label=\"customFunctionAgentflow_32\">{{ customFunctionAgentflow_32 }}</span></p></li></ul>"
             }
           ],
           "llmEnableMemory": true,
@@ -4912,7 +4772,7 @@
           "llmUpdateState": "",
           "llmModelConfig": {
             "cache": "",
-            "modelName": "gemini-2.5-flash-preview-05-20",
+            "modelName": "gemini-2.0-flash",
             "customModelName": "",
             "temperature": 0.9,
             "streaming": true,
@@ -4937,12 +4797,12 @@
         "selected": false
       },
       "type": "agentFlow",
-      "width": 283,
+      "width": 199,
       "height": 72,
       "selected": false,
       "positionAbsolute": {
-        "x": 2967.001717698934,
-        "y": 942.2311373619756
+        "x": 2494.72553142705,
+        "y": 887.4744780840759
       },
       "dragging": false
     },
@@ -4996,151 +4856,10 @@
       "dragging": false
     },
     {
-      "id": "executeFlowAgentflow_0",
-      "position": {
-        "x": -3142.197003281768,
-        "y": 241.42611818893738
-      },
-      "data": {
-        "id": "executeFlowAgentflow_0",
-        "label": "Create time context object",
-        "version": 1,
-        "name": "executeFlowAgentflow",
-        "type": "ExecuteFlow",
-        "color": "#a3b18a",
-        "baseClasses": [
-          "ExecuteFlow"
-        ],
-        "category": "Agent Flows",
-        "description": "Execute another flow",
-        "inputParams": [
-          {
-            "label": "Connect Credential",
-            "name": "credential",
-            "type": "credential",
-            "credentialNames": [
-              "chatflowApi"
-            ],
-            "optional": true,
-            "id": "executeFlowAgentflow_0-input-credential-credential",
-            "display": true
-          },
-          {
-            "label": "Select Flow",
-            "name": "executeFlowSelectedFlow",
-            "type": "asyncOptions",
-            "loadMethod": "listFlows",
-            "id": "executeFlowAgentflow_0-input-executeFlowSelectedFlow-asyncOptions",
-            "display": true
-          },
-          {
-            "label": "Input",
-            "name": "executeFlowInput",
-            "type": "string",
-            "rows": 4,
-            "acceptVariable": true,
-            "id": "executeFlowAgentflow_0-input-executeFlowInput-string",
-            "display": true
-          },
-          {
-            "label": "Override Config",
-            "name": "executeFlowOverrideConfig",
-            "description": "Override the config passed to the flow",
-            "type": "json",
-            "optional": true,
-            "id": "executeFlowAgentflow_0-input-executeFlowOverrideConfig-json",
-            "display": true
-          },
-          {
-            "label": "Base URL",
-            "name": "executeFlowBaseURL",
-            "type": "string",
-            "description": "Base URL to Flowise. By default, it is the URL of the incoming request. Useful when you need to execute flow through an alternative route.",
-            "placeholder": "http://localhost:3000",
-            "optional": true,
-            "id": "executeFlowAgentflow_0-input-executeFlowBaseURL-string",
-            "display": true
-          },
-          {
-            "label": "Return Response As",
-            "name": "executeFlowReturnResponseAs",
-            "type": "options",
-            "options": [
-              {
-                "label": "User Message",
-                "name": "userMessage"
-              },
-              {
-                "label": "Assistant Message",
-                "name": "assistantMessage"
-              }
-            ],
-            "default": "userMessage",
-            "id": "executeFlowAgentflow_0-input-executeFlowReturnResponseAs-options",
-            "display": true
-          },
-          {
-            "label": "Update Flow State",
-            "name": "executeFlowUpdateState",
-            "description": "Update runtime state during the execution of the workflow",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Key",
-                "name": "key",
-                "type": "asyncOptions",
-                "loadMethod": "listRuntimeStateKeys",
-                "freeSolo": true
-              },
-              {
-                "label": "Value",
-                "name": "value",
-                "type": "string",
-                "acceptVariable": true,
-                "acceptNodeOutputAsVariable": true
-              }
-            ],
-            "id": "executeFlowAgentflow_0-input-executeFlowUpdateState-array",
-            "display": true
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "executeFlowSelectedFlow": "aaa22686-ac5a-432c-98f3-fe33dc092b50",
-          "executeFlowInput": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_id\" data-label=\"$flow.state.user_id\">{{ $flow.state.user_id }}</span>|<span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_question\" data-label=\"$flow.state.user_question\">{{ $flow.state.user_question }}</span></p>",
-          "executeFlowOverrideConfig": "",
-          "executeFlowBaseURL": "",
-          "executeFlowReturnResponseAs": "assistantMessage",
-          "executeFlowUpdateState": "",
-          "undefined": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "executeFlowAgentflow_0-output-executeFlowAgentflow",
-            "label": "Execute Flow",
-            "name": "executeFlowAgentflow"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "type": "agentFlow",
-      "width": 243,
-      "height": 65,
-      "selected": false,
-      "positionAbsolute": {
-        "x": -3142.197003281768,
-        "y": 241.42611818893738
-      },
-      "dragging": false
-    },
-    {
       "id": "directReplyAgentflow_6",
       "position": {
-        "x": -1962.8393343868133,
-        "y": 207.4407994566928
+        "x": -935.5139692640481,
+        "y": 224.10968382098292
       },
       "data": {
         "id": "directReplyAgentflow_6",
@@ -5180,8 +4899,8 @@
       "height": 65,
       "selected": false,
       "positionAbsolute": {
-        "x": -1962.8393343868133,
-        "y": 207.4407994566928
+        "x": -935.5139692640481,
+        "y": 224.10968382098292
       },
       "dragging": false
     },
@@ -5745,8 +5464,8 @@
     {
       "id": "conditionAgentflow_2",
       "position": {
-        "x": -2219.382105137538,
-        "y": 264.47590948702134
+        "x": -1197.1543083471267,
+        "y": 327.26513501343334
       },
       "data": {
         "id": "conditionAgentflow_2",
@@ -5988,9 +5707,15 @@
           "conditions": [
             {
               "type": "string",
-              "value1": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"executeFlowAgentflow_0\" data-label=\"executeFlowAgentflow_0\">{{ executeFlowAgentflow_0 }}</span> </p>",
+              "value1": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.start_date\" data-label=\"$flow.state.start_date\">{{ $flow.state.start_date }}</span> </p>",
               "operation": "equal",
-              "value2": "<p>No</p>"
+              "value2": "<p>Không có</p>"
+            },
+            {
+              "type": "string",
+              "value1": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.end_date\" data-label=\"$flow.state.end_date\">{{ $flow.state.end_date }}</span> </p>",
+              "operation": "equal",
+              "value2": "<p>Không có</p>"
             }
           ],
           "undefined": ""
@@ -5998,13 +5723,21 @@
         "outputAnchors": [
           {
             "id": "conditionAgentflow_2-output-0",
-            "label": "Condition",
-            "name": "conditionAgentflow"
+            "label": 0,
+            "name": 0,
+            "description": "Condition 0"
           },
           {
             "id": "conditionAgentflow_2-output-1",
-            "label": "Condition",
-            "name": "conditionAgentflow"
+            "label": 1,
+            "name": 1,
+            "description": "Condition 1"
+          },
+          {
+            "id": "conditionAgentflow_2-output-2",
+            "label": 2,
+            "name": 2,
+            "description": "Else"
           }
         ],
         "outputs": {
@@ -6014,11 +5747,11 @@
       },
       "type": "agentFlow",
       "width": 197,
-      "height": 80,
+      "height": 100,
       "selected": false,
       "positionAbsolute": {
-        "x": -2219.382105137538,
-        "y": 264.47590948702134
+        "x": -1197.1543083471267,
+        "y": 327.26513501343334
       },
       "dragging": false
     },
@@ -6482,7 +6215,7 @@
     {
       "id": "stickyNoteAgentflow_0",
       "position": {
-        "x": -4839.134852117371,
+        "x": -4840.64846892291,
         "y": -293.1151736620212
       },
       "data": {
@@ -6529,15 +6262,15 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": -4839.134852117371,
+        "x": -4840.64846892291,
         "y": -293.1151736620212
       }
     },
     {
       "id": "customFunctionAgentflow_11",
       "position": {
-        "x": -2824.8178158835876,
-        "y": 268.4168329335371
+        "x": -2894.812530993542,
+        "y": 262.1272932029282
       },
       "data": {
         "id": "customFunctionAgentflow_11",
@@ -6623,7 +6356,7 @@
               "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_id\" data-label=\"$flow.state.user_id\">{{ $flow.state.user_id }}</span> </p>"
             }
           ],
-          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst apiUrl = $apiUrl\nconst userId = $userId\n\nconst response = await fetch( `${ apiUrl }/api/session/${ userId }`, {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json',\n    }\n} )\n\nif ( !response.ok ) {\n    return \"No\"\n}\n\nconst result = await response.json()\nreturn result.data.start_date",
+          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst apiUrl = $apiUrl\nconst userId = $userId\n\nconst response = await fetch( `${ apiUrl }/api/session/${ userId }`, {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json',\n    }\n} )\n\nif ( !response.ok ) {\n    return \"Không có\"\n}\nconst result = await response.json()\n\nif ( !result || !result.data || !result.data.start_date ) {\n    return \"Không có\" // Redis has no data or session expired\n}\n\nreturn result.data.start_date",
           "customFunctionUpdateState": [
             {
               "key": "start_date",
@@ -6647,16 +6380,16 @@
       "height": 65,
       "selected": false,
       "positionAbsolute": {
-        "x": -2824.8178158835876,
-        "y": 268.4168329335371
+        "x": -2894.812530993542,
+        "y": 262.1272932029282
       },
       "dragging": false
     },
     {
       "id": "customFunctionAgentflow_12",
       "position": {
-        "x": -2521.2115493148876,
-        "y": 332.51657613612645
+        "x": -2574.79861323122,
+        "y": 320.2798074816916
       },
       "data": {
         "id": "customFunctionAgentflow_12",
@@ -6742,7 +6475,7 @@
               "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_id\" data-label=\"$flow.state.user_id\">{{ $flow.state.user_id }}</span> </p>"
             }
           ],
-          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst apiUrl = $apiUrl\nconst userId = $userId\n\nconst response = await fetch( `${ apiUrl }/api/session/${ userId }`, {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json',\n    },\n} )\n\nif ( !response.ok ) {\n    return \"No\"\n}\n\nconst result = await response.json()\nreturn result.data.end_date",
+          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst apiUrl = $apiUrl\nconst userId = $userId\n\nconst response = await fetch( `${ apiUrl }/api/session/${ userId }`, {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json',\n    },\n} )\n\nif ( !response.ok ) {\n    return \"Không có\"\n}\nconst result = await response.json()\n\nif ( !result || !result.data || !result.data.end_date ) {\n    return \"Không có\" // Redis has no data or session expired\n}\n\nreturn result.data.end_date",
           "customFunctionUpdateState": [
             {
               "key": "end_date",
@@ -6765,8 +6498,8 @@
       "height": 65,
       "selected": false,
       "positionAbsolute": {
-        "x": -2521.2115493148876,
-        "y": 332.51657613612645
+        "x": -2574.79861323122,
+        "y": 320.2798074816916
       },
       "dragging": false
     },
@@ -6879,230 +6612,10 @@
       }
     },
     {
-      "id": "toolAgentflow_0",
-      "position": {
-        "x": 2492.7687179071036,
-        "y": 396.4167911074603
-      },
-      "data": {
-        "id": "toolAgentflow_0",
-        "label": "Current Time",
-        "version": 1.1,
-        "name": "toolAgentflow",
-        "type": "Tool",
-        "color": "#d4a373",
-        "baseClasses": [
-          "Tool"
-        ],
-        "category": "Agent Flows",
-        "description": "Tools allow LLM to interact with external systems",
-        "inputParams": [
-          {
-            "label": "Tool",
-            "name": "toolAgentflowSelectedTool",
-            "type": "asyncOptions",
-            "loadMethod": "listTools",
-            "loadConfig": true,
-            "id": "toolAgentflow_0-input-toolAgentflowSelectedTool-asyncOptions",
-            "display": true
-          },
-          {
-            "label": "Tool Input Arguments",
-            "name": "toolInputArgs",
-            "type": "array",
-            "acceptVariable": true,
-            "refresh": true,
-            "array": [
-              {
-                "label": "Input Argument Name",
-                "name": "inputArgName",
-                "type": "asyncOptions",
-                "loadMethod": "listToolInputArgs",
-                "refresh": true
-              },
-              {
-                "label": "Input Argument Value",
-                "name": "inputArgValue",
-                "type": "string",
-                "acceptVariable": true
-              }
-            ],
-            "show": {
-              "toolAgentflowSelectedTool": ".+"
-            },
-            "id": "toolAgentflow_0-input-toolInputArgs-array",
-            "display": true
-          },
-          {
-            "label": "Update Flow State",
-            "name": "toolUpdateState",
-            "description": "Update runtime state during the execution of the workflow",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Key",
-                "name": "key",
-                "type": "asyncOptions",
-                "loadMethod": "listRuntimeStateKeys",
-                "freeSolo": true
-              },
-              {
-                "label": "Value",
-                "name": "value",
-                "type": "string",
-                "acceptVariable": true,
-                "acceptNodeOutputAsVariable": true
-              }
-            ],
-            "id": "toolAgentflow_0-input-toolUpdateState-array",
-            "display": true
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "toolAgentflowSelectedTool": "currentDateTime",
-          "toolInputArgs": "",
-          "toolUpdateState": "",
-          "toolAgentflowSelectedToolConfig": {
-            "toolAgentflowSelectedTool": "currentDateTime"
-          }
-        },
-        "outputAnchors": [
-          {
-            "id": "toolAgentflow_0-output-toolAgentflow",
-            "label": "Tool",
-            "name": "toolAgentflow"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "type": "agentFlow",
-      "width": 157,
-      "height": 68,
-      "selected": false,
-      "positionAbsolute": {
-        "x": 2492.7687179071036,
-        "y": 396.4167911074603
-      },
-      "dragging": false
-    },
-    {
-      "id": "customFunctionAgentflow_14",
-      "position": {
-        "x": 2715.2757943492857,
-        "y": 379.0367485362766
-      },
-      "data": {
-        "id": "customFunctionAgentflow_14",
-        "label": "Parse current time",
-        "version": 1,
-        "name": "customFunctionAgentflow",
-        "type": "CustomFunction",
-        "color": "#E4B7FF",
-        "baseClasses": [
-          "CustomFunction"
-        ],
-        "category": "Agent Flows",
-        "description": "Execute custom function",
-        "inputParams": [
-          {
-            "label": "Input Variables",
-            "name": "customFunctionInputVariables",
-            "description": "Input variables can be used in the function with prefix $. For example: $foo",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Variable Name",
-                "name": "variableName",
-                "type": "string"
-              },
-              {
-                "label": "Variable Value",
-                "name": "variableValue",
-                "type": "string",
-                "acceptVariable": true
-              }
-            ],
-            "id": "customFunctionAgentflow_14-input-customFunctionInputVariables-array",
-            "display": true
-          },
-          {
-            "label": "Javascript Function",
-            "name": "customFunctionJavascriptFunction",
-            "type": "code",
-            "codeExample": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/\n\nconst fetch = require('node-fetch');\nconst url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true';\nconst options = {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json'\n    }\n};\ntry {\n    const response = await fetch(url, options);\n    const text = await response.text();\n    return text;\n} catch (error) {\n    console.error(error);\n    return '';\n}",
-            "description": "The function to execute. Must return a string or an object that can be converted to a string.",
-            "id": "customFunctionAgentflow_14-input-customFunctionJavascriptFunction-code",
-            "display": true
-          },
-          {
-            "label": "Update Flow State",
-            "name": "customFunctionUpdateState",
-            "description": "Update runtime state during the execution of the workflow",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Key",
-                "name": "key",
-                "type": "asyncOptions",
-                "loadMethod": "listRuntimeStateKeys",
-                "freeSolo": true
-              },
-              {
-                "label": "Value",
-                "name": "value",
-                "type": "string",
-                "acceptVariable": true,
-                "acceptNodeOutputAsVariable": true
-              }
-            ],
-            "id": "customFunctionAgentflow_14-input-customFunctionUpdateState-array",
-            "display": true
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "customFunctionInputVariables": [
-            {
-              "variableName": "currentTime",
-              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"toolAgentflow_0\" data-label=\"toolAgentflow_0\">{{ toolAgentflow_0 }}</span> </p>"
-            }
-          ],
-          "customFunctionJavascriptFunction": "let currentTime = JSON.parse($currentTime);\n\nreturn `${ currentTime.day }, ${ currentTime.date }`",
-          "customFunctionUpdateState": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "customFunctionAgentflow_14-output-customFunctionAgentflow",
-            "label": "Custom Function",
-            "name": "customFunctionAgentflow"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "type": "agentFlow",
-      "width": 191,
-      "height": 65,
-      "selected": false,
-      "positionAbsolute": {
-        "x": 2715.2757943492857,
-        "y": 379.0367485362766
-      },
-      "dragging": false
-    },
-    {
       "id": "stickyNoteAgentflow_1",
       "position": {
-        "x": -4241.479272695424,
-        "y": -336.62643774142293
+        "x": -3934.21514108742,
+        "y": -614.422619761948
       },
       "data": {
         "id": "stickyNoteAgentflow_1",
@@ -7148,8 +6661,8 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": -4241.479272695424,
-        "y": -336.62643774142293
+        "x": -3934.21514108742,
+        "y": -614.422619761948
       }
     },
     {
@@ -7771,226 +7284,6 @@
       "dragging": false
     },
     {
-      "id": "customFunctionAgentflow_17",
-      "position": {
-        "x": 2720.4986648649547,
-        "y": 573.7740526318306
-      },
-      "data": {
-        "id": "customFunctionAgentflow_17",
-        "label": "Parse current time",
-        "version": 1,
-        "name": "customFunctionAgentflow",
-        "type": "CustomFunction",
-        "color": "#E4B7FF",
-        "baseClasses": [
-          "CustomFunction"
-        ],
-        "category": "Agent Flows",
-        "description": "Execute custom function",
-        "inputParams": [
-          {
-            "label": "Input Variables",
-            "name": "customFunctionInputVariables",
-            "description": "Input variables can be used in the function with prefix $. For example: $foo",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Variable Name",
-                "name": "variableName",
-                "type": "string"
-              },
-              {
-                "label": "Variable Value",
-                "name": "variableValue",
-                "type": "string",
-                "acceptVariable": true
-              }
-            ],
-            "id": "customFunctionAgentflow_17-input-customFunctionInputVariables-array",
-            "display": true
-          },
-          {
-            "label": "Javascript Function",
-            "name": "customFunctionJavascriptFunction",
-            "type": "code",
-            "codeExample": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/\n\nconst fetch = require('node-fetch');\nconst url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true';\nconst options = {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json'\n    }\n};\ntry {\n    const response = await fetch(url, options);\n    const text = await response.text();\n    return text;\n} catch (error) {\n    console.error(error);\n    return '';\n}",
-            "description": "The function to execute. Must return a string or an object that can be converted to a string.",
-            "id": "customFunctionAgentflow_17-input-customFunctionJavascriptFunction-code",
-            "display": true
-          },
-          {
-            "label": "Update Flow State",
-            "name": "customFunctionUpdateState",
-            "description": "Update runtime state during the execution of the workflow",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Key",
-                "name": "key",
-                "type": "asyncOptions",
-                "loadMethod": "listRuntimeStateKeys",
-                "freeSolo": true
-              },
-              {
-                "label": "Value",
-                "name": "value",
-                "type": "string",
-                "acceptVariable": true,
-                "acceptNodeOutputAsVariable": true
-              }
-            ],
-            "id": "customFunctionAgentflow_17-input-customFunctionUpdateState-array",
-            "display": true
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "customFunctionInputVariables": [
-            {
-              "variableName": "currentTime",
-              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"toolAgentflow_1\" data-label=\"toolAgentflow_1\">{{ toolAgentflow_1 }}</span> </p>"
-            }
-          ],
-          "customFunctionJavascriptFunction": "let currentTime = JSON.parse($currentTime);\n\nreturn `${ currentTime.day }, ${ currentTime.date }`",
-          "customFunctionUpdateState": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "customFunctionAgentflow_17-output-customFunctionAgentflow",
-            "label": "Custom Function",
-            "name": "customFunctionAgentflow"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "type": "agentFlow",
-      "width": 191,
-      "height": 65,
-      "selected": false,
-      "positionAbsolute": {
-        "x": 2720.4986648649547,
-        "y": 573.7740526318306
-      },
-      "dragging": false
-    },
-    {
-      "id": "toolAgentflow_1",
-      "position": {
-        "x": 2484.8528421083897,
-        "y": 608.8480903073449
-      },
-      "data": {
-        "id": "toolAgentflow_1",
-        "label": "Current Time",
-        "version": 1.1,
-        "name": "toolAgentflow",
-        "type": "Tool",
-        "color": "#d4a373",
-        "baseClasses": [
-          "Tool"
-        ],
-        "category": "Agent Flows",
-        "description": "Tools allow LLM to interact with external systems",
-        "inputParams": [
-          {
-            "label": "Tool",
-            "name": "toolAgentflowSelectedTool",
-            "type": "asyncOptions",
-            "loadMethod": "listTools",
-            "loadConfig": true,
-            "id": "toolAgentflow_1-input-toolAgentflowSelectedTool-asyncOptions",
-            "display": true
-          },
-          {
-            "label": "Tool Input Arguments",
-            "name": "toolInputArgs",
-            "type": "array",
-            "acceptVariable": true,
-            "refresh": true,
-            "array": [
-              {
-                "label": "Input Argument Name",
-                "name": "inputArgName",
-                "type": "asyncOptions",
-                "loadMethod": "listToolInputArgs",
-                "refresh": true
-              },
-              {
-                "label": "Input Argument Value",
-                "name": "inputArgValue",
-                "type": "string",
-                "acceptVariable": true
-              }
-            ],
-            "show": {
-              "toolAgentflowSelectedTool": ".+"
-            },
-            "id": "toolAgentflow_1-input-toolInputArgs-array",
-            "display": true
-          },
-          {
-            "label": "Update Flow State",
-            "name": "toolUpdateState",
-            "description": "Update runtime state during the execution of the workflow",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Key",
-                "name": "key",
-                "type": "asyncOptions",
-                "loadMethod": "listRuntimeStateKeys",
-                "freeSolo": true
-              },
-              {
-                "label": "Value",
-                "name": "value",
-                "type": "string",
-                "acceptVariable": true,
-                "acceptNodeOutputAsVariable": true
-              }
-            ],
-            "id": "toolAgentflow_1-input-toolUpdateState-array",
-            "display": true
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "toolAgentflowSelectedTool": "currentDateTime",
-          "toolInputArgs": "",
-          "toolUpdateState": "",
-          "toolAgentflowSelectedToolConfig": {
-            "toolAgentflowSelectedTool": "currentDateTime"
-          }
-        },
-        "outputAnchors": [
-          {
-            "id": "toolAgentflow_1-output-toolAgentflow",
-            "label": "Tool",
-            "name": "toolAgentflow"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "type": "agentFlow",
-      "width": 157,
-      "height": 68,
-      "selected": false,
-      "positionAbsolute": {
-        "x": 2484.8528421083897,
-        "y": 608.8480903073449
-      },
-      "dragging": false
-    },
-    {
       "id": "customFunctionAgentflow_18",
       "position": {
         "x": 1491.5772025434742,
@@ -8489,7 +7782,7 @@
     {
       "id": "directReplyAgentflow_7",
       "position": {
-        "x": 1291.2320091552128,
+        "x": 1292.6930535474307,
         "y": 747.2898677072995
       },
       "data": {
@@ -8529,7 +7822,7 @@
       "height": 65,
       "selected": false,
       "positionAbsolute": {
-        "x": 1291.2320091552128,
+        "x": 1292.6930535474307,
         "y": 747.2898677072995
       },
       "dragging": false
@@ -8649,226 +7942,6 @@
       "dragging": false
     },
     {
-      "id": "toolAgentflow_2",
-      "position": {
-        "x": 2492.2583477943094,
-        "y": 889.5278479365198
-      },
-      "data": {
-        "id": "toolAgentflow_2",
-        "label": "Current Time",
-        "version": 1.1,
-        "name": "toolAgentflow",
-        "type": "Tool",
-        "color": "#d4a373",
-        "baseClasses": [
-          "Tool"
-        ],
-        "category": "Agent Flows",
-        "description": "Tools allow LLM to interact with external systems",
-        "inputParams": [
-          {
-            "label": "Tool",
-            "name": "toolAgentflowSelectedTool",
-            "type": "asyncOptions",
-            "loadMethod": "listTools",
-            "loadConfig": true,
-            "id": "toolAgentflow_2-input-toolAgentflowSelectedTool-asyncOptions",
-            "display": true
-          },
-          {
-            "label": "Tool Input Arguments",
-            "name": "toolInputArgs",
-            "type": "array",
-            "acceptVariable": true,
-            "refresh": true,
-            "array": [
-              {
-                "label": "Input Argument Name",
-                "name": "inputArgName",
-                "type": "asyncOptions",
-                "loadMethod": "listToolInputArgs",
-                "refresh": true
-              },
-              {
-                "label": "Input Argument Value",
-                "name": "inputArgValue",
-                "type": "string",
-                "acceptVariable": true
-              }
-            ],
-            "show": {
-              "toolAgentflowSelectedTool": ".+"
-            },
-            "id": "toolAgentflow_2-input-toolInputArgs-array",
-            "display": true
-          },
-          {
-            "label": "Update Flow State",
-            "name": "toolUpdateState",
-            "description": "Update runtime state during the execution of the workflow",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Key",
-                "name": "key",
-                "type": "asyncOptions",
-                "loadMethod": "listRuntimeStateKeys",
-                "freeSolo": true
-              },
-              {
-                "label": "Value",
-                "name": "value",
-                "type": "string",
-                "acceptVariable": true,
-                "acceptNodeOutputAsVariable": true
-              }
-            ],
-            "id": "toolAgentflow_2-input-toolUpdateState-array",
-            "display": true
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "toolAgentflowSelectedTool": "currentDateTime",
-          "toolInputArgs": "",
-          "toolUpdateState": "",
-          "toolAgentflowSelectedToolConfig": {
-            "toolAgentflowSelectedTool": "currentDateTime"
-          }
-        },
-        "outputAnchors": [
-          {
-            "id": "toolAgentflow_2-output-toolAgentflow",
-            "label": "Tool",
-            "name": "toolAgentflow"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "type": "agentFlow",
-      "width": 157,
-      "height": 68,
-      "selected": false,
-      "positionAbsolute": {
-        "x": 2492.2583477943094,
-        "y": 889.5278479365198
-      },
-      "dragging": false
-    },
-    {
-      "id": "customFunctionAgentflow_23",
-      "position": {
-        "x": 2713.2530125618177,
-        "y": 898.1151058922104
-      },
-      "data": {
-        "id": "customFunctionAgentflow_23",
-        "label": "Parse current time",
-        "version": 1,
-        "name": "customFunctionAgentflow",
-        "type": "CustomFunction",
-        "color": "#E4B7FF",
-        "baseClasses": [
-          "CustomFunction"
-        ],
-        "category": "Agent Flows",
-        "description": "Execute custom function",
-        "inputParams": [
-          {
-            "label": "Input Variables",
-            "name": "customFunctionInputVariables",
-            "description": "Input variables can be used in the function with prefix $. For example: $foo",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Variable Name",
-                "name": "variableName",
-                "type": "string"
-              },
-              {
-                "label": "Variable Value",
-                "name": "variableValue",
-                "type": "string",
-                "acceptVariable": true
-              }
-            ],
-            "id": "customFunctionAgentflow_23-input-customFunctionInputVariables-array",
-            "display": true
-          },
-          {
-            "label": "Javascript Function",
-            "name": "customFunctionJavascriptFunction",
-            "type": "code",
-            "codeExample": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/\n\nconst fetch = require('node-fetch');\nconst url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true';\nconst options = {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json'\n    }\n};\ntry {\n    const response = await fetch(url, options);\n    const text = await response.text();\n    return text;\n} catch (error) {\n    console.error(error);\n    return '';\n}",
-            "description": "The function to execute. Must return a string or an object that can be converted to a string.",
-            "id": "customFunctionAgentflow_23-input-customFunctionJavascriptFunction-code",
-            "display": true
-          },
-          {
-            "label": "Update Flow State",
-            "name": "customFunctionUpdateState",
-            "description": "Update runtime state during the execution of the workflow",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Key",
-                "name": "key",
-                "type": "asyncOptions",
-                "loadMethod": "listRuntimeStateKeys",
-                "freeSolo": true
-              },
-              {
-                "label": "Value",
-                "name": "value",
-                "type": "string",
-                "acceptVariable": true,
-                "acceptNodeOutputAsVariable": true
-              }
-            ],
-            "id": "customFunctionAgentflow_23-input-customFunctionUpdateState-array",
-            "display": true
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "customFunctionInputVariables": [
-            {
-              "variableName": "currentTime",
-              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"toolAgentflow_2\" data-label=\"toolAgentflow_2\">{{ toolAgentflow_2 }}</span> </p>"
-            }
-          ],
-          "customFunctionJavascriptFunction": "let currentTime = JSON.parse($currentTime);\n\nreturn `${ currentTime.day }, ${ currentTime.date }`",
-          "customFunctionUpdateState": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "customFunctionAgentflow_23-output-customFunctionAgentflow",
-            "label": "Custom Function",
-            "name": "customFunctionAgentflow"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "type": "agentFlow",
-      "width": 191,
-      "height": 65,
-      "selected": false,
-      "positionAbsolute": {
-        "x": 2713.2530125618177,
-        "y": 898.1151058922104
-      },
-      "dragging": false
-    },
-    {
       "id": "stickyNoteAgentflow_7",
       "position": {
         "x": -4552.522262704261,
@@ -8979,8 +8052,8 @@
     {
       "id": "customFunctionAgentflow_24",
       "position": {
-        "x": -1359.5378043952524,
-        "y": 432.6544038995353
+        "x": -2265.613588378693,
+        "y": 261.1804257657413
       },
       "data": {
         "id": "customFunctionAgentflow_24",
@@ -9066,7 +8139,7 @@
               "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_id\" data-label=\"$flow.state.user_id\">{{ $flow.state.user_id }}</span> </p>"
             }
           ],
-          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst apiUrl = $apiUrl\nconst userId = $userId\n\nconst response = await fetch( `${ apiUrl }/api/session/${ userId }`, {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json',\n    },\n} )\n\nif ( !response.ok ) {\n    return \"No\"\n}\n\nconst result = await response.json()\nreturn result.data.topic",
+          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst apiUrl = $apiUrl\nconst userId = $userId\n\nconst response = await fetch( `${ apiUrl }/api/session/${ userId }`, {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json',\n    },\n} )\n\nif ( !response.ok ) {\n    return \"Không có\"\n}\nconst result = await response.json()\n\nif ( !result || !result.data || !result.data.topic ) {\n    return \"Không có\" // Redis has no data or session expired\n}\n\nreturn result.data.topic",
           "customFunctionUpdateState": [
             {
               "key": "topic",
@@ -9090,157 +8163,16 @@
       "height": 65,
       "selected": false,
       "positionAbsolute": {
-        "x": -1359.5378043952524,
-        "y": 432.6544038995353
-      },
-      "dragging": false
-    },
-    {
-      "id": "executeFlowAgentflow_1",
-      "position": {
-        "x": -1968.3123337785446,
-        "y": 318.8470477923478
-      },
-      "data": {
-        "id": "executeFlowAgentflow_1",
-        "label": "Create topic context object",
-        "version": 1,
-        "name": "executeFlowAgentflow",
-        "type": "ExecuteFlow",
-        "color": "#a3b18a",
-        "baseClasses": [
-          "ExecuteFlow"
-        ],
-        "category": "Agent Flows",
-        "description": "Execute another flow",
-        "inputParams": [
-          {
-            "label": "Connect Credential",
-            "name": "credential",
-            "type": "credential",
-            "credentialNames": [
-              "chatflowApi"
-            ],
-            "optional": true,
-            "id": "executeFlowAgentflow_1-input-credential-credential",
-            "display": true
-          },
-          {
-            "label": "Select Flow",
-            "name": "executeFlowSelectedFlow",
-            "type": "asyncOptions",
-            "loadMethod": "listFlows",
-            "id": "executeFlowAgentflow_1-input-executeFlowSelectedFlow-asyncOptions",
-            "display": true
-          },
-          {
-            "label": "Input",
-            "name": "executeFlowInput",
-            "type": "string",
-            "rows": 4,
-            "acceptVariable": true,
-            "id": "executeFlowAgentflow_1-input-executeFlowInput-string",
-            "display": true
-          },
-          {
-            "label": "Override Config",
-            "name": "executeFlowOverrideConfig",
-            "description": "Override the config passed to the flow",
-            "type": "json",
-            "optional": true,
-            "id": "executeFlowAgentflow_1-input-executeFlowOverrideConfig-json",
-            "display": true
-          },
-          {
-            "label": "Base URL",
-            "name": "executeFlowBaseURL",
-            "type": "string",
-            "description": "Base URL to Flowise. By default, it is the URL of the incoming request. Useful when you need to execute flow through an alternative route.",
-            "placeholder": "http://localhost:3000",
-            "optional": true,
-            "id": "executeFlowAgentflow_1-input-executeFlowBaseURL-string",
-            "display": true
-          },
-          {
-            "label": "Return Response As",
-            "name": "executeFlowReturnResponseAs",
-            "type": "options",
-            "options": [
-              {
-                "label": "User Message",
-                "name": "userMessage"
-              },
-              {
-                "label": "Assistant Message",
-                "name": "assistantMessage"
-              }
-            ],
-            "default": "userMessage",
-            "id": "executeFlowAgentflow_1-input-executeFlowReturnResponseAs-options",
-            "display": true
-          },
-          {
-            "label": "Update Flow State",
-            "name": "executeFlowUpdateState",
-            "description": "Update runtime state during the execution of the workflow",
-            "type": "array",
-            "optional": true,
-            "acceptVariable": true,
-            "array": [
-              {
-                "label": "Key",
-                "name": "key",
-                "type": "asyncOptions",
-                "loadMethod": "listRuntimeStateKeys",
-                "freeSolo": true
-              },
-              {
-                "label": "Value",
-                "name": "value",
-                "type": "string",
-                "acceptVariable": true,
-                "acceptNodeOutputAsVariable": true
-              }
-            ],
-            "id": "executeFlowAgentflow_1-input-executeFlowUpdateState-array",
-            "display": true
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "executeFlowSelectedFlow": "a8114297-b1bd-4136-8d80-5350ab72d54f",
-          "executeFlowInput": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_id\" data-label=\"$flow.state.user_id\">{{ $flow.state.user_id }}</span>|<span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_question\" data-label=\"$flow.state.user_question\">{{ $flow.state.user_question }}</span></p>",
-          "executeFlowOverrideConfig": "",
-          "executeFlowBaseURL": "",
-          "executeFlowReturnResponseAs": "assistantMessage",
-          "executeFlowUpdateState": "",
-          "undefined": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "executeFlowAgentflow_1-output-executeFlowAgentflow",
-            "label": "Execute Flow",
-            "name": "executeFlowAgentflow"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "type": "agentFlow",
-      "width": 247,
-      "height": 65,
-      "selected": false,
-      "positionAbsolute": {
-        "x": -1968.3123337785446,
-        "y": 318.8470477923478
+        "x": -2265.613588378693,
+        "y": 261.1804257657413
       },
       "dragging": false
     },
     {
       "id": "conditionAgentflow_6",
       "position": {
-        "x": -1643.0812267532533,
-        "y": 361.4572280079851
+        "x": -619.4702225874298,
+        "y": 483.57032350073223
       },
       "data": {
         "id": "conditionAgentflow_6",
@@ -9482,11 +8414,12 @@
           "conditions": [
             {
               "type": "string",
-              "value1": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"executeFlowAgentflow_1\" data-label=\"executeFlowAgentflow_1\">{{ executeFlowAgentflow_1 }}</span> </p>",
+              "value1": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.topic\" data-label=\"$flow.state.topic\">{{ $flow.state.topic }}</span> </p>",
               "operation": "equal",
-              "value2": "<p>No</p>"
+              "value2": "<p>Không có</p>"
             }
-          ]
+          ],
+          "undefined": ""
         },
         "outputAnchors": [
           {
@@ -9510,16 +8443,16 @@
       "height": 80,
       "selected": false,
       "positionAbsolute": {
-        "x": -1643.0812267532533,
-        "y": 361.4572280079851
+        "x": -619.4702225874298,
+        "y": 483.57032350073223
       },
       "dragging": false
     },
     {
       "id": "directReplyAgentflow_8",
       "position": {
-        "x": -1357.6342821270075,
-        "y": 320.856992652831
+        "x": -369.4255137784249,
+        "y": 434.79400443933963
       },
       "data": {
         "id": "directReplyAgentflow_8",
@@ -9558,15 +8491,15 @@
       "height": 65,
       "selected": false,
       "positionAbsolute": {
-        "x": -1357.6342821270075,
-        "y": 320.856992652831
+        "x": -369.4255137784249,
+        "y": 434.79400443933963
       },
       "dragging": false
     },
     {
       "id": "conditionAgentflow_7",
       "position": {
-        "x": 241.74936166097925,
+        "x": 277.9258637554062,
         "y": 541.7728928392797
       },
       "data": {
@@ -9853,7 +8786,7 @@
       "selected": false,
       "dragging": false,
       "positionAbsolute": {
-        "x": 241.74936166097925,
+        "x": 277.9258637554062,
         "y": 541.7728928392797
       }
     },
@@ -10072,6 +9005,1222 @@
         "x": -4561.937088782401,
         "y": 477.692443542084
       }
+    },
+    {
+      "id": "stickyNoteAgentflow_13",
+      "position": {
+        "x": -3934.2008355018706,
+        "y": -895.3095911331218
+      },
+      "data": {
+        "id": "stickyNoteAgentflow_13",
+        "label": "Sticky Note (3) (1) (13)",
+        "version": 1,
+        "name": "stickyNoteAgentflow",
+        "type": "StickyNote",
+        "color": "#fee440",
+        "baseClasses": [
+          "StickyNote"
+        ],
+        "category": "Agent Flows",
+        "description": "Add notes to the agent flow",
+        "inputParams": [
+          {
+            "label": "",
+            "name": "note",
+            "type": "string",
+            "rows": 1,
+            "placeholder": "Type something here",
+            "optional": true,
+            "id": "stickyNoteAgentflow_13-input-note-string",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "note": "hôm đấy tôi có bị tính là đi muộn không|29:1LZVQUxhyhMQA5VKBzO8OyD9wv6xrQaNNmO8nBd2BOEz4G2q6_jIBRlDoI-sLJt_uIyr-4k_xWym19eAgc5HdXQ|Nguyen Duc Kien|ndkien.ts@cmc.com.vn"
+        },
+        "outputAnchors": [
+          {
+            "id": "stickyNoteAgentflow_13-output-stickyNoteAgentflow",
+            "label": "Sticky Note",
+            "name": "stickyNoteAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "stickyNote",
+      "width": 220,
+      "height": 242,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": -3934.2008355018706,
+        "y": -895.3095911331218
+      }
+    },
+    {
+      "id": "customFunctionAgentflow_2",
+      "position": {
+        "x": -3683.617204946274,
+        "y": 21.407472343245743
+      },
+      "data": {
+        "id": "customFunctionAgentflow_2",
+        "label": "Get Previous Question from Session",
+        "version": 1,
+        "name": "customFunctionAgentflow",
+        "type": "CustomFunction",
+        "color": "#E4B7FF",
+        "baseClasses": [
+          "CustomFunction"
+        ],
+        "category": "Agent Flows",
+        "description": "Execute custom function",
+        "inputParams": [
+          {
+            "label": "Input Variables",
+            "name": "customFunctionInputVariables",
+            "description": "Input variables can be used in the function with prefix $. For example: $foo",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Variable Name",
+                "name": "variableName",
+                "type": "string"
+              },
+              {
+                "label": "Variable Value",
+                "name": "variableValue",
+                "type": "string",
+                "acceptVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_2-input-customFunctionInputVariables-array",
+            "display": true
+          },
+          {
+            "label": "Javascript Function",
+            "name": "customFunctionJavascriptFunction",
+            "type": "code",
+            "codeExample": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/\n\nconst fetch = require('node-fetch');\nconst url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true';\nconst options = {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json'\n    }\n};\ntry {\n    const response = await fetch(url, options);\n    const text = await response.text();\n    return text;\n} catch (error) {\n    console.error(error);\n    return '';\n}",
+            "description": "The function to execute. Must return a string or an object that can be converted to a string.",
+            "id": "customFunctionAgentflow_2-input-customFunctionJavascriptFunction-code",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "customFunctionUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys",
+                "freeSolo": true
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_2-input-customFunctionUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "customFunctionInputVariables": [
+            {
+              "variableName": "apiUrl",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.api_url\" data-label=\"$flow.state.api_url\">{{ $flow.state.api_url }}</span> </p>"
+            },
+            {
+              "variableName": "userId",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_id\" data-label=\"$flow.state.user_id\">{{ $flow.state.user_id }}</span> </p>"
+            }
+          ],
+          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst apiUrl = $apiUrl\nconst userId = $userId\n\nconst response = await fetch( `${ apiUrl }/api/session/${ userId }`, {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json',\n    }\n} )\n\nif ( !response.ok ) {\n    return \"Không có\"\n}\n\nconst result = await response.json()\nif ( !result || !result.data || !result.data.prev_question ) {\n    return \"Không có\" // Redis has no data or session expired\n}\n\nreturn result.data.prev_question",
+          "customFunctionUpdateState": [
+            {
+              "key": "prev_question",
+              "value": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"output\" data-label=\"output\">{{ output }}</span> </p>"
+            }
+          ],
+          "undefined": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "customFunctionAgentflow_2-output-customFunctionAgentflow",
+            "label": "Custom Function",
+            "name": "customFunctionAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 305,
+      "height": 65,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -3683.617204946274,
+        "y": 21.407472343245743
+      },
+      "dragging": false
+    },
+    {
+      "id": "llmAgentflow_1",
+      "position": {
+        "x": -1459.104464800477,
+        "y": 301.28223494201836
+      },
+      "data": {
+        "id": "llmAgentflow_1",
+        "label": "Context Handler",
+        "version": 1,
+        "name": "llmAgentflow",
+        "type": "LLM",
+        "color": "#64B5F6",
+        "baseClasses": [
+          "LLM"
+        ],
+        "category": "Agent Flows",
+        "description": "Large language models to analyze user-provided inputs and generate responses",
+        "inputParams": [
+          {
+            "label": "Model",
+            "name": "llmModel",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "loadConfig": true,
+            "id": "llmAgentflow_1-input-llmModel-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Messages",
+            "name": "llmMessages",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Role",
+                "name": "role",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "System",
+                    "name": "system"
+                  },
+                  {
+                    "label": "Assistant",
+                    "name": "assistant"
+                  },
+                  {
+                    "label": "Developer",
+                    "name": "developer"
+                  },
+                  {
+                    "label": "User",
+                    "name": "user"
+                  }
+                ]
+              },
+              {
+                "label": "Content",
+                "name": "content",
+                "type": "string",
+                "acceptVariable": true,
+                "generateInstruction": true,
+                "rows": 4
+              }
+            ],
+            "id": "llmAgentflow_1-input-llmMessages-array",
+            "display": true
+          },
+          {
+            "label": "Enable Memory",
+            "name": "llmEnableMemory",
+            "type": "boolean",
+            "description": "Enable memory for the conversation thread",
+            "default": true,
+            "optional": true,
+            "id": "llmAgentflow_1-input-llmEnableMemory-boolean",
+            "display": true
+          },
+          {
+            "label": "Memory Type",
+            "name": "llmMemoryType",
+            "type": "options",
+            "options": [
+              {
+                "label": "All Messages",
+                "name": "allMessages",
+                "description": "Retrieve all messages from the conversation"
+              },
+              {
+                "label": "Window Size",
+                "name": "windowSize",
+                "description": "Uses a fixed window size to surface the last N messages"
+              },
+              {
+                "label": "Conversation Summary",
+                "name": "conversationSummary",
+                "description": "Summarizes the whole conversation"
+              },
+              {
+                "label": "Conversation Summary Buffer",
+                "name": "conversationSummaryBuffer",
+                "description": "Summarize conversations once token limit is reached. Default to 2000"
+              }
+            ],
+            "optional": true,
+            "default": "allMessages",
+            "show": {
+              "llmEnableMemory": true
+            },
+            "id": "llmAgentflow_1-input-llmMemoryType-options",
+            "display": true
+          },
+          {
+            "label": "Window Size",
+            "name": "llmMemoryWindowSize",
+            "type": "number",
+            "default": "20",
+            "description": "Uses a fixed window size to surface the last N messages",
+            "show": {
+              "llmMemoryType": "windowSize"
+            },
+            "id": "llmAgentflow_1-input-llmMemoryWindowSize-number",
+            "display": false
+          },
+          {
+            "label": "Max Token Limit",
+            "name": "llmMemoryMaxTokenLimit",
+            "type": "number",
+            "default": "2000",
+            "description": "Summarize conversations once token limit is reached. Default to 2000",
+            "show": {
+              "llmMemoryType": "conversationSummaryBuffer"
+            },
+            "id": "llmAgentflow_1-input-llmMemoryMaxTokenLimit-number",
+            "display": false
+          },
+          {
+            "label": "Input Message",
+            "name": "llmUserMessage",
+            "type": "string",
+            "description": "Add an input message as user message at the end of the conversation",
+            "rows": 4,
+            "optional": true,
+            "acceptVariable": true,
+            "show": {
+              "llmEnableMemory": true
+            },
+            "id": "llmAgentflow_1-input-llmUserMessage-string",
+            "display": true
+          },
+          {
+            "label": "Return Response As",
+            "name": "llmReturnResponseAs",
+            "type": "options",
+            "options": [
+              {
+                "label": "User Message",
+                "name": "userMessage"
+              },
+              {
+                "label": "Assistant Message",
+                "name": "assistantMessage"
+              }
+            ],
+            "default": "userMessage",
+            "id": "llmAgentflow_1-input-llmReturnResponseAs-options",
+            "display": true
+          },
+          {
+            "label": "JSON Structured Output",
+            "name": "llmStructuredOutput",
+            "description": "Instruct the LLM to give output in a JSON structured schema",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "label": "Type",
+                "name": "type",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "String",
+                    "name": "string"
+                  },
+                  {
+                    "label": "String Array",
+                    "name": "stringArray"
+                  },
+                  {
+                    "label": "Number",
+                    "name": "number"
+                  },
+                  {
+                    "label": "Boolean",
+                    "name": "boolean"
+                  },
+                  {
+                    "label": "Enum",
+                    "name": "enum"
+                  },
+                  {
+                    "label": "JSON Array",
+                    "name": "jsonArray"
+                  }
+                ]
+              },
+              {
+                "label": "Enum Values",
+                "name": "enumValues",
+                "type": "string",
+                "placeholder": "value1, value2, value3",
+                "description": "Enum values. Separated by comma",
+                "optional": true,
+                "show": {
+                  "llmStructuredOutput[$index].type": "enum"
+                }
+              },
+              {
+                "label": "JSON Schema",
+                "name": "jsonSchema",
+                "type": "code",
+                "placeholder": "{\n    \"answer\": {\n        \"type\": \"string\",\n        \"description\": \"Value of the answer\"\n    },\n    \"reason\": {\n        \"type\": \"string\",\n        \"description\": \"Reason for the answer\"\n    },\n    \"optional\": {\n        \"type\": \"boolean\"\n    },\n    \"count\": {\n        \"type\": \"number\"\n    },\n    \"children\": {\n        \"type\": \"array\",\n        \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"value\": {\n                    \"type\": \"string\",\n                    \"description\": \"Value of the children's answer\"\n                }\n            }\n        }\n    }\n}",
+                "description": "JSON schema for the structured output",
+                "optional": true,
+                "hideCodeExecute": true,
+                "show": {
+                  "llmStructuredOutput[$index].type": "jsonArray"
+                }
+              },
+              {
+                "label": "Description",
+                "name": "description",
+                "type": "string",
+                "placeholder": "Description of the key"
+              }
+            ],
+            "id": "llmAgentflow_1-input-llmStructuredOutput-array",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "llmUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys",
+                "freeSolo": true
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "llmAgentflow_1-input-llmUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "llmModel": "chatGoogleGenerativeAI",
+          "llmMessages": [
+            {
+              "role": "system",
+              "content": "<p>Dựa vào ngữ cảnh hiện tại, hãy phân tích câu hỏi của người dùng để đưa ra phản hồi phù hợp.</p><p>Ngữ cảnh hiện tại:</p><ul><li><p>Ngày hiện tại: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.current_time\" data-label=\"$flow.state.current_time\">{{ $flow.state.current_time }}</span></p></li><li><p>Khoảng thời gian mà người dùng đang nhắc đến:</p><ul><li><p>Ngày bắt đầu: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.start_date\" data-label=\"$flow.state.start_date\">{{ $flow.state.start_date }}</span></p></li><li><p>Ngày kết thúc: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.end_date\" data-label=\"$flow.state.end_date\">{{ $flow.state.end_date }}</span></p></li></ul></li><li><p>Chủ đề mà người dùng đang nhắc đến: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.topic\" data-label=\"$flow.state.topic\">{{ $flow.state.topic }}</span></p></li><li><p>Câu hỏi trước đó của người dùng: <span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.prev_question\" data-label=\"$flow.state.prev_question\">{{ $flow.state.prev_question }}</span></p></li></ul><p>Quy tắc xử lí tuần tự: (Phải <strong>thực hiện tuần tự các bước từ 1 đến 4, không được bỏ qua hoặc hoán đổi thứ tự</strong>. Chỉ khi hoàn tất bước trước đó thì mới được chuyển sang bước tiếp theo.)</p><ol><li><p>Nhận diện thông tin thời gian trong câu hỏi</p></li></ol><ul><li><p>Nếu người dùng có đề cập đến thông tin thời gian<strong> </strong>bao gồm ngày, tháng, năm, tuần, hoặc các từ khóa chỉ mốc thời gian cụ thể hoặc tương đối như:</p><ul><li><p>“hôm nay”, “ngày mai”, “hôm qua”</p></li><li><p>“tuần này”, “tháng trước”, “quý này”</p></li><li><p>“ngày 1/8”, “tháng 7”, “năm 2025”</p></li><li><p>“lúc 8 giờ”, “9h sáng”, “chiều nay”</p></li><li><p>“trong 3 ngày gần đây”, “7 ngày qua”, “cuối tuần”</p></li></ul></li></ul><p>thì xác định <strong>Có đề cập đến thời gian </strong>và chuyển sang<strong> bước 2</strong></p><ul><li><p>Nếu người dùng không đề cập đến bất kỳ thời gian nào<strong>, </strong>câu hỏi không có thông tin thời gian, không thể xác định được mốc thời gian liên quan, ví dụ:</p><ul><li><p>“Tôi đã check-in chưa?”</p></li><li><p>\"Tôi check in lúc nào?\"</p></li><li><p>“Tôi check-out mấy giờ?”</p></li><li><p>“Giờ vào là lúc nào?”</p></li><li><p>\"Tôi đi muộn không?\"</p></li><li><p>\"Tôi được bao nhiêu ngày công?\"</p></li><li><p>\"Thời gian check in thì sao?\"</p></li><li><p>\"Còn thời gian chek out của tôi?\"</p></li></ul></li></ul><p>hoặc không chứa các từ khóa thời gian như “hôm nay”, “ngày”, “tháng”, “tuần”, v.v. thì xác định <strong>Không đề cập đến thời gian </strong>và<strong> chuyển sang bước 4</strong></p><ul><li><p>Ngoài ra, nếu câu hỏi có chứa các từ khóa <strong>chỉ thời gian mơ hồ, không xác định rõ ràng</strong> như:</p><ul><li><p>“hôm ấy”, “hôm đấy”, “hôm đó”, “ngày hôm đó”</p></li><li><p>“tuần đấy”, “tháng đấy”, “tháng đó”</p></li><li><p>hoặc các biến thể tương tự: “lúc đó”, “dạo ấy”, “thời điểm ấy”</p></li></ul></li></ul><p>thì cũng xác định là <strong>Không đề cập đến thời gian </strong>và<strong> chuyển sang bước 4</strong>.</p><ol start=\"2\"><li><p>Phân biệt một ngày cụ thể và khoảng thời gian nhiều ngày</p></li></ol><ul><li><p><strong>Một ngày cụ thể</strong> thì start_date = end_date. Ví dụ:</p><ul><li><p>Hôm nay tôi check-in chưa?</p></li><li><p>Ngày 10 tháng 7 tôi vào làm mấy giờ?</p></li><li><p>Tôi có quên chấm công hôm qua không?</p></li><li><p>Giờ check out hôm kia là lúc nào?</p></li><li><p>Thứ 3 tuần trước tôi check in lúc nào?</p></li><li><p>Thứ 5 tuần trước nữa tôi check out mấy giờ?</p></li></ul></li><li><p>hoặc có chứa các cụm từ gợi ý một ngày cụ thể, như: \"hôm nay\", \"hôm qua\", \"hôm kia\", \"hôm trước\", \"ngày [số]\", \"ngày [số] tháng [số]\", \"thứ 2 tuần trước\", \"thứ 6 vừa rồi\", \"thứ 4 tuần này\", \"thứ 3 vừa qua\" v.v.</p></li><li><p><strong>Một khoảng thời gian</strong> thì start_date khác end_date. Ví dụ:</p><ul><li><p>“Trong tháng 6 tôi đi làm mấy giờ mỗi ngày?”</p></li><li><p>“Từ ngày 3/8 đến 18/8 tôi có đi làm đầy đủ không?”</p></li><li><p>Trong tháng 6 tôi đi làm mấy giờ mỗi ngày?</p></li><li><p>Thời gian check-in của tôi tuần vừa rồi?</p></li><li><p>Có ngày nào trong 2 tuần vừa rồi tôi quên chấm công không?</p></li><li><p>Từ ngày 3/8 đến 18/8 tôi có đi làm đầy đủ không?</p></li></ul></li><li><p>hoặc chứa các cụm từ thể hiện khoảng thời gian, như: “trong tuần trước”, “trong tháng này”, “2 tuần vừa rồi”, “từ ngày ... đến ngày ...”, “từ thứ 2 đến thứ 6”, v.v.</p></li><li><p>Sau khi xác định được thời gian thì <strong>chuyển sang bước 3</strong></p></li></ul><ol start=\"3\"><li><p>Cách tính mốc thời gian</p></li></ol><ul><li><p>Cho 1 ngày cụ thể</p><ul><li><p>Nhận diện các cụm từ mô tả ngày cụ thể, bao gồm:</p><ul><li><p>\"hôm qua\", \"hôm nay\", \"hôm trước\", \"hôm kia\", \"hôm kìa\"</p></li><li><p>\"ngày 5\", \"mùng 3\"</p></li><li><p>\"thứ 2\", \"thứ ba tuần trước\", \"thứ năm tuần này\"</p></li><li><p>\"ngày 15 tháng 6\", \"ngày 2 tháng trước\", v.v.</p></li></ul></li><li><p>Giải thích các cụm thời gian tương đối dựa trên current_date:</p><ul><li><p>“hôm nay” → chính là current_date</p></li><li><p>“hôm qua” → current_date - 1 ngày</p></li><li><p>“hôm trước” → current_date - 2 ngày</p></li><li><p>“hôm kia” → current_date - 2 ngày</p></li><li><p>“hôm kìa” → current_date - 3 ngày</p></li><li><p>“thứ [x] tuần này” → ngày gần nhất ứng với thứ đó trong cùng tuần với current_date</p></li><li><p>“thứ [x] tuần trước” → ngày tương ứng với thứ đó của tuần trước</p></li><li><p>“ngày [số]” hoặc “mùng [số]” → cùng tháng với current_date</p></li><li><p>“ngày [số] tháng [số]” → sử dụng năm của current_date, trừ khi người dùng nói rõ năm</p></li><li><p>“ngày [số] tháng trước” → ngày tương ứng của tháng trước</p></li><li><p>“ngày [số] tháng này” → ngày tương ứng của tháng hiện tại</p></li></ul></li><li><p>Ví dụ:</p><ul><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: “Tôi check in hôm qua lúc mấy giờ?” thì kết quả tính toán được sẽ là: current_time: \"2025-03-07\"</p></li><li><p>Nếu người dùng nói: “Ngày 2 tháng trước tôi nghỉ phép” thì kết quả tính toán được sẽ là: current_time: \"2025-02-02\"</p></li><li><p>Nếu người dùng nói: “Thứ ba tuần này tôi đến trễ” thì kết quả tính toán được sẽ là: current_time: \"2025-03-04\"</p></li></ul></li></ul></li><li><p>Cho 1 khoảng thời gian</p><ul><li><p>Nhận diện các cụm từ chỉ khoảng thời gian như:</p><ul><li><p>“từ [ngày/tháng/thứ] ... đến [ngày/tháng/thứ]”</p></li><li><p>“từ ngày ... đến ngày ...”</p></li></ul></li><li><p>Giải thích tương đối các cụm thời gian bằng cách dựa trên ngày hiện tại (theo định dạng YYYY-MM-DD).</p><ul><li><p>Nếu người dùng chỉ nói \"từ mùng 1 đến mùng 6\", hiểu là cùng tháng với ngày hiện tại (ví dụ: nếu ngày hiện tại là 2025-03-08 -&gt; khoảng thời gian là 2025-03-01 đến 2025-03-06)</p></li><li><p>Nếu người dùng nói \"từ thứ 3 tuần trước đến thứ 3 tuần này\", sử dụng logic tính toán tuần để xác định đúng các ngày tương ứng</p></li><li><p>Nếu người dùng nói \"từ 15 tháng trước đến 15 tháng này\", lấy ngày 15 của tháng trước và tháng hiện tại dựa trên current_date</p></li></ul></li><li><p>Ví dụ:</p><ul><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"Từ mùng 1 đến mùng 6\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-03-01\", \"end_date\": \"2025-03-06\"</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"Từ 15 tháng trước đến 15 tháng này\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-02-15\", \"end_date\": \"2025-03-15\"</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"Từ thứ 3 tuần trước đến thứ 3 tuần này\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-02-25\", \"end_date\": \"2025-03-04\" (do 25/2 là thứ Ba tuần trước, 4/3 là thứ Ba tuần này)</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"tuần trước\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-02-24\", \"end_date\": \"2025-03-02\"</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"tuần này\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-03-03\", \"end_date\": \"2025-03-08\"</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"hai tuần vừa rồi\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-02-19\", \"end_date\": \"2025-03-04\"</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"ba ngày gần nhất\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-03-05\", \"end_date\": \"2025-03-07\"</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"ba ngày vừa qua\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-03-05\", \"end_date\": \"2025-03-07\"</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"tháng này\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-03-01\", \"end_date\": \"2025-03-08\"</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"tháng trước\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-02-01\", \"end_date\": \"2025-02-29\"</p></li><li><p>Nếu current_date là 2025-03-08 và người dùng hỏi: \"nửa đầu tháng này\" thì kết quả tính toán được sẽ là: \"start_date\": \"2025-03-01\", \"end_date\": \"2025-03-08\"</p></li></ul></li></ul></li><li><p>Sau khi xác định xong start_date và end_date thì <strong>chuyển sang bước 5 luôn</strong>, không cần sang Bước 4.</p></li></ul><ol start=\"4\"><li><p>Nếu không xác định được mốc thời gian</p></li></ol><ul><li><p>Nếu ngữ cảnh hiện tại đã có khoảng thời gian thì giữ nguyên.</p></li><li><p>Nếu không có ngữ cảnh thì trả về chuỗi \"Không có\"</p></li></ul><ol start=\"5\"><li><p>Xác định người dùng có đề cập đến chủ đề hay không</p></li></ol><ul><li><p>Nếu người dùng có đề cập đến <strong>chủ đề </strong>ví dụ như:</p><ul><li><p>“Hôm qua tôi đi muộn không?”</p></li><li><p>“Thời gian check in của tôi thứ 4 tuần trước là lúc nào?”</p></li><li><p>“Tôi được bao nhiêu ngày công trong tuần này?”</p></li><li><p>“Ngày 1/8 tôi có bị đi muộn không?”</p></li></ul></li></ul><p>thì xác định<strong> Có đề cập đến chủ đề </strong>và<strong> chuyển sang bước 6</strong></p><ul><li><p>Nếu người dùng <strong>không đề cập đến bất kỳ chủ đề nào ở trên</strong>, hoặc chỉ nói đến <strong>thời gian chung chung mà không gắn với chủ đề, </strong>ví dụ:</p><ul><li><p>“Hôm nay thì sao?”</p></li><li><p>“Hôm trước thì thế nào?”</p></li><li><p>“Thứ 7 tuần trước thì sao?”</p></li><li><p>\"Thứ 2 vừa rồi thì sao?\"</p></li><li><p>\"Thứ 3 vừa qua thì thế nào\"</p></li><li><p>\"Thứ 3 tuần trước nữa?\"</p></li></ul></li></ul><p>thì xác định<strong> Không đề cập đến chủ đề </strong>và<strong> chuyển sang bước 7 luôn</strong></p><ol start=\"6\"><li><p>Xác định chủ đề:</p></li></ol><ul><li><p>Nếu người dùng hỏi về thời gian check-in / check-out cụ thể trong ngày. Ví dụ:</p><ul><li><p>Hôm qua tôi vào làm lúc mấy giờ?</p></li><li><p>Ngày 10/7 tôi chấm công mấy giờ?</p></li><li><p>Hôm nay tôi có quên chấm công không?</p></li><li><p>Thời gian check-in hôm kia của tôi là mấy giờ?</p></li></ul></li></ul><p>thì xác định chủ đề là \"<strong>Thời gian Check-in / Check-out cụ thể\" </strong>và<strong> trả về luôn, không cần chuyển sang bước 7</strong></p><ul><li><p>Nếu người dùng hỏi về số ngày hoặc lần đi muộn. Ví dụ:</p><ul><li><p>Tháng trước tôi đi muộn bao nhiêu ngày?</p></li><li><p>Tôi có bị tính đi trễ ngày nào trong tuần trước không?</p></li><li><p>Tổng số lần đi trễ của tôi trong tháng 6 là bao nhiêu?</p></li></ul></li></ul><p>thì xác định chủ đề là \"<strong>Đi muộn\" </strong>và<strong> trả về luôn, không cần chuyển sang bước 7</strong></p><ul><li><p>Nếu người dùng hỏi về số ngày công hoặc việc đi làm đủ ngày. Ví dụ:</p><ul><li><p>Tháng này tôi có bao nhiêu ngày công?</p></li><li><p>Tôi đi làm đủ công trong tháng 6 không?</p></li><li><p>Tổng số ngày công của tôi 2 tuần vừa rồi là bao nhiêu?</p></li></ul></li></ul><p>thì xác định chủ đề là \"<strong>Ngày công\" </strong>và<strong> trả về luôn, không cần chuyển sang bước 7</strong></p><ol start=\"7\"><li><p>Nếu không xác định được chủ đề:</p></li></ol><ul><li><p>Nếu ngữ cảnh hiện tại đã có thông tin về chủ đề thì giữ nguyên.</p></li><li><p>Nếu không có ngữ cảnh thì trả về chuỗi \"Không có\"</p></li></ul>"
+            }
+          ],
+          "llmEnableMemory": true,
+          "llmMemoryType": "allMessages",
+          "llmUserMessage": "",
+          "llmReturnResponseAs": "userMessage",
+          "llmStructuredOutput": [
+            {
+              "key": "start_date",
+              "type": "string",
+              "enumValues": "",
+              "jsonSchema": "",
+              "description": "Start Date"
+            },
+            {
+              "key": "end_date",
+              "type": "string",
+              "enumValues": "",
+              "jsonSchema": "",
+              "description": "End Date"
+            },
+            {
+              "key": "topic",
+              "type": "string",
+              "enumValues": "",
+              "jsonSchema": "",
+              "description": "Topic"
+            }
+          ],
+          "llmUpdateState": [
+            {
+              "key": "start_date",
+              "value": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"output.start_date\" data-label=\"output.start_date\">{{ output.start_date }}</span> </p>"
+            },
+            {
+              "key": "end_date",
+              "value": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"output.end_date\" data-label=\"output.end_date\">{{ output.end_date }}</span> </p>"
+            },
+            {
+              "key": "topic",
+              "value": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"output.topic\" data-label=\"output.topic\">{{ output.topic }}</span> </p>"
+            }
+          ],
+          "llmModelConfig": {
+            "cache": "",
+            "modelName": "gemini-2.0-flash",
+            "customModelName": "",
+            "temperature": 0.9,
+            "streaming": true,
+            "maxOutputTokens": "",
+            "topP": "",
+            "topK": "",
+            "safetySettings": "",
+            "baseUrl": "",
+            "allowImageUploads": "",
+            "llmModel": "chatGoogleGenerativeAI"
+          },
+          "undefined": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "llmAgentflow_1-output-llmAgentflow",
+            "label": "LLM",
+            "name": "llmAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 199,
+      "height": 72,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -1459.104464800477,
+        "y": 301.28223494201836
+      },
+      "dragging": false
+    },
+    {
+      "id": "toolAgentflow_3",
+      "position": {
+        "x": -1977.9285752299786,
+        "y": 299.3895487165047
+      },
+      "data": {
+        "id": "toolAgentflow_3",
+        "label": "Current Time",
+        "version": 1.1,
+        "name": "toolAgentflow",
+        "type": "Tool",
+        "color": "#d4a373",
+        "baseClasses": [
+          "Tool"
+        ],
+        "category": "Agent Flows",
+        "description": "Tools allow LLM to interact with external systems",
+        "inputParams": [
+          {
+            "label": "Tool",
+            "name": "toolAgentflowSelectedTool",
+            "type": "asyncOptions",
+            "loadMethod": "listTools",
+            "loadConfig": true,
+            "id": "toolAgentflow_3-input-toolAgentflowSelectedTool-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Tool Input Arguments",
+            "name": "toolInputArgs",
+            "type": "array",
+            "acceptVariable": true,
+            "refresh": true,
+            "array": [
+              {
+                "label": "Input Argument Name",
+                "name": "inputArgName",
+                "type": "asyncOptions",
+                "loadMethod": "listToolInputArgs",
+                "refresh": true
+              },
+              {
+                "label": "Input Argument Value",
+                "name": "inputArgValue",
+                "type": "string",
+                "acceptVariable": true
+              }
+            ],
+            "show": {
+              "toolAgentflowSelectedTool": ".+"
+            },
+            "id": "toolAgentflow_3-input-toolInputArgs-array",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "toolUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys",
+                "freeSolo": true
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "toolAgentflow_3-input-toolUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "toolAgentflowSelectedTool": "currentDateTime",
+          "toolInputArgs": "",
+          "toolUpdateState": "",
+          "toolAgentflowSelectedToolConfig": {
+            "toolAgentflowSelectedTool": "currentDateTime"
+          }
+        },
+        "outputAnchors": [
+          {
+            "id": "toolAgentflow_3-output-toolAgentflow",
+            "label": "Tool",
+            "name": "toolAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 157,
+      "height": 68,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -1977.9285752299786,
+        "y": 299.3895487165047
+      },
+      "dragging": false
+    },
+    {
+      "id": "customFunctionAgentflow_4",
+      "position": {
+        "x": -1741.7249860320424,
+        "y": 253.78901913221375
+      },
+      "data": {
+        "id": "customFunctionAgentflow_4",
+        "label": "Parse current time",
+        "version": 1,
+        "name": "customFunctionAgentflow",
+        "type": "CustomFunction",
+        "color": "#E4B7FF",
+        "baseClasses": [
+          "CustomFunction"
+        ],
+        "category": "Agent Flows",
+        "description": "Execute custom function",
+        "inputParams": [
+          {
+            "label": "Input Variables",
+            "name": "customFunctionInputVariables",
+            "description": "Input variables can be used in the function with prefix $. For example: $foo",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Variable Name",
+                "name": "variableName",
+                "type": "string"
+              },
+              {
+                "label": "Variable Value",
+                "name": "variableValue",
+                "type": "string",
+                "acceptVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_4-input-customFunctionInputVariables-array",
+            "display": true
+          },
+          {
+            "label": "Javascript Function",
+            "name": "customFunctionJavascriptFunction",
+            "type": "code",
+            "codeExample": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/\n\nconst fetch = require('node-fetch');\nconst url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true';\nconst options = {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json'\n    }\n};\ntry {\n    const response = await fetch(url, options);\n    const text = await response.text();\n    return text;\n} catch (error) {\n    console.error(error);\n    return '';\n}",
+            "description": "The function to execute. Must return a string or an object that can be converted to a string.",
+            "id": "customFunctionAgentflow_4-input-customFunctionJavascriptFunction-code",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "customFunctionUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys",
+                "freeSolo": true
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_4-input-customFunctionUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "customFunctionInputVariables": [
+            {
+              "variableName": "currentTime",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"toolAgentflow_3\" data-label=\"toolAgentflow_3\">{{ toolAgentflow_3 }}</span> </p>"
+            }
+          ],
+          "customFunctionJavascriptFunction": "let currentTime = JSON.parse($currentTime);\n\nreturn `${ currentTime.day }, ${ currentTime.date }`",
+          "customFunctionUpdateState": [
+            {
+              "key": "current_time",
+              "value": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"output\" data-label=\"output\">{{ output }}</span> </p>"
+            }
+          ]
+        },
+        "outputAnchors": [
+          {
+            "id": "customFunctionAgentflow_4-output-customFunctionAgentflow",
+            "label": "Custom Function",
+            "name": "customFunctionAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 191,
+      "height": 65,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -1741.7249860320424,
+        "y": 253.78901913221375
+      },
+      "dragging": false
+    },
+    {
+      "id": "directReplyAgentflow_10",
+      "position": {
+        "x": -937.8949982902756,
+        "y": 323.50639112795136
+      },
+      "data": {
+        "id": "directReplyAgentflow_10",
+        "label": "Time is unidentifiable",
+        "version": 1,
+        "name": "directReplyAgentflow",
+        "type": "DirectReply",
+        "color": "#4DDBBB",
+        "hideOutput": true,
+        "baseClasses": [
+          "DirectReply"
+        ],
+        "category": "Agent Flows",
+        "description": "Directly reply to the user with a message",
+        "inputParams": [
+          {
+            "label": "Message",
+            "name": "directReplyMessage",
+            "type": "string",
+            "rows": 4,
+            "acceptVariable": true,
+            "id": "directReplyAgentflow_10-input-directReplyMessage-string",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "directReplyMessage": "<p>Dạ, anh/chị vui lòng cho em biết thời gian cụ thể để em hỗ trợ tra cứu chính xác nhé.</p>",
+          "undefined": ""
+        },
+        "outputAnchors": [],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 210,
+      "height": 65,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -937.8949982902756,
+        "y": 323.50639112795136
+      },
+      "dragging": false
+    },
+    {
+      "id": "stickyNoteAgentflow_15",
+      "position": {
+        "x": -3664.2008355018706,
+        "y": -897.3095911331218
+      },
+      "data": {
+        "id": "stickyNoteAgentflow_15",
+        "label": "Sticky Note (3) (1) (13) (15)",
+        "version": 1,
+        "name": "stickyNoteAgentflow",
+        "type": "StickyNote",
+        "color": "#fee440",
+        "baseClasses": [
+          "StickyNote"
+        ],
+        "category": "Agent Flows",
+        "description": "Add notes to the agent flow",
+        "inputParams": [
+          {
+            "label": "",
+            "name": "note",
+            "type": "string",
+            "rows": 1,
+            "placeholder": "Type something here",
+            "optional": true,
+            "id": "stickyNoteAgentflow_15-input-note-string",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "note": "hôm đấy tôi có đi muộn không|29:1LZVQUxhyhMQA5VKBzO8OyD9wv6xrQaNNmO8nBd2BOEz4G2q6_jIBRlDoI-sLJt_uIyr-4k_xWym19eAgc5HdXQ|Nguyen Duc Kien|ndkien.ts@cmc.com.vn"
+        },
+        "outputAnchors": [
+          {
+            "id": "stickyNoteAgentflow_15-output-stickyNoteAgentflow",
+            "label": "Sticky Note",
+            "name": "stickyNoteAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "stickyNote",
+      "width": 220,
+      "height": 222,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": -3664.2008355018706,
+        "y": -897.3095911331218
+      }
+    },
+    {
+      "id": "customFunctionAgentflow_13",
+      "position": {
+        "x": -370.5326489972324,
+        "y": 540.6018029098846
+      },
+      "data": {
+        "id": "customFunctionAgentflow_13",
+        "label": "Save topic into Session",
+        "version": 1,
+        "name": "customFunctionAgentflow",
+        "type": "CustomFunction",
+        "color": "#E4B7FF",
+        "baseClasses": [
+          "CustomFunction"
+        ],
+        "category": "Agent Flows",
+        "description": "Execute custom function",
+        "inputParams": [
+          {
+            "label": "Input Variables",
+            "name": "customFunctionInputVariables",
+            "description": "Input variables can be used in the function with prefix $. For example: $foo",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Variable Name",
+                "name": "variableName",
+                "type": "string"
+              },
+              {
+                "label": "Variable Value",
+                "name": "variableValue",
+                "type": "string",
+                "acceptVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_13-input-customFunctionInputVariables-array",
+            "display": true
+          },
+          {
+            "label": "Javascript Function",
+            "name": "customFunctionJavascriptFunction",
+            "type": "code",
+            "codeExample": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/\n\nconst fetch = require('node-fetch');\nconst url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true';\nconst options = {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json'\n    }\n};\ntry {\n    const response = await fetch(url, options);\n    const text = await response.text();\n    return text;\n} catch (error) {\n    console.error(error);\n    return '';\n}",
+            "description": "The function to execute. Must return a string or an object that can be converted to a string.",
+            "id": "customFunctionAgentflow_13-input-customFunctionJavascriptFunction-code",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "customFunctionUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys",
+                "freeSolo": true
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_13-input-customFunctionUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "customFunctionInputVariables": [
+            {
+              "variableName": "userId",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_id\" data-label=\"$flow.state.user_id\">{{ $flow.state.user_id }}</span> </p>"
+            },
+            {
+              "variableName": "apiUrl",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.api_url\" data-label=\"$flow.state.api_url\">{{ $flow.state.api_url }}</span> </p>"
+            },
+            {
+              "variableName": "topic",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.topic\" data-label=\"$flow.state.topic\">{{ $flow.state.topic }}</span> </p>"
+            }
+          ],
+          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst userId = $userId\nconst apiUrl = $apiUrl\nconst topic = $topic\n\nconst payload = {\n    session_id: userId,\n    data: {\n        topic: topic\n    }\n}\n\nconst response = await fetch( `${ apiUrl }/api/session/upsert`, {\n    method: 'POST',\n    headers: {\n        'Content-Type': 'application/json',\n    },\n    body: JSON.stringify( payload )\n} )\n\nif ( !response.ok ) {\n    return \"No\"\n}",
+          "customFunctionUpdateState": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "customFunctionAgentflow_13-output-customFunctionAgentflow",
+            "label": "Custom Function",
+            "name": "customFunctionAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 222,
+      "height": 65,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": -370.5326489972324,
+        "y": 540.6018029098846
+      }
+    },
+    {
+      "id": "customFunctionAgentflow_14",
+      "position": {
+        "x": -937.6930273175776,
+        "y": 413.3016320990683
+      },
+      "data": {
+        "id": "customFunctionAgentflow_14",
+        "label": "Save time into Session",
+        "version": 1,
+        "name": "customFunctionAgentflow",
+        "type": "CustomFunction",
+        "color": "#E4B7FF",
+        "baseClasses": [
+          "CustomFunction"
+        ],
+        "category": "Agent Flows",
+        "description": "Execute custom function",
+        "inputParams": [
+          {
+            "label": "Input Variables",
+            "name": "customFunctionInputVariables",
+            "description": "Input variables can be used in the function with prefix $. For example: $foo",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Variable Name",
+                "name": "variableName",
+                "type": "string"
+              },
+              {
+                "label": "Variable Value",
+                "name": "variableValue",
+                "type": "string",
+                "acceptVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_14-input-customFunctionInputVariables-array",
+            "display": true
+          },
+          {
+            "label": "Javascript Function",
+            "name": "customFunctionJavascriptFunction",
+            "type": "code",
+            "codeExample": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/\n\nconst fetch = require('node-fetch');\nconst url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true';\nconst options = {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json'\n    }\n};\ntry {\n    const response = await fetch(url, options);\n    const text = await response.text();\n    return text;\n} catch (error) {\n    console.error(error);\n    return '';\n}",
+            "description": "The function to execute. Must return a string or an object that can be converted to a string.",
+            "id": "customFunctionAgentflow_14-input-customFunctionJavascriptFunction-code",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "customFunctionUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys",
+                "freeSolo": true
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_14-input-customFunctionUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "customFunctionInputVariables": [
+            {
+              "variableName": "userId",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_id\" data-label=\"$flow.state.user_id\">{{ $flow.state.user_id }}</span> </p>"
+            },
+            {
+              "variableName": "apiUrl",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.api_url\" data-label=\"$flow.state.api_url\">{{ $flow.state.api_url }}</span> </p>"
+            },
+            {
+              "variableName": "start_date",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.start_date\" data-label=\"$flow.state.start_date\">{{ $flow.state.start_date }}</span> </p>"
+            },
+            {
+              "variableName": "end_date",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.end_date\" data-label=\"$flow.state.end_date\">{{ $flow.state.end_date }}</span> </p>"
+            }
+          ],
+          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst userId = $userId\nconst apiUrl = $apiUrl\nconst start_date = $start_date\nconst end_date = $end_date\n\nconst payload = {\n    session_id: userId,\n    data: {\n        start_date: start_date,\n        end_date: end_date\n    }\n}\n\nconst response = await fetch( `${ apiUrl }/api/session/upsert`, {\n    method: 'POST',\n    headers: {\n        'Content-Type': 'application/json',\n    },\n    body: JSON.stringify( payload )\n} )\n\nif ( !response.ok ) {\n    return \"No\"\n}",
+          "customFunctionUpdateState": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "customFunctionAgentflow_14-output-customFunctionAgentflow",
+            "label": "Custom Function",
+            "name": "customFunctionAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 218,
+      "height": 65,
+      "selected": false,
+      "positionAbsolute": {
+        "x": -937.6930273175776,
+        "y": 413.3016320990683
+      },
+      "dragging": false
+    },
+    {
+      "id": "customFunctionAgentflow_17",
+      "position": {
+        "x": -88.9086276206882,
+        "y": 575.6562944328908
+      },
+      "data": {
+        "id": "customFunctionAgentflow_17",
+        "label": "Save previous question into Session",
+        "version": 1,
+        "name": "customFunctionAgentflow",
+        "type": "CustomFunction",
+        "color": "#E4B7FF",
+        "baseClasses": [
+          "CustomFunction"
+        ],
+        "category": "Agent Flows",
+        "description": "Execute custom function",
+        "inputParams": [
+          {
+            "label": "Input Variables",
+            "name": "customFunctionInputVariables",
+            "description": "Input variables can be used in the function with prefix $. For example: $foo",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Variable Name",
+                "name": "variableName",
+                "type": "string"
+              },
+              {
+                "label": "Variable Value",
+                "name": "variableValue",
+                "type": "string",
+                "acceptVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_17-input-customFunctionInputVariables-array",
+            "display": true
+          },
+          {
+            "label": "Javascript Function",
+            "name": "customFunctionJavascriptFunction",
+            "type": "code",
+            "codeExample": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/\n\nconst fetch = require('node-fetch');\nconst url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true';\nconst options = {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json'\n    }\n};\ntry {\n    const response = await fetch(url, options);\n    const text = await response.text();\n    return text;\n} catch (error) {\n    console.error(error);\n    return '';\n}",
+            "description": "The function to execute. Must return a string or an object that can be converted to a string.",
+            "id": "customFunctionAgentflow_17-input-customFunctionJavascriptFunction-code",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "customFunctionUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys",
+                "freeSolo": true
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "customFunctionAgentflow_17-input-customFunctionUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "customFunctionInputVariables": [
+            {
+              "variableName": "userId",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.user_id\" data-label=\"$flow.state.user_id\">{{ $flow.state.user_id }}</span> </p>"
+            },
+            {
+              "variableName": "apiUrl",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.api_url\" data-label=\"$flow.state.api_url\">{{ $flow.state.api_url }}</span> </p>"
+            },
+            {
+              "variableName": "prev_question",
+              "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"$flow.state.prev_question\" data-label=\"$flow.state.prev_question\">{{ $flow.state.prev_question }}</span> </p>"
+            }
+          ],
+          "customFunctionJavascriptFunction": "const fetch = require( 'node-fetch' )\n\nconst userId = $userId\nconst apiUrl = $apiUrl\nconst prev_question = $prev_question\n\nconst payload = {\n    session_id: userId,\n    data: {\n        prev_question: prev_question\n    }\n}\n\nconst response = await fetch( `${ apiUrl }/api/session/upsert`, {\n    method: 'POST',\n    headers: {\n        'Content-Type': 'application/json',\n    },\n    body: JSON.stringify( payload )\n} )\n\nif ( !response.ok ) {\n    return \"No\"\n}",
+          "customFunctionUpdateState": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "customFunctionAgentflow_17-output-customFunctionAgentflow",
+            "label": "Custom Function",
+            "name": "customFunctionAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 306,
+      "height": 65,
+      "positionAbsolute": {
+        "x": -88.9086276206882,
+        "y": 575.6562944328908
+      },
+      "selected": false,
+      "dragging": false
     }
   ],
   "edges": [
@@ -10102,20 +10251,6 @@
       },
       "type": "agentFlow",
       "id": "conditionAgentAgentflow_0-conditionAgentAgentflow_0-output-0-llmAgentflow_0-llmAgentflow_0"
-    },
-    {
-      "source": "conditionAgentAgentflow_0",
-      "sourceHandle": "conditionAgentAgentflow_0-output-2",
-      "target": "conditionAgentAgentflow_1",
-      "targetHandle": "conditionAgentAgentflow_1",
-      "data": {
-        "sourceColor": "#ff8fab",
-        "targetColor": "#ff8fab",
-        "edgeLabel": "2",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "conditionAgentAgentflow_0-conditionAgentAgentflow_0-output-2-conditionAgentAgentflow_1-conditionAgentAgentflow_1"
     },
     {
       "source": "conditionAgentflow_1",
@@ -10171,20 +10306,6 @@
       },
       "type": "agentFlow",
       "id": "conditionAgentflow_5-conditionAgentflow_5-output-0-directReplyAgentflow_5-directReplyAgentflow_5"
-    },
-    {
-      "source": "conditionAgentAgentflow_1",
-      "sourceHandle": "conditionAgentAgentflow_1-output-0",
-      "target": "directReplyAgentflow_1",
-      "targetHandle": "directReplyAgentflow_1",
-      "data": {
-        "sourceColor": "#ff8fab",
-        "targetColor": "#4DDBBB",
-        "edgeLabel": "0",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "conditionAgentAgentflow_1-conditionAgentAgentflow_1-output-0-directReplyAgentflow_1-directReplyAgentflow_1"
     },
     {
       "source": "conditionAgentflow_12",
@@ -10404,19 +10525,6 @@
       "id": "customFunctionAgentflow_6-customFunctionAgentflow_6-output-customFunctionAgentflow-customFunctionAgentflow_8-customFunctionAgentflow_8"
     },
     {
-      "source": "customFunctionAgentflow_8",
-      "sourceHandle": "customFunctionAgentflow_8-output-customFunctionAgentflow",
-      "target": "conditionAgentAgentflow_0",
-      "targetHandle": "conditionAgentAgentflow_0",
-      "data": {
-        "sourceColor": "#E4B7FF",
-        "targetColor": "#ff8fab",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "customFunctionAgentflow_8-customFunctionAgentflow_8-output-customFunctionAgentflow-conditionAgentAgentflow_0-conditionAgentAgentflow_0"
-    },
-    {
       "source": "startAgentflow_0",
       "sourceHandle": "startAgentflow_0-output-startAgentflow",
       "target": "customFunctionAgentflow_10",
@@ -10469,46 +10577,6 @@
       "id": "customFunctionAgentflow_11-customFunctionAgentflow_11-output-customFunctionAgentflow-customFunctionAgentflow_12-customFunctionAgentflow_12"
     },
     {
-      "source": "conditionAgentflow_5",
-      "sourceHandle": "conditionAgentflow_5-output-1",
-      "target": "toolAgentflow_0",
-      "targetHandle": "toolAgentflow_0",
-      "data": {
-        "sourceColor": "#FFB938",
-        "targetColor": "#d4a373",
-        "edgeLabel": "1",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "conditionAgentflow_5-conditionAgentflow_5-output-1-toolAgentflow_0-toolAgentflow_0"
-    },
-    {
-      "source": "toolAgentflow_0",
-      "sourceHandle": "toolAgentflow_0-output-toolAgentflow",
-      "target": "customFunctionAgentflow_14",
-      "targetHandle": "customFunctionAgentflow_14",
-      "data": {
-        "sourceColor": "#d4a373",
-        "targetColor": "#E4B7FF",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "toolAgentflow_0-toolAgentflow_0-output-toolAgentflow-customFunctionAgentflow_14-customFunctionAgentflow_14"
-    },
-    {
-      "source": "customFunctionAgentflow_14",
-      "sourceHandle": "customFunctionAgentflow_14-output-customFunctionAgentflow",
-      "target": "llmAgentflow_3",
-      "targetHandle": "llmAgentflow_3",
-      "data": {
-        "sourceColor": "#E4B7FF",
-        "targetColor": "#64B5F6",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "customFunctionAgentflow_14-customFunctionAgentflow_14-output-customFunctionAgentflow-llmAgentflow_3-llmAgentflow_3"
-    },
-    {
       "source": "customFunctionAgentflow_15",
       "sourceHandle": "customFunctionAgentflow_15-output-customFunctionAgentflow",
       "target": "customFunctionAgentflow_20",
@@ -10546,46 +10614,6 @@
       },
       "type": "agentFlow",
       "id": "customFunctionAgentflow_20-customFunctionAgentflow_20-output-customFunctionAgentflow-conditionAgentflow_3-conditionAgentflow_3"
-    },
-    {
-      "source": "customFunctionAgentflow_17",
-      "sourceHandle": "customFunctionAgentflow_17-output-customFunctionAgentflow",
-      "target": "llmAgentflow_7",
-      "targetHandle": "llmAgentflow_7",
-      "data": {
-        "sourceColor": "#E4B7FF",
-        "targetColor": "#64B5F6",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "customFunctionAgentflow_17-customFunctionAgentflow_17-output-customFunctionAgentflow-llmAgentflow_7-llmAgentflow_7"
-    },
-    {
-      "source": "conditionAgentflow_13",
-      "sourceHandle": "conditionAgentflow_13-output-1",
-      "target": "toolAgentflow_1",
-      "targetHandle": "toolAgentflow_1",
-      "data": {
-        "sourceColor": "#FFB938",
-        "targetColor": "#d4a373",
-        "edgeLabel": "1",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "conditionAgentflow_13-conditionAgentflow_13-output-1-toolAgentflow_1-toolAgentflow_1"
-    },
-    {
-      "source": "toolAgentflow_1",
-      "sourceHandle": "toolAgentflow_1-output-toolAgentflow",
-      "target": "customFunctionAgentflow_17",
-      "targetHandle": "customFunctionAgentflow_17",
-      "data": {
-        "sourceColor": "#d4a373",
-        "targetColor": "#E4B7FF",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "toolAgentflow_1-toolAgentflow_1-output-toolAgentflow-customFunctionAgentflow_17-customFunctionAgentflow_17"
     },
     {
       "source": "customFunctionAgentflow_21",
@@ -10709,59 +10737,6 @@
       "id": "customFunctionAgentflow_19-customFunctionAgentflow_19-output-customFunctionAgentflow-conditionAgentflow_18-conditionAgentflow_18"
     },
     {
-      "source": "conditionAgentflow_19",
-      "sourceHandle": "conditionAgentflow_19-output-1",
-      "target": "toolAgentflow_2",
-      "targetHandle": "toolAgentflow_2",
-      "data": {
-        "sourceColor": "#FFB938",
-        "targetColor": "#d4a373",
-        "edgeLabel": "1",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "conditionAgentflow_19-conditionAgentflow_19-output-1-toolAgentflow_2-toolAgentflow_2"
-    },
-    {
-      "source": "toolAgentflow_2",
-      "sourceHandle": "toolAgentflow_2-output-toolAgentflow",
-      "target": "customFunctionAgentflow_23",
-      "targetHandle": "customFunctionAgentflow_23",
-      "data": {
-        "sourceColor": "#d4a373",
-        "targetColor": "#E4B7FF",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "toolAgentflow_2-toolAgentflow_2-output-toolAgentflow-customFunctionAgentflow_23-customFunctionAgentflow_23"
-    },
-    {
-      "source": "customFunctionAgentflow_23",
-      "sourceHandle": "customFunctionAgentflow_23-output-customFunctionAgentflow",
-      "target": "llmAgentflow_12",
-      "targetHandle": "llmAgentflow_12",
-      "data": {
-        "sourceColor": "#E4B7FF",
-        "targetColor": "#64B5F6",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "customFunctionAgentflow_23-customFunctionAgentflow_23-output-customFunctionAgentflow-llmAgentflow_12-llmAgentflow_12"
-    },
-    {
-      "source": "executeFlowAgentflow_1",
-      "sourceHandle": "executeFlowAgentflow_1-output-executeFlowAgentflow",
-      "target": "conditionAgentflow_6",
-      "targetHandle": "conditionAgentflow_6",
-      "data": {
-        "sourceColor": "#a3b18a",
-        "targetColor": "#FFB938",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "executeFlowAgentflow_1-executeFlowAgentflow_1-output-executeFlowAgentflow-conditionAgentflow_6-conditionAgentflow_6"
-    },
-    {
       "source": "conditionAgentflow_6",
       "sourceHandle": "conditionAgentflow_6-output-0",
       "target": "directReplyAgentflow_8",
@@ -10818,76 +10793,237 @@
       "id": "conditionAgentflow_7-conditionAgentflow_7-output-2-customFunctionAgentflow_16-customFunctionAgentflow_16"
     },
     {
-      "source": "conditionAgentAgentflow_1",
-      "sourceHandle": "conditionAgentAgentflow_1-output-1",
-      "target": "executeFlowAgentflow_0",
-      "targetHandle": "executeFlowAgentflow_0",
+      "source": "conditionAgentAgentflow_0",
+      "sourceHandle": "conditionAgentAgentflow_0-output-2",
+      "target": "directReplyAgentflow_1",
+      "targetHandle": "directReplyAgentflow_1",
       "data": {
         "sourceColor": "#ff8fab",
-        "targetColor": "#a3b18a",
-        "edgeLabel": "1",
+        "targetColor": "#4DDBBB",
+        "edgeLabel": "2",
         "isHumanInput": false
       },
       "type": "agentFlow",
-      "id": "conditionAgentAgentflow_1-conditionAgentAgentflow_1-output-1-executeFlowAgentflow_0-executeFlowAgentflow_0"
+      "id": "conditionAgentAgentflow_0-conditionAgentAgentflow_0-output-2-directReplyAgentflow_1-directReplyAgentflow_1"
     },
     {
-      "source": "executeFlowAgentflow_0",
-      "sourceHandle": "executeFlowAgentflow_0-output-executeFlowAgentflow",
+      "source": "conditionAgentAgentflow_0",
+      "sourceHandle": "conditionAgentAgentflow_0-output-3",
       "target": "customFunctionAgentflow_11",
       "targetHandle": "customFunctionAgentflow_11",
       "data": {
-        "sourceColor": "#a3b18a",
+        "sourceColor": "#ff8fab",
         "targetColor": "#E4B7FF",
+        "edgeLabel": "3",
         "isHumanInput": false
       },
       "type": "agentFlow",
-      "id": "executeFlowAgentflow_0-executeFlowAgentflow_0-output-executeFlowAgentflow-customFunctionAgentflow_11-customFunctionAgentflow_11"
+      "id": "conditionAgentAgentflow_0-conditionAgentAgentflow_0-output-3-customFunctionAgentflow_11-customFunctionAgentflow_11"
     },
     {
       "source": "customFunctionAgentflow_12",
       "sourceHandle": "customFunctionAgentflow_12-output-customFunctionAgentflow",
+      "target": "customFunctionAgentflow_24",
+      "targetHandle": "customFunctionAgentflow_24",
+      "data": {
+        "sourceColor": "#E4B7FF",
+        "targetColor": "#E4B7FF",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "customFunctionAgentflow_12-customFunctionAgentflow_12-output-customFunctionAgentflow-customFunctionAgentflow_24-customFunctionAgentflow_24"
+    },
+    {
+      "source": "customFunctionAgentflow_8",
+      "sourceHandle": "customFunctionAgentflow_8-output-customFunctionAgentflow",
+      "target": "customFunctionAgentflow_2",
+      "targetHandle": "customFunctionAgentflow_2",
+      "data": {
+        "sourceColor": "#E4B7FF",
+        "targetColor": "#E4B7FF",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "customFunctionAgentflow_8-customFunctionAgentflow_8-output-customFunctionAgentflow-customFunctionAgentflow_2-customFunctionAgentflow_2"
+    },
+    {
+      "source": "customFunctionAgentflow_2",
+      "sourceHandle": "customFunctionAgentflow_2-output-customFunctionAgentflow",
+      "target": "conditionAgentAgentflow_0",
+      "targetHandle": "conditionAgentAgentflow_0",
+      "data": {
+        "sourceColor": "#E4B7FF",
+        "targetColor": "#ff8fab",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "customFunctionAgentflow_2-customFunctionAgentflow_2-output-customFunctionAgentflow-conditionAgentAgentflow_0-conditionAgentAgentflow_0"
+    },
+    {
+      "source": "llmAgentflow_1",
+      "sourceHandle": "llmAgentflow_1-output-llmAgentflow",
       "target": "conditionAgentflow_2",
       "targetHandle": "conditionAgentflow_2",
+      "data": {
+        "sourceColor": "#64B5F6",
+        "targetColor": "#FFB938",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "llmAgentflow_1-llmAgentflow_1-output-llmAgentflow-conditionAgentflow_2-conditionAgentflow_2"
+    },
+    {
+      "source": "customFunctionAgentflow_24",
+      "sourceHandle": "customFunctionAgentflow_24-output-customFunctionAgentflow",
+      "target": "toolAgentflow_3",
+      "targetHandle": "toolAgentflow_3",
+      "data": {
+        "sourceColor": "#E4B7FF",
+        "targetColor": "#d4a373",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "customFunctionAgentflow_24-customFunctionAgentflow_24-output-customFunctionAgentflow-toolAgentflow_3-toolAgentflow_3"
+    },
+    {
+      "source": "toolAgentflow_3",
+      "sourceHandle": "toolAgentflow_3-output-toolAgentflow",
+      "target": "customFunctionAgentflow_4",
+      "targetHandle": "customFunctionAgentflow_4",
+      "data": {
+        "sourceColor": "#d4a373",
+        "targetColor": "#E4B7FF",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "toolAgentflow_3-toolAgentflow_3-output-toolAgentflow-customFunctionAgentflow_4-customFunctionAgentflow_4"
+    },
+    {
+      "source": "customFunctionAgentflow_4",
+      "sourceHandle": "customFunctionAgentflow_4-output-customFunctionAgentflow",
+      "target": "llmAgentflow_1",
+      "targetHandle": "llmAgentflow_1",
+      "data": {
+        "sourceColor": "#E4B7FF",
+        "targetColor": "#64B5F6",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "customFunctionAgentflow_4-customFunctionAgentflow_4-output-customFunctionAgentflow-llmAgentflow_1-llmAgentflow_1"
+    },
+    {
+      "source": "conditionAgentflow_19",
+      "sourceHandle": "conditionAgentflow_19-output-1",
+      "target": "llmAgentflow_12",
+      "targetHandle": "llmAgentflow_12",
+      "data": {
+        "sourceColor": "#FFB938",
+        "targetColor": "#64B5F6",
+        "edgeLabel": "1",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentflow_19-conditionAgentflow_19-output-1-llmAgentflow_12-llmAgentflow_12"
+    },
+    {
+      "source": "conditionAgentflow_13",
+      "sourceHandle": "conditionAgentflow_13-output-1",
+      "target": "llmAgentflow_7",
+      "targetHandle": "llmAgentflow_7",
+      "data": {
+        "sourceColor": "#FFB938",
+        "targetColor": "#64B5F6",
+        "edgeLabel": "1",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentflow_13-conditionAgentflow_13-output-1-llmAgentflow_7-llmAgentflow_7"
+    },
+    {
+      "source": "conditionAgentflow_5",
+      "sourceHandle": "conditionAgentflow_5-output-1",
+      "target": "llmAgentflow_3",
+      "targetHandle": "llmAgentflow_3",
+      "data": {
+        "sourceColor": "#FFB938",
+        "targetColor": "#64B5F6",
+        "edgeLabel": "1",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentflow_5-conditionAgentflow_5-output-1-llmAgentflow_3-llmAgentflow_3"
+    },
+    {
+      "source": "conditionAgentflow_2",
+      "sourceHandle": "conditionAgentflow_2-output-1",
+      "target": "directReplyAgentflow_10",
+      "targetHandle": "directReplyAgentflow_10",
+      "data": {
+        "sourceColor": "#FFB938",
+        "targetColor": "#4DDBBB",
+        "edgeLabel": "1",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentflow_2-conditionAgentflow_2-output-1-directReplyAgentflow_10-directReplyAgentflow_10"
+    },
+    {
+      "source": "conditionAgentflow_6",
+      "sourceHandle": "conditionAgentflow_6-output-1",
+      "target": "customFunctionAgentflow_13",
+      "targetHandle": "customFunctionAgentflow_13",
+      "data": {
+        "sourceColor": "#FFB938",
+        "targetColor": "#E4B7FF",
+        "edgeLabel": "1",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentflow_6-conditionAgentflow_6-output-1-customFunctionAgentflow_13-customFunctionAgentflow_13"
+    },
+    {
+      "source": "conditionAgentflow_2",
+      "sourceHandle": "conditionAgentflow_2-output-2",
+      "target": "customFunctionAgentflow_14",
+      "targetHandle": "customFunctionAgentflow_14",
+      "data": {
+        "sourceColor": "#FFB938",
+        "targetColor": "#E4B7FF",
+        "edgeLabel": "2",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "conditionAgentflow_2-conditionAgentflow_2-output-2-customFunctionAgentflow_14-customFunctionAgentflow_14"
+    },
+    {
+      "source": "customFunctionAgentflow_14",
+      "sourceHandle": "customFunctionAgentflow_14-output-customFunctionAgentflow",
+      "target": "conditionAgentflow_6",
+      "targetHandle": "conditionAgentflow_6",
       "data": {
         "sourceColor": "#E4B7FF",
         "targetColor": "#FFB938",
         "isHumanInput": false
       },
       "type": "agentFlow",
-      "id": "customFunctionAgentflow_12-customFunctionAgentflow_12-output-customFunctionAgentflow-conditionAgentflow_2-conditionAgentflow_2"
+      "id": "customFunctionAgentflow_14-customFunctionAgentflow_14-output-customFunctionAgentflow-conditionAgentflow_6-conditionAgentflow_6"
     },
     {
-      "source": "conditionAgentflow_2",
-      "sourceHandle": "conditionAgentflow_2-output-1",
-      "target": "executeFlowAgentflow_1",
-      "targetHandle": "executeFlowAgentflow_1",
+      "source": "customFunctionAgentflow_13",
+      "sourceHandle": "customFunctionAgentflow_13-output-customFunctionAgentflow",
+      "target": "customFunctionAgentflow_17",
+      "targetHandle": "customFunctionAgentflow_17",
       "data": {
-        "sourceColor": "#FFB938",
-        "targetColor": "#a3b18a",
-        "edgeLabel": "1",
-        "isHumanInput": false
-      },
-      "type": "agentFlow",
-      "id": "conditionAgentflow_2-conditionAgentflow_2-output-1-executeFlowAgentflow_1-executeFlowAgentflow_1"
-    },
-    {
-      "source": "conditionAgentflow_6",
-      "sourceHandle": "conditionAgentflow_6-output-1",
-      "target": "customFunctionAgentflow_24",
-      "targetHandle": "customFunctionAgentflow_24",
-      "data": {
-        "sourceColor": "#FFB938",
+        "sourceColor": "#E4B7FF",
         "targetColor": "#E4B7FF",
-        "edgeLabel": "1",
         "isHumanInput": false
       },
       "type": "agentFlow",
-      "id": "conditionAgentflow_6-conditionAgentflow_6-output-1-customFunctionAgentflow_24-customFunctionAgentflow_24"
+      "id": "customFunctionAgentflow_13-customFunctionAgentflow_13-output-customFunctionAgentflow-customFunctionAgentflow_17-customFunctionAgentflow_17"
     },
     {
-      "source": "customFunctionAgentflow_24",
-      "sourceHandle": "customFunctionAgentflow_24-output-customFunctionAgentflow",
+      "source": "customFunctionAgentflow_17",
+      "sourceHandle": "customFunctionAgentflow_17-output-customFunctionAgentflow",
       "target": "conditionAgentflow_7",
       "targetHandle": "conditionAgentflow_7",
       "data": {
@@ -10896,7 +11032,7 @@
         "isHumanInput": false
       },
       "type": "agentFlow",
-      "id": "customFunctionAgentflow_24-customFunctionAgentflow_24-output-customFunctionAgentflow-conditionAgentflow_7-conditionAgentflow_7"
+      "id": "customFunctionAgentflow_17-customFunctionAgentflow_17-output-customFunctionAgentflow-conditionAgentflow_7-conditionAgentflow_7"
     }
   ]
 }

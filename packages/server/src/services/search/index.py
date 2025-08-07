@@ -16,31 +16,41 @@ from sqlalchemy import text
 
 def search_time( request: SearchRequest, db: SessionDep ) -> List[ TimeData ]:
     try:
-        filter_data = request.filter
-        user_email = filter_data[ 'user_email' ]
-        start_date = filter_data[ 'start_date' ] 
-        end_date = filter_data[ 'end_date' ]
+        user_email = request.user_email
 
-        start_datetime_iso = f"{ start_date } 00:00:00" # YYYY-MM-DD HH:MM:SS
-        end_datetime_iso = f"{ end_date } 23:59:59" # YYYY-MM-DD HH:MM:SS
+        date_conditions = []
+        query_params = { 'user_email': user_email }
 
-        sql_query = text( """
+        for i, date_range in enumerate( request.time_query ):
+            start_date = date_range.start_date
+            end_date = date_range.end_date
+            
+            start_datetime_iso = f"{ start_date } 00:00:00"   # YYYY-MM-DD HH:MM:SS
+            end_datetime_iso = f"{ end_date } 23:59:59"       # YYYY-MM-DD HH:MM:SS
+            
+            # Tạo unique parameter names cho từng range
+            start_param = f"start_datetime_{ i }"
+            end_param = f"end_datetime_{ i }"
+            
+            query_params[ start_param ] = start_datetime_iso
+            query_params[ end_param ] = end_datetime_iso
+            
+            condition = f"(checkin_time >= :{start_param} AND checkin_time <= :{end_param})"
+            date_conditions.append(condition)
+
+        # Join tất cả conditions với OR
+        all_conditions = " OR ".join( date_conditions )
+        
+        sql_query = text( f"""
             SELECT 
                 checkin_time,
                 checkout_time
             FROM employee_attendance 
             WHERE 
                 user_email = :user_email
-                AND checkin_time >= :start_datetime
-                AND checkin_time <= :end_datetime
+                AND ({ all_conditions })
             ORDER BY checkin_time ASC
         """ )
-
-        query_params = {
-            'user_email': user_email,
-            'start_datetime': start_datetime_iso,
-            'end_datetime': end_datetime_iso
-        }
 
         result = db.execute( sql_query, query_params )
         raw_records = result.fetchall()
@@ -66,7 +76,6 @@ def search_time( request: SearchRequest, db: SessionDep ) -> List[ TimeData ]:
             )
             attendance_records.append(time_data)
 
-        # Bước 8: Log kết quả cuối cùng để tracking
         logging.info(f"Successfully transformed {len(attendance_records)} records to TimeData format")
         return attendance_records
         
@@ -80,33 +89,41 @@ def search_time( request: SearchRequest, db: SessionDep ) -> List[ TimeData ]:
 
 def search_late( request: SearchLateCountsRequest, db: SessionDep ) -> List[ LateData ]:
     try:
-        filter_data = request.filter
-        user_email = filter_data[ 'user_email' ]
-        start_date = filter_data[ 'start_date' ] 
-        end_date = filter_data[ 'end_date' ]
+        user_email = request.user_email
 
-        start_datetime_iso = f"{ start_date } 00:00:00" # YYYY-MM-DD HH:MM:SS
-        end_datetime_iso = f"{ end_date } 23:59:59" # YYYY-MM-DD HH:MM:SS
+        date_conditions = []
+        query_params = { 'user_email': user_email }
 
-        sql_query = text( """
-            SELECT DISTINCT 
+        for i, date_range in enumerate( request.time_query ):
+            start_date = date_range.start_date
+            end_date = date_range.end_date
+            
+            start_datetime_iso = f"{ start_date } 00:00:00"   # YYYY-MM-DD HH:MM:SS
+            end_datetime_iso = f"{ end_date } 23:59:59"       # YYYY-MM-DD HH:MM:SS
+            
+            # Tạo unique parameter names cho từng range
+            start_param = f"start_datetime_{ i }"
+            end_param = f"end_datetime_{ i }"
+            
+            query_params[ start_param ] = start_datetime_iso
+            query_params[ end_param ] = end_datetime_iso
+            
+            condition = f"(checkin_time >= :{start_param} AND checkin_time <= :{end_param})"
+            date_conditions.append(condition)
+
+        # Join tất cả conditions với OR
+        all_conditions = " OR ".join( date_conditions )
+        
+        sql_query = text( f"""
+            SELECT 
                 DATE(checkin_time) as attendance_date,
-                bool_or(is_late) as is_late
+                is_late
             FROM employee_attendance 
             WHERE 
                 user_email = :user_email
-                AND checkin_time >= :start_datetime
-                AND checkin_time <= :end_datetime
-            GROUP BY DATE(checkin_time)
-            ORDER BY attendance_date ASC
+                AND ({ all_conditions })
+            ORDER BY checkin_time ASC
         """ )
-
-        # Bước 4: Chuẩn bị parameters cho query
-        query_params = {
-            'user_email': user_email,
-            'start_datetime': start_datetime_iso,
-            'end_datetime': end_datetime_iso
-        }
 
         result = db.execute( sql_query, query_params )
         raw_records = result.fetchall()
@@ -142,31 +159,41 @@ def search_late( request: SearchLateCountsRequest, db: SessionDep ) -> List[ Lat
 
 def search_attendance( request: SearchAttendanceCountsRequest, db: SessionDep ) -> List[ AttendanceData ]:
     try:
-        filter_data = request.filter
-        user_email = filter_data[ 'user_email' ]
-        start_date = filter_data[ 'start_date' ] 
-        end_date = filter_data[ 'end_date' ]
+        user_email = request.user_email
 
-        start_datetime_iso = f"{ start_date } 00:00:00" # YYYY-MM-DD HH:MM:SS
-        end_datetime_iso = f"{ end_date } 23:59:59" # YYYY-MM-DD HH:MM:SS
+        date_conditions = []
+        query_params = { 'user_email': user_email }
 
-        sql_query = text( """
+        for i, date_range in enumerate( request.time_query ):
+            start_date = date_range.start_date
+            end_date = date_range.end_date
+            
+            start_datetime_iso = f"{ start_date } 00:00:00"   # YYYY-MM-DD HH:MM:SS
+            end_datetime_iso = f"{ end_date } 23:59:59"       # YYYY-MM-DD HH:MM:SS
+            
+            # Tạo unique parameter names cho từng range
+            start_param = f"start_datetime_{ i }"
+            end_param = f"end_datetime_{ i }"
+            
+            query_params[ start_param ] = start_datetime_iso
+            query_params[ end_param ] = end_datetime_iso
+            
+            condition = f"(checkin_time >= :{start_param} AND checkin_time <= :{end_param})"
+            date_conditions.append(condition)
+
+        # Join tất cả conditions với OR
+        all_conditions = " OR ".join( date_conditions )
+        
+        sql_query = text( f"""
             SELECT 
                 DATE(checkin_time) as attendance_date,
                 attendance_count
             FROM employee_attendance 
             WHERE 
                 user_email = :user_email
-                AND checkin_time >= :start_datetime
-                AND checkin_time <= :end_datetime
-            ORDER BY attendance_date ASC
+                AND ({ all_conditions })
+            ORDER BY checkin_time ASC
         """ )
-
-        query_params = {
-            'user_email': user_email,
-            'start_datetime': start_datetime_iso,
-            'end_datetime': end_datetime_iso
-        }
 
         result = db.execute(sql_query, query_params)
         raw_records = result.fetchall()

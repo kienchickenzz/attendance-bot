@@ -8,17 +8,24 @@ from typing import List, Dict, Any, Optional
 # ----------
 
 
+class TimePeriod( BaseModel ):
+    start_date: Optional[ str ] = None
+    end_date: Optional[ str ] = None
+
+
 class SearchRequest( BaseModel ):
-    filter: Dict[ str, Any ] = Field(
-        description="Dictionary containing metadata field-value pairs to filter by",
-        examples=[
-            {
-                "user_email": "duckien@gmail.com", 
-                "start_date": "2025-07-01",
-                "end_date": "2025-07-01",
-            },
-        ]
-    )
+    user_email: Optional[ str ] = None
+    time_query: Optional[ List[ TimePeriod ] ] = None
+    # filter: Dict[ str, Any ] = Field(
+    #     description="Dictionary containing metadata field-value pairs to filter by",
+    #     examples=[
+    #         {
+    #             "user_email": "duckien@gmail.com", 
+    #             "start_date": "2025-07-01",
+    #             "end_date": "2025-07-01",
+    #         },
+    #     ]
+    # )
 
 class TimeData( BaseModel ):
     date: str = Field()
@@ -60,16 +67,8 @@ class SearchLateStatusResponse( BaseModel ):
 
 
 class SearchLateCountsRequest( BaseModel ):
-    filter: Dict[ str, Any ] = Field(
-        description="Dictionary containing metadata field-value pairs to filter by",
-        examples=[
-            {
-                "user_email": "duckien@gmail.com", 
-                "start_date": "2025-07-01",
-                "end_date": "2025-07-01",
-            },
-        ]
-    )
+    user_email: Optional[ str ] = None
+    time_query: Optional[ List[ TimePeriod ] ] = None
 
 class SearchLateCountsResponse( BaseModel ):
     data: List[ LateData ] = Field()
@@ -81,16 +80,8 @@ class SearchLateCountsResponse( BaseModel ):
 
 
 class SearchAttendanceCountsRequest( BaseModel ):
-    filter: Dict[ str, Any ] = Field(
-        description="Dictionary containing metadata field-value pairs to filter by",
-        examples=[
-            {
-                "user_email": "duckien@gmail.com", 
-                "start_date": "2025-07-01",
-                "end_date": "2025-07-01",
-            },
-        ]
-    )
+    user_email: Optional[ str ] = None
+    time_query: Optional[ List[ TimePeriod ] ] = None
 
 class AttendanceData( BaseModel ):
     date: str = Field()

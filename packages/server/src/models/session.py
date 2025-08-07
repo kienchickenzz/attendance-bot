@@ -1,10 +1,13 @@
-from typing import Optional
+from typing import Optional, List
 
 from pydantic import BaseModel
 
+from models.search import TimePeriod
+
 class SessionContext( BaseModel ):
-    start_date: Optional[ str ] = None
-    end_date: Optional[ str ] = None
+    # start_date: Optional[ str ] = None
+    # end_date: Optional[ str ] = None
+    time_query: Optional[ List[ TimePeriod ] ] = None
     topic: Optional[ str ] = None
     prev_question: Optional[ str ] = None
 

@@ -16,6 +16,8 @@ async def upsert_session(
     redis: RedisDep,
 ) -> None:
     try:
+        logging.debug( request.data )
+
         # Validation 1: Kiểm tra session_id có tồn tại không
         if not request.session_id or request.session_id.strip() == "":
             raise InternalError(
@@ -37,12 +39,12 @@ async def upsert_session(
         if not session_data:
             raise InternalError(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                message="At least one data field (start_date, end_date, topic or prev_question) must be provided"
+                message="At least one data field must be provided"
             )
         
         logging.debug( request.data )
 
-        await session_service.upsert_session( redis, request )
+        await session_service.upsert_session( redis, request.session_id, request.data )
 
     except Exception as e:
         logging.error( f"Error upserting session '{ request.session_id }': { str( e ) }" )

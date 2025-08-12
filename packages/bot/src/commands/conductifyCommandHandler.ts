@@ -28,7 +28,6 @@ export class ConductifyCommandHandler {
             throw new InternalError( 500, 'BACKEND_URL environment variable is required but not set' )
         }
         this.backendEndpoint = process.env.BACKEND_URL 
-        logger.info( this.backendEndpoint )
     }
 
     async handleCommandReceived( 
@@ -65,6 +64,7 @@ export class ConductifyCommandHandler {
                 await this._upsertSessionContext( userInfo )
 
                 logger.info( `Successfully upserted session context for user: ${ userInfo.userId }` )
+                return await this._queryConductify( userMessage, userInfo )
             } catch ( error ) {
                 logger.error( `Failed to upsert session context on attempt ${ attempt }: ${ error }` )
 
@@ -73,25 +73,6 @@ export class ConductifyCommandHandler {
                 }
             }
         }
-
-        // const maxRetries = 3
-
-        // for ( let attempt = 1; attempt <= maxRetries; attempt++ ) {
-        
-        //     try {
-        //         // logger.info( `Attempting to query Flowise (attempt ${ attempt }/${ maxRetries })` )
-
-        //         // return await this._queryFlowise( userMessage, userInfo )
-        //     } catch ( error ) {
-
-        //         logger.error( `Flowise query failed on attempt ${ attempt }: ${ error }` )
-
-        //         if ( attempt === maxRetries ) {
-        //             logger.error( `All ${ maxRetries } attempts failed for Flowise query` )
-        //             return "Xin lỗi, bên em vừa gặp chút vấn đề với đường truyền mạng. Anh/chị gửi lại thông tin vừa rồi giúp em nhé."
-        //         }
-        //     }
-        // }
 
         return "Xin lỗi, bên em vừa gặp chút vấn đề với đường truyền mạng. Anh/chị gửi lại thông tin vừa rồi giúp em nhé."
     }
@@ -128,38 +109,60 @@ export class ConductifyCommandHandler {
         }
     }
 
-    // async _queryFlowise( 
-    //     question: string,
-    //     userInfo: UserInfo,
-    // ): Promise< string > {
+    async _queryConductify( 
+        question: string,
+        userInfo: UserInfo,
+    ): Promise< string > {
         
-    //     const fullQuestion = [
-    //         question,
-    //         userInfo.userId ?? "",
-    //         userInfo.userName ?? "",
-    //         userInfo.email ?? ""
-    //     ].join( "|" )
+        // Tạo prompt đầy đủ bao gồm thông tin người dùng (tương tự Flowise)
+        const fullPrompt = [
+            userInfo.userId ?? "",
+            question,
+        ].join( "|" )
 
-    //     logger.debug( `Full question sent to Flowise: ${ fullQuestion }` )
+        logger.debug( `Full prompt sent to Conductify: ${ fullPrompt }` )
 
-    //     const data = {
-    //         question: fullQuestion
-    //     }
-            
-    //     const response = await fetch( this.flowiseEndpoint, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify( data )
-    //     } )
+        if ( !process.env.CONDUCTIFY_BOT_ID ) {
+            throw new InternalError( 500, 'CONDUCTIFY_BOT_ID environment variable is required but not set' )
+        }
+        if ( !process.env.CONDUCTIFY_API_KEY ) {
+            throw new InternalError( 500, 'CONDUCTIFY_API_KEY environment variable is required but not set' )
+        }
 
-    //     if ( !response.ok ) {
-    //         throw new InternalError( 500, `HTTP error! status: ${ response.status }` )
-    //     }
+        const threadId = `teams_${ userInfo.userId }_${ Date.now() }`
+        
+        const channelId = userInfo.userId
+        const requestBody = {
+            botUuid: process.env.CONDUCTIFY_BOT_ID,
+            prompt: fullPrompt,
+            channelId: "037f4fbb-af6b-47ea-bb0b-834ff2b4659e",
+            channelType: "web", // Sử dụng "dev" cho Teams bot development, có thể đổi thành "web" sau
+            threadId: "web-cc9f96ff-66eb-4434-948f-639ca334e3bc",
+        }
 
-    //     const result: any = await response.json()
-    //     // console.log( "Flowise response:", result )
-    //     return result.text
-    // }
+        const response = await fetch( 'https://api.conductify.ai/external/v1/chat/completions', {
+            method: "POST",
+            headers: {
+                "accept": "*/*",
+                "x-api-key": process.env.CONDUCTIFY_API_KEY,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify( requestBody )
+        } )
+
+        if ( !response.ok ) {
+            const errorText = await response.text()
+            logger.error( `Conductify API error: ${response.status} - ${errorText}` )
+            throw new InternalError( 
+                response.status, 
+                `Conductify API error! status: ${ response.status }, body: ${errorText}` 
+            )
+        }
+
+        const result: any = await response.json()
+        
+        logger.debug( "Conductify response:", JSON.stringify(result, null, 2) )
+        
+        return result.botMsg
+    }
 }

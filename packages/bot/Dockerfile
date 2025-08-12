@@ -1,23 +1,17 @@
-FROM node:20-alpine
-RUN apk add --update libc6-compat python3 make g++
+FROM oven/bun:1
 
 # Install curl for container-level health checks
-RUN apk add --no-cache curl
-
-# Install PNPM globaly
-RUN npm install -g pnpm
-
-ENV NODE_OPTIONS=--max-old-space-size=8192
+RUN apt-get update && apt-get install -y curl
 
 WORKDIR /app/src
 
 # Copy app source
 COPY . .
 
-RUN pnpm install
+RUN bun install
 
-RUN pnpm build
+RUN bun run build
 
 EXPOSE 3978
 
-CMD [ "pnpm", "start" ]
+CMD [ "bun", "run", "start" ]

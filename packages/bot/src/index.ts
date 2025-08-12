@@ -3,6 +3,7 @@ import path from 'path'
 import cors from 'cors'
 import http from 'http'
 import dotenv from 'dotenv'
+import { DataSource } from 'typeorm'
 // import cookieParser from 'messagescookie-parser'
 import { adapter } from "./internal/initialize"
 import apiRouter from './routes'
@@ -10,12 +11,14 @@ import { getCorsOptions } from './utils/xss'
 import { RedisService } from './RedisService'
 import { app as teamsApp } from "./teamsBot" 
 import logger, { expressRequestLogger } from './utils/logger'
+import { getDataSource } from './DataSource'
 
 dotenv.config( { path: path.join( __dirname, '..', '.env' ), override: true } )
 
 export class App {
     app: express.Application
     redisService: RedisService
+    AppDataSource: DataSource = getDataSource()
     
     constructor() {
         this.app = express()
@@ -23,6 +26,9 @@ export class App {
 
     async init() {
         try {
+            await this.AppDataSource.initialize()
+            logger.info( '📦 [server]: Data Source initialized successfully' )
+
             this.redisService = new RedisService()
         } catch ( error ) {
             logger.error( '❌ [server]: Error during Data Source initialization:', error )

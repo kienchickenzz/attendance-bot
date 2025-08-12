@@ -1,5 +1,6 @@
 tags:
     - name: Session
+    - name: Search
 
 paths:
     /session/upsert:
@@ -131,6 +132,235 @@ paths:
                     description: Bad Request - Session ID is required
                 '404':
                     description: Session not found
+                '500':
+                    description: Internal server error
+
+    /search/time:
+        post:
+            tags:
+                - Search
+            summary: Search attendance records by time range
+            description: Search employee attendance records within specified time periods
+            operationId: searchTime
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                user_email:
+                                    type: string
+                                    description: Employee email address
+                                    example: "john.doe@example.com"
+                                time_query:
+                                    type: array
+                                    description: Array of time periods to search within
+                                    items:
+                                        type: object
+                                        properties:
+                                            start_time:
+                                                type: string
+                                                description: Start date in YYYY-MM-DD format
+                                                example: "2024-01-01"
+                                            end_time:
+                                                type: string
+                                                description: End date in YYYY-MM-DD format
+                                                example: "2024-01-31"
+                                        required:
+                                            - start_time
+                                            - end_time
+                                    minItems: 1
+                            required:
+                                - user_email
+                                - time_query
+            responses:
+                '200':
+                    description: Attendance records retrieved successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    data:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                date:
+                                                    type: string
+                                                    description: Date in YYYY-MM-DD format
+                                                    example: "2024-01-15"
+                                                checkin_time:
+                                                    type: string
+                                                    description: Check-in time in ISO 8601 UTC format
+                                                    example: "2024-01-15T08:30:00.000Z"
+                                                checkout_time:
+                                                    type: string
+                                                    description: Check-out time in ISO 8601 UTC format
+                                                    example: "2024-01-15T17:30:00.000Z"
+                '400':
+                    description: Bad Request - Invalid input parameters
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: "user_email is required and cannot be empty"
+                '412':
+                    description: Precondition Failed - Request body not provided
+                '500':
+                    description: Internal server error
+
+    /search/late:
+        post:
+            tags:
+                - Search
+            summary: Search late attendance records by time range
+            description: Search employee late attendance records within specified time periods
+            operationId: searchLate
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                user_email:
+                                    type: string
+                                    description: Employee email address
+                                    example: "john.doe@example.com"
+                                time_query:
+                                    type: array
+                                    description: Array of time periods to search within
+                                    items:
+                                        type: object
+                                        properties:
+                                            start_time:
+                                                type: string
+                                                description: Start date in YYYY-MM-DD format
+                                                example: "2024-01-01"
+                                            end_time:
+                                                type: string
+                                                description: End date in YYYY-MM-DD format
+                                                example: "2024-01-31"
+                                        required:
+                                            - start_time
+                                            - end_time
+                                    minItems: 1
+                            required:
+                                - user_email
+                                - time_query
+            responses:
+                '200':
+                    description: Late attendance records retrieved successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    data:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                date:
+                                                    type: string
+                                                    description: Date in YYYY-MM-DD format
+                                                    example: "2024-01-15"
+                                                is_late:
+                                                    type: boolean
+                                                    description: Whether the employee was late on this date
+                                                    example: true
+                '400':
+                    description: Bad Request - Invalid input parameters
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: "user_email is required and cannot be empty"
+                '412':
+                    description: Precondition Failed - Request body not provided
+                '500':
+                    description: Internal server error
+
+    /search/attendance:
+        post:
+            tags:
+                - Search
+            summary: Search attendance counts by time range
+            description: Search employee attendance count records within specified time periods
+            operationId: searchAttendance
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                user_email:
+                                    type: string
+                                    description: Employee email address
+                                    example: "john.doe@example.com"
+                                time_query:
+                                    type: array
+                                    description: Array of time periods to search within
+                                    items:
+                                        type: object
+                                        properties:
+                                            start_time:
+                                                type: string
+                                                description: Start date in YYYY-MM-DD format
+                                                example: "2024-01-01"
+                                            end_time:
+                                                type: string
+                                                description: End date in YYYY-MM-DD format
+                                                example: "2024-01-31"
+                                        required:
+                                            - start_time
+                                            - end_time
+                                    minItems: 1
+                            required:
+                                - user_email
+                                - time_query
+            responses:
+                '200':
+                    description: Attendance count records retrieved successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    data:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                date:
+                                                    type: string
+                                                    description: Date in YYYY-MM-DD format
+                                                    example: "2024-01-15"
+                                                attendance:
+                                                    type: number
+                                                    description: Attendance count for this date (as float)
+                                                    example: 1.0
+                '400':
+                    description: Bad Request - Invalid input parameters
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: "user_email is required and cannot be empty"
+                '412':
+                    description: Precondition Failed - Request body not provided
                 '500':
                     description: Internal server error
 

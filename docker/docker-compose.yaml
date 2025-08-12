@@ -61,16 +61,16 @@ services:
         healthcheck:
             test: [ 'CMD', 'redis-cli', 'ping' ]
 
-    server:
-        image: bot-backend
-        container_name: bot-backend
-        restart: no
-        networks:
-        - bot-network
-        ports:
-        - "8000:8000"
-        # env_file:
-        # - .env
+    # server:
+    #     image: bot-backend
+    #     container_name: bot-backend
+    #     restart: no
+    #     networks:
+    #     - bot-network
+    #     ports:
+    #     - "8000:8000"
+    #     # env_file:
+    #     # - .env
 
     bot:
         image: bot

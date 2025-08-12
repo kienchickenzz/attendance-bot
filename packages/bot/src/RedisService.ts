@@ -107,8 +107,8 @@ export class RedisService {
                         // Ensure it's an array and convert to TimePeriod objects
                         if (Array.isArray(timeQueryData)) {
                             const timePeriods: TimePeriod[] = timeQueryData.map(periodData => ({
-                                start_time: periodData.start_time,
-                                end_time: periodData.end_time,
+                                start_date: periodData.start_date,
+                                end_date: periodData.end_date,
                                 description: periodData.description
                             }))
                             

@@ -1,13 +1,13 @@
 import express from 'express'
 import path from 'path'
-// import cors from 'cors'
+import cors from 'cors'
 import http from 'http'
 import dotenv from 'dotenv'
 // import cookieParser from 'messagescookie-parser'
-
 import { adapter } from "./internal/initialize"
-
-
+import apiRouter from './routes'
+import { getCorsOptions } from './utils/xss'
+import { RedisService } from './RedisService'
 import { app as teamsApp } from "./teamsBot" 
 import logger, { expressRequestLogger } from './utils/logger'
 
@@ -15,9 +15,18 @@ dotenv.config( { path: path.join( __dirname, '..', '.env' ), override: true } )
 
 export class App {
     app: express.Application
+    redisService: RedisService
     
     constructor() {
         this.app = express()
+    }
+
+    async init() {
+        try {
+            this.redisService = new RedisService()
+        } catch ( error ) {
+            logger.error( '❌ [server]: Error during Data Source initialization:', error )
+        }
     }
 
     async config() {
@@ -25,6 +34,9 @@ export class App {
         const file_size_limit = process.env.FILE_SIZE_LIMIT || '50mb'
         this.app.use( express.json( { limit: file_size_limit } ) )
         this.app.use( express.urlencoded( { limit: file_size_limit, extended: true } ) )
+
+        // Allow access from specified domains
+        this.app.use( cors( getCorsOptions() ) )
 
         // Add the expressRequestLogger middleware to log all requests
         this.app.use( expressRequestLogger )
@@ -34,6 +46,8 @@ export class App {
                 await teamsApp.run( context )
             } )
         } )
+
+        this.app.use( '/api', apiRouter )
     }
 }
 
@@ -41,13 +55,14 @@ export default App
 
 let serverApp: App | undefined
 
-export async function start(): Promise<void> {
+export async function start() {
     serverApp = new App()
 
     const host = process.env.HOST || '0.0.0.0'
     const port = parseInt( process.env.PORT || '', 10 ) || 3978
     const server = http.createServer( serverApp.app )
 
+    await serverApp.init()
     await serverApp.config()
 
     server.listen( port, host, () => {

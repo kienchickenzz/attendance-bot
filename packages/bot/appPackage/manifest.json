@@ -1,60 +1,40 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.21/MicrosoftTeams.schema.json",
-    "manifestVersion": "1.21",
     "version": "1.0.0",
+    "manifestVersion": "1.21",
     "id": "68cc40d3-2e2d-4743-aa62-78c1b91e4177",
+    "name": {
+        "short": "Attendance Bot",
+        "full": "Attendance Tracking Bot for Microsoft Teams"
+    },
     "developer": {
-        "name": "My App, Inc.",
+        "name": "CMCTS",
         "websiteUrl": "https://www.example.com",
         "privacyUrl": "https://www.example.com/privacy",
         "termsOfUseUrl": "https://www.example.com/termofuse"
     },
-    "icons": {
-        "color": "color.png",
-        "outline": "outline.png"
-    },
-    "name": {
-        "short": "Attendance Bot v2",
-        "full": "full name for bot"
-    },
     "description": {
-        "short": "short description for bot",
-        "full": "full description for bot"
+        "short": "Bot helps tracking attendance with ease.",
+        "full": "The bot helps you easily look up attendance history, track check-in/check-out records, calculate workdays, and more — all within Microsoft Teams."
+    },
+    "icons": {
+        "outline": "outline.png",
+        "color": "color.png"
     },
     "accentColor": "#FFFFFF",
     "bots": [
         {
-            "botId": "3a224124-18e9-4708-a000-1b2207262e11",
-            "scopes": [
-                "personal",
-                "team",
-                "groupChat"
-            ],
-            "supportsFiles": false,
-            "isNotificationOnly": false,
-            "commandLists": [
-                {
-                  "scopes": ["personal", "team", "groupChat"],
-                  "commands": [
-                      {
-                          "title": "Hi",
-                          "description": "Say hi to the bot."
-                      },
-                      {
-                          "title": "/reset",
-                          "description": "Delete conversation state."
-                      }
-                  ]
-                }
-            ]
+        "botId": "3a224124-18e9-4708-a000-1b2207262e11",
+        "scopes": [
+            "personal",
+            "team",
+            "groupChat"
+        ],
+        "isNotificationOnly": false,
+        "supportsCalling": false,
+        "supportsVideo": false,
+        "supportsFiles": false
         }
-    ],
-    "composeExtensions": [],
-    "configurableTabs": [],
-    "staticTabs": [],
-    "permissions": [
-        "identity",
-        "messageTeamMembers"
     ],
     "validDomains": []
 }

@@ -98,7 +98,6 @@ export class FlowiseCommandHandler {
             body: JSON.stringify( data )
         } )
 
-        // TODO: Implement custom Error object
         if ( !response.ok ) {
             throw new InternalError( 500, `HTTP error! status: ${ response.status }` )
         }

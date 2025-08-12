@@ -5,8 +5,9 @@ from pydantic import BaseModel
 from models.search import TimePeriod
 
 class SessionContext( BaseModel ):
-    # start_date: Optional[ str ] = None
-    # end_date: Optional[ str ] = None
+    user_name: Optional[ str ] = None
+    user_email: Optional[ str ] = None
+    current_time: Optional[ str ] = None # Conductify AI
     time_query: Optional[ List[ TimePeriod ] ] = None
     topic: Optional[ str ] = None
     prev_question: Optional[ str ] = None

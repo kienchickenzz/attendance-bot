@@ -35,8 +35,8 @@ async def upsert_session(
         # Xử lý time_query đặc biệt - serialize thành JSON string
         if time_query is not None:
             # Chuyển đổi list của TimePeriod objects thành JSON string
-            time_query_json = json.dumps(time_query)
-            hash_data['time_query'] = time_query_json
+            time_query_json = json.dumps( time_query )
+            hash_data[ 'time_query' ] = time_query_json
 
         await redis.hmset( session_id, hash_data )
         await redis.expire( session_id, app_config.REDIS_TTL )
@@ -66,7 +66,7 @@ async def get_session(
         processed_fields = {}
         
         # Xử lý từng field một cách cẩn thận
-        for field in [ 'time_query', 'topic', 'prev_question' ]:
+        for field in [ 'time_query', 'topic', 'prev_question', 'user_name', 'user_email', 'current_time' ]:
             if field in session_data and session_data[ field ]:
                 
                 # Xử lý đặc biệt cho time_query vì nó được lưu dưới dạng JSON string
@@ -89,7 +89,7 @@ async def get_session(
                         else:
                             # Log warning nếu dữ liệu không đúng format mong đợi
                             logging.warning( f"time_query in session '{ session_id }' is not a list, skipping" )
-                            
+
                     except json.JSONDecodeError as json_error:
                         logging.error( f"Invalid JSON in time_query for session '{ session_id }': { str( json_error ) }" )
                         
@@ -98,6 +98,8 @@ async def get_session(
                     processed_fields[field] = session_data[field]
         
         session_context = SessionContext( **processed_fields )
+
+        logging.debug( session_context )
         
         logging.info( f"Retrieved session '{ session_id }', TTL: { ttl }s" )
         return GetSessionResponse(

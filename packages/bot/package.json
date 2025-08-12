@@ -4,7 +4,7 @@
     "description": "Microsoft 365 Agent",
     "author": "Nguyen Duc Kien <nguyenduckien2508@gmail.com>",
     "engines": {
-        "node": "18 || 20 || 22"
+        "bun": ">=1.0.0"
     },
     "license": "MIT",
     "main": "dist/index",
@@ -15,19 +15,28 @@
         "dev:teamsfx:launch-testtool": "env-cmd --silent -f env/.env.playground teamsapptester start",
         "dev": "nodemon --exec node --inspect=9239 --signal SIGINT -r ts-node/register ./src/index.ts",
         "build": "tsc --build",
-        "start": "node ./dist/index.js",
+        "start": "bun ./dist/index.js",
         "watch": "nodemon --exec \"npm run start\"",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "migration:generate": "typeorm-ts-node-commonjs migration:generate -d ./src/utils/typeormDataSource.ts",
+        "migration:run": "typeorm-ts-node-commonjs migration:run -d ./src/utils/typeormDataSource.ts",
+        "migration:revert": "typeorm-ts-node-commonjs migration:revert -d ./src/utils/typeormDataSource.ts"
     },
     "dependencies": {
         "@microsoft/agents-hosting": "^0.2.14",
         "@microsoft/teams-ai": "^1.7.0",
+        "@types/cors": "^2.8.19",
         "axios": "^1.11.0",
         "botbuilder": "^4.23.1",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "dotenv": "^16.0.0",
         "express": "^5.0.1",
+        "http-status-codes": "^2.3.0",
+        "ioredis": "^5.7.0",
+        "pg": "^8.16.3",
+        "redis": "^5.8.0",
+        "typeorm": "^0.3.25",
         "winston": "^3.9.0"
     },
     "devDependencies": {

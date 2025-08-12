@@ -39,7 +39,7 @@ export function expressRequestLogger( req: Request, res: Response, next: NextFun
         '/api/v1/ping',
     ]
 
-    if ( /\/api\/v1\//i.test( req.url ) && !unwantedLogURLs.some( ( url ) => new RegExp( url, 'i' ).test( req.url ) ) ) {
+    if ( /\/api\//i.test( req.url ) && !unwantedLogURLs.some( ( url ) => new RegExp( url, 'i' ).test( req.url ) ) ) {
         // Create a sanitized copy of the request body
         const sanitizedBody = { ...req.body }
         if ( sanitizedBody.password ) {

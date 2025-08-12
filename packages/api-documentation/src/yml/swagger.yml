@@ -1,0 +1,142 @@
+tags:
+    - name: Session
+
+paths:
+    /session/upsert:
+        post:
+            tags:
+                - session
+            summary: Upsert session data
+            description: Create or update session data for a specific session ID
+            operationId: upsertSession
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                session_id:
+                                    type: string
+                                    description: Unique session identifier
+                                    example: "session_123"
+                                data:
+                                    type: object
+                                    properties:
+                                        user_name:
+                                            type: string
+                                            description: User's name
+                                            example: "John Doe"
+                                        user_email:
+                                            type: string
+                                            description: User's email address
+                                            example: "john@example.com"
+                                        current_time:
+                                            type: string
+                                            description: Current timestamp
+                                            example: "2024-01-15T10:30:00Z"
+                                        time_query:
+                                            type: array
+                                            items:
+                                                type: object
+                                                properties:
+                                                    start_time:
+                                                        type: string
+                                                        example: "09:00"
+                                                    end_time:
+                                                        type: string
+                                                        example: "17:00"
+                                        topic:
+                                            type: string
+                                            description: Session topic
+                                            example: "attendance tracking"
+                                        prev_question:
+                                            type: string
+                                            description: Previous question asked
+                                            example: "What is my attendance rate?"
+                            required:
+                                - session_id
+                                - data
+            responses:
+                '200':
+                    description: Session upserted successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    success:
+                                        type: boolean
+                                        example: true
+                                    message:
+                                        type: string
+                                        example: "Session upserted successfully"
+                '400':
+                    description: Bad Request - Session ID or data is required
+                '412':
+                    description: Precondition Failed - Body not provided
+                '500':
+                    description: Internal server error
+
+    /session/{session_id}:
+        get:
+            tags:
+                - session
+            summary: Get session data
+            description: Retrieve session data by session ID
+            operationId: getSession
+            parameters:
+                - in: path
+                  name: session_id
+                  required: true
+                  schema:
+                      type: string
+                  description: Session ID to retrieve
+                  example: "session_123"
+            responses:
+                '200':
+                    description: Session data retrieved successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    user_name:
+                                        type: string
+                                        example: "John Doe"
+                                    user_email:
+                                        type: string
+                                        example: "john@example.com"
+                                    current_time:
+                                        type: string
+                                        example: "2024-01-15T10:30:00Z"
+                                    time_query:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                start_time:
+                                                    type: string
+                                                    example: "09:00"
+                                                end_time:
+                                                    type: string
+                                                    example: "17:00"
+                                    topic:
+                                        type: string
+                                        example: "attendance tracking"
+                                    prev_question:
+                                        type: string
+                                        example: "What is my attendance rate?"
+                '400':
+                    description: Bad Request - Session ID is required
+                '404':
+                    description: Session not found
+                '500':
+                    description: Internal server error
+
+components:
+    responses:
+
+    schemas:
+
+    securitySchemes:

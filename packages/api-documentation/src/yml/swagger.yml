@@ -6,7 +6,7 @@ paths:
     /session/upsert:
         post:
             tags:
-                - session
+                - Session
             summary: Upsert session data
             description: Create or update session data for a specific session ID
             operationId: upsertSession
@@ -82,7 +82,7 @@ paths:
     /session/{session_id}:
         get:
             tags:
-                - session
+                - Session
             summary: Get session data
             description: Retrieve session data by session ID
             operationId: getSession

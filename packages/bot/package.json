@@ -13,7 +13,7 @@
         "dev:teamsfx": "env-cmd --silent -f .localConfigs pnpm run dev",
         "dev:teamsfx:testtool": "env-cmd --silent -f .localConfigs.playground pnpm run dev",
         "dev:teamsfx:launch-testtool": "env-cmd --silent -f env/.env.playground teamsapptester start",
-        "dev": "nodemon --exec node --inspect=9239 --signal SIGINT -r ts-node/register ./src/index.ts",
+        "dev": "nodemon",
         "build": "tsc --build",
         "start": "bun ./dist/index.js",
         "watch": "nodemon --exec \"npm run start\"",

@@ -1,0 +1,6 @@
+{
+    "ignore": [ "node_modules" ],
+    "watch": [ "src" ],
+    "exec": "bun run ./src/index.ts",
+    "ext": "ts, yml"
+}

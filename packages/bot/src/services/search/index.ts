@@ -1,17 +1,15 @@
 import { DataSource } from 'typeorm'
 import { SearchTimeRequest, SearchTimeResponse, TimeData, TimePeriod, SearchLateRequest, SearchLateResponse, LateData, SearchAttendanceRequest, SearchAttendanceResponse, AttendanceData } from '../../Interface'
-import { getInstance } from '../../index'
 import logger from '../../utils/logger'
+import { getRunningExpressApp } from '../../utils/getRunningExpressApp'
+import { InternalError } from '../../errors/internal_error'
+import { StatusCodes } from 'http-status-codes'
 
-const searchTimeService = async (request: SearchTimeRequest): Promise<SearchTimeResponse> => {
-    const appInstance = getInstance()
-    if (!appInstance?.AppDataSource) {
-        throw new Error('Database connection not available')
-    }
-
-    const dataSource: DataSource = appInstance.AppDataSource
-    
+const searchTimeService = async ( request: SearchTimeRequest ): Promise< SearchTimeResponse > => {
     try {
+        const appServer = getRunningExpressApp()
+        const dataSource: DataSource = appServer.AppDataSource
+        
         // Build dynamic query conditions
         const dateConditions: string[] = []
         const queryParams: Record<string, any> = { user_email: request.user_email }
@@ -20,8 +18,11 @@ const searchTimeService = async (request: SearchTimeRequest): Promise<SearchTime
             const startDate = dateRange.start_date
             const endDate = dateRange.end_date
 
-            if (!startDate || !endDate) {
-                throw new Error(`Date range ${index} missing start_time or end_time`)
+            if ( !startDate || !endDate ) {
+                throw new InternalError( 
+                    StatusCodes.INTERNAL_SERVER_ERROR,
+                    `Date range ${ index } missing start_time or end_time` 
+                )
             }
 
             // Convert YYYY-MM-DD to YYYY-MM-DD HH:MM:SS for precise time filtering
@@ -69,44 +70,48 @@ const searchTimeService = async (request: SearchTimeRequest): Promise<SearchTime
 
         // Transform results to match API response format
         const timeDataList: TimeData[] = rawRecords.map((record: any) => {
-            const checkinTime = new Date(record.checkin_time)
-            const checkoutTime = record.checkout_time ? new Date(record.checkout_time) : null
+            const checkinTime = new Date( record.checkin_time )
+            const checkoutTime = new Date( record.checkout_time )
 
-            // Convert to ISO format with UTC timezone
-            const checkinISO = checkinTime.toISOString()
-            const checkoutISO = checkoutTime ? checkoutTime.toISOString() : checkinTime.toISOString() // fallback if null
+            const formatTimeOnly = ( dateObj: Date ): string => {
+                const hours = dateObj.getHours().toString().padStart( 2, '0' )
+                const minutes = dateObj.getMinutes().toString().padStart( 2, '0' )
+                return `${ hours }:${ minutes }`
+            }
+            const checkinTimeFormatted = formatTimeOnly( checkinTime )
+            const checkoutTimeFormatted = formatTimeOnly( checkoutTime )
 
-            // Extract date in YYYY-MM-DD format
-            const date = checkinISO.substring(0, 10)
+            const year = checkinTime.getFullYear()
+            const month = ( checkinTime.getMonth() + 1 ).toString().padStart( 2, '0' )
+            const day = checkinTime.getDate().toString().padStart( 2, '0' )
+            const date = `${ year }-${ month }-${ day }`
 
             return {
                 date,
-                checkin_time: checkinISO,
-                checkout_time: checkoutISO
+                checkin_time: checkinTimeFormatted,
+                checkout_time: checkoutTimeFormatted,
             }
-        })
+        } )
 
         logger.info(`Found ${timeDataList.length} attendance records for user: ${request.user_email}`)
+        logger.debug( timeDataList[ 0 ].checkin_time )
+        logger.debug( timeDataList[ 0 ].checkout_time )
 
         return {
             data: timeDataList
         }
 
-    } catch (error) {
-        logger.error('Error in searchTimeService:', error)
+    } catch ( error ) {
+        logger.error( 'Error in searchTimeService:', error )
         throw error
     }
 }
 
-const searchLateService = async (request: SearchLateRequest): Promise<SearchLateResponse> => {
-    const appInstance = getInstance()
-    if (!appInstance?.AppDataSource) {
-        throw new Error('Database connection not available')
-    }
-
-    const dataSource: DataSource = appInstance.AppDataSource
-    
+const searchLateService = async ( request: SearchLateRequest ): Promise< SearchLateResponse > => {
     try {
+        const appServer = getRunningExpressApp()
+        const dataSource: DataSource = appServer.AppDataSource
+
         // Build dynamic query conditions (same logic as searchTime)
         const dateConditions: string[] = []
         const queryParams: Record<string, any> = { user_email: request.user_email }
@@ -192,21 +197,17 @@ const searchLateService = async (request: SearchLateRequest): Promise<SearchLate
             data: lateDataList
         }
 
-    } catch (error) {
-        logger.error('Error in searchLateService:', error)
+    } catch ( error ) {
+        logger.error( 'Error in searchLateService:', error )
         throw error
     }
 }
 
-const searchAttendanceService = async (request: SearchAttendanceRequest): Promise<SearchAttendanceResponse> => {
-    const appInstance = getInstance()
-    if (!appInstance?.AppDataSource) {
-        throw new Error('Database connection not available')
-    }
-
-    const dataSource: DataSource = appInstance.AppDataSource
-    
+const searchAttendanceService = async ( request: SearchAttendanceRequest ): Promise< SearchAttendanceResponse > => {
     try {
+        const appServer = getRunningExpressApp()
+        const dataSource: DataSource = appServer.AppDataSource
+
         // Build dynamic query conditions (same logic as searchTime and searchLate)
         const dateConditions: string[] = []
         const queryParams: Record<string, any> = { user_email: request.user_email }
@@ -295,8 +296,8 @@ const searchAttendanceService = async (request: SearchAttendanceRequest): Promis
             data: attendanceDataList
         }
 
-    } catch (error) {
-        logger.error('Error in searchAttendanceService:', error)
+    } catch ( error ) {
+        logger.error( 'Error in searchAttendanceService:', error )
         throw error
     }
 }

@@ -13,15 +13,9 @@ export interface UserInfo {
     email?: string
 }
 
-export interface SessionContext {
-    user_id?: string
-    user_name?: string
-    user_email?: string
-    current_time?: string
-}
-
 export class ConductifyCommandHandler {
     backendEndpoint: string
+    conductifyEndpoint: string
 
     constructor() {
         if ( !process.env.BACKEND_URL ) {
@@ -61,10 +55,16 @@ export class ConductifyCommandHandler {
         for ( let attempt = 1; attempt <= maxRetries; attempt++ ) {
         
             try {
-                await this._upsertSessionContext( userInfo )
+                await this._upsertBasicInfo( userInfo )
+                logger.info( `Successfully upserted basic info for user: ${ userInfo.userId }` )
 
-                logger.info( `Successfully upserted session context for user: ${ userInfo.userId }` )
-                return await this._queryConductify( userMessage, userInfo )
+                const conductifyResponse = await this._queryConductify( userMessage, userInfo )
+                logger.info( `Successfully received response from Conductify for user: ${ userInfo.userId }` )
+
+                await this._upsertPreviousQA( userInfo, userMessage, conductifyResponse )
+                logger.info( `Successfully stored previous Q&A for user: ${ userInfo.userId }` )
+
+                return conductifyResponse
             } catch ( error ) {
                 logger.error( `Failed to upsert session context on attempt ${ attempt }: ${ error }` )
 
@@ -77,7 +77,7 @@ export class ConductifyCommandHandler {
         return "Xin lỗi, bên em vừa gặp chút vấn đề với đường truyền mạng. Anh/chị gửi lại thông tin vừa rồi giúp em nhé."
     }
 
-    async _upsertSessionContext( userInfo: UserInfo ): Promise< void > {
+    async _upsertBasicInfo( userInfo: UserInfo ): Promise< void > {
         const now = new Date()
         const year = now.getFullYear().toString()
         const month = String( now.getMonth() + 1 ).padStart( 2, '0' )
@@ -114,7 +114,6 @@ export class ConductifyCommandHandler {
         userInfo: UserInfo,
     ): Promise< string > {
         
-        // Tạo prompt đầy đủ bao gồm thông tin người dùng (tương tự Flowise)
         const fullPrompt = [
             userInfo.userId ?? "",
             question,
@@ -164,5 +163,36 @@ export class ConductifyCommandHandler {
         logger.debug( "Conductify response:", JSON.stringify(result, null, 2) )
         
         return result.botMsg
+    }
+
+    async _upsertPreviousQA( 
+        userInfo: UserInfo, 
+        question: string, 
+        answer: string 
+    ): Promise< void > {
+        const upsertRequest = {
+            session_id: userInfo.userId,
+            data: {
+                prev_question: question,
+                prev_answer: answer
+            }
+        }
+
+        const response = await fetch( `${ this.backendEndpoint }/api/session/upsert`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify( upsertRequest )
+        } )
+
+        if ( !response.ok ) {
+            const errorText = await response.text()
+            logger.error( `Failed to upsert previous Q&A: ${ response.status } - ${ errorText }` )
+            
+            // Note: We don't throw an error here because the main functionality (getting answer) 
+            // has already succeeded. We just log the failure to store conversation history.
+            logger.warn( `Previous Q&A storage failed for user ${ userInfo.userId }, but continuing with successful response` )
+        }
     }
 }

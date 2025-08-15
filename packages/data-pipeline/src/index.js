@@ -11,9 +11,13 @@ import { processedDataSource } from './DataSource'
 async function main() {
     console.log( 'Starting attendance data generation...' )
 
-    const startDate = '2025-06-01'
-    const endDate = '2025-08-31'
-    const userEmail = 'ndkien.ts@cmc.com.vn'
+    // Parse command line arguments
+    const args = process.argv.slice(2)
+    const startDate = args[0] || '2025-06-01'
+    const endDate = args[1] || '2025-08-31'
+    const userEmail = args[2] || 'ndkien.ts@cmc.com.vn'
+
+    console.log(`Parameters: startDate=${startDate}, endDate=${endDate}, userEmail=${userEmail}`)
 
     let freeAllowance = 5 // Nums of ≤ 15 minutes are exempted
 

@@ -25,7 +25,8 @@ const searchTime = async ( req: Request, res: Response, next: NextFunction ) => 
         }
 
         // Validate time_query
-        if ( !request.time_query || !Array.isArray(request.time_query) || request.time_query.length === 0) {
+        if ( !request.time_query || !Array.isArray( request.time_query ) 
+                || request.time_query.length === 0 ) {
             throw new InternalError(
                 StatusCodes.BAD_REQUEST,
                 'time_query is required and must be a non-empty array'
@@ -72,8 +73,8 @@ const searchTime = async ( req: Request, res: Response, next: NextFunction ) => 
             let endDateObj: Date
 
             try {
-                startDateObj = new Date(timePeriod.start_date + 'T00:00:00.000Z')
-                endDateObj = new Date(timePeriod.end_date + 'T23:59:59.999Z')
+                startDateObj = new Date( timePeriod.start_date )
+                endDateObj = new Date( timePeriod.end_date )
 
                 if (isNaN(startDateObj.getTime())) {
                     throw new Error('Invalid start_date')
@@ -97,7 +98,7 @@ const searchTime = async ( req: Request, res: Response, next: NextFunction ) => 
             }
         }
 
-        logger.info(`Processing search_time request for user: ${request.user_email}`)
+        logger.info(`Processing search_time request for user: ${ request.user_email }` )
         logger.debug(`Time query ranges: ${JSON.stringify(request.time_query)}`)
 
         // Call service layer
@@ -110,7 +111,7 @@ const searchTime = async ( req: Request, res: Response, next: NextFunction ) => 
     }
 }
 
-const searchLate = async ( req: Request, res: Response, next: NextFunction ) => {
+const searchViolation = async ( req: Request, res: Response, next: NextFunction ) => {
     try {
         if ( !req.body ) {
             throw new InternalError(
@@ -122,7 +123,7 @@ const searchLate = async ( req: Request, res: Response, next: NextFunction ) => 
         const request: SearchLateRequest = req.body
 
         // Validate user_email
-        if (!request.user_email || request.user_email.trim() === '') {
+        if ( !request.user_email || request.user_email.trim() === '' ) {
             throw new InternalError(
                 StatusCodes.BAD_REQUEST,
                 'user_email is required and cannot be empty'
@@ -130,7 +131,8 @@ const searchLate = async ( req: Request, res: Response, next: NextFunction ) => 
         }
 
         // Validate time_query
-        if (!request.time_query || !Array.isArray(request.time_query) || request.time_query.length === 0) {
+        if ( !request.time_query || !Array.isArray( request.time_query ) 
+                || request.time_query.length === 0 ) {
             throw new InternalError(
                 StatusCodes.BAD_REQUEST,
                 'time_query is required and must be a non-empty array'
@@ -177,8 +179,8 @@ const searchLate = async ( req: Request, res: Response, next: NextFunction ) => 
             let endDateObj: Date
 
             try {
-                startDateObj = new Date(timePeriod.start_date + 'T00:00:00.000Z')
-                endDateObj = new Date(timePeriod.end_date + 'T23:59:59.999Z')
+                startDateObj = new Date( timePeriod.start_date )
+                endDateObj = new Date( timePeriod.end_date )
 
                 if (isNaN(startDateObj.getTime())) {
                     throw new Error('Invalid start_date')
@@ -193,22 +195,20 @@ const searchLate = async ( req: Request, res: Response, next: NextFunction ) => 
                 )
             }
 
-            // Check if start_date <= end_date
-            if (startDateObj > endDateObj) {
+            if ( startDateObj > endDateObj ) {
                 throw new InternalError(
                     StatusCodes.BAD_REQUEST,
-                    `time_query[${i}]: start_date cannot be later than end_date`
+                    `time_query[${ i }]: start_date cannot be later than end_date`
                 )
             }
         }
 
-        logger.info(`Processing search_late request for user: ${request.user_email}`)
-        logger.debug(`Time query ranges: ${JSON.stringify(request.time_query)}`)
+        logger.info( `Processing search_late request for user: ${ request.user_email }` )
+        logger.debug( `Time query ranges: ${ JSON.stringify( request.time_query ) }` )
 
-        // Call service layer
-        const response = await searchService.searchLateService(request)
+        const response = await searchService.searchViolationService( request )
 
-        res.status(StatusCodes.OK).json(response)
+        res.json( response )
 
     } catch ( error ) {
         next( error )
@@ -235,7 +235,7 @@ const searchAttendance = async ( req: Request, res: Response, next: NextFunction
         }
 
         // Validate time_query
-        if (!request.time_query || !Array.isArray(request.time_query) || request.time_query.length === 0) {
+        if ( !request.time_query || !Array.isArray( request.time_query ) || request.time_query.length === 0 ) {
             throw new InternalError(
                 StatusCodes.BAD_REQUEST,
                 'time_query is required and must be a non-empty array'
@@ -243,7 +243,7 @@ const searchAttendance = async ( req: Request, res: Response, next: NextFunction
         }
 
         // Validate each time period (same validation logic as searchTime and searchLate)
-        for (let i = 0; i < request.time_query.length; i++) {
+        for ( let i = 0; i < request.time_query.length; i++) {
             const timePeriod = request.time_query[i]
 
             // Check if start_date and end_date exist
@@ -282,8 +282,8 @@ const searchAttendance = async ( req: Request, res: Response, next: NextFunction
             let endDateObj: Date
 
             try {
-                startDateObj = new Date(timePeriod.start_date + 'T00:00:00.000Z')
-                endDateObj = new Date(timePeriod.end_date + 'T23:59:59.999Z')
+                startDateObj = new Date( timePeriod.start_date )
+                endDateObj = new Date( timePeriod.end_date )
 
                 if (isNaN(startDateObj.getTime())) {
                     throw new Error('Invalid start_date')
@@ -307,8 +307,8 @@ const searchAttendance = async ( req: Request, res: Response, next: NextFunction
             }
         }
 
-        logger.info(`Processing search_attendance request for user: ${request.user_email}`)
-        logger.debug(`Time query ranges: ${JSON.stringify(request.time_query)}`)
+        logger.info(`Processing search_attendance request for user: ${ request.user_email }` )
+        logger.debug(`Time query ranges: ${ JSON.stringify( request.time_query ) }` )
 
         // Call service layer
         const response = await searchService.searchAttendanceService(request)
@@ -322,6 +322,6 @@ const searchAttendance = async ( req: Request, res: Response, next: NextFunction
 
 export default {
     searchTime,
-    searchLate,
+    searchViolation,
     searchAttendance
 }

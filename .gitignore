@@ -4,7 +4,9 @@ conductify_ai/
 flowise/
 workflows/
 prompts/
-sales_agent.json
+
+rule_0.js
+rule_1.js
 
 # env
 .env

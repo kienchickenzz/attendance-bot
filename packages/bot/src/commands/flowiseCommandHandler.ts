@@ -21,7 +21,7 @@ export class FlowiseCommandHandler {
             throw new InternalError( 500, 'FLOWISE_URL environment variable is required but not set' )
         }
         this.flowiseEndpoint = process.env.FLOWISE_URL 
-        logger.info( this.flowiseEndpoint )
+        // logger.info( this.flowiseEndpoint )
     }
 
     async handleCommandReceived( 

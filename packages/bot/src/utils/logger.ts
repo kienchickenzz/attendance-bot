@@ -1,9 +1,13 @@
 import { createLogger, transports, format } from 'winston'
 import { NextFunction, Request, Response } from 'express'
+import * as path from 'path'
 
 const { combine, timestamp, printf, errors } = format
 
 console.log( 'Current LOG_LEVEL:', process.env.LOG_LEVEL )
+
+const logDir = path.join( __dirname, '..', '..', 'logs' )
+const logFileName = 'server-requests.log.jsonl'
 
 const logger = createLogger( {
     format: combine(
@@ -62,6 +66,10 @@ export function expressRequestLogger( req: Request, res: Response, next: NextFun
             transports: [
                 new transports.Console( {
                     level: process.env.LOG_LEVEL ?? 'info'
+                } ),
+                new transports.File( {
+                    filename: path.join( logDir, logFileName ),
+                    level: process.env.LOG_LEVEL ?? 'debug'
                 } )
             ]
         } )

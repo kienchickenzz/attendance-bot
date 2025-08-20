@@ -8,7 +8,7 @@ import { DataSource } from 'typeorm'
 import { adapter } from "./internal/initialize"
 import apiRouter from './routes'
 import { getCorsOptions } from './utils/xss'
-import { RedisService } from './RedisService'
+import { getInstance as getRedisInstance, RedisService } from './RedisService'
 import { app as teamsApp } from "./teamsBot" 
 import logger, { expressRequestLogger } from './utils/logger'
 import { getDataSource } from './DataSource'
@@ -17,7 +17,7 @@ dotenv.config( { path: path.join( __dirname, '..', '.env' ), override: true } )
 
 export class App {
     app: express.Application
-    redisService: RedisService
+    redisService: RedisService = getRedisInstance()
     AppDataSource: DataSource = getDataSource()
     
     constructor() {

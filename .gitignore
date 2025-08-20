@@ -16,6 +16,10 @@ rule_1.js
 uv.lock
 **/volumes
 
+# logs
+**/logs
+**/*.log
+
 # build
 **/__pycache__
 **/dist

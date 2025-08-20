@@ -82,7 +82,18 @@ export class ConductifyCommandHandler {
         const year = now.getFullYear().toString()
         const month = String( now.getMonth() + 1 ).padStart( 2, '0' )
         const day = String( now.getDate() ).padStart( 2, '0' )
-        const currentTime = `${ year }-${ month }-${ day }`
+        const weekdays = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ]
+        const weekday = weekdays[ now.getDay() ]
+
+        const currentTime = `${ weekday }, ${ year }-${ month }-${ day }`
 
         const upsertRequest = {
             session_id: userInfo.userId,
@@ -159,10 +170,15 @@ export class ConductifyCommandHandler {
         }
 
         const result: any = await response.json()
+        const botMsg: string = result.botMsg
         
-        logger.debug( "Conductify response:", JSON.stringify(result, null, 2) )
+        logger.debug( `Conductify response: ${ botMsg }` )
+
+        if ( typeof result === "string" && result.startsWith( "Error" ) ) {
+            return "Xin lỗi, hệ thống bên em đang gặp chút sự cố. Anh/chị thử lại sau giúp em nhé."
+        }
         
-        return result.botMsg
+        return botMsg
     }
 
     async _upsertPreviousQA( 

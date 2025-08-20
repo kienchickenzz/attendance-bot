@@ -16,8 +16,12 @@ async function main() {
     const startDate = args[0] || '2025-06-01'
     const endDate = args[1] || '2025-08-31'
     const userEmail = args[2] || 'ndkien.ts@cmc.com.vn'
+    const userName = args[3] || 'Nguyen Duc Kien'
 
-    console.log(`Parameters: startDate=${startDate}, endDate=${endDate}, userEmail=${userEmail}`)
+    console.log(
+        `Parameters: startDate=${startDate}, endDate=${endDate},
+        userEmail=${userEmail}, userName=${userName}`
+    )
 
     let freeAllowance = 5 // Nums of ≤ 15 minutes are exempted
 
@@ -39,8 +43,8 @@ async function main() {
     const attendanceRecords = generateAttendanceData(
         startDate,
         endDate,
-        'ndkien.ts@cmc.com.vn',
-        'Nguyen Duc Kien'
+        userEmail,
+        userName,
     )
 
     console.log( `Generated ${ attendanceRecords.length } attendance records` )

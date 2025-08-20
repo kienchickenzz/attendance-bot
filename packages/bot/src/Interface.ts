@@ -70,3 +70,7 @@ export interface EmployeeAttendance {
     is_late: boolean
     attendance_count: number
 }
+
+export interface DayOffRequest {
+    time_query: TimePeriod[]
+}

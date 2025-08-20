@@ -1,4 +1,3 @@
-import  'dotenv/config'
 import path from 'path'
 import { TeamsAdapter } from "@microsoft/teams-ai"
 // Import required bot services.
@@ -9,7 +8,7 @@ import { TurnContext } from "botbuilder"
 
 // Create adapter.
 // See https://aka.ms/about-bot-adapter to learn more about how bots work.
-console.log( config )
+// console.log( config )
 // export const adapter = new TeamsAdapter({}, new ConfigurationServiceClientCredentialFactory(config));
 
 import { CloudAdapter, ConfigurationBotFrameworkAuthentication } from "botbuilder";

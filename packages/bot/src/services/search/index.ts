@@ -224,6 +224,7 @@ const searchAttendanceService = async ( request: SearchAttendanceRequest ): Prom
             
             return {
                 date: record.date,
+                deductionHours: record.deduction_hours,
                 actualHours: actualHours,
                 workingDays: workingDays,
             }

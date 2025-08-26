@@ -1,7 +1,4 @@
 import { TurnContext } from "botbuilder"
-import { 
-    TurnState, 
-} from '@microsoft/teams-ai'
 
 import logger from '../utils/logger'
 import { getCurrentMember } from "../utils/index"
@@ -26,7 +23,6 @@ export class ConductifyCommandHandler {
 
     async handleCommandReceived( 
         context: TurnContext, 
-        state: TurnState, 
     ): Promise< string > {
         logger.info( `Bot received message for Conductify: ${ context.activity.text }` )
         const userMessage = context.activity.text

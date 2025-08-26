@@ -8,6 +8,7 @@ export interface SessionContext {
     user_email?: string
     current_time?: string // Conductify AI
     time_query?: TimePeriod[]
+    time_query_str?: string
     topic?: string
     prev_question?: string
     prev_answer?: string

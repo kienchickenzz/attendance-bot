@@ -9,7 +9,7 @@ import { adapter } from "./internal/initialize"
 import apiRouter from './routes'
 import { getCorsOptions } from './utils/xss'
 import { getInstance as getRedisInstance, RedisService } from './RedisService'
-import { app as teamsApp } from "./teamsBot" 
+import { TeamsBot } from "./teamsBot" 
 import logger, { expressRequestLogger } from './utils/logger'
 import { getDataSource } from './DataSource'
 
@@ -19,9 +19,12 @@ export class App {
     app: express.Application
     redisService: RedisService = getRedisInstance()
     AppDataSource: DataSource = getDataSource()
+    teamsBot: TeamsBot
     
     constructor() {
         this.app = express()
+
+        this.teamsBot = new TeamsBot()
     }
 
     async init() {
@@ -49,7 +52,7 @@ export class App {
 
         this.app.post( "/api/messages", async ( req, res ) => {
             await adapter.process( req, res, async ( context ) => {
-                await teamsApp.run( context )
+                await this.teamsBot.run( context )
             } )
         } )
 

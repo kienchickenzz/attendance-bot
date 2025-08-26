@@ -77,7 +77,7 @@ export const createEmployeeAttendanceTable = async (dataSource) => {
     }
 }
 
-export const insertAttendanceData = async (dataSource, record, result, userId) => {
+export const insertAttendanceData = async (dataSource, processedRecord) => {
     const queryRunner = dataSource.createQueryRunner()
     
     try {
@@ -98,17 +98,17 @@ export const insertAttendanceData = async (dataSource, record, result, userId) =
         `
         
         await queryRunner.query( insertQuery, [
-            record.userEmail,
-            record.date,
-            record.leaveMorning,
-            record.leaveAfternoon,
-            record.checkinTime,
-            record.checkoutTime,
-            result.freeAllowance,
-            result.morningViolation,
-            result.afternoonViolation,
-            result.violationMinutes,
-            result.deductionHours
+            processedRecord.userEmail,
+            processedRecord.date,
+            processedRecord.leaveMorning,
+            processedRecord.leaveAfternoon,
+            processedRecord.checkinTime,
+            processedRecord.checkoutTime,
+            processedRecord.freeAllowance,
+            processedRecord.morningViolation,
+            processedRecord.afternoonViolation,
+            processedRecord.violationMinutes,
+            processedRecord.deductionHours
         ] )
         
     } catch (error) {

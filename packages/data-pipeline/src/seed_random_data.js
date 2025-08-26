@@ -71,9 +71,24 @@ async function main() {
         // Xử lý chấm công cho ngày này
         const result = processDailyAttendance( dailyData, freeAllowance )
 
+        // Prepare combined record for database insertion
+        const dbRecord = {
+            userEmail: userEmail,
+            date: record.date,
+            leaveMorning: record.leaveMorning,
+            leaveAfternoon: record.leaveAfternoon,
+            checkinTime: record.checkinTime,
+            checkoutTime: record.checkoutTime,
+            freeAllowance: result.freeAllowance,
+            morningViolation: result.morningViolation,
+            afternoonViolation: result.afternoonViolation,
+            violationMinutes: result.violationMinutes,
+            deductionHours: result.deductionHours
+        }
+
         // Insert vào database
         try {
-            await insertAttendanceData(processedDataSource, record, result, userEmail )
+            await insertAttendanceData( processedDataSource, dbRecord )
         } catch (error) {
             console.error(`Error inserting data for ${record.date}:`, error)
             continue

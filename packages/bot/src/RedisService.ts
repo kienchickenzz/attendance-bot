@@ -118,7 +118,7 @@ export class RedisService {
                         processedFields[ field ] = sessionData[ field ]
                     }
                 }
-                
+
                 const sessionContext: SessionContext = processedFields
                 
                 return {

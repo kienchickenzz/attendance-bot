@@ -8,6 +8,11 @@ prompts/
 rule_0.js
 rule_1.js
 
+# dev
+api-documentation/
+data-pipeline/
+server/
+
 # env
 .env
 

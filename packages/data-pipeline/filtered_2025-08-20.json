@@ -1,0 +1,3894 @@
+[
+    {
+        "employee_id": "",
+        "email": "ltthuy4@cmc.com.vn",
+        "full_name": "LÊ THỊ THUỶ",
+        "first_in": "2025-08-20 08:40",
+        "last_out": "2025-08-20 19:40"
+    },
+    {
+        "employee_id": "",
+        "email": "tuankiet17204@gmail.com",
+        "full_name": "NGUYỄN VĂN TUẤN KIỆT",
+        "first_in": "2025-08-20 10:30",
+        "last_out": "2025-08-20 10:30"
+    },
+    {
+        "employee_id": "CMC012671",
+        "email": "dhanh4@cmc.com.vn",
+        "full_name": "ĐẶNG HOÀNG ANH",
+        "first_in": "2025-08-20 12:40",
+        "last_out": "2025-08-20 18:55"
+    },
+    {
+        "employee_id": "",
+        "email": "nvdong3@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN ĐÔNG",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "CMC011379",
+        "email": "tttquyen@cmc.com.vn",
+        "full_name": "Trần Thị Thu Quyên",
+        "first_in": "2025-08-20 11:00",
+        "last_out": "2025-08-20 18:35"
+    },
+    {
+        "employee_id": "",
+        "email": "pkltrang@cmc.com.vn",
+        "full_name": "PHẠM KIỀU LINH TRANG",
+        "first_in": "2025-08-20 08:20",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "",
+        "email": "ptlinh.ts@cmc.com.vn",
+        "full_name": "PHẠM THỊ THUỲ LINH",
+        "first_in": "2025-08-20 12:45",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "ddthuan2@cmc.com.vn",
+        "full_name": "ĐẶNG ĐỨC THUẦN",
+        "first_in": "2025-08-20 07:57",
+        "last_out": "2025-08-20 17:15"
+    },
+    {
+        "employee_id": "CMC010494",
+        "email": "thdiep@cmc.com.vn",
+        "full_name": "TRẦN HOÀNG ĐIỆP",
+        "first_in": "2025-08-20 11:21",
+        "last_out": "2025-08-20 18:28"
+    },
+    {
+        "employee_id": "",
+        "email": "ltanh18@cmc.com.vn",
+        "full_name": "LÊ TUẤN ANH",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002781",
+        "email": "hvtung@cmc.com.vn",
+        "full_name": "HOÀNG VĂN TÙNG",
+        "first_in": "2025-08-20 07:53",
+        "last_out": "2025-08-20 14:42"
+    },
+    {
+        "employee_id": "CMC009131",
+        "email": "nviethuy@cmc.com.vn",
+        "full_name": "NGUYỄN VIẾT HUY",
+        "first_in": "2025-08-20 10:52",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "thple@cmc.com.vn",
+        "full_name": "TRẦN HOÀNG PHƯƠNG LÊ",
+        "first_in": "2025-08-20 08:27",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "nqkhoi@cmc.com.vn",
+        "full_name": "NGÔ QUỐC KHÔI",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:19"
+    },
+    {
+        "employee_id": "CMCI00255",
+        "email": "nmdang2@cmc.com.vn",
+        "full_name": "NGUYỄN MINH ĐĂNG",
+        "first_in": "2025-08-20 14:09",
+        "last_out": "2025-08-20 18:08"
+    },
+    {
+        "employee_id": "",
+        "email": "bklam@cmc.com.vn",
+        "full_name": "BÙI KHẮC LAM",
+        "first_in": "2025-08-20 08:16",
+        "last_out": "2025-08-20 17:20"
+    },
+    {
+        "employee_id": "",
+        "email": "nmkhoi1@cmc.com.vn",
+        "full_name": "NGUYỄN MINH KHÔI",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "",
+        "email": "lttrinh@cmc.com.vn",
+        "full_name": "LẠI THỤC TRINH",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 18:32"
+    },
+    {
+        "employee_id": "CMCI00241",
+        "email": "nhdang5@cmc.com.vn",
+        "full_name": "NGUYỄN HẢI ĐĂNG",
+        "first_in": "2025-08-20 06:16",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "dhhiep4@cmc.com.vn",
+        "full_name": "ĐỖ HOÀNG HIỆP",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "pmthu1@cmc.com.vn",
+        "full_name": "PHẠM MINH THU",
+        "first_in": "2025-08-20 08:22",
+        "last_out": "2025-08-20 17:50"
+    },
+    {
+        "employee_id": "",
+        "email": "ndlinh4@cmc.com.vn",
+        "full_name": "NGUYỄN DIỆU LINH",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 15:36"
+    },
+    {
+        "employee_id": "",
+        "email": "nvthanh12@cmc.com.vn",
+        "full_name": "NGUYỄN VIẾT THANH",
+        "first_in": "2025-08-20 08:42",
+        "last_out": "2025-08-20 17:46"
+    },
+    {
+        "employee_id": "CMC009283",
+        "email": "vmhoang2@cmc.com.vn",
+        "full_name": "Vương Minh Hoàng",
+        "first_in": "2025-08-20 10:26",
+        "last_out": "2025-08-20 14:05"
+    },
+    {
+        "employee_id": "",
+        "email": "nthang16@cmc.com.vn",
+        "full_name": "NGUYỄN THU HẰNG",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:43"
+    },
+    {
+        "employee_id": "",
+        "email": "nphuy.ts@cmc.com.vn",
+        "full_name": "NGUYỄN PHAN HUY",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:17"
+    },
+    {
+        "employee_id": "CMC002778",
+        "email": "thvu@cmc.com.vn",
+        "full_name": "TRẦN HUY VŨ",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMCI00247",
+        "email": "tthau@cmc.com.vn",
+        "full_name": "TRẦN TRUNG HẬU",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 14:13"
+    },
+    {
+        "employee_id": "",
+        "email": "nhbach1@cmc.com.vn",
+        "full_name": "NGUYỄN HỮU BÁCH",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:55"
+    },
+    {
+        "employee_id": "",
+        "email": "dvquyet2@cmc.com.vn",
+        "full_name": "ĐÀO VĂN QUYẾT",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 18:45"
+    },
+    {
+        "employee_id": "",
+        "email": "nhduc7@cmc.com.vn",
+        "full_name": "NGUYỄN HỒNG ĐỨC",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:44"
+    },
+    {
+        "employee_id": "CMCI00033",
+        "email": "lbngoc5@cmc.com.vn",
+        "full_name": "Lê Bích Ngọc",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 18:59"
+    },
+    {
+        "employee_id": "",
+        "email": "vqhuy5@cmc.com.vn",
+        "full_name": "VŨ QUANG HUY",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 19:29"
+    },
+    {
+        "employee_id": "CMCI00036",
+        "email": "ltviet1@cmc.com.vn",
+        "full_name": "LÊ THẾ VIỆT",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "",
+        "email": "dttuyen2@cmc.com.vn",
+        "full_name": "ĐẶNG THỊ THU UYÊN",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 19:06"
+    },
+    {
+        "employee_id": "",
+        "email": "ltndiem@cmc.com.vn",
+        "full_name": "LÊ THỊ NGỌC DIỄM",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 11:47"
+    },
+    {
+        "employee_id": "CMC012154",
+        "email": "matuyet@cmc.com.vn",
+        "full_name": "MAI ÁNH TUYẾT",
+        "first_in": "2025-08-20 08:16",
+        "last_out": "2025-08-20 08:16"
+    },
+    {
+        "employee_id": "",
+        "email": "ldttruc@cmc.com.vn",
+        "full_name": "LƯƠNG ĐINH THIÊN TRÚC",
+        "first_in": "2025-08-20 09:15",
+        "last_out": "2025-08-20 17:50"
+    },
+    {
+        "employee_id": "",
+        "email": "dhha2@cmc.com.vn",
+        "full_name": "ĐINH HẢI HÀ",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:44"
+    },
+    {
+        "employee_id": "",
+        "email": "dtttam1@cmc.com.vn",
+        "full_name": "ĐỖ THỊ THANH TÂM",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:59"
+    },
+    {
+        "employee_id": "",
+        "email": "nctin@cmc.com.vn",
+        "full_name": "NGUYỄN CHÁNH TÍN",
+        "first_in": "2025-08-20 08:59",
+        "last_out": "2025-08-20 15:16"
+    },
+    {
+        "employee_id": "",
+        "email": "nhhlong@cmc.com.vn",
+        "full_name": "NGUYỄN HÀ HOÀNG LONG",
+        "first_in": "2025-08-20 07:49",
+        "last_out": "2025-08-20 07:49"
+    },
+    {
+        "employee_id": "",
+        "email": "dmchau.ts@cmc.com.vn",
+        "full_name": "DƯƠNG MINH CHÂU",
+        "first_in": "2025-08-20 08:27",
+        "last_out": "2025-08-20 11:57"
+    },
+    {
+        "employee_id": "",
+        "email": "lktien@cmc.com.vn",
+        "full_name": "LƯU KIM TIÊN",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:56"
+    },
+    {
+        "employee_id": "",
+        "email": "dtthuan3@cmc.com.vn",
+        "full_name": "ĐÀO TRỌNG THUẬN",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "",
+        "email": "nxtung2@cmc.com.vn",
+        "full_name": "NGUYỄN XUÂN TÙNG",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "",
+        "email": "phphi1@cmc.com.vn",
+        "full_name": "PHẠM HỒNG PHI",
+        "first_in": "2025-08-20 08:04",
+        "last_out": "2025-08-20 19:07"
+    },
+    {
+        "employee_id": "",
+        "email": "ntduyen1@cmc.com.vn",
+        "full_name": "NGUYỄN THÙY DUYÊN",
+        "first_in": "2025-08-20 08:53",
+        "last_out": "2025-08-20 17:43"
+    },
+    {
+        "employee_id": "",
+        "email": "pmhue@cmc.com.vn",
+        "full_name": "PHẠM MINH HUỆ",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 18:00"
+    },
+    {
+        "employee_id": "",
+        "email": "ppminh@cmc.com.vn",
+        "full_name": "PHẠM PHƯƠNG MINH",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 18:12"
+    },
+    {
+        "employee_id": "",
+        "email": "nhlong.ts@cmc.com.vn",
+        "full_name": "NGUYỄN HOÀNG LONG",
+        "first_in": "2025-08-20 08:03",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC012502",
+        "email": "hmcuong1@cmc.com.vn",
+        "full_name": "HOÀNG MẠNH CƯỜNG",
+        "first_in": "2025-08-20 09:59",
+        "last_out": "2025-08-20 14:34"
+    },
+    {
+        "employee_id": "",
+        "email": "pklinh2@cmc.com.vn",
+        "full_name": "PHẠM KHÁNH LINH",
+        "first_in": "2025-08-20 08:57",
+        "last_out": "2025-08-20 17:52"
+    },
+    {
+        "employee_id": "",
+        "email": "bhson2@cmc.com.vn",
+        "full_name": "BÙI HỒNG SƠN",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 17:35"
+    },
+    {
+        "employee_id": "",
+        "email": "dtthuong2@cmc.com.vn",
+        "full_name": "DƯƠNG THỊ THU HƯƠNG",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "ptpnhung@cmc.com.vn",
+        "full_name": "PHẠM THỊ PHƯƠNG NHUNG",
+        "first_in": "2025-08-20 08:04",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC010351",
+        "email": "tnhiquynh@cmc.com.vn",
+        "full_name": "TRẦN NHI QUỲNH",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:10"
+    },
+    {
+        "employee_id": "CMC012813",
+        "email": "bnhuy@cmc.com.vn",
+        "full_name": "BẠCH NGỌC HUY",
+        "first_in": "2025-08-20 07:38",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "llminh@cmc.com.vn",
+        "full_name": "LÊ LÂM MINH",
+        "first_in": "2025-08-20 08:28",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC011109",
+        "email": "pxquynh1@cmc.com.vn",
+        "full_name": "PHÙNG XUÂN QUỲNH",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:59"
+    },
+    {
+        "employee_id": "",
+        "email": "nhngoc5@cmc.com.vn",
+        "full_name": "NGUYỄN HỒNG NGỌC",
+        "first_in": "2025-08-20 10:14",
+        "last_out": "2025-08-20 15:53"
+    },
+    {
+        "employee_id": "",
+        "email": "nvtrong@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN TRỌNG",
+        "first_in": "2025-08-20 10:44",
+        "last_out": "2025-08-20 18:17"
+    },
+    {
+        "employee_id": "",
+        "email": "nthtrang8@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ HÀ TRANG",
+        "first_in": "2025-08-20 13:34",
+        "last_out": "2025-08-20 17:41"
+    },
+    {
+        "employee_id": "CMC011575",
+        "email": "dvtoan@cmc.com.vn",
+        "full_name": "Dương Văn Toán",
+        "first_in": "2025-08-20 07:26",
+        "last_out": "2025-08-20 18:01"
+    },
+    {
+        "employee_id": "",
+        "email": "hkploan@cmc.com.vn",
+        "full_name": "HUỲNH KIM PHƯỢNG LOAN",
+        "first_in": "2025-08-20 07:54",
+        "last_out": "2025-08-20 17:20"
+    },
+    {
+        "employee_id": "",
+        "email": "hatu2@cmc.com.vn",
+        "full_name": "HÀ ANH TÚ",
+        "first_in": "2025-08-20 09:02",
+        "last_out": "2025-08-20 19:17"
+    },
+    {
+        "employee_id": "",
+        "email": "tkbo@cmc.com.vn",
+        "full_name": "TRỊNH KHẮC BỘ",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:43"
+    },
+    {
+        "employee_id": "",
+        "email": "lcduong@cmc.com.vn",
+        "full_name": "LÝ CHÌU DƯƠNG",
+        "first_in": "2025-08-20 08:02",
+        "last_out": "2025-08-20 17:45"
+    },
+    {
+        "employee_id": "",
+        "email": "nylinh1@cmc.com.vn",
+        "full_name": "NGUYỄN YẾN LINH",
+        "first_in": "2025-08-20 09:01",
+        "last_out": "2025-08-20 17:50"
+    },
+    {
+        "employee_id": "CMC010855",
+        "email": "dttthao5@cmc.com.vn",
+        "full_name": "ĐINH THỊ THU THẢO",
+        "first_in": "2025-08-20 11:15",
+        "last_out": "2025-08-20 12:46"
+    },
+    {
+        "employee_id": "CMCI00288",
+        "email": "lckhanh2@cmc.com.vn",
+        "full_name": "LAO CẢNH KHÁNH",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:49"
+    },
+    {
+        "employee_id": "",
+        "email": "nvlong8@cmc.com.vn",
+        "full_name": "NGUYỄN VIỆT LONG",
+        "first_in": "2025-08-20 08:31",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "",
+        "email": "ttnanh3@cmc.com.vn",
+        "full_name": "TRẦN THỊ NGỌC ÁNH",
+        "first_in": "2025-08-20 13:38",
+        "last_out": "2025-08-20 17:45"
+    },
+    {
+        "employee_id": "",
+        "email": "lbanh@cmc.com.vn",
+        "full_name": "LÊ BẢO ANH",
+        "first_in": "2025-08-20 09:07",
+        "last_out": "2025-08-20 20:02"
+    },
+    {
+        "employee_id": "",
+        "email": "lvthinh1@cmc.com.vn",
+        "full_name": "LÊ VIẾT THỊNH",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:16"
+    },
+    {
+        "employee_id": "",
+        "email": "bthanh1@cmc.com.vn",
+        "full_name": "BÙI THỊ HOÀNG ANH",
+        "first_in": "2025-08-20 07:50",
+        "last_out": "2025-08-20 18:23"
+    },
+    {
+        "employee_id": "CMC007619",
+        "email": "nvdiep@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN ĐIỆP",
+        "first_in": "2025-08-20 07:34",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "phongnguyen2863@gmail.com",
+        "full_name": "NGUYỄN TIẾN LINH PHONG",
+        "first_in": "2025-08-20 09:02",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMCI00263",
+        "email": "ltthu1@cmc.com.vn",
+        "full_name": "LƯ TUỆ THƯ",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 13:17"
+    },
+    {
+        "employee_id": "",
+        "email": "dhlong3@cmc.com.vn",
+        "full_name": "ĐẶNG HẢI LONG",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:18"
+    },
+    {
+        "employee_id": "",
+        "email": "ltmchau@cmc.com.vn",
+        "full_name": "LÊ THỊ MINH CHÂU",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:58"
+    },
+    {
+        "employee_id": "CMC008737",
+        "email": "dntdan@cmc.com.vn",
+        "full_name": "Đặng Ngọc Tâm Đan",
+        "first_in": "2025-08-20 15:07",
+        "last_out": "2025-08-20 19:26"
+    },
+    {
+        "employee_id": "",
+        "email": "ntkha1@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ KHÁNH HÀ",
+        "first_in": "2025-08-20 08:17",
+        "last_out": "2025-08-20 18:38"
+    },
+    {
+        "employee_id": "",
+        "email": "bthung1@cmc.com.vn",
+        "full_name": "BÙI TUẤN HÙNG",
+        "first_in": "2025-08-20 10:58",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "",
+        "email": "bhbach@cmc.com.vn",
+        "full_name": "BÙI HOÀNG BÁCH",
+        "first_in": "2025-08-20 08:44",
+        "last_out": "2025-08-20 18:31"
+    },
+    {
+        "employee_id": "CMC010131",
+        "email": "nqgiao@cmc.com.vn",
+        "full_name": "NGUYỄN QUỲNH GIAO",
+        "first_in": "2025-08-20 08:05",
+        "last_out": "2025-08-20 16:44"
+    },
+    {
+        "employee_id": "",
+        "email": "ttsang1@cmc.com.vn",
+        "full_name": "TRƯƠNG TẤN SANG",
+        "first_in": "2025-08-20 09:28",
+        "last_out": "2025-08-20 18:03"
+    },
+    {
+        "employee_id": "CMCI00272",
+        "email": "dhttrang@cmc.com.vn",
+        "full_name": "DƯƠNG HỒ THU TRANG",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC010589",
+        "email": "tdmtu@cmc.com.vn",
+        "full_name": "TRẦN ĐẶNG MINH TÚ",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "",
+        "email": "phthong1@cmc.com.vn",
+        "full_name": "PHẠM HOÀNG THÔNG",
+        "first_in": "2025-08-20 07:26",
+        "last_out": "2025-08-20 18:29"
+    },
+    {
+        "employee_id": "",
+        "email": "nnnxuan.ts@cmc.com.vn",
+        "full_name": "NGUYỄN NÔNG NHƯ XUÂN",
+        "first_in": "2025-08-20 08:16",
+        "last_out": "2025-08-20 17:01"
+    },
+    {
+        "employee_id": "CMCI00242",
+        "email": "lmduc5@cmc.com.vn",
+        "full_name": "LÃ MINH ĐỨC",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "ntkthu1@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ KIM THU",
+        "first_in": "2025-08-20 09:09",
+        "last_out": "2025-08-20 17:45"
+    },
+    {
+        "employee_id": "",
+        "email": "nhatminh121103@gmail.com",
+        "full_name": "NGUYỄN TIẾN NHẬT MINH",
+        "first_in": "2025-08-20 08:53",
+        "last_out": "2025-08-20 12:47"
+    },
+    {
+        "employee_id": "",
+        "email": "nvvu5@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN VŨ",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "dhthuynh@cmc.com.vn",
+        "full_name": "ĐỖ HOÀNG TUẤN HUYNH",
+        "first_in": "2025-08-20 08:22",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "hdanh4@cmc.com.vn",
+        "full_name": "HÀ ĐỨC ANH",
+        "first_in": "2025-08-20 10:19",
+        "last_out": "2025-08-20 18:14"
+    },
+    {
+        "employee_id": "",
+        "email": "ttlong5@cmc.com.vn",
+        "full_name": "TRẦN THANH LONG",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "btadao@cmc.com.vn",
+        "full_name": "BÙI THỊ ANH ĐÀO",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "hdtam@cmc.com.vn",
+        "full_name": "HOÀNG DUY TÁM",
+        "first_in": "2025-08-20 14:47",
+        "last_out": "2025-08-20 17:52"
+    },
+    {
+        "employee_id": "CMC008160",
+        "email": "hnoanh@cmc.com.vn",
+        "full_name": "Hoàng Ngọc Oanh",
+        "first_in": "2025-08-20 08:07",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "hnlinh3@cmc.com.vn",
+        "full_name": "HUỲNH NHỰT LINH",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:26"
+    },
+    {
+        "employee_id": "",
+        "email": "nhnam7@cmc.com.vn",
+        "full_name": "NGUYỄN HẢI NAM",
+        "first_in": "2025-08-20 07:58",
+        "last_out": "2025-08-20 16:21"
+    },
+    {
+        "employee_id": "",
+        "email": "tthoang3@cmc.com.vn",
+        "full_name": "TRƯƠNG THANH HOÀNG",
+        "first_in": "2025-08-20 09:12",
+        "last_out": "2025-08-20 18:09"
+    },
+    {
+        "employee_id": "",
+        "email": "pnanh9@cmc.com.vn",
+        "full_name": "PHAN NHẬT ANH",
+        "first_in": "2025-08-20 08:57",
+        "last_out": "2025-08-20 17:43"
+    },
+    {
+        "employee_id": "",
+        "email": "ntqhuy@cmc.com.vn",
+        "full_name": "NGUYỄN THÁI QUỐC HUY",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 18:09"
+    },
+    {
+        "employee_id": "CMCI00055",
+        "email": "hvhuong@cmc.com.vn",
+        "full_name": "HÀ VĂN HƯỜNG",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "nhquyet@cmc.com.vn",
+        "full_name": "NGUYỄN HỮU QUYẾT",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:47"
+    },
+    {
+        "employee_id": "CMC012298",
+        "email": "tdanh2@cmc.com.vn",
+        "full_name": "TRẦN ĐỨC ANH",
+        "first_in": "2025-08-20 08:35",
+        "last_out": "2025-08-20 18:01"
+    },
+    {
+        "employee_id": "CMCI00240",
+        "email": "dtkiet@cmc.com.vn",
+        "full_name": "DƯƠNG TUẤN KIỆT",
+        "first_in": "2025-08-20 08:26",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "tntanh1@cmc.com.vn",
+        "full_name": "TRẦN NGỌC TRÂM ANH",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "CMC008204",
+        "email": "ntlinh12@cmc.com.vn",
+        "full_name": "Nguyễn Thuỳ Linh",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 19:12"
+    },
+    {
+        "employee_id": "",
+        "email": "nply1@cmc.com.vn",
+        "full_name": "NGUYỄN PHƯƠNG LY",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 19:47"
+    },
+    {
+        "employee_id": "",
+        "email": "ntttrang16@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ THU TRANG",
+        "first_in": "2025-08-20 08:45",
+        "last_out": "2025-08-20 18:43"
+    },
+    {
+        "employee_id": "CMC011101",
+        "email": "tmquang1@cmc.com.vn",
+        "full_name": "TỪ MINH QUANG",
+        "first_in": "2025-08-20 09:51",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "vbngoc.ts@cmc.com.vn",
+        "full_name": "VÕ NGỌC BẢO",
+        "first_in": "2025-08-20 07:39",
+        "last_out": "2025-08-20 08:12"
+    },
+    {
+        "employee_id": "",
+        "email": "ndthuong1@cmc.com.vn",
+        "full_name": "NGUYỄN ĐÀM THANH HƯƠNG",
+        "first_in": "2025-08-20 08:26",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "ndduc.ts@cmc.com.vn",
+        "full_name": "NGUYỄN DANH ĐỨC",
+        "first_in": "2025-08-20 07:29",
+        "last_out": "2025-08-20 15:51"
+    },
+    {
+        "employee_id": "",
+        "email": "ptha8@cmc.com.vn",
+        "full_name": "PHẠM THANH HÀ",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 18:16"
+    },
+    {
+        "employee_id": "CMC003034",
+        "email": "httnga1@cmc.com.vn",
+        "full_name": "HOÀNG THỊ THANH NGA",
+        "first_in": "2025-08-20 07:45",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "CMC003210",
+        "email": "haduong@cmc.com.vn",
+        "full_name": "HÀ ÁNH DƯƠNG",
+        "first_in": "2025-08-20 07:17",
+        "last_out": "2025-08-20 17:56"
+    },
+    {
+        "employee_id": "CMC003002",
+        "email": "natu@cmc.com.vn",
+        "full_name": "Nguyễn Anh Tú",
+        "first_in": "2025-08-20 07:59",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC003256",
+        "email": "ntduong@cmc.com.vn",
+        "full_name": "Ngọc Tiến Dương",
+        "first_in": "2025-08-20 11:39",
+        "last_out": "2025-08-20 19:29"
+    },
+    {
+        "employee_id": "CMC003049",
+        "email": "htqtrang@cmc.com.vn",
+        "full_name": "Hoàng Thị Trang",
+        "first_in": "2025-08-20 08:07",
+        "last_out": "2025-08-20 18:18"
+    },
+    {
+        "employee_id": "CMC003251",
+        "email": "ltdiu@cmc.com.vn",
+        "full_name": "Lê Thị Dịu",
+        "first_in": "2025-08-20 14:42",
+        "last_out": "2025-08-20 21:00"
+    },
+    {
+        "employee_id": "CMC003154",
+        "email": "nghson@cmc.com.vn",
+        "full_name": "Nguyễn Hồng Sơn",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 18:50"
+    },
+    {
+        "employee_id": "CMC002985",
+        "email": "nvanhai@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN HẢI",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:38"
+    },
+    {
+        "employee_id": "CMC003286",
+        "email": "vtbduong@cmc.com.vn",
+        "full_name": "VÕ THỊ BẠCH DƯƠNG",
+        "first_in": "2025-08-20 08:01",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC003082",
+        "email": "pvhung@cmc.com.vn",
+        "full_name": "Phạm Việt Hưng",
+        "first_in": "2025-08-20 07:54",
+        "last_out": "2025-08-20 18:55"
+    },
+    {
+        "employee_id": "CMC003217",
+        "email": "cttra@cmc.com.vn",
+        "full_name": "CAO THANH TRÀ",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "CMC002989",
+        "email": "ndminh@cmc.com.vn",
+        "full_name": "NGUYỄN ĐÌNH MINH",
+        "first_in": "2025-08-20 08:01",
+        "last_out": "2025-08-20 13:19"
+    },
+    {
+        "employee_id": "CMC003212",
+        "email": "htanh@cmc.com.vn",
+        "full_name": "HỨA TUẤN ANH",
+        "first_in": "2025-08-20 07:06",
+        "last_out": "2025-08-20 16:22"
+    },
+    {
+        "employee_id": "CMC003077",
+        "email": "ntlhoa@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ LIÊN HOA",
+        "first_in": "2025-08-20 08:07",
+        "last_out": "2025-08-20 17:59"
+    },
+    {
+        "employee_id": "CMC003121",
+        "email": "dpntrang@cmc.com.vn",
+        "full_name": "Đặng Phan Ngọc Trang",
+        "first_in": "2025-08-20 07:27",
+        "last_out": "2025-08-20 17:01"
+    },
+    {
+        "employee_id": "CMC003165",
+        "email": "ctanh1@cmc.com.vn",
+        "full_name": "CHU THẾ ANH",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC003348",
+        "email": "tnpanh@cmc.com.vn",
+        "full_name": "Trần Ngô Phương Anh",
+        "first_in": "2025-08-20 10:58",
+        "last_out": "2025-08-20 18:35"
+    },
+    {
+        "employee_id": "CMC003067",
+        "email": "nmhong@cmc.com.vn",
+        "full_name": "Nguyễn Minh Hồng",
+        "first_in": "2025-08-20 07:30",
+        "last_out": "2025-08-20 18:59"
+    },
+    {
+        "employee_id": "CMC002997",
+        "email": "nttuyen2@cmc.com.vn",
+        "full_name": "Nguyễn Thị Tuyên",
+        "first_in": "2025-08-20 08:07",
+        "last_out": "2025-08-20 18:21"
+    },
+    {
+        "employee_id": "CMC003032",
+        "email": "ntkien2@cmc.com.vn",
+        "full_name": "NGUYỄN TRUNG KIÊN 2",
+        "first_in": "2025-08-20 09:13",
+        "last_out": "2025-08-20 17:14"
+    },
+    {
+        "employee_id": "CMC003312",
+        "email": "nmhanh1@cmc.com.vn",
+        "full_name": "NGUYỄN MAI HẠNH",
+        "first_in": "2025-08-20 08:22",
+        "last_out": "2025-08-20 18:27"
+    },
+    {
+        "employee_id": "CMC003022",
+        "email": "tbdat@cmc.com.vn",
+        "full_name": "TỪ BÁCH ĐẠT",
+        "first_in": "2025-08-20 07:58",
+        "last_out": "2025-08-20 18:13"
+    },
+    {
+        "employee_id": "CMC003015",
+        "email": "ddanh@cmc.com.vn",
+        "full_name": "Đỗ Đức Anh",
+        "first_in": "2025-08-20 09:05",
+        "last_out": "2025-08-20 19:27"
+    },
+    {
+        "employee_id": "CMC003311",
+        "email": "htthuy.kd1@cmc.com.vn",
+        "full_name": "HOÀNG THỊ THỦY",
+        "first_in": "2025-08-20 08:02",
+        "last_out": "2025-08-20 18:14"
+    },
+    {
+        "employee_id": "CMC002982",
+        "email": "nvtho@cmc.com.vn",
+        "full_name": "Nguyễn Viết Thọ",
+        "first_in": "2025-08-20 08:53",
+        "last_out": "2025-08-20 17:08"
+    },
+    {
+        "employee_id": "CMC003120",
+        "email": "vttmai@cmc.com.vn",
+        "full_name": "Vũ Thị Thu Mai",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC002998",
+        "email": "nqthang2@cmc.com.vn",
+        "full_name": "Nguyễn Quốc Thắng",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC003192",
+        "email": "ndthanh@cmc.com.vn",
+        "full_name": "NGUYỄN ĐÌNH THÀNH",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:58"
+    },
+    {
+        "employee_id": "CMC003072",
+        "email": "nplinh@cmc.com.vn",
+        "full_name": "Nguyễn Phương Linh",
+        "first_in": "2025-08-20 07:36",
+        "last_out": "2025-08-20 18:05"
+    },
+    {
+        "employee_id": "CMC003069",
+        "email": "nddung@cmc.com.vn",
+        "full_name": "Nguyễn Đức Dũng",
+        "first_in": "2025-08-20 07:13",
+        "last_out": "2025-08-20 18:06"
+    },
+    {
+        "employee_id": "CMC003216",
+        "email": "tthuyen@cmc.com.vn",
+        "full_name": "TẠ THỊ HUYỀN",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 18:01"
+    },
+    {
+        "employee_id": "CMC003091",
+        "email": "thcminh@cmc.com.vn",
+        "full_name": "Trình Hữu Công Minh",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC003266",
+        "email": "lttnguyet@cmc.com.vn",
+        "full_name": "Lê Thị Thu Nguyệt",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 18:09"
+    },
+    {
+        "employee_id": "CMC003009",
+        "email": "ntthong@cmc.com.vn",
+        "full_name": "NGUYỄN TRUNG THÔNG",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC003299",
+        "email": "bdcuong2@cmc.com.vn",
+        "full_name": "Bùi Đức Cường",
+        "first_in": "2025-08-20 12:49",
+        "last_out": "2025-08-20 14:04"
+    },
+    {
+        "employee_id": "CMC003145",
+        "email": "tthhanh@cmc.com.vn",
+        "full_name": "TRẦN THỊ HỒNG HẠNH",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 18:37"
+    },
+    {
+        "employee_id": "CMC003231",
+        "email": "ntngoc@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ NGỌC",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC003125",
+        "email": "ntbinh1@cmc.com.vn",
+        "full_name": "Nguyễn Thanh Bình",
+        "first_in": "2025-08-20 09:58",
+        "last_out": "2025-08-20 18:56"
+    },
+    {
+        "employee_id": "CMC003048",
+        "email": "ptthoa@cmc.com.vn",
+        "full_name": "Phạm Thị Thiều Hoa",
+        "first_in": "2025-08-20 07:23",
+        "last_out": "2025-08-20 18:55"
+    },
+    {
+        "employee_id": "CMC003137",
+        "email": "ltthai2@cmc.com.vn",
+        "full_name": "LÊ THỊ THANH HẢI",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "CMC003235",
+        "email": "ngdang@cmc.com.vn",
+        "full_name": "NGUYỄN GIA ĐĂNG",
+        "first_in": "2025-08-20 08:01",
+        "last_out": "2025-08-20 17:41"
+    },
+    {
+        "employee_id": "CMC002994",
+        "email": "nccong@cmc.com.vn",
+        "full_name": "NGUYỄN CHÍ CÔNG",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 18:13"
+    },
+    {
+        "employee_id": "CMC003083",
+        "email": "nghnam@cmc.com.vn",
+        "full_name": "Nguyễn Hùng Nam",
+        "first_in": "2025-08-20 09:00",
+        "last_out": "2025-08-20 16:32"
+    },
+    {
+        "employee_id": "CMC003281",
+        "email": "vdcan@cmc.com.vn",
+        "full_name": "Vũ Duy Cần",
+        "first_in": "2025-08-20 07:50",
+        "last_out": "2025-08-20 18:05"
+    },
+    {
+        "employee_id": "CMC003221",
+        "email": "ntdiem@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ DIỆM",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC003193",
+        "email": "dmduc@cmc.com.vn",
+        "full_name": "ĐẶNG MINH ĐỨC",
+        "first_in": "2025-08-20 12:09",
+        "last_out": "2025-08-20 17:56"
+    },
+    {
+        "employee_id": "CMC003288",
+        "email": "nvlinh2@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN LINH",
+        "first_in": "2025-08-20 08:05",
+        "last_out": "2025-08-20 18:03"
+    },
+    {
+        "employee_id": "CMC003140",
+        "email": "vtlan11@cmc.com.vn",
+        "full_name": "VŨ THỊ LAN",
+        "first_in": "2025-08-20 07:13",
+        "last_out": "2025-08-20 18:13"
+    },
+    {
+        "employee_id": "CMC002993",
+        "email": "nvthu@cmc.com.vn",
+        "full_name": "Nguyễn Văn Thứ",
+        "first_in": "2025-08-20 09:13",
+        "last_out": "2025-08-20 18:14"
+    },
+    {
+        "employee_id": "CMC003265",
+        "email": "nthtrang@cmc.com.vn",
+        "full_name": "Nguyễn Thị Huyền Trang",
+        "first_in": "2025-08-20 08:41",
+        "last_out": "2025-08-20 17:04"
+    },
+    {
+        "employee_id": "CMC003387",
+        "email": "vtthai@cmc.com.vn",
+        "full_name": "Vũ Thị Thái",
+        "first_in": "2025-08-20 07:54",
+        "last_out": "2025-08-20 08:23"
+    },
+    {
+        "employee_id": "CMC003109",
+        "email": "ntthuy3@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ THÙY",
+        "first_in": "2025-08-20 08:02",
+        "last_out": "2025-08-20 18:12"
+    },
+    {
+        "employee_id": "CMC003184",
+        "email": "lmtien@cmc.com.vn",
+        "full_name": "Lê Mạnh Tiến",
+        "first_in": "2025-08-20 08:43",
+        "last_out": "2025-08-20 14:45"
+    },
+    {
+        "employee_id": "CMC003326",
+        "email": "nbtu@cmc.com.vn",
+        "full_name": "NGUYỄN BÁ TÚ",
+        "first_in": "2025-08-20 07:38",
+        "last_out": "2025-08-20 17:52"
+    },
+    {
+        "employee_id": "CMC003054",
+        "email": "ttqhoa@cmc.com.vn",
+        "full_name": "Trương Thị Quỳnh Hoa",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 18:08"
+    },
+    {
+        "employee_id": "CMC003340",
+        "email": "dthuyen@cmc.com.vn",
+        "full_name": "ĐỖ THỊ HUYỀN",
+        "first_in": "2025-08-20 07:57",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC003013",
+        "email": "nnduc@cmc.com.vn",
+        "full_name": "NGUYỄN NGỌC ĐỨC",
+        "first_in": "2025-08-20 07:06",
+        "last_out": "2025-08-20 18:03"
+    },
+    {
+        "employee_id": "CMC003001",
+        "email": "nvan@cmc.com.vn",
+        "full_name": "Nguyễn Văn An",
+        "first_in": "2025-08-20 07:21",
+        "last_out": "2025-08-20 17:16"
+    },
+    {
+        "employee_id": "CMC003253",
+        "email": "hoapham@cmc.com.vn",
+        "full_name": "Phạm Văn Hòa",
+        "first_in": "2025-08-20 07:33",
+        "last_out": "2025-08-20 17:15"
+    },
+    {
+        "employee_id": "CMC003142",
+        "email": "tqtung@cmc.com.vn",
+        "full_name": "TRẦN QUANG TÙNG",
+        "first_in": "2025-08-20 08:33",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC003233",
+        "email": "nshung@cmc.com.vn",
+        "full_name": "NGUYỄN SỸ HÙNG",
+        "first_in": "2025-08-20 13:24",
+        "last_out": "2025-08-20 19:54"
+    },
+    {
+        "employee_id": "CMC003090",
+        "email": "nbvan@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ BÍCH VÂN",
+        "first_in": "2025-08-20 07:48",
+        "last_out": "2025-08-20 15:11"
+    },
+    {
+        "employee_id": "CMC003201",
+        "email": "httung@cmc.com.vn",
+        "full_name": "HOÀNG THANH TÙNG",
+        "first_in": "2025-08-20 13:58",
+        "last_out": "2025-08-20 18:10"
+    },
+    {
+        "employee_id": "CMC003158",
+        "email": "ttlinh@cmc.com.vn",
+        "full_name": "TRẦN THÙY LINH",
+        "first_in": "2025-08-20 09:05",
+        "last_out": "2025-08-20 12:05"
+    },
+    {
+        "employee_id": "CMC003249",
+        "email": "dtha.cm@cmc.com.vn",
+        "full_name": "ĐẶNG THỊ HÀ",
+        "first_in": "2025-08-20 13:34",
+        "last_out": "2025-08-20 16:44"
+    },
+    {
+        "employee_id": "CMC003053",
+        "email": "tlphi@cmc.com.vn",
+        "full_name": "Tạ Linh Phi",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 12:02"
+    },
+    {
+        "employee_id": "CMC003310",
+        "email": "tqbao@cmc.com.vn",
+        "full_name": "TRỊNH QUỐC BẢO",
+        "first_in": "2025-08-20 11:14",
+        "last_out": "2025-08-20 12:06"
+    },
+    {
+        "employee_id": "",
+        "email": "ntploan1@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ PHƯƠNG LOAN",
+        "first_in": "2025-08-20 09:00",
+        "last_out": "2025-08-20 10:58"
+    },
+    {
+        "employee_id": "CMC003123",
+        "email": "lalinh@cmc.com.vn",
+        "full_name": "LÊ ANH LINH",
+        "first_in": "2025-08-20 08:26",
+        "last_out": "2025-08-20 21:27"
+    },
+    {
+        "employee_id": "CMC003287",
+        "email": "ntbngoc@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ BÍCH NGỌC",
+        "first_in": "2025-08-20 09:30",
+        "last_out": "2025-08-20 19:13"
+    },
+    {
+        "employee_id": "CMC003368",
+        "email": "dlphuong@cmc.com.vn",
+        "full_name": "ĐẶNG LÊ PHƯƠNG",
+        "first_in": "2025-08-20 10:12",
+        "last_out": "2025-08-20 18:41"
+    },
+    {
+        "employee_id": "CMC003152",
+        "email": "phviet1@cmc.com.vn",
+        "full_name": "PHẠM HÙNG VIỆT",
+        "first_in": "2025-08-20 09:00",
+        "last_out": "2025-08-20 17:51"
+    },
+    {
+        "employee_id": "CMC003272",
+        "email": "ptson1@cmc.com.vn",
+        "full_name": "PHẠM TRƯỜNG SƠN",
+        "first_in": "2025-08-20 08:03",
+        "last_out": "2025-08-20 17:41"
+    },
+    {
+        "employee_id": "CMC003376",
+        "email": "lqthinh@cmc.com.vn",
+        "full_name": "LÊ QUANG THỊNH",
+        "first_in": "2025-08-20 07:57",
+        "last_out": "2025-08-20 17:43"
+    },
+    {
+        "employee_id": "CMC003268",
+        "email": "nttthuy1@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ THANH THỦY 1",
+        "first_in": "2025-08-20 12:40",
+        "last_out": "2025-08-20 16:58"
+    },
+    {
+        "employee_id": "CMC003302",
+        "email": "dqyen@cmc.com.vn",
+        "full_name": "ĐỖ QUANG YÊN",
+        "first_in": "2025-08-20 07:47",
+        "last_out": "2025-08-20 18:30"
+    },
+    {
+        "employee_id": "CMC003156",
+        "email": "ptvan@cmc.com.vn",
+        "full_name": "PHẠM THÚY VÂN",
+        "first_in": "2025-08-20 08:02",
+        "last_out": "2025-08-20 17:40"
+    },
+    {
+        "employee_id": "CMC001201",
+        "email": "nthha@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ HẢI HÀ",
+        "first_in": "2025-08-20 07:42",
+        "last_out": "2025-08-20 21:35"
+    },
+    {
+        "employee_id": "CMC003226",
+        "email": "ntnam@cmc.com.vn",
+        "full_name": "Nguyễn Thành Nam",
+        "first_in": "2025-08-20 11:15",
+        "last_out": "2025-08-20 18:34"
+    },
+    {
+        "employee_id": "CMC002980",
+        "email": "httnga@cmc.com.vn",
+        "full_name": "HỒ THỊ THÚY NGA",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC004014",
+        "email": "latuan@cmc.com.vn",
+        "full_name": "LÊ ANH TUẤN",
+        "first_in": "2025-08-20 09:50",
+        "last_out": "2025-08-20 18:23"
+    },
+    {
+        "employee_id": "CMC003269",
+        "email": "vxphuong@cmc.com.vn",
+        "full_name": "VŨ XUÂN PHƯƠNG",
+        "first_in": "2025-08-20 11:59",
+        "last_out": "2025-08-20 17:38"
+    },
+    {
+        "employee_id": "CMC003162",
+        "email": "lqgiang@cmc.com.vn",
+        "full_name": "LÊ QUỲNH GIANG",
+        "first_in": "2025-08-20 07:49",
+        "last_out": "2025-08-20 17:58"
+    },
+    {
+        "employee_id": "CMC004181",
+        "email": "dmdat@cmc.com.vn",
+        "full_name": "DOÃN MINH ĐẠT",
+        "first_in": "2025-08-20 13:20",
+        "last_out": "2025-08-20 19:09"
+    },
+    {
+        "employee_id": "CMC004280",
+        "email": "tqlong@cmc.com.vn",
+        "full_name": "TRẦN QUANG LONG",
+        "first_in": "2025-08-20 06:52",
+        "last_out": "2025-08-20 19:25"
+    },
+    {
+        "employee_id": "CMC002654",
+        "email": "ttmquyen@cmc.com.vn",
+        "full_name": "TRẦN THỊ MỸ QUYÊN",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:56"
+    },
+    {
+        "employee_id": "CMC002870",
+        "email": "nvanthang@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN THẮNG",
+        "first_in": "2025-08-20 09:34",
+        "last_out": "2025-08-20 14:18"
+    },
+    {
+        "employee_id": "CMC002894",
+        "email": "nduythanh@cmc.com.vn",
+        "full_name": "NGUYỄN DUY THANH",
+        "first_in": "2025-08-20 07:42",
+        "last_out": "2025-08-20 18:11"
+    },
+    {
+        "employee_id": "CMC002921",
+        "email": "tttu@cmc.com.vn",
+        "full_name": "TRIỆU TUẤN TÚ",
+        "first_in": "2025-08-20 10:17",
+        "last_out": "2025-08-20 14:39"
+    },
+    {
+        "employee_id": "CMC002666",
+        "email": "pvtrang@cmc.com.vn",
+        "full_name": "PHAN VĂN TRANG",
+        "first_in": "2025-08-20 07:09",
+        "last_out": "2025-08-20 14:05"
+    },
+    {
+        "employee_id": "CMC004206",
+        "email": "bxnquynh@cmc.com.vn",
+        "full_name": "BÙI XUÂN NHƯ QUỲNH",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 17:41"
+    },
+    {
+        "employee_id": "CMC003424",
+        "email": "nhtoai@cmc.com.vn",
+        "full_name": "NGUYỄN HỮU TOẠI",
+        "first_in": "2025-08-20 08:56",
+        "last_out": "2025-08-20 12:00"
+    },
+    {
+        "employee_id": "CMC002700",
+        "email": "htndung@cmc.com.vn",
+        "full_name": "HOÀNG THỊ NGỌC DUNG",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 13:57"
+    },
+    {
+        "employee_id": "CMC002692",
+        "email": "lquanghuy@cmc.com.vn",
+        "full_name": "LÊ QUANG HUY",
+        "first_in": "2025-08-20 07:46",
+        "last_out": "2025-08-20 07:46"
+    },
+    {
+        "employee_id": "CMC002887",
+        "email": "ptdhong@cmc.com.vn",
+        "full_name": "PHẠM THỊ DIỄM HỒNG",
+        "first_in": "2025-08-20 07:45",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002948",
+        "email": "nvha@cmc.com.vn",
+        "full_name": "NGUYỄN VIỆT HÀ",
+        "first_in": "2025-08-20 13:11",
+        "last_out": "2025-08-20 13:32"
+    },
+    {
+        "employee_id": "CMC002747",
+        "email": "dhchuong@cmc.com.vn",
+        "full_name": "ĐỖ HOÀNG CHƯƠNG",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 15:02"
+    },
+    {
+        "employee_id": "CMC002745",
+        "email": "ntnquyen@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ NGỌC QUYÊN",
+        "first_in": "2025-08-20 07:17",
+        "last_out": "2025-08-20 15:41"
+    },
+    {
+        "employee_id": "CMC002888",
+        "email": "dtphuongthao@cmc.com.vn",
+        "full_name": "ĐỖ THỊ PHƯƠNG THẢO",
+        "first_in": "2025-08-20 08:27",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC002882",
+        "email": "lquangthanh@cmc.com.vn",
+        "full_name": "LÊ QUANG THÀNH",
+        "first_in": "2025-08-20 07:32",
+        "last_out": "2025-08-20 17:38"
+    },
+    {
+        "employee_id": "CMC002884",
+        "email": "ntrongnghia@cmc.com.vn",
+        "full_name": "NGUYỄN TRỌNG NGHĨA",
+        "first_in": "2025-08-20 07:50",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "CMC002885",
+        "email": "ttynhi@cmc.com.vn",
+        "full_name": "TRẦN THỊ YẾN NHI",
+        "first_in": "2025-08-20 07:34",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "CMC002685",
+        "email": "nthongvan@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ HỒNG VÂN",
+        "first_in": "2025-08-20 08:21",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002883",
+        "email": "phnhuong@cmc.com.vn",
+        "full_name": "PHẠM HỒNG NHƯƠNG",
+        "first_in": "2025-08-20 07:30",
+        "last_out": "2025-08-20 17:35"
+    },
+    {
+        "employee_id": "CMC002775",
+        "email": "nxuanson@cmc.com.vn",
+        "full_name": "NGUYỄN XUÂN SƠN",
+        "first_in": "2025-08-20 08:17",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002681",
+        "email": "nguyenthithao@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ THẢO",
+        "first_in": "2025-08-20 08:59",
+        "last_out": "2025-08-20 18:02"
+    },
+    {
+        "employee_id": "CMC003438",
+        "email": "lthihuong@cmc.com.vn",
+        "full_name": "LÊ THỊ HƯƠNG",
+        "first_in": "2025-08-20 07:32",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002783",
+        "email": "nththam@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ HỒNG THẤM",
+        "first_in": "2025-08-20 07:38",
+        "last_out": "2025-08-20 17:16"
+    },
+    {
+        "employee_id": "CMC002723",
+        "email": "qnhdung@cmc.com.vn",
+        "full_name": "QUÁCH NGỌC HẠNH DUNG",
+        "first_in": "2025-08-20 07:45",
+        "last_out": "2025-08-20 17:17"
+    },
+    {
+        "employee_id": "CMC002806",
+        "email": "cthuyen@cmc.com.vn",
+        "full_name": "CHÂU THANH HUYỀN",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 18:55"
+    },
+    {
+        "employee_id": "CMC003826",
+        "email": "pvptinh@cmc.com.vn",
+        "full_name": "PHAN VĂN PHƯƠNG TÍNH",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 18:32"
+    },
+    {
+        "employee_id": "CMC003454",
+        "email": "lttruc@cmc.com.vn",
+        "full_name": "LÊ THANH TRÚC",
+        "first_in": "2025-08-20 08:20",
+        "last_out": "2025-08-20 16:29"
+    },
+    {
+        "employee_id": "CMC002890",
+        "email": "tanhong@cmc.com.vn",
+        "full_name": "TRẦN ANH NAM HỒNG",
+        "first_in": "2025-08-20 09:10",
+        "last_out": "2025-08-20 15:55"
+    },
+    {
+        "employee_id": "CMC002694",
+        "email": "adkim@cmc.com.vn",
+        "full_name": "ÂU DUYỆT KIM",
+        "first_in": "2025-08-20 09:24",
+        "last_out": "2025-08-20 17:45"
+    },
+    {
+        "employee_id": "CMCI00258",
+        "email": "hmchau@cmc.com.vn",
+        "full_name": "HUỲNH MINH CHÂU",
+        "first_in": "2025-08-20 05:27",
+        "last_out": "2025-08-20 05:29"
+    },
+    {
+        "employee_id": "CMC002683",
+        "email": "pttvi@cmc.com.vn",
+        "full_name": "PHAN THỊ TƯỜNG VI",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002687",
+        "email": "ntdquyen@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ DUY QUYÊN",
+        "first_in": "2025-08-20 08:22",
+        "last_out": "2025-08-20 17:42"
+    },
+    {
+        "employee_id": "CMC002919",
+        "email": "lhmthu@cmc.com.vn",
+        "full_name": "LÊ HUỲNH MINH THƯ",
+        "first_in": "2025-08-20 08:03",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC002731",
+        "email": "dhbao@cmc.com.vn",
+        "full_name": "ĐẶNG HOÀNG BẢO",
+        "first_in": "2025-08-20 10:33",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC002702",
+        "email": "lanhtuan@cmc.com.vn",
+        "full_name": "LÊ ANH TUẤN",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC005056",
+        "email": "vplong@cmc.com.vn",
+        "full_name": "VÕ PHI LONG",
+        "first_in": "2025-08-20 17:32",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002815",
+        "email": "tdtchi@cmc.com.vn",
+        "full_name": "TRẦN DƯƠNG THIỆN CHÍ",
+        "first_in": "2025-08-20 08:49",
+        "last_out": "2025-08-20 18:00"
+    },
+    {
+        "employee_id": "CMC002721",
+        "email": "btchung@cmc.com.vn",
+        "full_name": "BÙI THỊ CHUNG",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002801",
+        "email": "htgiao@cmc.com.vn",
+        "full_name": "HỨA TUYẾT GIAO",
+        "first_in": "2025-08-20 08:38",
+        "last_out": "2025-08-20 12:09"
+    },
+    {
+        "employee_id": "CMC002670",
+        "email": "pttvy@cmc.com.vn",
+        "full_name": "PHẠM THỊ THU VỴ",
+        "first_in": "2025-08-20 07:32",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002755",
+        "email": "dvmthy@cmc.com.vn",
+        "full_name": "ĐINH VŨ MAI THY",
+        "first_in": "2025-08-20 08:17",
+        "last_out": "2025-08-20 18:57"
+    },
+    {
+        "employee_id": "CMC006664",
+        "email": "nvduong1@cmc.com.vn",
+        "full_name": "NGÔ VIỆT DƯƠNG",
+        "first_in": "2025-08-20 07:30",
+        "last_out": "2025-08-20 19:42"
+    },
+    {
+        "employee_id": "CMC002934",
+        "email": "lvcan@cmc.com.vn",
+        "full_name": "LƯỜNG VĂN CẦN",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:43"
+    },
+    {
+        "employee_id": "CMC002929",
+        "email": "nvandai@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN ĐẠI",
+        "first_in": "2025-08-20 07:58",
+        "last_out": "2025-08-20 17:42"
+    },
+    {
+        "employee_id": "CMC002684",
+        "email": "tttrang@cmc.com.vn",
+        "full_name": "TRẦN THỊ TRANG",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:42"
+    },
+    {
+        "employee_id": "CMC002784",
+        "email": "vttly@cmc.com.vn",
+        "full_name": "VÕ THỊ TRÚC LY",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC003941",
+        "email": "nvnghe@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN NGHỆ",
+        "first_in": "2025-08-20 09:33",
+        "last_out": "2025-08-20 09:33"
+    },
+    {
+        "employee_id": "CMC002758",
+        "email": "hmduy@cmc.com.vn",
+        "full_name": "HỒ MAI DUY",
+        "first_in": "2025-08-20 08:56",
+        "last_out": "2025-08-20 16:40"
+    },
+    {
+        "employee_id": "CMC002774",
+        "email": "nvanthuan@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN THUẬN",
+        "first_in": "2025-08-20 08:03",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC002719",
+        "email": "vtthu@cmc.com.vn",
+        "full_name": "VÕ TRUNG THỨ",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC002955",
+        "email": "hhluan@cmc.com.vn",
+        "full_name": "HUỲNH HỮU LUÂN",
+        "first_in": "2025-08-20 10:31",
+        "last_out": "2025-08-20 15:11"
+    },
+    {
+        "employee_id": "CMC002753",
+        "email": "nnpduy@cmc.com.vn",
+        "full_name": "NGUYỄN NGỌC PHƯƠNG DUY",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 16:43"
+    },
+    {
+        "employee_id": "CMC002673",
+        "email": "ntngocanh@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ NGỌC ANH",
+        "first_in": "2025-08-20 08:17",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMCI00261",
+        "email": "nth@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ HẠ",
+        "first_in": "2025-08-20 05:28",
+        "last_out": "2025-08-20 15:33"
+    },
+    {
+        "employee_id": "CMC002754",
+        "email": "bhuunam@cmc.com.vn",
+        "full_name": "BÙI HỮU NAM",
+        "first_in": "2025-08-20 08:25",
+        "last_out": "2025-08-20 17:27"
+    },
+    {
+        "employee_id": "CMC002663",
+        "email": "nhmhang@cmc.com.vn",
+        "full_name": "NGUYỄN HUỲNH MINH HẰNG",
+        "first_in": "2025-08-20 08:22",
+        "last_out": "2025-08-20 17:27"
+    },
+    {
+        "employee_id": "CMC002756",
+        "email": "nnhbao@cmc.com.vn",
+        "full_name": "NGUYỄN NGỌC HOÀI BẢO",
+        "first_in": "2025-08-20 08:25",
+        "last_out": "2025-08-20 17:27"
+    },
+    {
+        "employee_id": "CMC002675",
+        "email": "nthanhhoc@cmc.com.vn",
+        "full_name": "NGUYỄN THÀNH HỌC",
+        "first_in": "2025-08-20 06:53",
+        "last_out": "2025-08-20 10:57"
+    },
+    {
+        "employee_id": "CMC002791",
+        "email": "htttien@cmc.com.vn",
+        "full_name": "HOÀNG THỊ THỦY TIÊN",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC003443",
+        "email": "ntansang@cmc.com.vn",
+        "full_name": "NGUYỄN TẤN SANG",
+        "first_in": "2025-08-20 08:51",
+        "last_out": "2025-08-20 17:28"
+    },
+    {
+        "employee_id": "CMC002821",
+        "email": "ntrungdung@cmc.com.vn",
+        "full_name": "NGUYỄN TRUNG DŨNG",
+        "first_in": "2025-08-20 08:34",
+        "last_out": "2025-08-20 18:01"
+    },
+    {
+        "employee_id": "CMC002682",
+        "email": "ttngochien@cmc.com.vn",
+        "full_name": "TRẦN THỊ NGỌC HIỀN",
+        "first_in": "2025-08-20 08:02",
+        "last_out": "2025-08-20 17:09"
+    },
+    {
+        "employee_id": "CMC002766",
+        "email": "ntthung@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ THUẬN HƯNG",
+        "first_in": "2025-08-20 08:04",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC003652",
+        "email": "vntmduyen@cmc.com.vn",
+        "full_name": "VÕ NGUYỄN THỊ MỸ DUYÊN",
+        "first_in": "2025-08-20 10:02",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC004059",
+        "email": "nqthong@cmc.com.vn",
+        "full_name": "NGUYỄN QUỐC THÔNG",
+        "first_in": "2025-08-20 09:02",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "CMC002768",
+        "email": "tvlanh@cmc.com.vn",
+        "full_name": "TRẦN VÕ LAN ANH",
+        "first_in": "2025-08-20 08:47",
+        "last_out": "2025-08-20 16:53"
+    },
+    {
+        "employee_id": "CMC002828",
+        "email": "dlquan@cmc.com.vn",
+        "full_name": "ĐOÀN LONG QUÂN",
+        "first_in": "2025-08-20 07:36",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC002698",
+        "email": "hthchau@cmc.com.vn",
+        "full_name": "HUỲNH THỊ HỮU CHÂU",
+        "first_in": "2025-08-20 13:47",
+        "last_out": "2025-08-20 15:31"
+    },
+    {
+        "employee_id": "CMC003898",
+        "email": "nhntrinh@cmc.com.vn",
+        "full_name": "NGUYỄN HUỲNH NGỌC TRINH",
+        "first_in": "2025-08-20 08:30",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC002761",
+        "email": "pthue@cmc.com.vn",
+        "full_name": "PHẠM TUYẾT HUỆ",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:59"
+    },
+    {
+        "employee_id": "CMC002957",
+        "email": "ptrunghieu@cmc.com.vn",
+        "full_name": "PHẠM TRUNG HIẾU",
+        "first_in": "2025-08-20 10:19",
+        "last_out": "2025-08-20 17:17"
+    },
+    {
+        "employee_id": "CMC002958",
+        "email": "vqchi@cmc.com.vn",
+        "full_name": "VIÊN QUỐC CHÍ",
+        "first_in": "2025-08-20 08:21",
+        "last_out": "2025-08-20 17:35"
+    },
+    {
+        "employee_id": "CMC002827",
+        "email": "dntuat@cmc.com.vn",
+        "full_name": "ĐỒNG NGỌC TUẤT",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC003434",
+        "email": "vbhanh@cmc.com.vn",
+        "full_name": "VÕ BÍCH HẠNH",
+        "first_in": "2025-08-20 09:18",
+        "last_out": "2025-08-20 14:37"
+    },
+    {
+        "employee_id": "CMC002809",
+        "email": "dvdung5@cmc.com.vn",
+        "full_name": "ĐINH VĂN DŨNG",
+        "first_in": "2025-08-20 09:08",
+        "last_out": "2025-08-20 20:36"
+    },
+    {
+        "employee_id": "CMC003508",
+        "email": "ntthanhnhan@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ THANH NHÀN",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC002789",
+        "email": "btmchau@cmc.com.vn",
+        "full_name": "BÙI TRẦN MINH CHÂU",
+        "first_in": "2025-08-20 08:24",
+        "last_out": "2025-08-20 17:25"
+    },
+    {
+        "employee_id": "CMC002763",
+        "email": "tnttuyen@cmc.com.vn",
+        "full_name": "TRẦN NGUYỄN THANH TUYỀN",
+        "first_in": "2025-08-20 09:23",
+        "last_out": "2025-08-20 11:43"
+    },
+    {
+        "employee_id": "CMCI00250",
+        "email": "nthaihoang@cmc.com.vn",
+        "full_name": "NGUYỄN THÁI HOÀNG",
+        "first_in": "2025-08-20 11:27",
+        "last_out": "2025-08-20 15:36"
+    },
+    {
+        "employee_id": "CMC003595",
+        "email": "lminhhieu@cmc.com.vn",
+        "full_name": "LÊ MINH HIẾU",
+        "first_in": "2025-08-20 08:07",
+        "last_out": "2025-08-20 14:45"
+    },
+    {
+        "employee_id": "CMC002956",
+        "email": "lptthinh@cmc.com.vn",
+        "full_name": "LÝ PHÚC TRƯỜNG THỊNH",
+        "first_in": "2025-08-20 08:03",
+        "last_out": "2025-08-20 14:02"
+    },
+    {
+        "employee_id": "CMC002950",
+        "email": "tthien@cmc.com.vn",
+        "full_name": "TRẦN THỊ HIỀN",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002804",
+        "email": "ptkha@cmc.com.vn",
+        "full_name": "PHAN TRUNG KHA",
+        "first_in": "2025-08-20 08:01",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002752",
+        "email": "ntthuthao@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ THU THẢO",
+        "first_in": "2025-08-20 09:25",
+        "last_out": "2025-08-20 17:51"
+    },
+    {
+        "employee_id": "CMC002706",
+        "email": "nvmtrang@cmc.com.vn",
+        "full_name": "NGUYỄN VŨ MỸ TRANG",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC002798",
+        "email": "ltnquy@cmc.com.vn",
+        "full_name": "LÊ THỊ NGUYÊN QUY",
+        "first_in": "2025-08-20 07:43",
+        "last_out": "2025-08-20 18:11"
+    },
+    {
+        "employee_id": "CMC002805",
+        "email": "lptruong@cmc.com.vn",
+        "full_name": "LƯỢNG PHƯỚC TRƯỜNG",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002744",
+        "email": "ttvso@cmc.com.vn",
+        "full_name": "TRƯƠNG THÁI VIỆT SÔ",
+        "first_in": "2025-08-20 08:29",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "CMC002797",
+        "email": "dntsang@cmc.com.vn",
+        "full_name": "DƯƠNG NGUYỄN THANH SANG",
+        "first_in": "2025-08-20 11:10",
+        "last_out": "2025-08-20 18:23"
+    },
+    {
+        "employee_id": "CMC002824",
+        "email": "ttquang@cmc.com.vn",
+        "full_name": "TRẦN THANH QUANG",
+        "first_in": "2025-08-20 17:36",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "CMC005864",
+        "email": "kmanh@cmc.com.vn",
+        "full_name": "KHUẤT MINH ANH",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 19:12"
+    },
+    {
+        "employee_id": "CMC005386",
+        "email": "nttu1@cmc.com.vn",
+        "full_name": "Nguyễn Thị Tứ",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:38"
+    },
+    {
+        "employee_id": "CMC003202",
+        "email": "hvhai@cmc.com.vn",
+        "full_name": "Hoàng Văn Hải",
+        "first_in": "2025-08-20 09:23",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "CMC002807",
+        "email": "nhoanghai@cmc.com.vn",
+        "full_name": "NGUYỄN HOÀNG HẢI",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC002746",
+        "email": "ntkdien@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ KIỀU DIỄN",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 14:14"
+    },
+    {
+        "employee_id": "CMC002691",
+        "email": "nttan@cmc.com.vn",
+        "full_name": "NGÔ THANH TÂN",
+        "first_in": "2025-08-20 13:08",
+        "last_out": "2025-08-20 15:29"
+    },
+    {
+        "employee_id": "CMC002677",
+        "email": "dthienlong@cmc.com.vn",
+        "full_name": "ĐOÀN THIÊN LONG",
+        "first_in": "2025-08-20 07:52",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "ntquyen1@cmc.com.vn",
+        "full_name": "NGUYỄN THUỶ QUYÊN",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 18:40"
+    },
+    {
+        "employee_id": "CMC002686",
+        "email": "dthuylinh@cmc.com.vn",
+        "full_name": "ĐẶNG THÙY LINH",
+        "first_in": "2025-08-20 08:25",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "CMC002782",
+        "email": "lqnghi@cmc.com.vn",
+        "full_name": "LƯU QUANG NGHỊ",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 14:22"
+    },
+    {
+        "employee_id": "CMC004837",
+        "email": "ptkthu@cmc.com.vn",
+        "full_name": "PHẠM THỊ KIỀU THU",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 12:28"
+    },
+    {
+        "employee_id": "CMC002392",
+        "email": "ntthao@cmc.com.vn",
+        "full_name": "Nguyễn Thị Thảo",
+        "first_in": "2025-08-20 07:49",
+        "last_out": "2025-08-20 16:28"
+    },
+    {
+        "employee_id": "CMC003764",
+        "email": "lqha@cmc.com.vn",
+        "full_name": "Lê Quang Hà",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "CMC002793",
+        "email": "nguyennhathoang@cmc.com.vn",
+        "full_name": "NGUYỄN NHẬT HOÀNG",
+        "first_in": "2025-08-20 08:40",
+        "last_out": "2025-08-20 16:03"
+    },
+    {
+        "employee_id": "CMC003254",
+        "email": "ntchien@cmc.com.vn",
+        "full_name": "NGUYỄN TIẾN CHIẾN",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 14:22"
+    },
+    {
+        "employee_id": "CMC005097",
+        "email": "ttthuha@cmc.com.vn",
+        "full_name": "TRỊNH THỊ THU HÀ",
+        "first_in": "2025-08-20 07:45",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC005099",
+        "email": "ntuthien@cmc.com.vn",
+        "full_name": "NGUYỄN TỨ THIÊN",
+        "first_in": "2025-08-20 09:43",
+        "last_out": "2025-08-20 12:03"
+    },
+    {
+        "employee_id": "CMC005181",
+        "email": "hcduc@cmc.com.vn",
+        "full_name": "HUỲNH CÔNG ĐỨC",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC002916",
+        "email": "htpanh@cmc.com.vn",
+        "full_name": "HÀ THỊ PHƯƠNG ANH",
+        "first_in": "2025-08-20 08:25",
+        "last_out": "2025-08-20 18:07"
+    },
+    {
+        "employee_id": "CMC002773",
+        "email": "nkhoavan@cmc.com.vn",
+        "full_name": "NGUYỄN KHOA VĂN",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC005883",
+        "email": "hvtruong2@cmc.com.vn",
+        "full_name": "HỨA VĂN TRƯỞNG",
+        "first_in": "2025-08-20 08:22",
+        "last_out": "2025-08-20 18:13"
+    },
+    {
+        "employee_id": "CMC005239",
+        "email": "ntuchi@cmc.com.vn",
+        "full_name": "NGUYỄN THẢO UYÊN CHI",
+        "first_in": "2025-08-20 07:44",
+        "last_out": "2025-08-20 16:45"
+    },
+    {
+        "employee_id": "CMC007520",
+        "email": "ttttien@cmc.com.vn",
+        "full_name": "TRẦN THỊ THUỶ TIÊN",
+        "first_in": "2025-08-20 08:26",
+        "last_out": "2025-08-20 19:05"
+    },
+    {
+        "employee_id": "CMC005370",
+        "email": "dthanhdat@cmc.com.vn",
+        "full_name": "ĐINH THÀNH ĐẠT",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 14:03"
+    },
+    {
+        "employee_id": "CMC005903",
+        "email": "tqsinh@cmc.com.vn",
+        "full_name": "Trịnh Quang Sinh",
+        "first_in": "2025-08-20 09:42",
+        "last_out": "2025-08-20 18:01"
+    },
+    {
+        "employee_id": "CMC005488",
+        "email": "dcthinh@cmc.com.vn",
+        "full_name": "ĐOÀN CÔNG THỊNH",
+        "first_in": "2025-08-20 09:14",
+        "last_out": "2025-08-20 11:35"
+    },
+    {
+        "employee_id": "CMC005894",
+        "email": "plphuong@cmc.com.vn",
+        "full_name": "Phí Lan Phương",
+        "first_in": "2025-08-20 10:04",
+        "last_out": "2025-08-20 19:27"
+    },
+    {
+        "employee_id": "CMC005895",
+        "email": "nthue3@cmc.com.vn",
+        "full_name": "Nguyễn Thị Huệ",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:57"
+    },
+    {
+        "employee_id": "CMC006148",
+        "email": "cmhiep@cmc.com.vn",
+        "full_name": "CAO MINH HIỆP",
+        "first_in": "2025-08-20 09:08",
+        "last_out": "2025-08-20 17:19"
+    },
+    {
+        "employee_id": "CMC006166",
+        "email": "atvha@cmc.com.vn",
+        "full_name": "An Thị Việt Hà",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC006028",
+        "email": "ntminh4@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ MINH",
+        "first_in": "2025-08-20 07:11",
+        "last_out": "2025-08-20 18:43"
+    },
+    {
+        "employee_id": "CMC006147",
+        "email": "dqcuong@cmc.com.vn",
+        "full_name": "ĐINH QUỐC CƯỜNG",
+        "first_in": "2025-08-20 07:47",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC007069",
+        "email": "nthonganh@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ HỒNG ANH",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 16:45"
+    },
+    {
+        "employee_id": "CMC005783",
+        "email": "pthanhluan@cmc.com.vn",
+        "full_name": "PHAN THÀNH LUÂN",
+        "first_in": "2025-08-20 07:50",
+        "last_out": "2025-08-20 14:01"
+    },
+    {
+        "employee_id": "CMC006262",
+        "email": "dpthao@cmc.com.vn",
+        "full_name": "ĐÀO PHƯƠNG THẢO",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "CMC006320",
+        "email": "dxquy@cmc.com.vn",
+        "full_name": "ĐINH XUÂN QUÝ",
+        "first_in": "2025-08-20 11:06",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "CMC006367",
+        "email": "nvtuan7@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN TUẤN",
+        "first_in": "2025-08-20 07:29",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC006519",
+        "email": "nvdat5@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN ĐẠT 5",
+        "first_in": "2025-08-20 08:56",
+        "last_out": "2025-08-20 19:42"
+    },
+    {
+        "employee_id": "CMC006045",
+        "email": "vttuyen@cmc.com.vn",
+        "full_name": "VŨ THỊ THẢO UYÊN",
+        "first_in": "2025-08-20 07:53",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC006482",
+        "email": "ntlong3@cmc.com.vn",
+        "full_name": "Nguyễn Thành Long",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:53"
+    },
+    {
+        "employee_id": "CMC010592",
+        "email": "ntqanh2@cmc.com.vn",
+        "full_name": "Nguyễn Thị Quỳnh Anh",
+        "first_in": "2025-08-20 07:19",
+        "last_out": "2025-08-20 17:19"
+    },
+    {
+        "employee_id": "CMC006581",
+        "email": "pkchi@cmc.com.vn",
+        "full_name": "PHẠM KHÁNH CHI",
+        "first_in": "2025-08-20 07:33",
+        "last_out": "2025-08-20 18:30"
+    },
+    {
+        "employee_id": "CMC006600",
+        "email": "ntlna@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ LY NA",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:48"
+    },
+    {
+        "employee_id": "CMC006575",
+        "email": "nthanhnhan@cmc.com.vn",
+        "full_name": "NGUYỄN THÀNH NHÂN",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC006666",
+        "email": "ntnghia2@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ NGHĨA",
+        "first_in": "2025-08-20 07:50",
+        "last_out": "2025-08-20 17:44"
+    },
+    {
+        "employee_id": "",
+        "email": "kvthanh.ts@cmc.com.vn",
+        "full_name": "KIỀU VĂN THÀNH",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 16:51"
+    },
+    {
+        "employee_id": "CMC006477",
+        "email": "lsontung@cmc.com.vn",
+        "full_name": "LÊ SƠN TÙNG",
+        "first_in": "2025-08-20 08:05",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "CMC006724",
+        "email": "ntthang8@cmc.com.vn",
+        "full_name": "Nguyễn Thị Thu Hằng",
+        "first_in": "2025-08-20 08:07",
+        "last_out": "2025-08-20 18:14"
+    },
+    {
+        "employee_id": "CMC006767",
+        "email": "datuan6@cmc.com.vn",
+        "full_name": "Đặng Anh Tuấn",
+        "first_in": "2025-08-20 13:56",
+        "last_out": "2025-08-20 14:25"
+    },
+    {
+        "employee_id": "CMC006372",
+        "email": "omtri@cmc.com.vn",
+        "full_name": "ÔN MINH TRÍ",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC006941",
+        "email": "ndduy@cmc.com.vn",
+        "full_name": "NGUYỄN ĐỨC DUY",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 12:04"
+    },
+    {
+        "employee_id": "CMC006958",
+        "email": "dttha1@cmc.com.vn",
+        "full_name": "Đinh Thị Thuý Hà",
+        "first_in": "2025-08-20 08:36",
+        "last_out": "2025-08-20 18:46"
+    },
+    {
+        "employee_id": "CMCI00254",
+        "email": "nqbinh@cmc.com.vn",
+        "full_name": "NGUYỄN QUÝ BÌNH",
+        "first_in": "2025-08-20 09:20",
+        "last_out": "2025-08-20 15:08"
+    },
+    {
+        "employee_id": "CMC006989",
+        "email": "nnthanh@cmc.com.vn",
+        "full_name": "NGUYỄN NHẬT THẠNH",
+        "first_in": "2025-08-20 08:38",
+        "last_out": "2025-08-20 09:58"
+    },
+    {
+        "employee_id": "CMC007067",
+        "email": "nhuunghia@cmc.com.vn",
+        "full_name": "NGUYỄN HỮU NGHĨA",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC007277",
+        "email": "tpluat@cmc.com.vn",
+        "full_name": "TRƯƠNG PHI LUẬT",
+        "first_in": "2025-08-20 11:34",
+        "last_out": "2025-08-20 16:36"
+    },
+    {
+        "employee_id": "CMC007271",
+        "email": "pvttuan@cmc.com.vn",
+        "full_name": "PHAN VŨ THÀNH TUẤN",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC007233",
+        "email": "bdtrinh@cmc.com.vn",
+        "full_name": "Bùi Duy Trinh",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 18:31"
+    },
+    {
+        "employee_id": "CMC007467",
+        "email": "btlly@cmc.com.vn",
+        "full_name": "BÙI THỊ LY LY",
+        "first_in": "2025-08-20 09:14",
+        "last_out": "2025-08-20 17:01"
+    },
+    {
+        "employee_id": "CMC002701",
+        "email": "dtahiep@cmc.com.vn",
+        "full_name": "ĐẶNG THỊ ÁNH HIỆP",
+        "first_in": "2025-08-20 09:47",
+        "last_out": "2025-08-20 16:43"
+    },
+    {
+        "employee_id": "CMC007608",
+        "email": "lakiet@cmc.com.vn",
+        "full_name": "LÝ ANH KIỆT",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 15:03"
+    },
+    {
+        "employee_id": "CMC002951",
+        "email": "nltnguyet@cmc.com.vn",
+        "full_name": "NGUYỄN LÊ THU NGUYỆT",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 17:16"
+    },
+    {
+        "employee_id": "CMC002770",
+        "email": "nhoangquan@cmc.com.vn",
+        "full_name": "NGUYỄN HOÀNG QUÂN",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 15:59"
+    },
+    {
+        "employee_id": "CMC002932",
+        "email": "nnphuong@cmc.com.vn",
+        "full_name": "NGUYỄN NGỌC PHƯƠNG",
+        "first_in": "2025-08-20 07:52",
+        "last_out": "2025-08-20 16:03"
+    },
+    {
+        "employee_id": "CMC002786",
+        "email": "ttnhoan@cmc.com.vn",
+        "full_name": "TRẦN THỊ NHƯ HOÀN",
+        "first_in": "2025-08-20 07:43",
+        "last_out": "2025-08-20 07:43"
+    },
+    {
+        "employee_id": "CMC002765",
+        "email": "hothai@cmc.com.vn",
+        "full_name": "HỒ THÁI",
+        "first_in": "2025-08-20 09:29",
+        "last_out": "2025-08-20 11:29"
+    },
+    {
+        "employee_id": "CMC003580",
+        "email": "ttkthoa@cmc.com.vn",
+        "full_name": "TRẦN THỊ KIM THOA",
+        "first_in": "2025-08-20 07:58",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC007702",
+        "email": "vhuynhtrang@cmc.com.vn",
+        "full_name": "VÕ HUỲNH TRANG",
+        "first_in": "2025-08-20 08:02",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC002697",
+        "email": "dmthong@cmc.com.vn",
+        "full_name": "DƯ MINH THÔNG",
+        "first_in": "2025-08-20 09:23",
+        "last_out": "2025-08-20 14:27"
+    },
+    {
+        "employee_id": "CMC002822",
+        "email": "khangiang@cmc.com.vn",
+        "full_name": "KHƯU HÀN GIANG",
+        "first_in": "2025-08-20 08:01",
+        "last_out": "2025-08-20 19:05"
+    },
+    {
+        "employee_id": "CMC007880",
+        "email": "pttmai@cmc.com.vn",
+        "full_name": "PHAN THỊ TUYẾT MAI",
+        "first_in": "2025-08-20 10:39",
+        "last_out": "2025-08-20 18:57"
+    },
+    {
+        "employee_id": "CMC002937",
+        "email": "lxkhoa@cmc.com.vn",
+        "full_name": "LƯU XUÂN KHOA",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 18:14"
+    },
+    {
+        "employee_id": "CMC007986",
+        "email": "dhphuc@cmc.com.vn",
+        "full_name": "ĐỖ HOÀNG PHÚC",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "CMC010646",
+        "email": "ndhuu@cmc.com.vn",
+        "full_name": "NGUYỄN ĐÌNH HỮU",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 08:16"
+    },
+    {
+        "employee_id": "",
+        "email": "nbchau1@cmc.com.vn",
+        "full_name": "NGUYỄN BẢO CHÂU",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 15:36"
+    },
+    {
+        "employee_id": "",
+        "email": "vklinh1@cmc.com.vn",
+        "full_name": "VŨ KHÁNH LINH",
+        "first_in": "2025-08-20 08:33",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "CMC012147",
+        "email": "dqdat@cmc.com.vn",
+        "full_name": "DƯƠNG QUANG ĐẠT",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 18:53"
+    },
+    {
+        "employee_id": "",
+        "email": "dntmy@cmc.com.vn",
+        "full_name": "ĐẶNG NGỌC TRÀ MY",
+        "first_in": "2025-08-20 08:41",
+        "last_out": "2025-08-20 17:54"
+    },
+    {
+        "employee_id": "HCM014",
+        "email": "nhynhi@cmc.com.vn",
+        "full_name": "NGUYỄN HỒ YẾN NHI",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMC012737",
+        "email": "mvtoan@cmc.com.vn",
+        "full_name": "MAI VŨ TOÀN",
+        "first_in": "2025-08-20 08:03",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "tnplinh@cmc.com.vn",
+        "full_name": "TRẦN NGUYỄN PHƯƠNG LINH",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 18:13"
+    },
+    {
+        "employee_id": "CMCI00290",
+        "email": "vthhanh@cmc.com.vn",
+        "full_name": "VÕ THỊ HỒNG HẠNH",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 18:57"
+    },
+    {
+        "employee_id": "CMC011667",
+        "email": "vthithuy@cmc.com.vn",
+        "full_name": "VÕ THỊ THỦY",
+        "first_in": "2025-08-20 08:20",
+        "last_out": "2025-08-20 18:01"
+    },
+    {
+        "employee_id": "CMC012463",
+        "email": "tcthanh@cmc.com.vn",
+        "full_name": "THÁI CHÍ THÀNH",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:40"
+    },
+    {
+        "employee_id": "",
+        "email": "ndgiang1@cmc.com.vn",
+        "full_name": "NGUYỄN ĐÌNH GIANG",
+        "first_in": "2025-08-20 08:27",
+        "last_out": "2025-08-20 18:19"
+    },
+    {
+        "employee_id": "",
+        "email": "npghan@cmc.com.vn",
+        "full_name": "NGUYỄN PHÚC GIA HÂN",
+        "first_in": "2025-08-20 09:21",
+        "last_out": "2025-08-20 17:23"
+    },
+    {
+        "employee_id": "",
+        "email": "dthung4@cmc.com.vn",
+        "full_name": "ĐINH TUẤN HÙNG",
+        "first_in": "2025-08-20 10:16",
+        "last_out": "2025-08-20 17:56"
+    },
+    {
+        "employee_id": "",
+        "email": "hdngoc@cmc.com.vn",
+        "full_name": "HOÀNG DANH NGỌC",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:35"
+    },
+    {
+        "employee_id": "",
+        "email": "hthoai2@cmc.com.vn",
+        "full_name": "HOÀNG THU HOÀI",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 18:06"
+    },
+    {
+        "employee_id": "CMC001141",
+        "email": "dthoanh@cmc.com.vn",
+        "full_name": "Đỗ Thế Hoành",
+        "first_in": "2025-08-20 07:50",
+        "last_out": "2025-08-20 18:03"
+    },
+    {
+        "employee_id": "CMC010471",
+        "email": "vnay@cmc.com.vn",
+        "full_name": "VÕ NGỌC ANH Ý",
+        "first_in": "2025-08-20 10:46",
+        "last_out": "2025-08-20 15:58"
+    },
+    {
+        "employee_id": "",
+        "email": "pthnhung2@cmc.com.vn",
+        "full_name": "PHAN THỊ HỒNG NHUNG",
+        "first_in": "2025-08-20 13:03",
+        "last_out": "2025-08-20 17:19"
+    },
+    {
+        "employee_id": "",
+        "email": "dalinh2@cmc.com.vn",
+        "full_name": "ĐẶNG ANH LINH",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 17:43"
+    },
+    {
+        "employee_id": "",
+        "email": "ntqtrang1@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ QUỲNH TRANG",
+        "first_in": "2025-08-20 08:26",
+        "last_out": "2025-08-20 18:04"
+    },
+    {
+        "employee_id": "",
+        "email": "dhythao@cmc.com.vn",
+        "full_name": "ĐẶNG HOÀNG YÊN THẢO",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 17:41"
+    },
+    {
+        "employee_id": "CMCI00251",
+        "email": "hmtien1@cmc.com.vn",
+        "full_name": "HÀ MINH TIẾN",
+        "first_in": "2025-08-20 08:30",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "tttuyet1@cmc.com.vn",
+        "full_name": "TRẦN THỊ TUYẾT",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 18:44"
+    },
+    {
+        "employee_id": "CMC009182",
+        "email": "nvdat9@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN ĐẠT 9",
+        "first_in": "2025-08-20 11:15",
+        "last_out": "2025-08-20 17:44"
+    },
+    {
+        "employee_id": "",
+        "email": "lmngoc1@cmc.com.vn",
+        "full_name": "LƯƠNG MINH NGỌC",
+        "first_in": "2025-08-20 08:41",
+        "last_out": "2025-08-20 19:05"
+    },
+    {
+        "employee_id": "CMC010457",
+        "email": "tmathi@cmc.com.vn",
+        "full_name": "TRẦN MAI ANH THI",
+        "first_in": "2025-08-20 08:40",
+        "last_out": "2025-08-20 17:53"
+    },
+    {
+        "employee_id": "CMC011409",
+        "email": "htvanh2@cmc.com.vn",
+        "full_name": "Hoàng Thị Vân Anh",
+        "first_in": "2025-08-20 08:02",
+        "last_out": "2025-08-20 18:08"
+    },
+    {
+        "employee_id": "CMC011253",
+        "email": "nthoangan@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ HOÀNG AN",
+        "first_in": "2025-08-20 08:54",
+        "last_out": "2025-08-20 16:54"
+    },
+    {
+        "employee_id": "",
+        "email": "ntphong6@cmc.com.vn",
+        "full_name": "NGUYỄN THANH PHONG",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 18:06"
+    },
+    {
+        "employee_id": "CMC012836",
+        "email": "thphuong1@cmc.com.vn",
+        "full_name": "Trịnh Hà Phương",
+        "first_in": "2025-08-20 08:55",
+        "last_out": "2025-08-20 19:46"
+    },
+    {
+        "employee_id": "CMC002669",
+        "email": "vtkthoa@cmc.com.vn",
+        "full_name": "VÕ THỊ KIM THOA",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:45"
+    },
+    {
+        "employee_id": "CMC004229",
+        "email": "tdcuong@cmc.com.vn",
+        "full_name": "TRẦN DUY CƯỜNG",
+        "first_in": "2025-08-20 12:59",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "",
+        "email": "ntdieulinh@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ DIỆU LINH",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "nnthanh4@cmc.com.vn",
+        "full_name": "NGUYỄN NHẬT THÀNH",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 17:35"
+    },
+    {
+        "employee_id": "",
+        "email": "vhquang.ts@cmc.com.vn",
+        "full_name": "VŨ HUY QUANG",
+        "first_in": "2025-08-20 08:52",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "",
+        "email": "phantuanviet0706@gmail.com",
+        "full_name": "PHAN TUẤN VIỆT",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:08"
+    },
+    {
+        "employee_id": "",
+        "email": "ntlong8@cmc.com.vn",
+        "full_name": "NGÔ TUẤN LONG",
+        "first_in": "2025-08-20 09:04",
+        "last_out": "2025-08-20 13:18"
+    },
+    {
+        "employee_id": "",
+        "email": "ltthuy6@cmc.com.vn",
+        "full_name": "LÊ THỊ THỦY",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 17:56"
+    },
+    {
+        "employee_id": "",
+        "email": "tqhieu@cmc.com.vn",
+        "full_name": "TÔ QUANG HIẾU",
+        "first_in": "2025-08-20 07:30",
+        "last_out": "2025-08-20 17:19"
+    },
+    {
+        "employee_id": "",
+        "email": "nakhoa1@cmc.com.vn",
+        "full_name": "NGUYỄN AN KHOA",
+        "first_in": "2025-08-20 14:09",
+        "last_out": "2025-08-20 19:35"
+    },
+    {
+        "employee_id": "",
+        "email": "ltdanh@cmc.com.vn",
+        "full_name": "LƯU THỊ DIỆU ÁNH",
+        "first_in": "2025-08-20 07:48",
+        "last_out": "2025-08-20 19:13"
+    },
+    {
+        "employee_id": "",
+        "email": "ndkien.ts@cmc.com.vn",
+        "full_name": "NGUYỄN ĐỨC KIÊN",
+        "first_in": "2025-08-20 13:23",
+        "last_out": "2025-08-20 19:04"
+    },
+    {
+        "employee_id": "",
+        "email": "tdhhuan@cmc.com.vn",
+        "full_name": "TRẦN ĐẮC HỮU HUÂN",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "",
+        "email": "npan.ts@cmc.com.vn",
+        "full_name": "NGUYỄN PHÚC AN",
+        "first_in": "2025-08-20 15:26",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "",
+        "email": "nmduc.in@cmc.com.vn",
+        "full_name": "NGUYỄN MẠNH ĐỨC",
+        "first_in": "2025-08-20 08:47",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "dcminh2@cmc.com.vn",
+        "full_name": "ĐỖ CÔNG MINH",
+        "first_in": "2025-08-20 08:06",
+        "last_out": "2025-08-20 17:37"
+    },
+    {
+        "employee_id": "CMC012676",
+        "email": "ptuyen2@cmc.com.vn",
+        "full_name": "Phạm Tố Uyên",
+        "first_in": "2025-08-20 07:17",
+        "last_out": "2025-08-20 19:55"
+    },
+    {
+        "employee_id": "CMC009726",
+        "email": "dkhoa@cmc.com.vn",
+        "full_name": "ĐẶNG KIM HOA",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMCI00277",
+        "email": "lqbinh@cmc.com.vn",
+        "full_name": "LÊ QUANG BÌNH",
+        "first_in": "2025-08-20 08:22",
+        "last_out": "2025-08-20 17:11"
+    },
+    {
+        "employee_id": "CMCI00170",
+        "email": "quachthao@gmail.com",
+        "full_name": "QUÁCH THỊ THAO",
+        "first_in": "2025-08-20 06:23",
+        "last_out": "2025-08-20 18:20"
+    },
+    {
+        "employee_id": "CMCI00173",
+        "email": "nttthu@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ THANH THƯ",
+        "first_in": "2025-08-20 07:34",
+        "last_out": "2025-08-20 07:38"
+    },
+    {
+        "employee_id": "CMCI00175",
+        "email": "dqhung7@cmc.com.vn",
+        "full_name": "Đặng Quốc Hùng",
+        "first_in": "2025-08-20 08:16",
+        "last_out": "2025-08-20 18:06"
+    },
+    {
+        "employee_id": "CMCI00281",
+        "email": "ntvu7@cmc.com.vn",
+        "full_name": "NGUYỄN TRƯỜNG VŨ",
+        "first_in": "2025-08-20 08:03",
+        "last_out": "2025-08-20 17:38"
+    },
+    {
+        "employee_id": "",
+        "email": "ddtuan@cmc.com.vn",
+        "full_name": "ĐỖ DUY TUẤN",
+        "first_in": "2025-08-20 08:16",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "HCM001",
+        "email": "nguyenvanhoang@cmc.com.vn",
+        "full_name": "NGUYỄN VĂN HOÀNG",
+        "first_in": "2025-08-20 08:39",
+        "last_out": "2025-08-20 12:34"
+    },
+    {
+        "employee_id": "CMC002779",
+        "email": "htphap@cmc.com.vn",
+        "full_name": "HOÀNG TIẾN PHÁP",
+        "first_in": "2025-08-20 08:07",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "CMC012063",
+        "email": "ptthuyen1@cmc.com.vn",
+        "full_name": "Phùng Thị Thanh Huyền",
+        "first_in": "2025-08-20 08:01",
+        "last_out": "2025-08-20 17:01"
+    },
+    {
+        "employee_id": "",
+        "email": "lhhao@cmc.com.vn",
+        "full_name": "LÊ HỒNG HẢO",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:54"
+    },
+    {
+        "employee_id": "",
+        "email": "lnkchan@cmc.com.vn",
+        "full_name": "LÊ NGUYỄN KHÁNH CHÂN",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "",
+        "email": "hminh@cmc.com.vn",
+        "full_name": "HOÀNG MINH",
+        "first_in": "2025-08-20 10:57",
+        "last_out": "2025-08-20 17:02"
+    },
+    {
+        "employee_id": "",
+        "email": "dvloc@cmc.com.vn",
+        "full_name": "ĐỖ VĂN LỘC",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 19:00"
+    },
+    {
+        "employee_id": "CMC011824",
+        "email": "ttttra@cmc.com.vn",
+        "full_name": "TẠ THỊ THANH TRÀ",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 13:19"
+    },
+    {
+        "employee_id": "CMC011761",
+        "email": "ttanh4@cmc.com.vn",
+        "full_name": "TRẦN THUÝ ANH",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:35"
+    },
+    {
+        "employee_id": "CMC012028",
+        "email": "dtvanh@cmc.com.vn",
+        "full_name": "Đỗ Thị Vân Anh",
+        "first_in": "2025-08-20 10:07",
+        "last_out": "2025-08-20 20:01"
+    },
+    {
+        "employee_id": "",
+        "email": "bthyen@cmc.com.vn",
+        "full_name": "BÙI THỊ HẢI YẾN",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 17:45"
+    },
+    {
+        "employee_id": "",
+        "email": "nttuyen6@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ TRÚC UYÊN",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "CMC008942",
+        "email": "pqlinh@cmc.com.vn",
+        "full_name": "PHẠM QUANG LINH",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:15"
+    },
+    {
+        "employee_id": "",
+        "email": "tnphong@cmc.com.vn",
+        "full_name": "TỐNG NGUYÊN PHONG",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 18:03"
+    },
+    {
+        "employee_id": "",
+        "email": "ndnhan@cmc.com.vn",
+        "full_name": "NGUYỄN DOÃN NHÂN",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 17:15"
+    },
+    {
+        "employee_id": "CMCI00248",
+        "email": "tdhung4@cmc.com.vn",
+        "full_name": "TRỊNH DUY HƯNG",
+        "first_in": "2025-08-20 16:31",
+        "last_out": "2025-08-20 16:31"
+    },
+    {
+        "employee_id": "",
+        "email": "ttbang.intern@cmc.com.vn",
+        "full_name": "TRẦN TIẾN BẰNG",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "",
+        "email": "vdquy4@cmc.com.vn",
+        "full_name": "VÕ ĐỨC QUÝ",
+        "first_in": "2025-08-20 10:30",
+        "last_out": "2025-08-20 17:45"
+    },
+    {
+        "employee_id": "CMC006149",
+        "email": "dtduong1@cmc.com.vn",
+        "full_name": "Đặng Thùy Dương",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMC010956",
+        "email": "nthung7@cmc.com.vn",
+        "full_name": "NGUYỄN TIẾN HƯNG",
+        "first_in": "2025-08-20 07:54",
+        "last_out": "2025-08-20 19:25"
+    },
+    {
+        "employee_id": "CMC008919",
+        "email": "pnduc@cmc.com.vn",
+        "full_name": "Phạm Ngọc Đức",
+        "first_in": "2025-08-20 08:04",
+        "last_out": "2025-08-20 18:34"
+    },
+    {
+        "employee_id": "CMC010101",
+        "email": "nthaoanh@cmc.com.vn",
+        "full_name": "NGUYỄN THẢO ANH",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:54"
+    },
+    {
+        "employee_id": "CMC010078",
+        "email": "bthue@cmc.com.vn",
+        "full_name": "Bùi Thị Huê",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 18:06"
+    },
+    {
+        "employee_id": "HCM009",
+        "email": "ndangkhoa@cmc.com.vn",
+        "full_name": "NGUYỄN ĐĂNG KHOA",
+        "first_in": "2025-08-20 07:46",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "ltmduyen@cmc.com.vn",
+        "full_name": "LÊ THỊ MỸ DUYÊN",
+        "first_in": "2025-08-20 08:30",
+        "last_out": "2025-08-20 17:13"
+    },
+    {
+        "employee_id": "",
+        "email": "dhdai1@cmc.com.vn",
+        "full_name": "ĐỖ HỮU ĐẠI",
+        "first_in": "2025-08-20 07:53",
+        "last_out": "2025-08-20 18:30"
+    },
+    {
+        "employee_id": "CMC012702",
+        "email": "vmhoang3@cmc.com.vn",
+        "full_name": "Vũ Minh Hoàng",
+        "first_in": "2025-08-20 09:41",
+        "last_out": "2025-08-20 21:32"
+    },
+    {
+        "employee_id": "CMC003637",
+        "email": "dtnle@cmc.com.vn",
+        "full_name": "ĐẶNG THỊ NHẬT LỆ",
+        "first_in": "2025-08-20 08:04",
+        "last_out": "2025-08-20 18:12"
+    },
+    {
+        "employee_id": "CMCI00197",
+        "email": "nbdat@cmc.com.vn",
+        "full_name": "NGUYỄN BÁ ĐẠT",
+        "first_in": "2025-08-20 08:50",
+        "last_out": "2025-08-20 17:54"
+    },
+    {
+        "employee_id": "",
+        "email": "htthanh8@cmc.com.vn",
+        "full_name": "HOÀNG TIẾN THÀNH",
+        "first_in": "2025-08-20 07:21",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "pnnha@cmc.com.vn",
+        "full_name": "PHẠM NGUYỄN NGÂN HÀ",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 21:08"
+    },
+    {
+        "employee_id": "",
+        "email": "nbthu.ts@cmc.com.vn",
+        "full_name": "NGUYỄN BẢO THƯ",
+        "first_in": "2025-08-20 14:13",
+        "last_out": "2025-08-20 17:00"
+    },
+    {
+        "employee_id": "",
+        "email": "nhphat1@cmc.com.vn",
+        "full_name": "NGUYỄN HỒNG PHÁT",
+        "first_in": "2025-08-20 14:09",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "",
+        "email": "lhtlinh@cmc.com.vn",
+        "full_name": "LÊ HOÀNG TÚ LINH",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 18:55"
+    },
+    {
+        "employee_id": "",
+        "email": "dtvu1@cmc.com.vn",
+        "full_name": "ĐỒNG THANH VŨ",
+        "first_in": "2025-08-20 11:08",
+        "last_out": "2025-08-20 12:21"
+    },
+    {
+        "employee_id": "",
+        "email": "vtathu1@cmc.com.vn",
+        "full_name": "VŨ THỊ ANH THƯ",
+        "first_in": "2025-08-20 08:35",
+        "last_out": "2025-08-20 17:46"
+    },
+    {
+        "employee_id": "",
+        "email": "ldtung1@cmc.com.vn",
+        "full_name": "LÊ ĐỨC TÙNG",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 18:24"
+    },
+    {
+        "employee_id": "",
+        "email": "dmtuan9@cmc.com.vn",
+        "full_name": "ĐÀO MINH TUẤN",
+        "first_in": "2025-08-20 08:26",
+        "last_out": "2025-08-20 18:32"
+    },
+    {
+        "employee_id": "",
+        "email": "cvtrai1@cmc.com.vn",
+        "full_name": "CHU VĂN TRAI",
+        "first_in": "2025-08-20 08:19",
+        "last_out": "2025-08-20 18:22"
+    },
+    {
+        "employee_id": "CMCI00243",
+        "email": "ndthuat@cmc.com.vn",
+        "full_name": "NGUYỄN DANH THUẬT",
+        "first_in": "2025-08-20 08:27",
+        "last_out": "2025-08-20 17:52"
+    },
+    {
+        "employee_id": "",
+        "email": "lcmkhoi@cmc.com.vn",
+        "full_name": "LÂM CHÂU MINH KHÔI",
+        "first_in": "2025-08-20 13:49",
+        "last_out": "2025-08-20 16:17"
+    },
+    {
+        "employee_id": "",
+        "email": "ptkien2@cmc.com.vn",
+        "full_name": "PHẠM TRUNG KIÊN",
+        "first_in": "2025-08-20 07:42",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "",
+        "email": "nntuan5@cmc.com.vn",
+        "full_name": "NGUYỄN NGỌC TUẤN",
+        "first_in": "2025-08-20 12:01",
+        "last_out": "2025-08-20 17:20"
+    },
+    {
+        "employee_id": "",
+        "email": "vthanh1@cmc.com.vn",
+        "full_name": "VÕ THỊ HỒNG ÁNH",
+        "first_in": "2025-08-20 09:15",
+        "last_out": "2025-08-20 22:19"
+    },
+    {
+        "employee_id": "CMC011113",
+        "email": "nttphuong4@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ THU PHƯƠNG",
+        "first_in": "2025-08-20 07:50",
+        "last_out": "2025-08-20 19:00"
+    },
+    {
+        "employee_id": "CMCI00202",
+        "email": "dvhoa@cmc.com.vn",
+        "full_name": "Đinh Văn Hoà",
+        "first_in": "2025-08-20 09:24",
+        "last_out": "2025-08-20 16:59"
+    },
+    {
+        "employee_id": "CMCI00249",
+        "email": "mtclai@cmc.com.vn",
+        "full_name": "MAI THỊ CẨM LAI",
+        "first_in": "2025-08-20 08:38",
+        "last_out": "2025-08-20 17:00"
+    },
+    {
+        "employee_id": "CMCI00204",
+        "email": "qthung@cmc.com.vn",
+        "full_name": "Quản Thị Hưng",
+        "first_in": "2025-08-20 07:49",
+        "last_out": "2025-08-20 18:05"
+    },
+    {
+        "employee_id": "",
+        "email": "ntmai5@cmc.com.vn",
+        "full_name": "NGUYỄN THÙY MAI",
+        "first_in": "2025-08-20 13:09",
+        "last_out": "2025-08-20 17:44"
+    },
+    {
+        "employee_id": "",
+        "email": "pthieu5@cmc.com.vn",
+        "full_name": "PHẠM TRUNG HIẾU",
+        "first_in": "2025-08-20 07:06",
+        "last_out": "2025-08-20 19:26"
+    },
+    {
+        "employee_id": "CMC008054",
+        "email": "nqhieu3@cmc.com.vn",
+        "full_name": "NGUYỄN QUANG HIẾU",
+        "first_in": "2025-08-20 08:46",
+        "last_out": "2025-08-20 18:17"
+    },
+    {
+        "employee_id": "CMC010250",
+        "email": "vhlanh@cmc.com.vn",
+        "full_name": "Vũ Hồ Lan Anh",
+        "first_in": "2025-08-20 08:16",
+        "last_out": "2025-08-20 18:12"
+    },
+    {
+        "employee_id": "CMCI00028",
+        "email": "lmhang1@cmc.com.vn",
+        "full_name": "LÊ MINH HẰNG",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 18:14"
+    },
+    {
+        "employee_id": "",
+        "email": "nttuong@cmc.com.vn",
+        "full_name": "NGUYỄN TIẾN TƯỞNG",
+        "first_in": "2025-08-20 08:02",
+        "last_out": "2025-08-20 17:55"
+    },
+    {
+        "employee_id": "CMCI00025",
+        "email": "tqviet5@cmc.com.vn",
+        "full_name": "TRẦN QUỐC VIỆT",
+        "first_in": "2025-08-20 07:54",
+        "last_out": "2025-08-20 20:28"
+    },
+    {
+        "employee_id": "CMC012286",
+        "email": "lvtu1@cmc.com.vn",
+        "full_name": "LÊ VĂN TÚ",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "nthoang5@cmc.com.vn",
+        "full_name": "NGÔ THANH HOÀNG",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "",
+        "email": "blson@cmc.com.vn",
+        "full_name": "BÙI LÊ SƠN",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 18:25"
+    },
+    {
+        "employee_id": "CMC011384",
+        "email": "nnhutthang@cmc.com.vn",
+        "full_name": "NGUYỄN NHỰT THẮNG",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:35"
+    },
+    {
+        "employee_id": "",
+        "email": "vhluan@cmc.com.vn",
+        "full_name": "VÕ HOÀNG LUÂN",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "",
+        "email": "ltminh2@cmc.com.vn",
+        "full_name": "LÊ THANH MINH",
+        "first_in": "2025-08-20 09:09",
+        "last_out": "2025-08-20 18:21"
+    },
+    {
+        "employee_id": "",
+        "email": "nmhuong2@cmc.com.vn",
+        "full_name": "NGUYỄN MAI HƯƠNG",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 16:22"
+    },
+    {
+        "employee_id": "CMC012462",
+        "email": "ptbthuy@cmc.com.vn",
+        "full_name": "PHẠM THỊ BÍCH THUỶ",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 19:02"
+    },
+    {
+        "employee_id": "",
+        "email": "tnlthuy@cmc.com.vn",
+        "full_name": "TRẦN NHƯ LÊ THỤY",
+        "first_in": "2025-08-20 08:04",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "ltkien4@cmc.com.vn",
+        "full_name": "LƯƠNG TRUNG KIÊN",
+        "first_in": "2025-08-20 07:53",
+        "last_out": "2025-08-20 17:16"
+    },
+    {
+        "employee_id": "",
+        "email": "hpqanh@cmc.com.vn",
+        "full_name": "HÀN PHẠM QUẾ ANH",
+        "first_in": "2025-08-20 08:28",
+        "last_out": "2025-08-20 15:36"
+    },
+    {
+        "employee_id": "CMC010591",
+        "email": "nttai1@cmc.com.vn",
+        "full_name": "NGUYỄN TIẾN TÀI",
+        "first_in": "2025-08-20 11:01",
+        "last_out": "2025-08-20 17:55"
+    },
+    {
+        "employee_id": "CMC009996",
+        "email": "lptkhoi@cmc.com.vn",
+        "full_name": "LÊ PHẠM THÀNH KHÔI",
+        "first_in": "2025-08-20 07:59",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "",
+        "email": "nhviet12@cmc.com.vn",
+        "full_name": "NGUYỄN HOÀNG VIỆT",
+        "first_in": "2025-08-20 07:53",
+        "last_out": "2025-08-20 17:56"
+    },
+    {
+        "employee_id": "",
+        "email": "ntbinh7@cmc.com.vn",
+        "full_name": "NGUYỄN TRỌNG BÌNH",
+        "first_in": "2025-08-20 08:27",
+        "last_out": "2025-08-20 08:40"
+    },
+    {
+        "employee_id": "",
+        "email": "dhduc4@cmc.com.vn",
+        "full_name": "ĐÀO HUY ĐỨC",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:33"
+    },
+    {
+        "employee_id": "CMC008962",
+        "email": "tddung@cmc.com.vn",
+        "full_name": "TRẦN ĐÌNH DŨNG",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "",
+        "email": "dknguyen@cmc.com.vn",
+        "full_name": "ĐÀO KHÔI NGUYÊN",
+        "first_in": "2025-08-20 07:57",
+        "last_out": "2025-08-20 17:48"
+    },
+    {
+        "employee_id": "",
+        "email": "tpthuy@cmc.com.vn",
+        "full_name": "TRẦN PHƯƠNG THUỶ",
+        "first_in": "2025-08-20 07:40",
+        "last_out": "2025-08-20 16:55"
+    },
+    {
+        "employee_id": "",
+        "email": "vhkhanh@cmc.com.vn",
+        "full_name": "VŨ HỒNG KHANH",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "btmai.ts@cmc.com.vn",
+        "full_name": "BÙI THỊ MAI",
+        "first_in": "2025-08-20 09:00",
+        "last_out": "2025-08-20 16:58"
+    },
+    {
+        "employee_id": "CMC008999",
+        "email": "nttnhan4@cmc.com.vn",
+        "full_name": "Ngô Thị Thanh Nhàn",
+        "first_in": "2025-08-20 07:54",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "",
+        "email": "vghan@cmc.com.vn",
+        "full_name": "VÕ GIA HÂN",
+        "first_in": "2025-08-20 08:12",
+        "last_out": "2025-08-20 17:32"
+    },
+    {
+        "employee_id": "CMCI00271",
+        "email": "pnbac@cmc.com.vn",
+        "full_name": "PHẠM NGỌC BẮC",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 21:12"
+    },
+    {
+        "employee_id": "",
+        "email": "dtcuong1@cmc.com.vn",
+        "full_name": "ĐẶNG THẾ CƯỜNG",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 15:48"
+    },
+    {
+        "employee_id": "CMC011327",
+        "email": "dbnhi@cmc.com.vn",
+        "full_name": "ĐÀM BẢO NHI",
+        "first_in": "2025-08-20 10:10",
+        "last_out": "2025-08-20 18:28"
+    },
+    {
+        "employee_id": "",
+        "email": "npdkhoa@cmc.com.vn",
+        "full_name": "NGUYỄN PHẠM ĐĂNG KHOA",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 17:42"
+    },
+    {
+        "employee_id": "",
+        "email": "tqtan@cmc.com.vn",
+        "full_name": "TÔN QUANG TẤN",
+        "first_in": "2025-08-20 10:30",
+        "last_out": "2025-08-20 17:36"
+    },
+    {
+        "employee_id": "",
+        "email": "tvtvy@cmc.com.vn",
+        "full_name": "TRẦN VŨ TRƯỜNG VY",
+        "first_in": "2025-08-20 07:59",
+        "last_out": "2025-08-20 15:31"
+    },
+    {
+        "employee_id": "",
+        "email": "tthanh@gmail.com",
+        "full_name": "TRẦN THỊ HẠNH",
+        "first_in": "2025-08-20 05:54",
+        "last_out": "2025-08-20 15:55"
+    },
+    {
+        "employee_id": "",
+        "email": "tvha@cmc.com.vn",
+        "full_name": "TRẦN VIỆT HÀ",
+        "first_in": "2025-08-20 11:10",
+        "last_out": "2025-08-20 17:15"
+    },
+    {
+        "employee_id": "",
+        "email": "vtthuy3@cmc.com.vn",
+        "full_name": "VŨ THU THUÝ",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "vcly@cmc.com.vn",
+        "full_name": "VÕ CẨM LY",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "dvha1@cmc.com.vn",
+        "full_name": "ĐỖ VIỆT HÀ",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:45"
+    },
+    {
+        "employee_id": "",
+        "email": "dnphu1@cmc.com.vn",
+        "full_name": "ĐOÀN NGỌC PHÚ",
+        "first_in": "2025-08-20 08:09",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "",
+        "email": "nguyenchien.09112003@gmail.com",
+        "full_name": "NGUYỄN VĂN CHIẾN",
+        "first_in": "2025-08-20 08:38",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "",
+        "email": "lamnguyen160603@gmail.com",
+        "full_name": "NGUYỄN THANH LÂM",
+        "first_in": "2025-08-20 08:30",
+        "last_out": "2025-08-20 16:09"
+    },
+    {
+        "employee_id": "",
+        "email": "ddkhanh1@cmc.com.vn",
+        "full_name": "ĐẶNG DUY KHÁNH",
+        "first_in": "2025-08-20 09:09",
+        "last_out": "2025-08-20 18:14"
+    },
+    {
+        "employee_id": "",
+        "email": "ldhuy2@cmc.com.vn",
+        "full_name": "LÊ ĐÌNH HUY",
+        "first_in": "2025-08-20 08:27",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "thduong@cmc.com.vn",
+        "full_name": "TRẦN HOÀI DƯƠNG",
+        "first_in": "2025-08-20 10:30",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "CMC003770",
+        "email": "dhan@cmc.com.vn",
+        "full_name": "DƯƠNG HOÀI ÂN",
+        "first_in": "2025-08-20 08:01",
+        "last_out": "2025-08-20 14:54"
+    },
+    {
+        "employee_id": "",
+        "email": "dxquynh@cmc.com.vn",
+        "full_name": "DƯƠNG XUÂN QUỲNH",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 21:35"
+    },
+    {
+        "employee_id": "",
+        "email": "vvhai2@cmc.com.vn",
+        "full_name": "VŨ VĂN HẢI",
+        "first_in": "2025-08-20 07:49",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "CMCI00225",
+        "email": "ntntuyet1@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ NGỌC TUYẾT",
+        "first_in": "2025-08-20 08:16",
+        "last_out": "2025-08-20 19:17"
+    },
+    {
+        "employee_id": "CMC002952",
+        "email": "qvtduong@cmc.com.vn",
+        "full_name": "QUÁCH VÕ TRÙNG DƯƠNG",
+        "first_in": "2025-08-20 08:11",
+        "last_out": "2025-08-20 15:16"
+    },
+    {
+        "employee_id": "HCM002",
+        "email": "tphung@cmc.com.vn",
+        "full_name": "TRẦN PHI HÙNG",
+        "first_in": "2025-08-20 08:30",
+        "last_out": "2025-08-20 12:37"
+    },
+    {
+        "employee_id": "",
+        "email": "dmvu1@cmc.com.vn",
+        "full_name": "ĐẶNG MINH VŨ",
+        "first_in": "2025-08-20 14:31",
+        "last_out": "2025-08-20 17:38"
+    },
+    {
+        "employee_id": "CMC002447",
+        "email": "ntmanh8@cmc.com.vn",
+        "full_name": "Nguyễn Tiến Mạnh",
+        "first_in": "2025-08-20 08:18",
+        "last_out": "2025-08-20 18:51"
+    },
+    {
+        "employee_id": "CMC012297",
+        "email": "pqnam1@cmc.com.vn",
+        "full_name": "Phan Quang Nam",
+        "first_in": "2025-08-20 09:42",
+        "last_out": "2025-08-20 15:15"
+    },
+    {
+        "employee_id": "",
+        "email": "pdqhung@cmc.com.vn",
+        "full_name": "PHẠM ĐÌNH QUỐC HƯNG",
+        "first_in": "2025-08-20 07:44",
+        "last_out": "2025-08-20 17:51"
+    },
+    {
+        "employee_id": "CMC011020",
+        "email": "htlan1@cmc.com.vn",
+        "full_name": "HỎA THỊ LAN",
+        "first_in": "2025-08-20 08:10",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "pthien6@cmc.com.vn",
+        "full_name": "PHẠM THẾ HIỂN",
+        "first_in": "2025-08-20 11:15",
+        "last_out": "2025-08-20 18:29"
+    },
+    {
+        "employee_id": "",
+        "email": "thanhchuc2210@gmail.com",
+        "full_name": "NGUYỄN THANH CHÚC",
+        "first_in": "2025-08-20 10:35",
+        "last_out": "2025-08-20 16:35"
+    },
+    {
+        "employee_id": "CMC011458",
+        "email": "tdhop1@cmc.com.vn",
+        "full_name": "Trần Đức Hợp",
+        "first_in": "2025-08-20 15:28",
+        "last_out": "2025-08-20 15:28"
+    },
+    {
+        "employee_id": "CMCI00238",
+        "email": "nvquyen4@cmc.com.vn",
+        "full_name": "Nguyễn Văn Quyền",
+        "first_in": "2025-08-20 10:12",
+        "last_out": "2025-08-20 19:09"
+    },
+    {
+        "employee_id": "",
+        "email": "vphoa@cmc.com.vn",
+        "full_name": "VŨ PHƯƠNG HOA",
+        "first_in": "2025-08-20 08:13",
+        "last_out": "2025-08-20 18:09"
+    },
+    {
+        "employee_id": "",
+        "email": "phkduy@cmc.com.vn",
+        "full_name": "PHẠM HỮU KHÁNH DUY",
+        "first_in": "2025-08-20 07:58",
+        "last_out": "2025-08-20 17:39"
+    },
+    {
+        "employee_id": "",
+        "email": "lvhieu4@cmc.com.vn",
+        "full_name": "LÊ VĨNH HIẾU",
+        "first_in": "2025-08-20 08:04",
+        "last_out": "2025-08-20 20:13"
+    },
+    {
+        "employee_id": "",
+        "email": "ttttuyen@cmc.com.vn",
+        "full_name": "TRẦN THỊ THANH TUYỀN",
+        "first_in": "2025-08-20 08:00",
+        "last_out": "2025-08-20 18:20"
+    },
+    {
+        "employee_id": "CMC010336",
+        "email": "nkhanhha@cmc.com.vn",
+        "full_name": "NGUYỄN KHÁNH HÀ",
+        "first_in": "2025-08-20 08:01",
+        "last_out": "2025-08-20 17:00"
+    },
+    {
+        "employee_id": "",
+        "email": "vhanh4@cmc.com.vn",
+        "full_name": "VŨ HOÀNG ANH",
+        "first_in": "2025-08-20 09:02",
+        "last_out": "2025-08-20 19:57"
+    },
+    {
+        "employee_id": "",
+        "email": "hkvy@cmc.com.vn",
+        "full_name": "HOÀNG KHÁNH VY",
+        "first_in": "2025-08-20 06:46",
+        "last_out": "2025-08-20 17:05"
+    },
+    {
+        "employee_id": "",
+        "email": "lttthu1@cmc.com.vn",
+        "full_name": "LÊ THỊ THANH THƯ",
+        "first_in": "2025-08-20 08:14",
+        "last_out": "2025-08-20 17:31"
+    },
+    {
+        "employee_id": "",
+        "email": "ttnga8@cmc.com.vn",
+        "full_name": "TRẦN THANH NGA",
+        "first_in": "2025-08-20 13:06",
+        "last_out": "2025-08-20 18:10"
+    },
+    {
+        "employee_id": "",
+        "email": "dqvinh3@cmc.com.vn",
+        "full_name": "ĐỖ QUANG VINH",
+        "first_in": "2025-08-20 08:28",
+        "last_out": "2025-08-20 16:03"
+    },
+    {
+        "employee_id": "",
+        "email": "nkvnam1@cmc.com.vn",
+        "full_name": "NGUYỄN KHÁNH VĨNH NAM",
+        "first_in": "2025-08-20 08:34",
+        "last_out": "2025-08-20 18:43"
+    },
+    {
+        "employee_id": "",
+        "email": "ltphuoc.ts@cmc.com.vn",
+        "full_name": "LÊ THẾ PHƯỚC",
+        "first_in": "2025-08-20 07:16",
+        "last_out": "2025-08-20 17:18"
+    },
+    {
+        "employee_id": "",
+        "email": "tddao@cmc.com.vn",
+        "full_name": "TẠ DUY ĐẠO",
+        "first_in": "2025-08-20 08:28",
+        "last_out": "2025-08-20 17:30"
+    },
+    {
+        "employee_id": "",
+        "email": "tdthang1@cmc.com.vn",
+        "full_name": "TRẦN ĐỨC THẮNG",
+        "first_in": "2025-08-20 15:16",
+        "last_out": "2025-08-20 17:16"
+    },
+    {
+        "employee_id": "CMCI00292",
+        "email": "ldtam@cmc.com.vn",
+        "full_name": "LÊ DIÊN TÂM",
+        "first_in": "2025-08-20 07:37",
+        "last_out": "2025-08-20 14:23"
+    },
+    {
+        "employee_id": "",
+        "email": "vtthang1@cmc.com.vn",
+        "full_name": "VŨ THỊ THU HẰNG",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:47"
+    },
+    {
+        "employee_id": "",
+        "email": "dvvuong1@cmc.com.vn",
+        "full_name": "DƯƠNNG VĂN VƯƠNG",
+        "first_in": "2025-08-20 08:27",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "CMC012115",
+        "email": "lvtrung1@cmc.com.vn",
+        "full_name": "LÃ VĂN TRUNG",
+        "first_in": "2025-08-20 07:20",
+        "last_out": "2025-08-20 12:06"
+    },
+    {
+        "employee_id": "",
+        "email": "dvqhuy@cmc.com.vn",
+        "full_name": "ĐOÀN VÕ QUANG HUY",
+        "first_in": "2025-08-20 14:09",
+        "last_out": "2025-08-20 19:35"
+    },
+    {
+        "employee_id": "",
+        "email": "ntanh52@cmc.com.vn",
+        "full_name": "NGUYỄN THẾ ANH",
+        "first_in": "2025-08-20 09:37",
+        "last_out": "2025-08-20 19:00"
+    },
+    {
+        "employee_id": "HCM007",
+        "email": "ntkquyen@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ KIM QUYÊN",
+        "first_in": "2025-08-20 08:15",
+        "last_out": "2025-08-20 17:34"
+    },
+    {
+        "employee_id": "",
+        "email": "pdanh3@cmc.com.vn",
+        "full_name": "PHẠM ĐỨC ANH",
+        "first_in": "2025-08-20 08:23",
+        "last_out": "2025-08-20 17:47"
+    },
+    {
+        "employee_id": "",
+        "email": "ndlam4@cmc.com.vn",
+        "full_name": "NGUYỄN ĐÌNH LÂM",
+        "first_in": "2025-08-20 08:08",
+        "last_out": "2025-08-20 17:42"
+    },
+    {
+        "employee_id": "CMC011303",
+        "email": "ntatho@cmc.com.vn",
+        "full_name": "NGUYỄN THỊ ÁI THƠ",
+        "first_in": "2025-08-20 13:33",
+        "last_out": "2025-08-20 18:06"
+    }
+]

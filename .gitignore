@@ -8,6 +8,10 @@ prompts/
 rule_0.js
 rule_1.js
 
+# airflow
+airflow.db
+simple_auth_manager_passwords.json.generated
+
 # env
 .env
 
@@ -23,6 +27,7 @@ uv.lock
 # build
 **/__pycache__
 **/dist
+**/build
 
 # editor
 **/.vscode

@@ -9,7 +9,7 @@ import os
 import time
 
 import logging
-from utils import process_daily_attendance
+from packages.airflow.dags.etl.utils import process_daily_attendance
 
 
 API_URL = "http://localhost:3978/api/airflow/data"

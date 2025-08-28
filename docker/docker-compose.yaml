@@ -72,20 +72,20 @@ services:
     #     # env_file:
     #     # - .env
 
-    bot:
-        build:
-            context: ../packages/bot
-            dockerfile: Dockerfile
-        container_name: bot
-        restart: no
-        networks:
-        - bot-network
-        ports:
-        - "3978:3978"
-        env_file:
-        - .env
-        extra_hosts:
-        - "host.docker.internal:host-gateway" 
+    # bot:
+    #     build:
+    #         context: ../packages/bot
+    #         dockerfile: Dockerfile
+    #     container_name: bot
+    #     restart: no
+    #     networks:
+    #     - bot-network
+    #     ports:
+    #     - "3978:3978"
+    #     env_file:
+    #     - .env
+    #     extra_hosts:
+    #     - "host.docker.internal:host-gateway" 
 
 networks:
     bot-network:

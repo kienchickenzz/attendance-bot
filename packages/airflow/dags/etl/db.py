@@ -6,7 +6,8 @@ from typing import Any, Dict, List, Optional
 
 from psycopg.rows import dict_row
 from psycopg_pool import AsyncConnectionPool
-from typing_extensions import LiteralString
+from psycopg import AsyncConnection
+from psycopg.abc import Query, Params
 
 logger = logging.getLogger(__name__)
 
@@ -80,8 +81,8 @@ class DbConnPool:
 
     async def execute_query(
         self,
-        query: LiteralString,
-        params: Optional[List[Any]] = None,
+        query: Query,
+        params: Optional[ Params ],
         readonly: bool = False,
     ) -> Optional[List[QueryResult]]:
         """
@@ -111,11 +112,15 @@ class DbConnPool:
                 )
                 
         except Exception as e:
-            logger.error(f"❌ Error executing query: {query[:100]}... - {e}")
+            logger.error( f"❌ Error executing query" )
             raise
 
     async def _execute_with_connection(
-        self, connection, query, params, force_readonly 
+        self, 
+        connection: AsyncConnection, 
+        query: Query, 
+        params: Optional[ Params ], 
+        force_readonly : bool
     ) -> Optional[ List[ QueryResult ] ]:
         """Execute query with the given connection from the pool."""
         transaction_started = False

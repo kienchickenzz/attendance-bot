@@ -8,7 +8,8 @@ let currentFileIndex = 0
 
 const getFilteredData = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const files = ['filtered_2025-08-20.json', 'filtered_2025-08-21.json']
+        // const files = ['filtered_2025-08-20.json', 'filtered_2025-08-21.json']
+        const files = [ 'data.json' ]
         const currentFile = files[currentFileIndex]
         const filePath = path.join(__dirname, currentFile)
         

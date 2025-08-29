@@ -1,7 +1,7 @@
 import asyncio
 from datetime import datetime
 
-from etl.db import DbConnPool
+from db import DbConnPool
 
 async def main():
     connection_url = "postgresql://postgres:Pa55w.rd@localhost:5432/attendance"

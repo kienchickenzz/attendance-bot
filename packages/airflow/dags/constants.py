@@ -50,3 +50,5 @@ RULES = [
         "deduct": lambda free: 8
     }
 ]
+
+FREE_PER_MONTH = 5

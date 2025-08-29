@@ -1,7 +1,6 @@
 import asyncio
-from datetime import datetime
 
-from etl.db import DbConnPool
+from db import DbConnPool
 
 async def main():
     connection_url = "postgresql://postgres:Pa55w.rd@localhost:5432/attendance"
@@ -9,11 +8,11 @@ async def main():
 
     employee_id = 'ndkien.ts@cmc.com.vn'
     
-    # Dữ liệu seed cho tháng 7, 8, 9 năm 2024
+    # Dữ liệu seed cho tháng 7, 8, 9 năm 2025
     monthly_data = [
-        ('2024-07-01', 0),  # Tháng 7
-        ('2024-08-01', 0),  # Tháng 8
-        ('2024-09-01', 0),  # Tháng 9
+        ('2025-07-01', 0 ),  # Tháng 7
+        ('2025-08-01', 0 ),  # Tháng 8
+        ('2025-09-01', 0 ),  # Tháng 9
     ]
 
     seed_data_sql = """

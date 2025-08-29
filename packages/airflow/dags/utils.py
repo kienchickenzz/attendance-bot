@@ -37,6 +37,7 @@ def process_daily_attendance( daily_record: dict, free_allowance: int = 0 ) -> d
             - afternoon_violation: Số phút vi phạm buổi chiều
             - violation_minutes: Tổng số phút vi phạm
             - deduction_hours: Số giờ bị khấu trừ
+            - initial_free_allowance: Số lần miễn trừ lúc đầu
             - free_allowance: Số lần miễn trừ còn lại
             - is_late_morning: Có đi muộn buổi sáng không
             - is_early_afternoon: Có về sớm buổi chiều không
@@ -55,6 +56,7 @@ def process_daily_attendance( daily_record: dict, free_allowance: int = 0 ) -> d
             "afternoon_violation": 0,
             "violation_minutes": 0,
             "deduction_hours": 0,
+            "initial_free_allowance": free_allowance,
             "free_allowance": free_allowance,
             "is_late_morning": False,
             "is_early_afternoon": False
@@ -94,6 +96,7 @@ def process_daily_attendance( daily_record: dict, free_allowance: int = 0 ) -> d
             "afternoon_violation": afternoon_violation,
             "violation_minutes": violation_minutes,
             "deduction_hours": 0,
+            "initial_free_allowance": free_allowance,
             "free_allowance": free_allowance,
             "is_late_morning": is_late_morning,
             "is_early_afternoon": is_early_afternoon
@@ -112,6 +115,7 @@ def process_daily_attendance( daily_record: dict, free_allowance: int = 0 ) -> d
         "afternoon_violation": afternoon_violation,
         "violation_minutes": violation_minutes,
         "deduction_hours": deduction_hours,
+        "initial_free_allowance": free_allowance,
         "free_allowance": updated_free_allowance,
         "is_late_morning": is_late_morning,
         "is_early_afternoon": is_early_afternoon

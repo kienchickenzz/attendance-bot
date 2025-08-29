@@ -3,14 +3,14 @@ from airflow import DAG
 
 import requests
 from datetime import datetime, date
-import subprocess
 import os
-import time
 import logging
 import asyncio
-import json
-from typing import Any
 from collections import defaultdict
+import psycopg2
+from psycopg2.extras import DictCursor
+from psycopg2.extensions import connection
+
 
 import sys
 import os
@@ -20,12 +20,12 @@ if current_dir not in sys.path:
     sys.path.append( current_dir )
 
 
-from db import DbConnPool
 from utils import process_daily_attendance
 from constants import SHIFT_CONFIG, FREE_PER_MONTH
 
 
 API_URL = "http://localhost:3978/api/airflow/data"
+CONNECTION_URL = "postgresql://postgres:Pa55w.rd@localhost:5432/attendance"
 FREE_PER_MONTH = 5
 
 
@@ -56,45 +56,58 @@ def _call_api() -> list[ dict[ str, str ] ]:
         logging.info(f"✗ Error: {e}")
         raise e
     
-async def _get_employee_email( db_pool: DbConnPool, employee_id: str ) -> str | None:
+async def _get_employee_email( conn: connection, employee_id: str ) -> str | None:
+
+    cur = conn.cursor( cursor_factory=DictCursor )
 
     query = "SELECT email FROM employees WHERE employee_id = %s"
     params = [ employee_id ]
-    result = await db_pool.execute_query( query, params )
-    if not result:
+    cur.execute( query, params )
+    rows = cur.fetchall()
+    if not rows:
         return None
-    return result[ 0 ].cells[ "email" ]
+    return rows[ 0 ][ "email" ]
 
 async def _get_existing_data(
-    db_pool: DbConnPool, employee_ids: list[ str ], target_date: date
+    conn: connection, 
+    employee_ids: list[ str ], 
+    target_date: date
 ) -> dict[ str, dict ]:
+    
+    cur = conn.cursor( cursor_factory=DictCursor )
     
     if not employee_ids:
         return {}
     
-    query = """SELECT employee_id, first_in, last_out 
-        FROM attendance_raw 
-        WHERE employee_id = ANY(%s) AND date = %s
-    """
-    params = [ employee_ids, target_date ]
-    result = await db_pool.execute_query( query, params )
-    if not result:
-        return {}
-    
-    existing_data = {}
-    for row in result:
-        cells = row.cells
-        existing_data[ cells[ "employee_id" ] ] = {
-            "first_in": cells[ "first_in" ],
-            "last_out": cells[ "last_out" ]
-        }
+    try:
+        query = """SELECT employee_id, first_in, last_out 
+            FROM attendance_raw 
+            WHERE employee_id = ANY(%s) AND date = %s
+        """
+        params = [ employee_ids, target_date ]
+        cur.execute( query, params )
+        rows = cur.fetchall()
+        if not rows:
+            return {}
+        
+        existing_data = {}
+        for row in rows:
+            existing_data[ row[ "employee_id" ] ] = {
+                "first_in": row[ "first_in" ],
+                "last_out": row[ "last_out" ]
+            }
 
-    return existing_data
+        return existing_data
+    finally:
+        cur.close()
     
 async def _get_employee_ids_by_emails(
-    db_pool: DbConnPool, 
+    conn: connection, 
     emails: list[str]
 ) -> dict[str, str]:
+    
+    cur = conn.cursor( cursor_factory=DictCursor )
+
     if not emails:
         return {}
 
@@ -105,36 +118,40 @@ async def _get_employee_ids_by_emails(
     """
     params = [emails]
 
-    result = await db_pool.execute_query(query, params)
-    if not result:
+    cur.execute( query, params )
+    rows = cur.fetchall()
+    if not rows:
         return {}
 
     email_to_id = {}
-    row = result[ 0 ].cells
+    row = rows[ 0 ]
     email_to_id[ row[ "email" ] ] = row[ "employee_id" ]
 
     return email_to_id
 
 async def _get_leave_info(
-    db_pool: DbConnPool,
+    conn: connection,
     employee_id: str,
     target_date: date
 ) -> tuple[ bool, bool, str ]:
+    
+    cur = conn.cursor( cursor_factory=DictCursor )
     
     leave_query = """SELECT time_type, leave_reason 
 FROM leaves 
 WHERE employee_id = %s AND date = %s
 """
-    result = await db_pool.execute_query(
+    cur.execute(
         leave_query, [employee_id, target_date]
     )
+    rows = cur.fetchall()
 
     is_leave_morning = False
     is_leave_afternoon = False
     shift_type = "normal"
 
-    if result:
-        row = result[ 0 ].cells
+    if rows:
+        row = rows[ 0 ]
         time_type = row[ "time_type" ]
         if time_type == "fullday":
             shift_type = "leave_full_day"
@@ -150,10 +167,12 @@ WHERE employee_id = %s AND date = %s
     return is_leave_morning, is_leave_afternoon, shift_type
 
 async def _update_free_allowance_usage(
-    db_pool: DbConnPool,
+    conn: connection,
     employee_id: str,
     year_month: date
 ) -> None:
+    
+    cur = conn.cursor( cursor_factory=DictCursor )
     
     update_query = """
         UPDATE monthly_free_usage 
@@ -161,18 +180,20 @@ async def _update_free_allowance_usage(
         WHERE employee_id = %s AND year_month = %s
     """
     try:
-        await db_pool.execute_query( update_query, [ employee_id, year_month ], readonly=False )
+        cur.execute( update_query, [ employee_id, year_month ] )
         print(f"✅ Cập nhật used_count +1 cho employee {employee_id} tháng {year_month}")
     except Exception as e:
         print( f"❌ Error: { e }" )
         raise
 
 async def _get_free_allowance(
-    db_pool: DbConnPool,
+    conn: connection,
     employee_id: str,
     target_date: date,
     free_per_month: int
 ) -> int:
+    
+    cur = conn.cursor( cursor_factory=DictCursor )
     
     year_month = target_date.replace( day=1 ) # First day of month
     
@@ -181,17 +202,18 @@ async def _get_free_allowance(
         FROM monthly_free_usage 
         WHERE employee_id = %s AND year_month = %s
     """
-    result = await db_pool.execute_query( free_query, [ employee_id, year_month ] )
+    cur.execute( free_query, [ employee_id, year_month ] )
+    rows = cur.fetchall()
 
     used_count = 0
-    if result:
-        used_count = result[ 0 ].cells[ "used_count" ]
+    if rows:
+        used_count = rows[ 0 ][ "used_count" ]
 
     free_allowance = max( 0, free_per_month - used_count )
     return free_allowance
 
 async def _upsert_data(
-    db_pool: DbConnPool,
+    conn: connection,
     attendance_info: tuple[ str, datetime, datetime, datetime ]
 ):
     employee_id, target_date, new_first_in, new_last_out = attendance_info
@@ -200,12 +222,12 @@ async def _upsert_data(
             f"'first_in': {new_first_in}, 'last_out': {new_last_out}}}")
     
     is_leave_morning, is_leave_afternoon, shift_type = await _get_leave_info(
-        db_pool, employee_id, target_date
+        conn, employee_id, target_date
     )
     
     # Lấy số lần miễn trừ còn lại trong tháng
     free_allowance = await _get_free_allowance(
-        db_pool, employee_id, target_date, FREE_PER_MONTH
+        conn, employee_id, target_date, FREE_PER_MONTH
     )
     year_month = target_date.replace( day=1 )  # First day of month
     
@@ -230,7 +252,7 @@ async def _upsert_data(
     
     if initial_free_allowance != final_free_allowance:
         logging.info( f"🔄 Free allowance used: { initial_free_allowance } -> { final_free_allowance }" )
-        await _update_free_allowance_usage( db_pool, employee_id, year_month )
+        await _update_free_allowance_usage( conn, employee_id, year_month )
     
     # Insert/Update attendance table with processed results
     attendance_upsert_query = """
@@ -280,11 +302,8 @@ async def _upsert_data(
         "v1.0"                      # business_rules_version (TODO: get actual rule version)
     ]
     
-    await db_pool.execute_query(
-        attendance_upsert_query,
-        attendance_params,
-        readonly=False
-    )
+    cur = conn.cursor( cursor_factory=DictCursor )
+    cur.execute( attendance_upsert_query, attendance_params )
     logging.info(f"✅ Upsert attendance cho employee {employee_id} ngày {target_date}")
     
     # Also update attendance_raw table
@@ -301,19 +320,16 @@ async def _upsert_data(
             process_attempts = attendance_raw.process_attempts + 1
     """
     
-    await db_pool.execute_query(
+    cur.execute(
         raw_upsert_query,
-        [ employee_id, target_date, new_first_in, new_last_out, datetime.now() ],
-        readonly=False
+        [ employee_id, target_date, new_first_in, new_last_out, datetime.now() ]
     )
     logging.info( f"✅ Upsert attendance_raw cho employee { employee_id } ngày { target_date }" )
 
 async def upsert_attendance_data_async():
-    connection_url = "postgresql://postgres:Pa55w.rd@localhost:5432/attendance"
-    db_pool = DbConnPool()
+    conn = psycopg2.connect( CONNECTION_URL )
 
     try:
-        await db_pool.connect( connection_url )
         logging.info( "✅ Kết nối thành công!" )
 
         raw_data = _call_api()
@@ -330,7 +346,7 @@ async def upsert_attendance_data_async():
 
             # Lấy danh sách email trong ngày này
             emails = [ r[ "email" ] for r in records if r.get( "email" ) ]
-            email_to_id = await _get_employee_ids_by_emails( db_pool, emails )
+            email_to_id = await _get_employee_ids_by_emails( conn, emails )
             employee_ids = list( email_to_id.values() )
 
             if not employee_ids:
@@ -338,7 +354,7 @@ async def upsert_attendance_data_async():
                 continue
 
             # Lấy dữ liệu cũ trong DB cho ngày này
-            existing_data_map = await _get_existing_data( db_pool, employee_ids, target_date )
+            existing_data_map = await _get_existing_data( conn, employee_ids, target_date )
 
             for record in records: # chỉ duyệt record của ngày hiện tại
                 email = record[ "email" ]
@@ -369,7 +385,7 @@ async def upsert_attendance_data_async():
 
                 if needs_upsert:
                     attendance_data = ( employee_id, target_date, new_first_in, new_last_out )
-                    await _upsert_data( db_pool, attendance_data )
+                    await _upsert_data( conn, attendance_data )
 
 
     except Exception as e:

@@ -1,0 +1,50 @@
+sequenceDiagram
+    participant API as API Server
+    participant PS as Python Server
+    participant PG as PostgreSQL Database
+    
+    Note over API, PG: Data Pipeline Flow
+    
+    %% Bước 1: Lấy dữ liệu từ API
+    PS->>API: Request data
+    API-->>PS: Return data (with dates yyyy-mm-dd, user ids/emails)
+    
+    Note over PS: Extract all dates from API response
+    
+    %% Bước 2: Xử lý từng ngày
+    loop For each date
+        Note over PS, PG: Process data for each date
+        
+        %% Bước 2.1: Query bảng raw để so sánh
+        PS->>PG: Query raw table (filter by user ids/emails + date)
+        PG-->>PS: Return raw data
+        
+        Note over PS: Compare API data vs Raw table data
+        
+        alt Data has changes
+            Note over PS, PG: Data changed - need to recalculate
+            
+            %% Bước 2.2: Query bảng leaves và free
+            PS->>PG: Query leaves table
+            PG-->>PS: Return leaves data
+            
+            PS->>PG: Query free table  
+            PG-->>PS: Return free data
+            
+            Note over PS: Apply business logic to calculate metrics<br/>using leaves + free data
+            
+            %% Bước 2.3: Cập nhật dữ liệu
+            PS->>PG: Update main table with calculated metrics
+            PG-->>PS: Confirm main table update
+            
+            alt Need to update free table
+                PS->>PG: Update free table (if needed)
+                PG-->>PS: Confirm free table update
+            end
+            
+        else No changes
+            Note over PS: Skip processing - no changes detected
+        end
+    end
+    
+    Note over PS, PG: Pipeline completed for all dates

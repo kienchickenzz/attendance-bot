@@ -1,13 +1,13 @@
 sequenceDiagram
+    autonumber
+
     participant API as API Server
     participant PS as Python Server
     participant PG as PostgreSQL Database
     
-    Note over API, PG: Data Pipeline Flow
-    
     %% Bước 1: Lấy dữ liệu từ API
     PS->>API: Request data
-    API-->>PS: Return data (with dates yyyy-mm-dd, user ids/emails)
+    API-->>PS: Return data
     
     Note over PS: Extract all dates from API response
     

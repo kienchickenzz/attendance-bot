@@ -96,6 +96,8 @@ CREATE TABLE attendance (
     shift_start TIME,
     shift_end TIME,
     late_minutes INTEGER DEFAULT 0,
+    early_minutes INTEGER DEFAULT 0,
+    total_violation_minutes INTEGER DEFAULT 0,
     penalty_hours DECIMAL( 3,1 ) DEFAULT 0,
     
     -- Flags

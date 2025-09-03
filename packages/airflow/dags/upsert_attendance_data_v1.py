@@ -1,5 +1,6 @@
 from airflow.providers.standard.operators.python import PythonOperator
 from airflow import DAG
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 import requests
 from datetime import datetime, date
@@ -25,6 +26,10 @@ from utils import process_daily_attendance
 from constants import SHIFT_CONFIG, FREE_PER_MONTH
 
 
+# ----------
+# CONFIGURATION
+# ----------
+
 API_URL = "http://localhost:3978/api/airflow/data"
 CONNECTION_URL = "postgresql://postgres:Pa55w.rd@localhost:5432/attendance"
 FREE_PER_MONTH = 5
@@ -37,23 +42,43 @@ def _call_api() -> list[ dict[ str, str ] ]:
         response = requests.post(
             API_URL,
             timeout=30,
-            headers={'Content-Type': 'application/json'}
+            headers={ 'Content-Type': 'application/json' }
         )
         
         # Check if request was successful
         response.raise_for_status()
         logging.info( f"✅ API call successful!" )
         
-        # Try to parse JSON response
+        # Parse and process JSON response
+        # TODO: Add comments mô tả về định dạng dữ liệu sẽ áp dụng transform
         try:
             data = response.json()
-            return data[ 'data' ]
+            events = data[ 'data' ][ 'return_events' ]
+
+            grouped = defaultdict( lambda: defaultdict( list ) )
+
+            for ev in events:
+                t = datetime.strptime( ev[ "time" ], "%Y-%m-%d %H:%M" )
+                date_str = t.strftime( "%Y-%m-%d" )
+                grouped[ date_str ][ ev[ "email" ] ].append( t )
+
+            result = []
+            for date_str, emails in grouped.items():
+                for email, times in emails.items():
+                    result.append( {
+                        "date": date_str,
+                        "email": email,
+                        "first_in": min( times ).strftime("%Y-%m-%d %H:%M"),
+                        "last_out": max( times ).strftime("%Y-%m-%d %H:%M")
+                    } )
+
+            return result
         except ValueError as e:
-            logging.info( f"✗ Error: { e }" )
+            logging.info( f"❌ Error: { e }" )
             raise e
             
     except Exception as e:
-        logging.info(f"✗ Error: {e}")
+        logging.info(f"❌ Error: {e}")
         raise e
 
 async def _get_existing_data(
@@ -296,11 +321,14 @@ async def _batch_upsert_data(
         cur.close()
 
 async def upsert_attendance_data_async():
-    conn = psycopg2.connect( CONNECTION_URL )
+    # conn = psycopg2.connect( CONNECTION_URL )
+    logging.info( "✅ Kết nối thành công!" )
+
+    pg = PostgresHook( postgres_conn_id="attendance" )
+    conn = pg.get_conn()
 
     try:
-        logging.info( "✅ Kết nối thành công!" )
-
+        # TODO: Add comments mô tả về định dạng dữ liệu trả về từ API
         raw_data = _call_api()
 
         # Gom record theo ngày
@@ -443,7 +471,7 @@ async def upsert_attendance_data_async():
                 await _batch_upsert_data( conn, batch_data, target_date )
 
     except Exception as e:
-        logging.info( f"✗ Failed to get attendance data: { e }" )
+        logging.info( f"❌ Failed to get attendance data: { e }" )
         raise e
     finally:
         conn.close()

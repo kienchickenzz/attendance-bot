@@ -8,6 +8,7 @@ dependencies = [
     "apache-airflow==3.0.4",
     "psycopg[binary,pool]",
     "psycopg2-binary",
+    "apache-airflow-providers-postgres>=6.2.3",
 ]
 
 [tool.uv]

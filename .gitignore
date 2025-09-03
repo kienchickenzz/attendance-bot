@@ -39,3 +39,6 @@ uv.lock
 .localConfigs.playground
 .localConfigs
 **/*.zip
+
+# data
+**/sample-data

@@ -10,19 +10,40 @@ const filePath = '../data.json'
 
 function _getRawData( filePath, fullName, email ) {
     const rawData = fs.readFileSync( filePath, 'utf-8' )
-    const employees = JSON.parse( rawData )
+    const jsonData = JSON.parse( rawData )
 
-    const filteredEmployees = employees.filter( emp =>
-        emp.full_name === fullName && emp.email === email
-    )
+    const events = jsonData[ 'return_events' ].filter( ev => ev.email === email )
 
-    return filteredEmployees.map( emp => ( {
-        date: emp.first_in ? emp.first_in.split( ' ' )[ 0 ] : null,
-        checkinTime: emp.first_in ? emp.first_in.split( ' ' )[ 1 ] : null,
-        checkoutTime: emp.last_out ? emp.last_out.split( ' ' )[ 1 ] : null,
-        leaveMorning: false,
-        leaveAfternoon: false
-    } ) )
+    const groupedByDate = {}
+    events.forEach( ev => {
+        const [ date, time ] = ev.time.split( ' ' )
+        if ( !groupedByDate[ date ] ) {
+            groupedByDate[ date ] = []
+        }
+        groupedByDate[ date ].push( time )
+    } )
+
+    return Object.entries( groupedByDate ).map( ( [ date, times ] ) => {
+        times.sort( ( a, b ) => a.localeCompare( b ) )
+
+        let checkinTime = null
+        let checkoutTime = null
+
+        if ( times.length > 0 ) {
+            checkinTime = times[ 0 ] // thời điểm đầu tiên trong ngày
+        }
+        if ( times.length > 1 ) {
+            checkoutTime = times[ times.length - 1 ] // thời điểm cuối cùng trong ngày
+        }
+
+        return {
+            date,
+            checkinTime,
+            checkoutTime,
+            leaveMorning: false,
+            leaveAfternoon: false
+        }
+    } )
 }
 
 async function initializeDatabase() {

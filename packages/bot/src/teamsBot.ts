@@ -1,30 +1,23 @@
 import { MemoryStorage } from "botbuilder"
 import { Application } from "@microsoft/teams-ai"
 
-import { FlowiseCommandHandler } from "./commands/flowiseCommandHandler"
 import { ConductifyCommandHandler } from "./commands/conductifyCommandHandler"
 
-// Define storage and application
-// const storage = new MemoryStorage()
-// export const app = new Application( {
-//   storage,
-// } )
-
-const flowiseCommandHandler = new FlowiseCommandHandler()
 const conductifyCommandHandler = new ConductifyCommandHandler()
 
-// app.message( /.*/, async ( context, state ) => {
-//     // const reply = await flowiseCommandHandler.handleCommandReceived( context, state )
-//     const reply = await conductifyCommandHandler.handleCommandReceived( context )
-//     await context.sendActivity( reply )
-// } )
+// Define storage and expose Application from teams-ai. We'll delegate incoming
+// messages to an instance of the TeamsBot (which keeps your TeamsActivityHandler logic).
+const storage = new MemoryStorage()
+export const app = new Application( {
+    storage,
+} )
 
 import {
-  TeamsActivityHandler,
-  TurnContext
-} from "botbuilder";
+    TeamsActivityHandler,
+    TurnContext
+} from "botbuilder"
 
-export class TeamsBot extends TeamsActivityHandler {
+class TeamsBot extends TeamsActivityHandler {
     constructor() {
         super()
 
@@ -71,3 +64,13 @@ Ví dụ, anh/chị có thể hỏi:
         } )
     }
 }
+
+// Instantiate the TeamsActivityHandler-based bot and make the teams-ai
+// Application route messages to it so the Teams client will get the assistant
+// experience (bubble) while your existing handler logic stays intact.
+const teamsBot = new TeamsBot()
+
+app.message( /.*/, async ( context, state ) => {
+    // delegate handling to existing TeamsActivityHandler implementation
+    await teamsBot.run( context )
+} )

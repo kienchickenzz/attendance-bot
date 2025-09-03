@@ -28,6 +28,7 @@ uv.lock
 # build
 **/__pycache__
 **/dist
+**/build
 
 # editor
 **/.vscode
@@ -39,3 +40,7 @@ uv.lock
 .localConfigs.playground
 .localConfigs
 **/*.zip
+
+# airflow
+airflow.db
+simple_auth_manager_passwords.json.generated

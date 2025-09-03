@@ -1,75 +1,54 @@
 import { DataSource } from 'typeorm'
-import { SearchTimeRequest, SearchTimeResponse, TimeData, TimePeriod, SearchLateRequest, SearchLateResponse, LateData, SearchAttendanceRequest, SearchAttendanceResponse, AttendanceData } from '../../Interface'
+import { 
+    SearchTimeRequest, TimeData, TimePeriod, SearchLateRequest, LateData, SearchAttendanceRequest, 
+    AttendanceData 
+} from '../../Interface'
 import logger from '../../utils/logger'
 import { getRunningExpressApp } from '../../utils/getRunningExpressApp'
 import { InternalError } from '../../errors/internal_error'
 import { StatusCodes } from 'http-status-codes'
 
-const searchTimeService = async ( request: SearchTimeRequest ): Promise< SearchTimeResponse > => {
+const searchTimeService = async ( request: SearchTimeRequest ) => {
     try {
         const appServer = getRunningExpressApp()
         const dataSource: DataSource = appServer.AppDataSource
-        
-        // Build dynamic query conditions
+
+        const paramValues: any[] = [ request.user_email ] // $1
+
         const dateConditions: string[] = []
-        const queryParams: Record< string, any > = { user_email: request.user_email }
-
-        request.time_query.forEach( ( dateRange: TimePeriod, index: number ) => {
-            const startDate = dateRange.start_date
-            const endDate = dateRange.end_date
-
-            if ( !startDate || !endDate ) {
-                throw new InternalError( 
-                    StatusCodes.INTERNAL_SERVER_ERROR,
-                    `Date range ${ index } missing start_date or end_date` 
-                )
+        
+        request.time_query.forEach((dateRange, index) => {
+            if (!dateRange.start_date || !dateRange.end_date) {
+                throw new InternalError(StatusCodes.INTERNAL_SERVER_ERROR, `Date range ${index} missing start_date or end_date`)
             }
+            const startPlaceholder = 2 + index * 2   // $2, $4, ...
+            const endPlaceholder = 3 + index * 2     // $3, $5, ...
+            dateConditions.push(`(a.date >= $${startPlaceholder} AND a.date <= $${endPlaceholder})`)
+            paramValues.push(`${dateRange.start_date}`, `${dateRange.end_date}`)
+        })
 
-            // Create unique parameter names for each range
-            const startParam = `start_datetime_${ index }`
-            const endParam = `end_datetime_${ index }`
+        let whereClause = dateConditions.length ? dateConditions.join(' OR ') : 'TRUE'
 
-            queryParams[ startParam ] = startDate
-            queryParams[ endParam ] = endDate
-
-            const condition = `(date >= $${ Object.keys( queryParams ).length - 1 } AND date <= $${ Object.keys( queryParams ).length })`
-            logger.debug( condition )
-            dateConditions.push( condition )
-        } )
-
-        // Build the complete SQL query
-        const whereClause = dateConditions.join( ' OR ' )
         const sqlQuery = `
-            SELECT 
-                TO_CHAR(date, 'YYYY-MM-DD') as date,
-                checkin_time,
-                checkout_time
-            FROM employee_attendance 
-            WHERE 
-                user_email = $1
-                AND (${ whereClause })
-            ORDER BY date ASC
+        SELECT
+            TO_CHAR(a.date, 'YYYY-MM-DD') as date,
+            TO_CHAR(a.raw_check_in, 'HH24:MI') as raw_check_in,
+            TO_CHAR(a.raw_check_out, 'HH24:MI') as raw_check_out
+        FROM attendance a
+        JOIN employees e ON a.employee_id = e.employee_id
+        WHERE
+            e.email = $1
+            AND (${ whereClause })
+        ORDER BY a.date ASC
         `
-
-        // Convert queryParams to array in correct order
-        const paramValues = [ request.user_email ]
-        request.time_query.forEach( ( dateRange: TimePeriod, index: number) => {
-            const startDatetime = `${ dateRange.start_date }`
-            const endDatetime = `${ dateRange.end_date }`
-            paramValues.push( startDatetime, endDatetime )
-        } )
-
-        logger.info( `Executing search_time query for user: ${ request.user_email }` )
-        logger.debug( `SQL Query: ${ sqlQuery }` )
-        logger.debug( `Parameters: ${ JSON.stringify( paramValues ) }` )
 
         const rawRecords = await dataSource.query( sqlQuery, paramValues )
 
         const timeDataList: TimeData[] = rawRecords.map( ( record: any ) => {
             return {
                 date: record.date,
-                checkin_time: record.checkin_time,
-                checkout_time: record.checkout_time,
+                checkin_time: record.raw_check_in,
+                checkout_time: record.raw_check_out,
             }
         } )
 
@@ -85,56 +64,39 @@ const searchTimeService = async ( request: SearchTimeRequest ): Promise< SearchT
     }
 }
 
-const searchViolationService = async ( request: SearchLateRequest ): Promise< SearchLateResponse > => {
+const searchViolationService = async ( request: SearchLateRequest ) => {
     try {
         const appServer = getRunningExpressApp()
         const dataSource: DataSource = appServer.AppDataSource
 
-        // Build dynamic query conditions (same logic as searchTime)
+        const paramValues: any[] = [ request.user_email ] // $1
+
         const dateConditions: string[] = []
-        const queryParams: Record< string, any > = { user_email: request.user_email }
-
-        request.time_query.forEach( ( dateRange: TimePeriod, index: number ) => {
-            const startDate = dateRange.start_date
-            const endDate = dateRange.end_date
-
-            if ( !startDate || !endDate ) {
-                throw new Error( `Date range ${ index } missing start_date or end_date` )
+        
+        request.time_query.forEach((dateRange, index) => {
+            if (!dateRange.start_date || !dateRange.end_date) {
+                throw new InternalError(StatusCodes.INTERNAL_SERVER_ERROR, `Date range ${index} missing start_date or end_date`)
             }
+            const startPlaceholder = 2 + index * 2   // $2, $4, ...
+            const endPlaceholder = 3 + index * 2     // $3, $5, ...
+            dateConditions.push(`(a.date >= $${startPlaceholder} AND a.date <= $${endPlaceholder})`)
+            paramValues.push(`${dateRange.start_date}`, `${dateRange.end_date}`)
+        })
 
-            // Create unique parameter names for each range
-            const startParam = `start_datetime_${ index }`
-            const endParam = `end_datetime_${ index }`
+        let whereClause = dateConditions.length ? dateConditions.join(' OR ') : 'TRUE'
 
-            queryParams[ startParam ] = startDate
-            queryParams[ endParam ] = endDate
-
-            const condition = `(date >= $${ Object.keys( queryParams ).length - 1 } AND date <= $${ Object.keys( queryParams ).length })`
-            dateConditions.push( condition )
-        } )
-
-        const whereClause = dateConditions.join(' OR ')
         const sqlQuery = `
-            SELECT 
-                TO_CHAR(date, 'YYYY-MM-DD') as date,
-                checkin_violation,
-                checkout_violation,
-                total_violation,
-                deduction_hours
-            FROM employee_attendance 
-            WHERE 
-                user_email = $1
-                AND (${ whereClause })
-            ORDER BY date ASC
+        SELECT
+            TO_CHAR(a.date, 'YYYY-MM-DD') as date,
+            a.late_minutes as checkin_violation,
+            a.penalty_hours as deduction_hours 
+        FROM attendance a
+        JOIN employees e ON a.employee_id = e.employee_id
+        WHERE
+            e.email = $1
+            AND (${ whereClause })
+        ORDER BY a.date ASC
         `
-
-        // Convert queryParams to array in correct order
-        const paramValues = [ request.user_email ]
-        request.time_query.forEach( ( dateRange: TimePeriod, index: number ) => {
-            const startDatetime = `${ dateRange.start_date }`
-            const endDatetime = `${ dateRange.end_date }`
-            paramValues.push( startDatetime, endDatetime )
-        } )
 
         logger.info( `Executing search_late query for user: ${ request.user_email }` )
         logger.debug( `SQL Query: ${ sqlQuery }` )
@@ -164,58 +126,42 @@ const searchViolationService = async ( request: SearchLateRequest ): Promise< Se
     }
 }
 
-const searchAttendanceService = async ( request: SearchAttendanceRequest ): Promise< SearchAttendanceResponse > => {
+const searchAttendanceService = async ( request: SearchAttendanceRequest ) => {
     try {
         const appServer = getRunningExpressApp()
         const dataSource: DataSource = appServer.AppDataSource
 
+        const paramValues: any[] = [ request.user_email ] // $1
         const dateConditions: string[] = []
-        const queryParams: Record< string, any > = { user_email: request.user_email }
-
-        request.time_query.forEach( ( dateRange: TimePeriod, index: number ) => {
-            const startDate = dateRange.start_date
-            const endDate = dateRange.end_date
-
-            if ( !startDate || !endDate ) {
-                throw new Error( `Date range ${ index } missing start_date or end_date` )
+        
+        request.time_query.forEach((dateRange, index) => {
+            if (!dateRange.start_date || !dateRange.end_date) {
+                throw new InternalError(StatusCodes.INTERNAL_SERVER_ERROR, `Date range ${index} missing start_date or end_date`)
             }
+            const startPlaceholder = 2 + index * 2   // $2, $4, ...
+            const endPlaceholder = 3 + index * 2     // $3, $5, ...
+            dateConditions.push(`(a.date >= $${startPlaceholder} AND a.date <= $${endPlaceholder})`)
+            paramValues.push(`${dateRange.start_date}`, `${dateRange.end_date}`)
+        })
 
-            // Create unique parameter names for each range
-            const startParam = `start_datetime_${ index }`
-            const endParam = `end_datetime_${ index }`
+        let whereClause = dateConditions.length ? dateConditions.join(' OR ') : 'TRUE'
 
-            queryParams[ startParam ] = startDate
-            queryParams[ endParam ] = endDate
-
-            const condition = `(date >= $${ Object.keys( queryParams ).length - 1 } AND date <= $${ Object.keys( queryParams ).length })`
-            dateConditions.push( condition )
-        } )
-
-        const whereClause = dateConditions.join(' OR ')
         const sqlQuery = `
-            SELECT 
-                TO_CHAR(date, 'YYYY-MM-DD') as date,
-                deduction_hours
-            FROM employee_attendance 
-            WHERE 
-                user_email = $1
-                AND (${ whereClause })
-            ORDER BY date ASC
+        SELECT
+            TO_CHAR(a.date, 'YYYY-MM-DD') as date,
+            a.penalty_hours as deduction_hours 
+        FROM attendance a
+        JOIN employees e ON a.employee_id = e.employee_id
+        WHERE
+            e.email = $1
+            AND (${ whereClause })
+        ORDER BY a.date ASC
         `
-
-        // Convert queryParams to array in correct order
-        const paramValues = [ request.user_email ]
-        request.time_query.forEach( ( dateRange: TimePeriod, index: number ) => {
-            const startDatetime = `${ dateRange.start_date }`
-            const endDatetime = `${ dateRange.end_date }`
-            paramValues.push( startDatetime, endDatetime )
-        } )
 
         logger.info( `Executing search_attendance query for user: ${ request.user_email }` )
         logger.debug( `SQL Query: ${ sqlQuery }` )
         logger.debug( `Parameters: ${ JSON.stringify( paramValues ) }` )
 
-        // TODO: Sửa lại cách endpoint trả về để trả thẳng JSON thay vì qua 1 interface.
         const rawRecords = await dataSource.query( sqlQuery, paramValues )
 
         const attendanceDataList: AttendanceData[] = rawRecords.map( ( record: any ) => {

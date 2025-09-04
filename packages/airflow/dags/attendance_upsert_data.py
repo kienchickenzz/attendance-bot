@@ -182,8 +182,20 @@ async def _get_all_free_allowances(
     if not employee_ids:
         return {}
     
-    year_month = target_date.replace( day=1 ) # First day of month
-    
+    # Determine canonical year_month according to business rule:
+    # - A logical "month" runs from the 26th of the previous calendar month
+    #   through the 25th of the calendar month.
+    # - Any date with day >= 26 belongs to the next canonical month.
+    if target_date.day >= 26:
+        # move to first day of next month
+        if target_date.month == 12:
+            year_month = target_date.replace( year=target_date.year + 1, month=1, day=1 )
+        else:
+            year_month = target_date.replace( month=target_date.month + 1, day=1 )
+    else:
+        # canonical month is current calendar month
+        year_month = target_date.replace( day=1 )
+
     free_query = """
         SELECT employee_id, used_count 
         FROM monthly_free_usage 
@@ -310,12 +322,12 @@ async def upsert_data_async():
         # Gom record theo ngày
         date_to_records = defaultdict( list )
         for record in raw_data:
-            date_str = datetime.strptime( record[ "first_in" ], "%Y-%m-%d %H:%M" ).date()
-            date_to_records[ date_str ].append( record )
+            date_obj = datetime.strptime( record[ "first_in" ], "%Y-%m-%d %H:%M" ).date()
+            date_to_records[ date_obj ].append( record )
 
         # Xử lý từng ngày một
-        for date_str, records in date_to_records.items():
-            target_date = date_str
+        for date_obj, records in date_to_records.items():
+            target_date = date_obj
             logging.info( f"====== { target_date } ======" )
 
             # Lấy danh sách email trong ngày này
@@ -381,8 +393,19 @@ async def upsert_data_async():
                     
                     # Lấy số lần miễn trừ còn lại trong tháng
                     free_allowance = free_allowances_data.get( employee_id, FREE_PER_MONTH )
-                    
-                    year_month = target_date.replace( day=1 )
+
+                    # Xác định "year_month" theo business rule:
+                    # - Một tháng logic chạy từ 26 của tháng trước tới 25 của tháng hiện tại.
+                    # - Nếu ngày >= 26 thì nó thuộc về tháng kế tiếp (ta lấy ngày 1 của tháng kế tiếp)
+                    if target_date.day >= 26:
+                        # move to first day of next month
+                        if target_date.month == 12:
+                            year_month = target_date.replace( year=target_date.year + 1, month=1, day=1 )
+                        else:
+                            year_month = target_date.replace( month=target_date.month + 1, day=1 )
+                    else:
+                        # canonical month is current calendar month (first day)
+                        year_month = target_date.replace( day=1 )
                     
                     # Chuẩn bị daily_record cho hàm process_daily_attendance
                     daily_record = {
@@ -457,15 +480,15 @@ def upsert_data():
 
 
 with DAG(
-    dag_id='upsert_data',
+    dag_id='attendance_upsert_data',
     description='ETL pipeline for attendance data',
     catchup=False,
     max_active_runs=1,
 ) as dag:
 
-    upsert_attendance_data_task = PythonOperator(
-        task_id="upsert_attendance_data_task",
+    upsert_data_task = PythonOperator(
+        task_id="upsert_data_task",
         python_callable=upsert_data,
     )
 
-    upsert_attendance_data_task # type: ignore
+    upsert_data_task # type: ignore

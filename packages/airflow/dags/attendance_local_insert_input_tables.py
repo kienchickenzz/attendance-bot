@@ -14,7 +14,7 @@ import logging
 
 # TODO: Thêm điều kiện để sử dụng hook lẫn connection string (ưu tiên hook nếu có) để có thể gộp 2 file DAG lại
 CONNECTION_URL = "postgresql://postgres:Pa55w.rd@localhost:5432/attendance"
-TARGET_MONTH = '2025-08-01'
+TARGET_MONTH = '2025-07-01'
 
 
 async def insert_data_async():
@@ -50,14 +50,14 @@ def insert_data():
     return asyncio.run( insert_data_async() )
 
 with DAG(
-    dag_id='insert_input_tables',
+    dag_id='attendance_local_insert_input_tables',
     description='',
     catchup=False,
     max_active_runs=1,
 ) as dag:
 
     insert_input_tables_task = PythonOperator(
-        task_id="insert_input_tables",
+        task_id="insert_input_tables_task",
         python_callable=insert_data,
     )
 

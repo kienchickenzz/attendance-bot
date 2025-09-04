@@ -52,7 +52,7 @@ def insert_data():
     return asyncio.run( insert_data_async() )
 
 with DAG(
-    dag_id='insert_input_tables',
+    dag_id='attendance_insert_input_tables',
     description='',
     catchup=False,
     max_active_runs=1,

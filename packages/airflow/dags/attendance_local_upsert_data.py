@@ -50,7 +50,7 @@ def _call_api() -> list[ dict[ str, str ] ]:
         logging.info( f"✅ API call successful!" )
         
         data = response.json()
-        return data
+        return data[ 'data' ]
             
     except Exception as e:
         logging.info(f"❌ Error: {e}")
@@ -168,7 +168,7 @@ WHERE employee_id = ANY(%s) AND date = %s
     return leaves_info
 
 async def _get_all_free_allowances(
-    conn: connection,
+    conn,
     employee_ids: list[str],
     target_date: date,
     free_per_month: int
@@ -179,8 +179,20 @@ async def _get_all_free_allowances(
     if not employee_ids:
         return {}
     
-    year_month = target_date.replace( day=1 ) # First day of month
-    
+    # Determine canonical year_month according to business rule:
+    # - A logical "month" runs from the 26th of the previous calendar month
+    #   through the 25th of the calendar month.
+    # - Any date with day >= 26 belongs to the next canonical month.
+    if target_date.day >= 26:
+        # move to first day of next month
+        if target_date.month == 12:
+            year_month = target_date.replace( year=target_date.year + 1, month=1, day=1 )
+        else:
+            year_month = target_date.replace( month=target_date.month + 1, day=1 )
+    else:
+        # canonical month is current calendar month
+        year_month = target_date.replace( day=1 )
+
     free_query = """
         SELECT employee_id, used_count 
         FROM monthly_free_usage 
@@ -218,7 +230,8 @@ async def _batch_upsert_data(
             attendance_upsert_query = """
                 INSERT INTO attendance (
                     employee_id, date, raw_check_in, raw_check_out, raw_data_version, shift_start, shift_end, late_minutes, 
-                    penalty_hours, is_leave, is_free_used, calculated_by, calculation_duration_ms, business_rules_version
+                    early_minutes, penalty_hours, is_leave, is_free_used, calculated_by, 
+                    calculation_duration_ms, business_rules_version
                 ) VALUES %s
                 ON CONFLICT (employee_id, date) DO UPDATE SET
                     raw_check_in = EXCLUDED.raw_check_in,
@@ -227,6 +240,7 @@ async def _batch_upsert_data(
                     shift_start = EXCLUDED.shift_start,
                     shift_end = EXCLUDED.shift_end,
                     late_minutes = EXCLUDED.late_minutes,
+                    early_minutes = EXCLUDED.early_minutes,
                     penalty_hours = EXCLUDED.penalty_hours,
                     is_holiday = EXCLUDED.is_holiday,
                     is_leave = EXCLUDED.is_leave,
@@ -381,7 +395,18 @@ async def upsert_attendance_data_async():
                     # Lấy số lần miễn trừ còn lại trong tháng
                     free_allowance = free_allowances_data.get( employee_id, FREE_PER_MONTH )
                     
-                    year_month = target_date.replace( day=1 )
+                    # Xác định "year_month" theo business rule:
+                    # - Một tháng logic chạy từ 26 của tháng trước tới 25 của tháng hiện tại.
+                    # - Nếu ngày >= 26 thì nó thuộc về tháng kế tiếp (ta lấy ngày 1 của tháng kế tiếp)
+                    if target_date.day >= 26:
+                        # move to first day of next month
+                        if target_date.month == 12:
+                            year_month = target_date.replace( year=target_date.year + 1, month=1, day=1 )
+                        else:
+                            year_month = target_date.replace( month=target_date.month + 1, day=1 )
+                    else:
+                        # canonical month is current calendar month (first day)
+                        year_month = target_date.replace( day=1 )
                     
                     # Chuẩn bị daily_record cho hàm process_daily_attendance
                     daily_record = {
@@ -402,7 +427,8 @@ async def upsert_attendance_data_async():
                     shift_start_str = SHIFT_CONFIG[ shift_type ][ "check_in_reference" ]
                     shift_end_str = SHIFT_CONFIG[ shift_type ][ "check_out_reference" ]
                     
-                    total_violation_minutes = processed_record.get( "violation_minutes", 0 )
+                    morning_violation = processed_record.get( "morning_violation", 0 )
+                    afternoon_violation = processed_record.get( "afternoon_violation", 0 )
                     penalty_hours = processed_record.get( "deduction_hours", 0 )
                     
                     # End timing and compute duration in milliseconds
@@ -421,7 +447,8 @@ async def upsert_attendance_data_async():
                         1,                          # raw_data_version
                         shift_start_str,            # shift_start
                         shift_end_str,              # shift_end
-                        total_violation_minutes,    # late_minutes
+                        morning_violation,          # late_minutes
+                        afternoon_violation,        # early_minutes
                         penalty_hours,              # penalty_hours
                         shift_type != "normal",     # is_leave
                         is_free_used,               # is_free_used
@@ -451,20 +478,20 @@ async def upsert_attendance_data_async():
     finally:
         conn.close()
 
-def upsert_attendance_data():
+def upsert_data():
     return asyncio.run( upsert_attendance_data_async() )
 
 
 with DAG(
-    dag_id='upsert_attendance_data',
+    dag_id='attendance_local_upsert_data',
     description='ETL pipeline for attendance data',
     catchup=False,
     max_active_runs=1,
 ) as dag:
 
-    upsert_data = PythonOperator(
-        task_id="upsert_attendance_data",
-        python_callable=upsert_attendance_data,
+    upsert_data_task = PythonOperator(
+        task_id="upsert_data_task",
+        python_callable=upsert_data,
     )
 
-    upsert_data # type: ignore
+    upsert_data_task # type: ignore

@@ -89,7 +89,7 @@ const searchViolationService = async ( request: SearchLateRequest ) => {
         SELECT
             TO_CHAR(a.date, 'YYYY-MM-DD') as date,
             a.late_minutes as checkin_violation,
-            a.early_minutes as checkin_violation,
+            a.early_minutes as checkout_violation,
             a.penalty_hours as deduction_hours 
         FROM attendance a
         JOIN employees e ON a.employee_id = e.employee_id

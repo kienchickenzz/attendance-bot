@@ -42,7 +42,7 @@ class TeamsBot extends TeamsActivityHandler {
             for ( let member of membersAdded ) {
                 if ( member.id !== botId ) {
                     await context.sendActivity(
-                        `Chào anh/chị 👋 Em là Minh Hiển — trợ lý ảo hỗ trợ tra cứu thông tin chấm công cho công ty.
+                        `Chào anh/chị 👋 Em là Khánh Hà — trợ lý ảo hỗ trợ tra cứu thông tin chấm công cho công ty.
 Em có thể giúp anh/chị tra cứu thời gian check-in/check-out, thông tin vi phạm, v.v.
 Ví dụ, anh/chị có thể hỏi:
 - thời gian check in, check out của tôi thứ 4 vừa rồi?

@@ -44,3 +44,6 @@ uv.lock
 # airflow
 airflow.db
 simple_auth_manager_passwords.json.generated
+
+# data
+**/sample-data

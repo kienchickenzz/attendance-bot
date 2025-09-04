@@ -59,7 +59,7 @@ with DAG(
 ) as dag:
  
     insert_input_tables_task = PythonOperator(
-        task_id="insert_input_tables",
+        task_id="insert_input_tables_task",
         python_callable=insert_data,
     )
 

@@ -89,6 +89,7 @@ const searchViolationService = async ( request: SearchLateRequest ) => {
         SELECT
             TO_CHAR(a.date, 'YYYY-MM-DD') as date,
             a.late_minutes as checkin_violation,
+            a.early_minutes as checkin_violation,
             a.penalty_hours as deduction_hours 
         FROM attendance a
         JOIN employees e ON a.employee_id = e.employee_id
@@ -105,11 +106,13 @@ const searchViolationService = async ( request: SearchLateRequest ) => {
         const rawRecords = await dataSource.query( sqlQuery, paramValues )
 
         const violationDataList: LateData[] = rawRecords.map( ( record: any ) => {
+            let total_violation: number = record.checkin_violation + record.checkout_violation
+            
             return {
                 date: record.date,
                 checkin_violation: record.checkin_violation,
                 checkout_violation: record.checkout_violation,
-                total_violation: record.total_violation,
+                total_violation: total_violation,
                 deduction_hours: record.deduction_hours,
             }
         } )

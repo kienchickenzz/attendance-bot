@@ -49,33 +49,8 @@ def _call_api() -> list[ dict[ str, str ] ]:
         response.raise_for_status()
         logging.info( f"✅ API call successful!" )
         
-        # Parse and process JSON response
-        # TODO: Add comments mô tả về định dạng dữ liệu sẽ áp dụng transform
-        try:
-            data = response.json()
-            events = data[ 'data' ][ 'return_events' ]
-
-            grouped = defaultdict( lambda: defaultdict( list ) )
-
-            for ev in events:
-                t = datetime.strptime( ev[ "time" ], "%Y-%m-%d %H:%M" )
-                date_str = t.strftime( "%Y-%m-%d" )
-                grouped[ date_str ][ ev[ "email" ] ].append( t )
-
-            result = []
-            for date_str, emails in grouped.items():
-                for email, times in emails.items():
-                    result.append( {
-                        "date": date_str,
-                        "email": email,
-                        "first_in": min( times ).strftime("%Y-%m-%d %H:%M"),
-                        "last_out": max( times ).strftime("%Y-%m-%d %H:%M")
-                    } )
-
-            return result
-        except ValueError as e:
-            logging.info( f"❌ Error: { e }" )
-            raise e
+        data = response.json()
+        return data
             
     except Exception as e:
         logging.info(f"❌ Error: {e}")

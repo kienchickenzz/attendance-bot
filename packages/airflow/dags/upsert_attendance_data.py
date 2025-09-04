@@ -29,13 +29,13 @@ from constants import SHIFT_CONFIG, FREE_PER_MONTH
 # CONFIGURATION
 # ----------
 
-API_URL = 'https://ctsfaceid.cmcts.com.vn/api/timekeeping/short'
+API_URL = 'https://ctsfaceid.cmcts.com.vn/api/timekeeping/short/tshn'
 START_DATE = '2025-08-01T00:00:00Z'
 END_DATE = '2025-08-04T23:59:59Z'
 FREE_PER_MONTH = 5
 CONNECTION_ID = "attendance"
  
- 
+
 def _call_api() -> list[ dict[ str, str ] ]:
     try:
         logging.info( f"Calling API: { API_URL }" )
@@ -48,41 +48,10 @@ def _call_api() -> list[ dict[ str, str ] ]:
        
         # Check if request was successful
         response.raise_for_status()
-        data = response.json()
         logging.info( f"✅ API call successful!" )
- 
-        # current_dir = os.path.dirname( os.path.abspath( __file__ ) )
-        # json_path = os.path.join( current_dir, 'data.json' )
-        # with open( json_path, 'r', encoding='utf-8' ) as f:
-        #     data = json.load( f )
-        # events = data[ 'return_events' ]
-       
-        # Parse and process JSON response
-        # TODO: Add comments mô tả về định dạng dữ liệu sẽ áp dụng transform
-        try:
-            events = data[ 'data' ][ 'return_events' ]
- 
-            grouped = defaultdict( lambda: defaultdict( list ) )
- 
-            for ev in events:
-                t = datetime.strptime( ev[ "time" ], "%Y-%m-%d %H:%M" )
-                date_str = t.strftime( "%Y-%m-%d" )
-                grouped[ date_str ][ ev[ "email" ] ].append( t )
- 
-            result = []
-            for date_str, emails in grouped.items():
-                for email, times in emails.items():
-                    result.append( {
-                        "date": date_str,
-                        "email": email,
-                        "first_in": min( times ).strftime("%Y-%m-%d %H:%M"),
-                        "last_out": max( times ).strftime("%Y-%m-%d %H:%M")
-                    } )
- 
-            return result
-        except ValueError as e:
-            logging.info( f"❌ Error: { e }" )
-            raise e
+
+        data = response.json()
+        return data
            
     except Exception as e:
         logging.info(f"❌ Error: {e}")

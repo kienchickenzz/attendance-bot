@@ -1,4 +1,4 @@
-import { TimePeriod } from '../../Interface';
+import { TimePeriod } from '../../Interface'
 
 const checkDayOff = ( timePeriods: TimePeriod[] ) => {
     const isWeekend = ( dateStr: string ): boolean => {

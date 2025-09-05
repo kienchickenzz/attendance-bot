@@ -1,0 +1,1 @@
+Bạn vui lòng cung cấp thêm thông tin cụ thể. Bạn muốn tra cứu thời gian check in/out, số ngày công, hay thông tin đi muộn để Attendance Bot hỗ trợ chính xác hơn.

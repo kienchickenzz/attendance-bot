@@ -1,0 +1,975 @@
+{
+  "sequence": [
+    {
+      "id": "7974e50e072b48b916f976568a513781",
+      "type": "session",
+      "componentType": "task",
+      "properties": {
+        "extra": "{\n    \"company_name\": \"CMC TS\",\n    \"company_contact\": \"Hotline: 0899507188\",\n    \n    \"assistant_role\": \"Assistant named Minh Hiển, specialized virtual assistant for comprehensive attendance and time management support. Assistant must always communicate in the User's preferred language and adapt to their communication style\",\n    \"assistant_skill\": \"Assistant is a knowledgeable specialist in attendance management systems, offering expert guidance on time tracking, work schedule optimization, and attendance policy compliance. Assistant excels at analyzing user attendance patterns, identifying potential issues, and providing actionable insights for improved time management. Assistant demonstrates proficiency in handling complex attendance calculations, comparative analysis, and generating meaningful reports. Assistant always responds in the language used by the User, adapting tone and complexity to match user preferences\",\n    \"assistant_scope\": \"Monitor and report real-time attendance status including check-in/check-out verification \\n- Analyze historical attendance data, calculate work hours, overtime, and attendance statistics \\n- Generate personalized attendance insights and recommendations\",\n    \"assistant_tone\": \"- Humor and sarcasm can be tricky in text. Let's keep the conversation straightforward and avoid misunderstandings\\n- Even in casual conversations, Assistant must maintain a level of professionalism. Let's keep the interaction respectful and professional.\",\n    \n    \"vn_pronoun\": \"Trong tiếng việt, Assistant luôn là \\\"Em\\\" và Assistant PHẢI tự xưng là \\\"Em\\\" trong tất cả các trường hợp. \\nAssistant gọi User theo danh xưng lịch sự là \\\"anh\\\" nếu giới tính là NAM hoặc \\\"chị\\\" nếu giới tính là NỮ và nếu chưa xác định được giới tính thì gọi User là \\\"anh/chị\\\". \\n\\nXem các ví dụ bên dưới để hiểu rõ cách dùng\\nUser: Xin chào\\nReasoning: User nói xin chào nhưng không xác định được giới tính nên Assistant sẽ gọi User là \\\"anh/chị\\\", Assistant sẽ là \\\"em\\\" \\nAssistant: Dạ, em có thể giúp gì cho anh/chị?\\n\\nUser: Chào em, anh là Tùng, cho anh hỏi một chút.\\nReasoning: User xưng \\\"anh\\\" và giới thiệu tên là \\\"Tùng\\\" nên xác định được giới tính là Nam nên sẽ gọi User bằng danh xưng và tên là \\\"Anh Tùng\\\". Assistant sẽ là \\\"Em\\\"\\nAssistant: Chào anh Tùng, em có thể giúp gì cho anh.\"\n}"
+      },
+      "name": "Session Manager"
+    },
+    {
+      "id": "040cbb402d38d3e6a7eea76162a38c6f",
+      "type": "if",
+      "componentType": "switch",
+      "properties": {
+        "condition": "session.recall_counter > 3"
+      },
+      "branches": {
+        "true": [
+          {
+            "id": "13dd58e409027c5d3a1e757d979bdaab",
+            "type": "setVar",
+            "componentType": "task",
+            "properties": {
+              "varName": "session.recall_counter",
+              "varValue": "0"
+            },
+            "name": "Var [session.recall_counter]"
+          },
+          {
+            "id": "875fbf27694a010a89e63834b57b14f4",
+            "type": "botSendText",
+            "componentType": "task",
+            "properties": {
+              "text": "Dạ, em xin lỗi, bên em vừa gặp chút vấn đề với đường truyền mạng. Anh/chị gửi lại thông tin vừa rồi giúp em nhé."
+            },
+            "name": "Bot Send Text"
+          },
+          {
+            "id": "a523a82d67d20d06df6433e17e02bf92",
+            "type": "clearTopic",
+            "componentType": "task",
+            "properties": {},
+            "name": "Clear Topic"
+          },
+          {
+            "id": "56ecbb1985c0dc4559b03bd6f8874c2f",
+            "type": "break",
+            "componentType": "task",
+            "properties": {},
+            "name": "Break"
+          }
+        ],
+        "false": []
+      },
+      "name": "Recall counters exceeded?"
+    },
+    {
+      "id": "10bc708dba622d91344d962b1458cc92",
+      "type": "python",
+      "componentType": "task",
+      "properties": {
+        "varName": "user_id",
+        "expression": "def get_user_input( input ):\n    user_id, user_question = input.split( \"|\", 1 )\n    return user_id\n\nhuman_input = \"{{ human_input }}\"\nprint( get_user_input( human_input ) )"
+      },
+      "name": "Python"
+    },
+    {
+      "id": "6cb8a7e5315c62396f00dbf698b02ca7",
+      "type": "python",
+      "componentType": "task",
+      "properties": {
+        "varName": "raw_user_input",
+        "expression": "def get_user_input( input ):\n    user_id, user_input = input.split( \"|\", 1 )\n    return user_input\n\nhuman_input = \"{{ human_input }}\"\nprint( get_user_input( human_input ) )"
+      },
+      "name": "Python"
+    },
+    {
+      "id": "acd26cd265b849c20f82db09a87f5bf6",
+      "type": "router",
+      "componentType": "task",
+      "properties": {
+        "setting": [
+          {
+            "topic": "greetings",
+            "phrases": [
+              "hello",
+              "hi",
+              "chào bạn",
+              "xin chào",
+              "có ai ở đây không"
+            ],
+            "keywords": [
+              "hello",
+              "hi",
+              "chào bạn",
+              "xin chào",
+              "có ai ở đây không"
+            ]
+          },
+          {
+            "topic": "attendance",
+            "phrases": [
+              "check-in",
+              "check in",
+              "check-out",
+              "check out",
+              "chấm công",
+              "vào làm",
+              "giờ vào",
+              "giờ ra",
+              "thời gian vào",
+              "thời gian ra",
+              "đi muộn",
+              "ngày công",
+              "được tính ngày công",
+              "đi làm đầy đủ",
+              "bị trừ công",
+              "vi phạm",
+              "đi muộn",
+              "về muộn",
+              "về sớm",
+              "không đủ công",
+              "bị trừ giờ",
+              "bị trừ công",
+              "đi trễ",
+              "hôm nay",
+              "hôm qua",
+              "hôm trước",
+              "hôm kia",
+              "ngày X (cụ thể: 10/7, 1/8, 10, 12, 15, v.v.)",
+              "thứ X (thứ 2, thứ 3, thứ 4, thứ 5, thứ 7, v.v.)",
+              "tuần này",
+              "tuần trước",
+              "tuần trước nữa",
+              "tuần vừa rồi",
+              "tháng này",
+              "tháng vừa rồi",
+              "tháng trước",
+              "đầu tuần",
+              "đầu tháng",
+              "từ ngày X đến ngày Y",
+              "tôi đã … chưa",
+              "tôi … lúc nào",
+              "là lúc nào",
+              "thì sao",
+              "thế nào",
+              "trong khoảng thời gian đó",
+              "Đó là những ngày nào?"
+            ],
+            "keywords": [
+              "check-in",
+              "check in",
+              "check-out",
+              "check out",
+              "chấm công",
+              "vào làm",
+              "giờ vào",
+              "giờ ra",
+              "thời gian vào",
+              "thời gian ra",
+              "đi muộn",
+              "ngày công",
+              "được tính ngày công",
+              "đi làm đầy đủ",
+              "bị trừ công",
+              "vi phạm",
+              "đi muộn",
+              "về muộn",
+              "về sớm",
+              "không đủ công",
+              "bị trừ giờ",
+              "bị trừ công",
+              "đi trễ",
+              "hôm nay",
+              "hôm qua",
+              "hôm trước",
+              "hôm kia",
+              "ngày X (cụ thể: 10/7, 1/8, 10, 12, 15, v.v.)",
+              "thứ X (thứ 2, thứ 3, thứ 4, thứ 5, thứ 7, v.v.)",
+              "tuần này",
+              "tuần trước",
+              "tuần trước nữa",
+              "tuần vừa rồi",
+              "tháng này",
+              "tháng vừa rồi",
+              "tháng trước",
+              "đầu tuần",
+              "đầu tháng",
+              "từ ngày X đến ngày Y",
+              "tôi đã … chưa",
+              "tôi … lúc nào",
+              "là lúc nào",
+              "thì sao",
+              "thế nào",
+              "trong khoảng thời gian đó",
+              "giờ công",
+              "ngày công"
+            ]
+          },
+          {
+            "topic": "off_topic",
+            "phrases": [
+              "làm thơ",
+              "viết code"
+            ],
+            "keywords": [
+              "làm thơ",
+              "viết code"
+            ]
+          }
+        ]
+      },
+      "name": "Router"
+    },
+    {
+      "id": "b11ef36f209327bd8fe76de7a1e3629a",
+      "type": "flowSwitch",
+      "componentType": "switch",
+      "properties": {
+        "conditions": {
+          "greetings": "greetings",
+          "off_topic": "off_topic",
+          "attendance": "attendance"
+        }
+      },
+      "branches": {
+        "greetings": [
+          {
+            "id": "d33e8281a8ae7b05b54ded0fe85b75db",
+            "type": "botSendText",
+            "componentType": "task",
+            "properties": {
+              "text": "Chào bạn 👋 Attendance Bot có thể giúp bạn tra cứu thời gian check-in/check-out, thông tin vi phạm, v.v.\nVí dụ, bạn có thể hỏi:\n- thời gian check in, check out của tôi thứ 4 vừa rồi?\n- thứ 4 vừa rồi tôi có vi phạm gì không?\n- ngày 25/08 tôi có đi muộn không?\n\n💡 Để kết quả chính xác nhất, bạn nên đặt câu hỏi theo các ví dụ mẫu bên trên.\n\n🔍 Hôm nay bạn muốn tra cứu thông tin gì?"
+            },
+            "name": "Bot Send Text"
+          },
+          {
+            "id": "6d174a7d6a49713a3aca4f6dee7b567a",
+            "type": "clearTopic",
+            "componentType": "task",
+            "properties": {},
+            "name": "Clear Topic"
+          }
+        ],
+        "off_topic": [
+          {
+            "id": "e9dc59fd932a7c7554bc9551f030137c",
+            "type": "botSendText",
+            "componentType": "task",
+            "properties": {
+              "text": "Xin lỗi, Attendance Bot không thể trả lời câu hỏi của bạn."
+            },
+            "name": "Bot Send Text"
+          },
+          {
+            "id": "1482f59b6d490c4c742ffb7384ed9d76",
+            "type": "clearTopic",
+            "componentType": "task",
+            "properties": {},
+            "name": "Clear Topic"
+          }
+        ],
+        "attendance": [
+          {
+            "id": "dd0378f6e848991df0759b8fc8a5338e",
+            "type": "botAPICall",
+            "componentType": "task",
+            "properties": {
+              "api_response_var_name": "api_session",
+              "api_url": "https://api.cmcts.cloud/api/attendance-bot/session/{{ user_id }}",
+              "api_body": "",
+              "api_header": "{\n    \"Content-Type\": \"application/json\"\n}",
+              "api_method": "GET"
+            },
+            "name": "Bot API Call"
+          },
+          {
+            "id": "dbcc6a3ce89fb85d9d8bb73aec8f78dc",
+            "type": "qna",
+            "componentType": "task",
+            "properties": {
+              "instruction": "# Yêu cầu\nDựa vào ngữ cảnh hiện tại, hãy xác định xem người dùng đang hỏi về thông tin của chính họ hay hỏi về người khác.\n\n# Ngữ cảnh hiện tại:\n- Tên người dùng: {{ api_session.data.user_name }}\n- Email người dùng: {{ api_session.data.user_email }}\n\n# Câu hỏi của người dùng: \n{{ raw_user_input }}\n\n# Quy tắc xác định:\n- Nếu câu hỏi không chứa tên hoặc email khác với {{ api_session.data.user_name }} và {{ api_session.data.user_email }} thì dù có hay không xuất hiện đại từ nhân xưng “tôi”, “của tôi”, “mình”,… vẫn xác định là Người dùng đang hỏi về chính mình.\n- Nếu câu hỏi có chứa tên hoặc email khác với {{ api_session.data.user_name }} và {{ api_session.data.user_email }}, hoặc đề cập đến một người khác trong ngữ cảnh. Ví dụ: “giúp tôi xem điểm danh của Nguyễn Văn A”, “check in của tôi vào ngày sinh nhật của bạn tôi”, “email của anh B có thời gian check in là lúc nào”… Thì xác định là Người dùng đang hỏi về người khác.\n\n# Yêu cầu đầu ra\n- Sau khi hoàn tất các bước phân tích trên, hãy trả về DUY NHẤT một chuỗi (string) hợp lệ, không kèm bất kỳ văn bản hay chú thích nào khác. Giá trị trả về chỉ được phép là một trong hai:\n    - \"Yes\" → nếu xác định người dùng đang hỏi về người khác (out of scope).\n    - \"No\" → nếu xác định người dùng đang hỏi về chính họ (không out of scope).\n",
+              "dataset_uuid": "",
+              "dataset_qa_uuid": "",
+              "rag_query": "",
+              "limit": "2",
+              "api_key": "",
+              "knowledge": "{{ knowledge_from_rag }}",
+              "knowledge_aware": false,
+              "chat_history_aware": false,
+              "human_input_aware": false,
+              "varReply": "out_of_scope",
+              "temperature": "0.7",
+              "max_tokens": "10000",
+              "stop": "",
+              "stop_regex": "",
+              "pattern": "",
+              "json_mode": false,
+              "multimodal_mode": false,
+              "tools": "",
+              "agent_loop": false,
+              "llm_alt_model": "gpt-4o-mini"
+            },
+            "name": "AI GPT-4o Self-Query handler"
+          },
+          {
+            "id": "6a498b96a6a6f85ae2e0b55b6cfe95f3",
+            "type": "if",
+            "componentType": "switch",
+            "properties": {
+              "condition": "out_of_scope == \"No\""
+            },
+            "branches": {
+              "true": [
+                {
+                  "id": "e077ad91a332a949f8f028d8702ca6ac",
+                  "type": "qna",
+                  "componentType": "task",
+                  "properties": {
+                    "instruction": "Dựa vào ngữ cảnh hiện tại, viết lại câu hỏi của người dùng nếu cần thiết để đảm bảo sao cho câu hỏi được đầy đủ cả thông tin về thời gian và mục đích.\n\nNgữ cảnh hiện tại:\n- Ngày hiện tại: {{ api_session.data.current_time }}\n- Khoảng thời gian mà người dùng đang nhắc đến:\n{{ api_session.data.time_query_str }}\n- Chủ đề mà người dùng đang nhắc đến: {{ api_session.data.topic }}\n- Câu hỏi trước đó của người dùng: {{ api_session.data.prev_question }}\n- Câu trả lời cho câu hỏi trước đó: \n{{ api_session.data.prev_answer }}\n\nCâu hỏi của người dùng: {{ raw_user_input }}\n\nQuy tắc xử lý:\n1. Nếu có thể xác định đầy đủ cả thời gian và mục đích từ câu hỏi hiện tại hoặc ngữ cảnh trước đó → viết lại câu hỏi một cách rõ ràng, tự nhiên.\n2. Nếu không thể viết lại đầy đủ (thiếu cả thời gian lẫn mục đích, hoặc mơ hồ không có cách bổ sung) → trả về chuỗi \"No\".\n\nLưu ý: Theo quy định của công ty thì 1 tháng được hiểu là từ ngày 25 của tháng này đến ngày 26 của tháng sau, chứ không phải từ ngày 1 đến ngày cuối tháng.\n\nVí dụ:\nUser: \"Trong tháng 8 tôi có bao nhiêu ngày đi muộn?\"\nOutput: \"Trong tháng 8 (từ ngày 25/07 đến ngày 26/08) tôi có bao nhiêu ngày đi muộn?\"\n\nUser: \"Hôm qua thì sao?\"  \nOutput: \"Hôm qua tôi check in lúc mấy giờ?\"\n\nUser: \"Thế có bị tính đi muộn không?\" (ngữ cảnh trước đó: đã hỏi về tuần trước)  \nOutput: \"Trong tuần trước tôi có bị tính đi muộn không?\"\n\nUser: \"Ngày 10/8 tôi đi làm lúc nào?\"  \nOutput: \"Ngày 10/8 tôi đi làm lúc nào?\"\n\nUser: \"Còn hôm đó thì thế nào?\" (không có ngữ cảnh trước)  \nOutput: \"No\"",
+                    "dataset_uuid": "",
+                    "dataset_qa_uuid": "",
+                    "rag_query": "",
+                    "limit": "2",
+                    "api_key": "",
+                    "knowledge": "{{ knowledge_from_rag }}",
+                    "knowledge_aware": false,
+                    "chat_history_aware": false,
+                    "human_input_aware": true,
+                    "varReply": "user_input",
+                    "temperature": "0.7",
+                    "max_tokens": "16000",
+                    "stop": "",
+                    "stop_regex": "",
+                    "pattern": "",
+                    "json_mode": false,
+                    "multimodal_mode": false,
+                    "tools": "",
+                    "agent_loop": false,
+                    "llm_alt_model": "gpt-4o-mini"
+                  },
+                  "name": "AI GPT-4o Rewrite Question"
+                },
+                {
+                  "id": "deaf394e0e968384c98d2769ba340abe",
+                  "type": "if",
+                  "componentType": "switch",
+                  "properties": {
+                    "condition": "user_input != \"No\""
+                  },
+                  "branches": {
+                    "true": [
+                      {
+                        "id": "da014f6068714de6cd47384c4ec52153",
+                        "type": "qna",
+                        "componentType": "task",
+                        "properties": {
+                          "instruction": "Dựa vào ngữ cảnh hiện tại, hãy phân tích câu hỏi của người dùng để đưa ra phản hồi phù hợp. \n\nNgữ cảnh hiện tại: \n- Ngày hiện tại: {{ api_session.data.current_time }} \nCâu hỏi của người dùng: {{ user_input }} \n\nQuy tắc xử lí tuần tự: (Phải thực hiện tuần tự các bước từ 1 đến 4, không được bỏ qua hoặc hoán đổi thứ tự. Chỉ khi hoàn tất bước trước đó thì mới được chuyển sang bước tiếp theo.) \n\n1. Nhận diện thông tin thời gian trong câu hỏi \n- Nếu người dùng có đề cập đến thông tin thời gian bao gồm ngày, tháng, năm, tuần, hoặc các từ khóa chỉ mốc thời gian cụ thể hoặc tương đối như: \n    - “hôm nay”, “ngày mai”, “hôm qua” - “thứ 3 vừa qua”, “thứ 3 tuần này”, “hôm thứ 3”, “hôm thứ 3 vừa rồi” - “tuần này”, “tháng trước”, “quý này” \n    - “ngày 1/8”, “tháng 7”, “năm 2025” - “lúc 8 giờ”, “9h sáng”, “chiều nay” \n    - “trong 3 ngày gần đây”, “7 ngày qua”, “cuối tuần” - “tháng [số] này”, “tháng này”, “tháng vừa rồi”, “tháng vừa qua” \nthì chuyển sang **Bước 2** \n\n2. Xác định loại thời gian trong câu hỏi \n- Một ngày cụ thể (1 cặp start_date, end_date với start_date = end_date). \n    - Ví dụ: \n        - Hôm nay tôi check-in chưa? \n        - Ngày 10 tháng 7 tôi vào làm mấy giờ? \n        - Giờ check out hôm kia là lúc nào? \n        - Thứ 3 tuần trước tôi check in lúc nào? \n        - Thứ 5 tuần trước nữa tôi check out mấy giờ? \nhoặc có chứa các cụm từ gợi ý một ngày cụ thể, như: \"hôm nay\", \"hôm qua\", \"hôm kia\", \"hôm trước\", \"ngày [số]\", \"ngày [số] tháng [số]\", \"thứ 2 tuần trước\", \"thứ 6 vừa rồi\", \"thứ 4 tuần này\", \"thứ 3 vừa qua\" v.v. \n- Một khoảng thời gian cụ thể (1 cặp start_date, end_date với start_date khác end_date). \n    - Ví dụ: \n        - “Trong tháng 6 tôi đi làm mấy giờ mỗi ngày?” \n        - “Từ ngày 3/8 đến 18/8 tôi có đi làm đầy đủ không?” \n        - Trong tháng 6 tôi đi làm mấy giờ mỗi ngày? \n        - Thời gian check-in của tôi tuần vừa rồi? \n        - Có ngày nào trong 2 tuần vừa rồi tôi quên chấm công không? \n        - Từ ngày 3/8 đến 18/8 tôi có đi làm đầy đủ không? \n        - Tháng này tôi đi muộn bao nhiêu buổi? \nhoặc chứa các cụm từ thể hiện khoảng thời gian, như: “trong tuần trước”, “trong tháng này”, “2 tuần vừa rồi”, \"tuần vừa rồi\", \"tuần vừa qua\", “từ ngày ... đến ngày ...”, “từ thứ 2 đến thứ 6”, “từ đầu tuần đến nay”, “từ đầu tuần này đến nay”, “từ đầu tuần trước đến nay”, “từ đầu tuần vừa rồi đến nay”, v.v. \n- Nhiều khoảng/mốc thời gian cụ thể (nhiều cặp start_date, end_date). \n    - Khi trong câu hỏi xuất hiện từ 2 mốc trở lên hoặc nhiều khoảng thời gian được nối bằng các từ liên kết như “và”, “hoặc”, “cũng như”. \n    - Ví dụ: \n        - Câu \"Mùng 10, 12, 15 tháng trước tôi check in lúc nào?\" có 3 ngày cụ thể \n        - Câu \"Các ngày 10, 12, 15 của tháng vừa rồi tôi có đi muộn không?\" có 3 ngày cụ thể \n        - Câu \"Ngày 10, 12, 15 tháng vừa qua tôi có được tính đủ ngày công không?\" có 3 ngày cụ thể \n        - Câu \"Từ ngày 1 đến 5 và từ ngày 10 đến 12 tôi có đi làm đầy đủ không\" có 2 khoảng thời gian cụ thể \n    - Lưu ý: Với mỗi khoảng/mốc thời gian, cần lặp lại **Bước 3 - Tính khoảng thời gian** để tính start_date và end_date riêng. \n- Sau khi xác định được loại thời gian thì chuyển sang **Bước 3** \n\n3. Tính khoảng thời gian \n- Cho 1 ngày cụ thể \n    - Nhận diện các cụm từ mô tả ngày cụ thể, bao gồm: \n        - \"hôm qua\", \"hôm nay\", \"hôm trước\", \"hôm kia\", \"hôm kìa\" \n        - \"ngày 5\", \"mùng 3\" - \"thứ 2\", \"thứ ba tuần trước\", \"thứ năm tuần này\" \n        - \"ngày 15 tháng 6\", \"ngày 2 tháng trước\", v.v. \n    - Giải thích các cụm thời gian tương đối dựa trên current_date: \n        - “hôm nay” → chính là current_date \n        - “hôm qua” → current_date - 1 ngày \n        - “hôm trước” → current_date - 2 ngày \n        - “hôm kia” → current_date \n        - 2 ngày - “hôm kìa” → current_date \n        - 3 ngày - “thứ [x] tuần này” → ngày gần nhất ứng với thứ đó trong cùng tuần với current_date \n        - “thứ [x] tuần trước” → ngày tương ứng với thứ đó của tuần trước (tuần gần nhất đã kết thúc) \n        - “ngày [số]” hoặc “mùng [số]” → cùng tháng với current_date \n        - “ngày [số] tháng [số]” → sử dụng năm của current_date, trừ khi người dùng nói rõ năm \n        - “ngày [số] tháng trước” → ngày tương ứng của tháng trước \n        - “ngày [số] tháng này” → ngày tương ứng của tháng hiện tại \n    - Ví dụ: \n        - Nếu current_date là 2025-03-08 và người dùng hỏi: “Tôi check in hôm qua lúc mấy giờ?” thì kết quả tính toán được sẽ là: current_time: \"2025-03-07\" \n        - Nếu người dùng nói: “Ngày 2 tháng trước tôi nghỉ phép” thì kết quả tính toán được sẽ là: current_time: \"2025-02-02\" \n        - Nếu người dùng nói: “Thứ ba tuần này tôi đến trễ” thì kết quả tính toán được sẽ là: current_time: \"2025-03-04\" \n- Cho 1 khoảng thời gian \n    - Định nghĩa chuẩn\n        - Quy ước về tuần làm việc: Từ thứ Hai đến thứ Sáu\n        - Quy ước về tháng\n            - Tháng hiện tại: Từ ngày 26 của tháng trước đến 25 của tháng hiện tại\n            - Tháng đã qua: Từ ngày 26 của tháng trước đó đến 25 của tháng mà người dùng muốn hỏi\n    - Các pattern nhận diện và xử lý\n        - Pattern 1: Khoảng thời gian tuyệt đối\n            - Cấu trúc: \"từ [ngày cụ thể] đến [ngày cụ thể]\"\n            - Ví dụ:\n                - \"từ ngày 1 đến ngày 5\" → start_date: YYYY-MM-01, end_date: YYYY-MM-05 (cùng tháng với current_date)\n                - \"từ 15 tháng trước đến 20 tháng này\" → start_date: (tháng trước)-15, end_date: (tháng hiện tại)-20\n        - Pattern 2: Khoảng thời gian theo tuần\n            - Các cụm từ nhận diện:\n                - \"tuần này\", \"tuần hiện tại\"\n                - \"tuần trước\", \"tuần vừa rồi\", \"tuần vừa qua\"\n                - \"tuần trước nữa\", \"hai tuần trước\"\n                - \"X tuần trước\", \"X tuần vừa rồi\"\n            - Logic tính toán tuần:\n                current_week = tuần chứa current_date\n                week_offset = số tuần cần lùi về quá khứ\n\n                Với \"tuần này\":\n                - start_date = thứ Hai của current_week\n                - end_date = current_date (nếu chưa hết tuần) hoặc thứ Sáu (nếu đã hết tuần)\n\n                Với \"tuần trước\":\n                - target_week = current_week - 1\n                - start_date = thứ Hai của target_week  \n                - end_date = thứ Sáu của target_week\n\n                Với \"X tuần trước\":\n                - target_week = current_week - X\n                - start_date = thứ Hai của target_week\n                - end_date = thứ Sáu của target_week\n\n                Với \"X tuần vừa rồi/qua\":\n                - start_date = thứ Hai của (current_week - X)\n                - end_date = thứ Sáu của (current_week - 1)\n        - Pattern 3: Khoảng thời gian theo tháng\n            - Các cụm từ nhận diện:\n                - \"tháng này\", \"tháng hiện tại\"\n                - \"tháng trước\", \"tháng vừa rồi\"\n                - \"tháng [số]\", \"tháng [số] năm [năm]\"\n            - Logic tính toán:\n                - \"tháng này\": start_date = ngày 1 của tháng hiện tại, end_date = current_date\n                - \"tháng trước\": start_date = ngày 1 của tháng trước, end_date = ngày cuối tháng trước\n                - \"tháng [số]\": sử dụng năm hiện tại nếu không chỉ định năm\n        - Pattern 4: Khoảng thời gian theo ngày\n            Các cụm từ nhận diện:\n                \"X ngày qua\", \"X ngày vừa rồi\", \"X ngày gần đây\"\n                \"từ đầu tuần đến nay\"\n                \"từ đầu tháng đến nay\"\n            Logic tính toán:\n                \"X ngày qua\": start_date = current_date - X, end_date = current_date - 1\n                \"từ đầu tuần đến nay\": start_date = thứ Hai tuần hiện tại, end_date = current_date\n                \"từ đầu tháng đến nay\": start_date = ngày 1 tháng hiện tại, end_date = current_date\n    Ví dụ tính toán với current_date = 2025-03-08 (thứ Bảy)\n        Ví dụ Pattern 1:\n\n        \"từ mùng 1 đến mùng 6\" → start_date: \"2025-03-01\", end_date: \"2025-03-06\"\n        \"từ 15 tháng trước đến 20 tháng này\" → start_date: \"2025-02-15\", end_date: \"2025-03-20\"\n\n        Ví dụ Pattern 2:\n\n        \"tuần này\" → start_date: \"2025-03-03\" (thứ Hai), end_date: \"2025-03-08\" (current_date)\n        \"tuần trước\" → start_date: \"2025-02-24\" (thứ Hai), end_date: \"2025-02-28\" (thứ Sáu)\n        \"hai tuần trước\" → start_date: \"2025-02-17\" (thứ Hai), end_date: \"2025-02-21\" (thứ Sáu)\n        \"hai tuần vừa rồi\" → start_date: \"2025-02-17\" (thứ Hai), end_date: \"2025-02-28\" (thứ Sáu tuần trước)\n\n        Ví dụ Pattern 3:\n\n        \"tháng này\" → start_date: \"2025-04-26\", end_date: \"2025-04-25\"\n        \"tháng trước\" → start_date: \"2025-03-26\", end_date: \"2025-03-25\"\n\n        Ví dụ Pattern 4:\n\n        \"ba ngày vừa qua\" → start_date: \"2025-03-05\", end_date: \"2025-03-07\"\n        \"từ đầu tuần đến nay\" → start_date: \"2025-03-03\", end_date: \"2025-03-08\"\n        \"từ đầu tháng đến nay\" → start_date: \"2025-03-01\", end_date: \"2025-03-08\"\n\nYêu cầu đầu ra JSON: \n- Sau khi hoàn tất các bước phân tích trên, hãy trả về DUY NHẤT một chuỗi JSON hợp lệ (không có văn bản giải thích, không có chú thích) với cấu trúc sau: \n    - Top-level object có các trường: \n        - \"time_query\": array of objects — mỗi object đại diện cho một cặp start_date / end_date đã nhận diện ở Bước 1, 2, 3, 4. \n\n    - Schema cho time_query (mỗi phần tử): \n        { \n            \"start_date\": \"YYYY-MM-DD\", \n            \"end_date\": \"YYYY-MM-DD\" \n        } \n\n    - Ví dụ đầu ra hợp lệ: \n        { \n            \"time_query\": [ \n                { \n                    \"start_date\": \"2025-08-07\", \n                    \"end_date\": \"2025-08-07\" \n                } \n            ] \n        } \n\n        { \n            \"time_query\": [ \n                { \n                    \"start_date\": \"2025-07-01\", \n                    \"end_date\": \"2025-07-15\" \n                } \n            ] \n        }\n",
+                          "dataset_uuid": "",
+                          "dataset_qa_uuid": "",
+                          "rag_query": "",
+                          "limit": "2",
+                          "api_key": "",
+                          "knowledge": "",
+                          "knowledge_aware": false,
+                          "chat_history_aware": false,
+                          "human_input_aware": true,
+                          "varReply": "time_result",
+                          "temperature": "0.7",
+                          "max_tokens": "16000",
+                          "stop": "",
+                          "stop_regex": "",
+                          "pattern": "",
+                          "json_mode": true,
+                          "multimodal_mode": false,
+                          "tools": "",
+                          "agent_loop": false,
+                          "llm_alt_model": "gpt-4o-mini"
+                        },
+                        "name": "AI GPT-4o Time Query Handler"
+                      },
+                      {
+                        "id": "a848168543313429d9679e2e65c120af",
+                        "type": "setVar",
+                        "componentType": "task",
+                        "properties": {
+                          "varName": "time_result_json",
+                          "varValue": "json.loads(time_result)"
+                        },
+                        "name": "Var [time_result_json]"
+                      },
+                      {
+                        "id": "c4f3fbd1829bb9da135aeb29226660a8",
+                        "type": "python",
+                        "componentType": "task",
+                        "properties": {
+                          "varName": "check_json",
+                          "expression": "def check_keys( json_check, keys ):\n    for key in keys:\n        if key not in json_check:\n            return \"No\"\n    return \"Yes\"\n\nbot_check_json = {{ time_result_json }}\nkeys_to_check = [ \"time_query\" ]\n\nprint( check_keys( bot_check_json, keys_to_check ) )"
+                        },
+                        "name": "Python"
+                      },
+                      {
+                        "id": "8236c9dfdef07d63c889358eb4c3bb28",
+                        "type": "if",
+                        "componentType": "switch",
+                        "properties": {
+                          "condition": "check_json == \"Yes\""
+                        },
+                        "branches": {
+                          "true": [
+                            {
+                              "id": "2ee2c7be1d5aeb17b9155e566714a076",
+                              "type": "qna",
+                              "componentType": "task",
+                              "properties": {
+                                "instruction": "Dựa vào ngữ cảnh hiện tại, hãy phân tích câu hỏi của người dùng để đưa ra phản hồi phù hợp.\n\nNgữ cảnh hiện tại:\n- Ngày hiện tại: {{ api_session.data.current_time }}\n- Khoảng thời gian mà người dùng đang nhắc đến:\n{{ api_session.data.time_query_str }}\n- Chủ đề mà người dùng đang nhắc đến: {{ api_session.data.topic }}\n- Câu hỏi trước đó của người dùng: {{ api_session.data.prev_question }}\n- Câu trả lời cho câu hỏi trước đó: \n{{ api_session.data.prev_answer }}\n- Lưu ý:\n    - Cặp câu hỏi và câu trả lời trước đó chỉ mang tính chất tham khảo và chỉ sử dụng nếu câu hỏi hiện tại yêu cầu liên kết với mốc thời gian đã được đề cập trong câu trước.\n    - Ví dụ:\n        - Câu 1: “Tuần vừa rồi có hôm nào tôi đi muộn không?”\n        - Câu 2: “Thời gian check in những ngày đó?”\n        → Ở câu 2, cần lấy mốc thời gian từ câu trả lời của câu 1 (“những ngày đó” = các ngày đi muộn trong tuần vừa rồi) để xác định chính xác khoảng thời gian.\n\nCâu hỏi của người dùng: {{ user_input }}\n\nQuy tắc xử lí tuần tự: (Phải thực hiện tuần tự các bước từ 1 đến 3, không được bỏ qua hoặc hoán đổi thứ tự. Chỉ khi hoàn tất bước trước đó thì mới được chuyển sang bước tiếp theo.)\n\n1. Nhận diện thông tin chủ đề trong câu hỏi\n- Nếu người dùng có đề cập đến chủ đề ví dụ như:\n    - “Hôm qua tôi đi muộn không?”\n    - “Thời gian check in của tôi thứ 4 tuần trước là lúc nào?”\n    - “Tôi được bao nhiêu ngày công trong tuần này?”\n    - “Ngày 1/8 tôi có bị đi muộn không?”\nthì xác định Có đề cập đến chủ đề và chuyển sang **Bước 2**\n- Nếu người dùng không đề cập đến bất kỳ chủ đề nào ở trên, hoặc chỉ nói đến thời gian chung chung mà không gắn với chủ đề, ví dụ:\n    - “Hôm nay thì sao?”\n    - “Hôm trước thì thế nào?”\n    - “Thứ 7 tuần trước thì sao?”\n    - \"Thứ 2 vừa rồi thì sao?\"\n    - \"Thứ 3 vừa qua thì thế nào\"\n    - \"Thứ 3 tuần trước nữa?\"\nthì xác định Không đề cập đến chủ đề và chuyển sang **Bước 3** luôn\n\n2. Xác định chủ đề:\n- Nếu người dùng hỏi về thời gian check-in / check-out cụ thể trong ngày. Ví dụ:\n    - Hôm qua tôi vào làm lúc mấy giờ?\n    - Ngày 10/7 tôi chấm công mấy giờ?\n    - Hôm nay tôi có quên chấm công không?\n    - Thời gian check-in hôm kia của tôi là mấy giờ?\n    - Hôm trước tôi check out lúc nào?\n    - Thời gian check in, out của tôi?\n    - Còn thời gian check out thì thế nào?\nthì xác định chủ đề là \"Thời gian Check-in / Check-out\" và trả về luôn, không cần chuyển sang **Bước 3**\n- Nếu người dùng hỏi về thông tin vi phạm (bao gồm cả đi muộn, về sớm, và số giờ/phút vi phạm). Ví dụ:\n    - Tháng trước tôi đi muộn bao nhiêu ngày?\n    - Tuần trước tôi về sớm mấy lần?\n    - Tuần vừa rồi tôi bị trừ bao nhiêu phút vì đi trễ?\n    - Tôi có bị tính đi trễ ngày nào trong tuần trước không?\n    - Tổng số lần đi trễ của tôi trong tháng 6 là bao nhiêu?\n    - Tổng thời gian vi phạm tuần trước là bao nhiêu?\n    - Thời gian vi phạm của tôi hôm qua?\n    - Vậy là có bị tính về sớm không?\n    - Thế là có bị coi là đi muộn không?\n    - Thế bị tính là đi muộn không? \n\nthì xác định chủ đề là \"Thông tin vi phạm\" và trả về luôn, không cần chuyển sang **Bước 7**\n- Nếu người dùng hỏi về số ngày công hoặc việc đi làm đủ ngày. Ví dụ:\n    - Tháng này tôi có bao nhiêu ngày công?\n    - Tôi đi làm đủ công trong tháng 6 không?\n    - Tổng số ngày công của tôi 2 tuần vừa rồi là bao nhiêu?\nthì xác định chủ đề là \"Ngày công\" và trả về luôn, không cần chuyển sang **Bước 7**\n- Lưu ý: \n    - Nếu trong câu hỏi vừa chứa thông tin về một chủ đề cụ thể (ví dụ: check-in/check-out, vi phạm) vừa có thêm cụm từ điều kiện lọc (ví dụ: “những ngày đủ công đó”, “các ngày đi muộn đó”), thì **ưu tiên xác định chủ đề chính theo câu hỏi gốc**. \n        - Các cụm như “ngày đủ công”, “ngày vi phạm”, “ngày đi muộn” chỉ dùng để **giới hạn tập ngày trong time_query**, không thay đổi topic.\n        - Ví dụ:\n            - Với câu hỏi: “Thời gian check in, out của tôi những ngày đủ công đó?” thì Topic = \"Thời gian Check-in / Check-out\" và Time_query = tập ngày đủ công đã xác định từ câu trước\n    - Nếu câu hỏi thuộc loại nguyên nhân/giải thích (chứa từ khóa WHY-intent: vì sao, tại sao, do đâu, nguyên nhân, lý do, …) thì ưu tiên chủ đề “Thông tin vi phạm”, vì mọi nguyên nhân dẫn tới mất công hay sai lệch đều nằm ở layer “vi phạm”.\n\n3. Nếu không xác định được chủ đề:\n- Nếu ngữ cảnh hiện tại không có thông về Chủ đề mà người dùng đang nhắc đến thì trả về chuỗi \"Không có\"\n- Nếu ngữ cảnh hiện tại đã có thông tin về Chủ đề mà người dùng đang nhắc đến thì BẮT BUỘC phải lấy thông tin đó làm chủ đề.\n\nYêu cầu đầu ra JSON:\n- Sau khi hoàn tất các bước phân tích trên, hãy trả về DUY NHẤT một chuỗi JSON hợp lệ (không có văn bản giải thích, không có chú thích) với cấu trúc sau:\n    - Top-level object có các trường:\n        - \"topic\": string — giá trị chủ đề đã nhận diện ở Bước 1, 2, 3.\n\n    - Ví dụ đầu ra hợp lệ:\n        {\n            \"topic\": \"Thời gian Check-in / Check-out\",\n        }\n\n        {\n            \"topic\": \"Ngày công\",\n        }\n",
+                                "dataset_uuid": "",
+                                "dataset_qa_uuid": "",
+                                "rag_query": "",
+                                "limit": "2",
+                                "api_key": "",
+                                "knowledge": "{{ knowledge_from_rag }}",
+                                "knowledge_aware": false,
+                                "chat_history_aware": false,
+                                "human_input_aware": false,
+                                "varReply": "topic_result",
+                                "temperature": "0.7",
+                                "max_tokens": "16000",
+                                "stop": "",
+                                "stop_regex": "",
+                                "pattern": "",
+                                "json_mode": false,
+                                "multimodal_mode": false,
+                                "tools": "",
+                                "agent_loop": false,
+                                "llm_alt_model": "gpt-4o-mini"
+                              },
+                              "name": "AI GPT-4o Topic Handler"
+                            },
+                            {
+                              "id": "040f292e598480ae3a06fdf012f24949",
+                              "type": "setVar",
+                              "componentType": "task",
+                              "properties": {
+                                "varName": "topic_result_json",
+                                "varValue": "json.loads(topic_result)"
+                              },
+                              "name": "Var [topic_result_json]"
+                            },
+                            {
+                              "id": "553e57aa5a0602efd5ee17a162ca2ada",
+                              "type": "python",
+                              "componentType": "task",
+                              "properties": {
+                                "varName": "check_json_1",
+                                "expression": "def check_keys( json_check, keys ):\n    for key in keys:\n        if key not in json_check:\n            return \"No\"\n    return \"Yes\"\n\nbot_check_json = {{ topic_result_json }}\nkeys_to_check = [ \"topic\" ]\n\nprint( check_keys( bot_check_json, keys_to_check ) )"
+                              },
+                              "name": "Python"
+                            },
+                            {
+                              "id": "239429ebcc60972a189a44806452ddff",
+                              "type": "if",
+                              "componentType": "switch",
+                              "properties": {
+                                "condition": "check_json_1 == \"Yes\""
+                              },
+                              "branches": {
+                                "true": [
+                                  {
+                                    "id": "7b22cd44efa55eebfc0fa0b356846a90",
+                                    "type": "python",
+                                    "componentType": "task",
+                                    "properties": {
+                                      "varName": "saved_context_data",
+                                      "expression": "import json\n\ntime_result_json = {{ time_result_json }}\ntopic_result_json = {{ topic_result_json }}\nuser_id = \"{{ user_id }}\"\n\ndef create_query_data( session_id, time_result_json, topic_result_json ):\n\n    query_data = {\n        \"session_id\": session_id,\n        \"data\": {\n            \"time_query\": time_result_json[ \"time_query\" ],\n            \"topic\": topic_result_json[ \"topic\" ]\n        }\n    }\n    return json.dumps( query_data )\n\nprint( create_query_data( user_id, time_result_json, topic_result_json ) )\n"
+                                    },
+                                    "name": "Python"
+                                  },
+                                  {
+                                    "id": "beac7729b9ebc4ed502a1c0a0a39199d",
+                                    "type": "botAPICall",
+                                    "componentType": "task",
+                                    "properties": {
+                                      "api_response_var_name": "session_upsert_result",
+                                      "api_url": "https://api.cmcts.cloud/api/attendance-bot/session/upsert",
+                                      "api_body": "{{ saved_context_data }}",
+                                      "api_header": "{\n    \"Content-Type\": \"application/json\"\n}",
+                                      "api_method": "POST"
+                                    },
+                                    "name": "Bot API Call"
+                                  },
+                                  {
+                                    "id": "cf91af3d6d1eb117f68bdeb6b62fd2c8",
+                                    "type": "if",
+                                    "componentType": "switch",
+                                    "properties": {
+                                      "condition": "time_result_json.time_query != []"
+                                    },
+                                    "branches": {
+                                      "true": [
+                                        {
+                                          "id": "826ad3be7b9755f95d3231678790e448",
+                                          "type": "python",
+                                          "componentType": "task",
+                                          "properties": {
+                                            "varName": "query_data_1",
+                                            "expression": "import json\n\ntime_result_json = {{ time_result_json }}\nuser_email = \"{{ api_session.data.user_email }}\"\n\ndef create_query_data( user_email, time_result_json ):\n     time_query = time_result_json[ \"time_query\" ]\n\n     query_data = {\n        \"user_email\": user_email,\n        \"time_query\": time_query\n    }\n     return json.dumps(query_data)\n\nprint( create_query_data( user_email, time_result_json ) )\n"
+                                          },
+                                          "name": "Python"
+                                        },
+                                        {
+                                          "id": "d6b12ef337b1f082d7fa63d417da5d6a",
+                                          "type": "botAPICall",
+                                          "componentType": "task",
+                                          "properties": {
+                                            "api_response_var_name": "check_dayoff_result",
+                                            "api_url": "https://api.cmcts.cloud/api/attendance-bot/day-off/check",
+                                            "api_body": "{{ query_data_1 }}",
+                                            "api_header": "{\"Authorization\": \"Bearer token\"}",
+                                            "api_method": "POST"
+                                          },
+                                          "name": "Bot API Call"
+                                        },
+                                        {
+                                          "id": "18e127a5306cb1e4d9e7975a59fe9eaf",
+                                          "type": "python",
+                                          "componentType": "task",
+                                          "properties": {
+                                            "varName": "is_dayoff",
+                                            "expression": "check_dayoff_obj = {{ check_dayoff_result }}\n\nprint( check_dayoff_obj[ \"is_dayoff\" ] )"
+                                          },
+                                          "name": "Python"
+                                        },
+                                        {
+                                          "id": "1056795dbb466ef3bbf1e55ef0173322",
+                                          "type": "if",
+                                          "componentType": "switch",
+                                          "properties": {
+                                            "condition": "is_dayoff == \"False\""
+                                          },
+                                          "branches": {
+                                            "true": [
+                                              {
+                                                "id": "2ac6240196365f1298ece9ea2f3b428a",
+                                                "type": "if",
+                                                "componentType": "switch",
+                                                "properties": {
+                                                  "condition": "topic_result_json.topic != 'Không có'"
+                                                },
+                                                "branches": {
+                                                  "true": [
+                                                    {
+                                                      "id": "4f11f15fd1f2fb8cc5bb311c256d1211",
+                                                      "type": "python",
+                                                      "componentType": "task",
+                                                      "properties": {
+                                                        "varName": "query_data",
+                                                        "expression": "import json\n\ntime_result_json = {{ time_result_json }}\nuser_email = \"{{ api_session.data.user_email }}\"\n\ndef create_query_data( user_email, time_result_json ):\n    time_query = time_result_json[ \"time_query\" ]\n\n    query_data = {\n        \"user_email\": user_email,\n        \"time_query\": time_query\n    }\n    return json.dumps(query_data)\n\nprint( create_query_data( user_email, time_result_json ) )\n"
+                                                      },
+                                                      "name": "Python"
+                                                    },
+                                                    {
+                                                      "id": "c1a564c4274d1cf830aa6d17d642d1f9",
+                                                      "type": "parallel",
+                                                      "componentType": "switch",
+                                                      "properties": {
+                                                        "conditions": {
+                                                          "Thời gian Check-in / Check-out cụ thể": "topic_result_json.get( 'topic', 'Không có' ) == 'Thời gian Check-in / Check-out'",
+                                                          "Ngày công": "topic_result_json.get( 'topic', 'Không có' ) == 'Ngày công'\n",
+                                                          "Thông tin vi phạm": "topic_result_json.get( 'topic', 'Không có' ) == 'Thông tin vi phạm'"
+                                                        }
+                                                      },
+                                                      "branches": {
+                                                        "Thời gian Check-in / Check-out cụ thể": [
+                                                          {
+                                                            "id": "b1d19dae23b34ecfef51e86e6f5ffc4e",
+                                                            "type": "botAPICall",
+                                                            "componentType": "task",
+                                                            "properties": {
+                                                              "api_response_var_name": "attendance_data",
+                                                              "api_url": "https://api.cmcts.cloud/api/attendance-bot/search/time",
+                                                              "api_body": "{{ query_data }}",
+                                                              "api_header": "{\n    \"Content-Type\": \"application/json\"\n}",
+                                                              "api_method": "POST"
+                                                            },
+                                                            "name": "Bot API Call"
+                                                          },
+                                                          {
+                                                            "id": "ee134ca07be1c26d48b481e071372ec4",
+                                                            "type": "python",
+                                                            "componentType": "task",
+                                                            "properties": {
+                                                              "varName": "is_data_empty",
+                                                              "expression": "attendance_data = {{ attendance_data }}\n\ndef is_data_empty( attendance_data ):\n    if not attendance_data or \"data\" not in attendance_data or not attendance_data[\"data\"]:\n        return \"Yes\"\n    \n    return \"No\"\n\nprint( is_data_empty( attendance_data ) )\n"
+                                                            },
+                                                            "name": "Python"
+                                                          },
+                                                          {
+                                                            "id": "fa43022a7b74a3550fbab139e56383ac",
+                                                            "type": "if",
+                                                            "componentType": "switch",
+                                                            "properties": {
+                                                              "condition": "is_data_empty == \"Yes\""
+                                                            },
+                                                            "branches": {
+                                                              "true": [
+                                                                {
+                                                                  "id": "996cad78d578561e432a46ed5cf43ad3",
+                                                                  "type": "botSendText",
+                                                                  "componentType": "task",
+                                                                  "properties": {
+                                                                    "text": "Rất tiếc, Attendance Bot chưa tìm thấy dữ liệu bạn yêu cầu. Nếu đây là sự cố, vui lòng liên hệ với phòng nhân sự để được hỗ trợ."
+                                                                  },
+                                                                  "name": "Bot Send Text"
+                                                                }
+                                                              ],
+                                                              "false": [
+                                                                {
+                                                                  "id": "726861095d58707b3f31c510a179cf33",
+                                                                  "type": "python",
+                                                                  "componentType": "task",
+                                                                  "properties": {
+                                                                    "varName": "processed_data",
+                                                                    "expression": "attendance_data = {{ attendance_data }}\n\ndef process_data( attendance_data ):\n    summary_parts = []\n    summary_parts.append( \"Thời gian check in/out:\\n\" )\n\n    for index, record in enumerate( attendance_data[ \"data\" ] ):\n        summary_parts.append( f\"Ngày: { record.get( 'date', 'không có' ) }\" )\n\n        checkin_text = \"check in time: \"\n        checkin_text += record.get( \"checkin_time\" ) or \"không có\"\n        summary_parts.append( checkin_text )\n\n        checkout_text = \"check out time: \"\n        checkout_text += record.get( \"checkout_time\" ) or \"không có\"\n        summary_parts.append( checkout_text )\n\n        if index < len( attendance_data[ \"data\" ] ) - 1:\n            summary_parts.append( \"\" )  # dòng trống giữa các bản ghi\n\n    final_summary = \"\\n\".join( summary_parts )\n    return final_summary\n\nprint( process_data( attendance_data ) )"
+                                                                  },
+                                                                  "name": "Python"
+                                                                },
+                                                                {
+                                                                  "id": "90eebd73d425ec71fc7f94288daadb63",
+                                                                  "type": "qna",
+                                                                  "componentType": "task",
+                                                                  "properties": {
+                                                                    "instruction": "Vai trò:\n- Bạn là trợ lý tên Minh Hiển, trợ lý ảo chuyên biệt hỗ trợ hỏi đáp chấm công. Bạn hãy luôn giao tiếp bằng ngôn ngữ mà Người dùng ưa thích và thích ứng với phong cách giao tiếp của Người dùng.\n- Bạn là chuyên gia giàu kiến thức về hệ thống quản lý chấm công, cung cấp hướng dẫn chuyên sâu về theo dõi thời gian làm việc. Bạn xuất sắc trong việc phân tích mô hình chấm công của người dùng, nhận diện các vấn đề tiềm ẩn và đưa ra các giải pháp hành động nhằm cải thiện quản lý thời gian.\n\n\nKĩ năng:\n- Trợ lý thành thạo trong việc xử lý các phép tính chấm công phức tạp, phân tích so sánh và tạo các báo cáo có ý nghĩa. Trợ lý luôn trả lời bằng ngôn ngữ mà Người dùng đang sử dụng, đồng thời điều chỉnh giọng điệu và mức độ chi tiết sao cho phù hợp với sở thích của Người dùng.\n\n\nGiọng điệu:\n- Hài hước và châm biếm đôi khi khó truyền tải qua văn bản, vì vậy hãy giữ nội dung rõ ràng, tránh gây hiểu lầm.\n- Ngay cả khi trò chuyện thân mật, bạn vẫn phải giữ mức độ chuyên nghiệp nhất định, đảm bảo tương tác lịch sự và tôn trọng\n\n\nCách xưng hô trong Tiếng Việt\n- Trong tiếng Việt, bạn luôn xưng là \"em\" trong mọi trường hợp.\n- Bạn gọi Người dùng bằng danh xưng lịch sự là \"anh\" nếu giới tính là nam, \"chị\" nếu giới tính là nữ, và nếu chưa xác định được giới tính thì gọi là \"anh/chị\".\n- Ví dụ\n    - Người dùng: \"Xin chào\"\n    - Phân tích: Người dùng nói \"xin chào\" nhưng không xác định được giới tính.\n    - Trợ lí ảo: \"Dạ, em có thể giúp gì cho anh/chị?\"\n    - Người dùng: \"Chào em, anh là Tùng, cho anh hỏi một chút.\"\n    - Phân tích: Người dùng xưng \"anh\" và giới thiệu tên là \"Tùng\", xác định giới tính là nam.\n    - Trợ lí ảo: \"Chào anh Tùng, em có thể giúp gì cho anh?\"\n\n\nNhiệm vụ:\n- Dựa vào nội dung câu hỏi của người dùng và các thông tin ngữ cảnh hiện tại bao gồm các thông tin đang được người dùng hỏi đến - thông tin truy vấn từ cơ sở dữ liệu, hãy trả lời câu hỏi của người dùng.\n\n\nCách trả lời:\n- Nếu câu trả lời chỉ liên quan đến **1 ngày**: \n    - Khi trả lời, luôn bắt đầu câu bằng: Dạ, [thời gian hoặc khoảng thời gian người dùng hỏi], anh/chị ...\n        - Trong đó:\n            - Không thêm tiền tố hay thông tin khác trước cụm \"Dạ,\" và không thay đổi format.\n            - Giữ nguyên cách xưng hô “anh/chị” sau dấu phẩy và kết thúc câu bằng \"ạ\" để thể hiện sự lễ phép.\n            - [thời gian hoặc khoảng thời gian người dùng hỏi] là phần được diễn giải từ câu hỏi, theo đúng logic nhận diện và tính toán (ví dụ: “ngày 15 tháng này”, “từ 2025-08-04 đến 2025-08-08”), nhưng khi hiển thị chỉ dùng định dạng ngày/tháng (không thêm năm) hoặc thứ + ngày/tháng (ví dụ \"10/08 (không có 2025)\" hoặc \"thứ 2 04/08\")\n    - Luôn nêu cả cụm tương đối và ngày/tháng cụ thể khi người dùng dùng từ như \"hôm nay\", \"hôm qua\", \"hôm trước\", \"ngày hôm trước\".\n        - Mẫu cho trường hợp một ngày:\n            - Dạ, hôm qua, ngày 10/08, anh/chị ... ạ\n            - Dạ, hôm nay, ngày 11/08, anh/chị ... ạ\n            - Dạ, ngày hôm trước, 09/08, anh/chị ... ạ\n        - Mẫu cho thứ:\n            - Dạ, thứ 3, 12/08, anh/chị ... ạ\n- Nếu câu trả lời liên quan đến **nhiều ngày**:  \n    - Mở đầu một lần với \"Dạ, ...\" để giới thiệu khoảng thời gian.  \n    - Sau đó xuống dòng, liệt kê các ngày theo dạng danh sách gọn gàng (bullet points hoặc dòng riêng).\n    - Không cần lặp lại cụm \"Dạ,\" ở đầu mỗi ngày.\n    - Ví dụ (dữ liệu trong câu trả lời không đúng, chỉ mang tính chất tham khảo):  \n        - Dạ, tuần vừa rồi anh/chị có các thời gian check in, out như sau ạ:\n            - 01/08: check in lúc 08:09, check out lúc 17:25\n            - 04/08: check in lúc 08:24, check out lúc 17:50\n            - 05/08: check in lúc 08:18, check out lúc 18:12\n\n\nLưu ý:\n- Dữ liệu ngữ cảnh có thể bao gồm nhiều thông tin hơn so với nội dung mà người dùng thực sự muốn hỏi.\n- Khi trả lời, CHỈ ĐƯỢC trích xuất đúng phần thông tin phù hợp với câu hỏi của người dùng và bỏ qua những thông tin thừa.\n    - Nếu user hỏi về check in/out, chỉ trả lời dữ liệu check in/out.\n\n\nNgữ cảnh hiện tại:\n- Ngày hiện tại: {{ api_session.data.current_time }}\n- Chủ đề mà người dùng đang nhắc đến: {{ api_session.data.topic }}\n- Thông tin đang được người dùng hỏi đến:\n{{ processed_data }}\n\n\nCâu hỏi:\n{{ user_input }}",
+                                                                    "dataset_uuid": "",
+                                                                    "dataset_qa_uuid": "",
+                                                                    "rag_query": "",
+                                                                    "limit": "2",
+                                                                    "api_key": "",
+                                                                    "knowledge": "",
+                                                                    "knowledge_aware": false,
+                                                                    "chat_history_aware": false,
+                                                                    "human_input_aware": true,
+                                                                    "varReply": "bot_reply",
+                                                                    "temperature": "0.7",
+                                                                    "max_tokens": "16000",
+                                                                    "stop": "",
+                                                                    "stop_regex": "",
+                                                                    "pattern": "",
+                                                                    "json_mode": false,
+                                                                    "multimodal_mode": false,
+                                                                    "tools": "",
+                                                                    "agent_loop": false,
+                                                                    "llm_alt_model": "gpt-4o-mini"
+                                                                  },
+                                                                  "name": "AI GPT-4o Generate Response"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "name": "Is data empty?"
+                                                          }
+                                                        ],
+                                                        "Ngày công": [
+                                                          {
+                                                            "id": "a38d92dca86a3b9e480a1bc6039c0e7e",
+                                                            "type": "botAPICall",
+                                                            "componentType": "task",
+                                                            "properties": {
+                                                              "api_response_var_name": "attendance_data",
+                                                              "api_url": "https://api.cmcts.cloud/api/attendance-bot/search/attendance",
+                                                              "api_body": "{{ query_data }}",
+                                                              "api_header": "{\n    \"Content-Type\": \"application/json\"\n}",
+                                                              "api_method": "POST"
+                                                            },
+                                                            "name": "Bot API Call"
+                                                          },
+                                                          {
+                                                            "id": "27be30714d63aaa7eda2c6c50626876a",
+                                                            "type": "python",
+                                                            "componentType": "task",
+                                                            "properties": {
+                                                              "varName": "is_data_empty",
+                                                              "expression": "attendance_data = {{ attendance_data }}\n\ndef is_data_empty( attendance_data ):\n    if not attendance_data or \"data\" not in attendance_data or not attendance_data[\"data\"]:\n        return \"Yes\"\n    \n    return \"No\"\n\nprint( is_data_empty( attendance_data ) )\n"
+                                                            },
+                                                            "name": "Python"
+                                                          },
+                                                          {
+                                                            "id": "430470ee17f0a74c1812228bb1027137",
+                                                            "type": "if",
+                                                            "componentType": "switch",
+                                                            "properties": {
+                                                              "condition": "is_data_empty == \"Yes\""
+                                                            },
+                                                            "branches": {
+                                                              "true": [
+                                                                {
+                                                                  "id": "bf97da2df3c5b79686f629b3aaec7480",
+                                                                  "type": "botSendText",
+                                                                  "componentType": "task",
+                                                                  "properties": {
+                                                                    "text": "Rất tiếc, Attendance Bot chưa tìm thấy dữ liệu bạn yêu cầu. Nếu đây là sự cố, vui lòng liên hệ với phòng nhân sự để được hỗ trợ."
+                                                                  },
+                                                                  "name": "Bot Send Text"
+                                                                }
+                                                              ],
+                                                              "false": [
+                                                                {
+                                                                  "id": "ed4fbb9d8692b1ed79bbcf128185479d",
+                                                                  "type": "python",
+                                                                  "componentType": "task",
+                                                                  "properties": {
+                                                                    "varName": "processed_data",
+                                                                    "expression": "attendance_data = {{ attendance_data }}\n\ndef process_data(attendance_data):\n    # Khởi tạo biến thống kê\n    total_attendance = 0.0  # Đổi thành float để tính tổng chính xác\n    full_days = 0\n    partial_days = 0  # Đổi tên từ half_days thành partial_days vì không chỉ có 0.5\n    total_working_days = 0\n    total_actual_hours = 0.0  # Thêm biến để tính tổng giờ làm việc thực tế\n    total_deduction_hours = 0.0\n\n    full_day_dates = []\n    partial_day_dates = []  # Lưu cả ngày và hệ số công tương ứng\n\n    # Xử lý dữ liệu - duyệt qua từng bản ghi để tính toán và phân loại\n    for record in attendance_data[\"data\"]:\n        working_days = float( record.get(\"workingDays\", 0) )\n        actual_hours = float( record.get(\"actualHours\", 0) )\n        deduction_hours = float( record.get(\"deductionHours\", 0) )\n        date = record.get(\"date\", \"\")\n        \n        # Cộng dồn các giá trị tổng\n        total_attendance += working_days\n        total_actual_hours += actual_hours\n        total_deduction_hours += deduction_hours\n        total_working_days += 1\n\n        # Phân loại dựa trên hệ số workingDays\n        # Ngày đủ công: workingDays >= 1.0 (hoặc gần bằng 1.0 do làm tròn số thực)\n        if working_days >= 0.99:  # Sử dụng 0.99 thay vì 1.0 để tránh lỗi làm tròn số thực\n            full_days += 1\n            full_day_dates.append(date)\n        # Ngày làm một phần: workingDays > 0 nhưng < 1.0\n        elif working_days > 0:\n            partial_days += 1\n            # Lưu cả ngày và hệ số công để hiển thị chi tiết\n            partial_day_dates.append((date, working_days, actual_hours))\n\n    # Tạo nội dung summary với thông tin chi tiết hơn\n    summary_parts = []\n    \n    # Thông tin tổng quan\n    summary_parts.append(f\"Tổng số ngày công: {total_attendance:.3f}\")  # Hiển thị 3 số thập phân\n    summary_parts.append(\"\")\n    summary_parts.append(f\"Tổng số giờ công bị trừ: {total_deduction_hours:.3f}\")  # Hiển thị 3 số thập phân\n    summary_parts.append(\"\")\n    summary_parts.append(f\"Tổng số giờ công (giờ làm việc): {total_actual_hours:.1f} giờ\")\n    summary_parts.append(\"\")\n    \n    # Chi tiết ngày làm đủ công\n    summary_parts.append(f\"Số ngày làm đủ công (≥1.0): {full_days}\")\n    for idx, date in enumerate(full_day_dates, start=1):\n        summary_parts.append(f\"  {idx}. {date}\")\n    summary_parts.append(\"\")\n\n    # Chi tiết ngày làm một phần công\n    summary_parts.append(f\"Số ngày làm một phần công (<1.0): {partial_days}\")\n    for idx, (date, working_days, actual_hours) in enumerate(partial_day_dates, start=1):\n        # Hiển thị thông tin chi tiết: ngày, hệ số công, số giờ thực tế\n        summary_parts.append(f\"  {idx}. {date} - {working_days:.3f} công ({actual_hours}h)\")\n\n    # Ghép thành chuỗi kết quả\n    final_summary = \"\\n\".join(summary_parts)\n    return final_summary\n\nprint( process_data( attendance_data ) )\n"
+                                                                  },
+                                                                  "name": "Python"
+                                                                },
+                                                                {
+                                                                  "id": "601b1f4982d7d616152e263a58fae001",
+                                                                  "type": "qna",
+                                                                  "componentType": "task",
+                                                                  "properties": {
+                                                                    "instruction": "Vai trò:\n- Bạn là trợ lý tên Minh Hiển, trợ lý ảo chuyên biệt hỗ trợ hỏi đáp chấm công. Bạn hãy luôn giao tiếp bằng ngôn ngữ mà Người dùng ưa thích và thích ứng với phong cách giao tiếp của Người dùng.\n- Bạn là chuyên gia giàu kiến thức về hệ thống quản lý chấm công, cung cấp hướng dẫn chuyên sâu về theo dõi thời gian làm việc. Bạn xuất sắc trong việc phân tích mô hình chấm công của người dùng, nhận diện các vấn đề tiềm ẩn và đưa ra các giải pháp hành động nhằm cải thiện quản lý thời gian.\n\n\nKĩ năng:\n- Trợ lý thành thạo trong việc xử lý các phép tính chấm công phức tạp, phân tích so sánh và tạo các báo cáo có ý nghĩa. Trợ lý luôn trả lời bằng ngôn ngữ mà Người dùng đang sử dụng, đồng thời điều chỉnh giọng điệu và mức độ chi tiết sao cho phù hợp với sở thích của Người dùng.\n\n\nGiọng điệu:\n- Hài hước và châm biếm đôi khi khó truyền tải qua văn bản, vì vậy hãy giữ nội dung rõ ràng, tránh gây hiểu lầm.\n- Ngay cả khi trò chuyện thân mật, bạn vẫn phải giữ mức độ chuyên nghiệp nhất định, đảm bảo tương tác lịch sự và tôn trọng\n\n\nCách xưng hô trong Tiếng Việt\n- Trong tiếng Việt, bạn luôn xưng là \"em\" trong mọi trường hợp.\n- Bạn gọi Người dùng bằng danh xưng lịch sự là \"anh\" nếu giới tính là nam, \"chị\" nếu giới tính là nữ, và nếu chưa xác định được giới tính thì gọi là \"anh/chị\".\n- Ví dụ\n    - Người dùng: \"Xin chào\"\n    - Phân tích: Người dùng nói \"xin chào\" nhưng không xác định được giới tính.\n    - Trợ lí ảo: \"Dạ, em có thể giúp gì cho anh/chị?\"\n    - Người dùng: \"Chào em, anh là Tùng, cho anh hỏi một chút.\"\n    - Phân tích: Người dùng xưng \"anh\" và giới thiệu tên là \"Tùng\", xác định giới tính là nam.\n    - Trợ lí ảo: \"Chào anh Tùng, em có thể giúp gì cho anh?\"\n\n\nNhiệm vụ:\n- Dựa vào nội dung câu hỏi của người dùng và các thông tin ngữ cảnh hiện tại bao gồm các thông tin đang được người dùng hỏi đến - thông tin truy vấn từ cơ sở dữ liệu, hãy trả lời câu hỏi của người dùng.\n\n\nCách trả lời:\n- Nếu câu trả lời chỉ liên quan đến **1 ngày**: \n    - Khi trả lời, luôn bắt đầu câu bằng: Dạ, [thời gian hoặc khoảng thời gian người dùng hỏi], anh/chị ...\n        - Trong đó:\n            - Không thêm tiền tố hay thông tin khác trước cụm \"Dạ,\" và không thay đổi format.\n            - Giữ nguyên cách xưng hô “anh/chị” sau dấu phẩy và kết thúc câu bằng \"ạ\" để thể hiện sự lễ phép.\n            - [thời gian hoặc khoảng thời gian người dùng hỏi] là phần được diễn giải từ câu hỏi, theo đúng logic nhận diện và tính toán (ví dụ: “ngày 15 tháng này”, “từ 2025-08-04 đến 2025-08-08”), nhưng khi hiển thị chỉ dùng định dạng ngày/tháng (không thêm năm) hoặc thứ + ngày/tháng (ví dụ \"10/08 (không có 2025)\" hoặc \"thứ 2 04/08\")\n    - Luôn nêu cả cụm tương đối và ngày/tháng cụ thể khi người dùng dùng từ như \"hôm nay\", \"hôm qua\", \"hôm trước\", \"ngày hôm trước\".\n        - Mẫu cho trường hợp một ngày:\n            - Dạ, hôm qua, ngày 10/08, anh/chị ... ạ\n            - Dạ, hôm nay, ngày 11/08, anh/chị ... ạ\n            - Dạ, ngày hôm trước, 09/08, anh/chị ... ạ\n        - Mẫu cho thứ:\n            - Dạ, thứ 3, 12/08, anh/chị ... ạ\n- Nếu câu trả lời liên quan đến **nhiều ngày**:  \n    - Mở đầu một lần với \"Dạ, ...\" để giới thiệu khoảng thời gian.  \n    - Sau đó xuống dòng, liệt kê các ngày theo dạng danh sách gọn gàng (bullet points hoặc dòng riêng).\n    - Không cần lặp lại cụm \"Dạ,\" ở đầu mỗi ngày.\n    - Ví dụ (dữ liệu trong câu trả lời không đúng, chỉ mang tính chất tham khảo):\n        - Dạ, từ 05/08 đến 09/08, anh/chị có các vi phạm đi muộn như sau ạ:\n            - 05/08: đi muộn 10 phút, nhưng theo quy chế công ty, tháng này anh/chị vẫn trong số 5 lần vi phạm được phép nên không bị trừ giờ công\n            - 07/08: đi muộn 22 phút và bị trừ 1 giờ công\n            - 09/08: đi muộn 8 phút, không bị trừ giờ công vì vẫn trong số lần vi phạm được phép\n        - Dạ, từ 12/08 đến 16/08, anh/chị có các vi phạm về sớm như sau ạ:\n            - 12/08: về sớm 6 phút, không bị trừ giờ công vì vẫn trong số lần vi phạm được phép\n            - 14/08: về sớm 20 phút và bị trừ 1 giờ công\n            - 15/08: về sớm 12 phút, nhưng vẫn trong số lần vi phạm được phép nên không bị trừ giờ công\n\n\n- Nếu người dùng hỏi **riêng về vi phạm đi muộn**:\n    - Chỉ trả lời thông tin đi muộn (có hay không, bao nhiêu phút, có bị trừ giờ công không).\n    - TUYỆT ĐỐI không nhắc đến việc về sớm.\n    - Câu hỏi được tính là hỏi riêng về vi phạm đi muộn:\n        - Hôm qua tôi checkin muộn không\n        - Từ đầu tháng tới giờ tôi đi muộn những hôm nào\n    - Ví dụ 1 (được miễn):\n        - Câu hỏi: \"Ngày 14/08 tôi có đi muộn không?\"\n        - Phân tích: Người dùng hỏi cụ thể về đi muộn. Giả sử thông tin: Ngày 14/08 đi muộn 12 phút (trừ 0h).\n        - Trả lời: Dạ, ngày 14/08, anh/chị đi muộn 12 phút, nhưng theo quy chế công ty, tháng này anh/chị vẫn trong số 5 lần vi phạm được phép nên không bị trừ giờ công ạ.\n    - Ví dụ 2 (bị trừ):\n        - Câu hỏi: \"Ngày 15/08 tôi có đi muộn không?\"\n        - Phân tích: Người dùng hỏi cụ thể về đi muộn. Giả sử thông tin: Ngày 15/08 đi muộn 18 phút (trừ 1h).\n        - Trả lời: Dạ, ngày 15/08, anh/chị đi muộn 18 phút và bị trừ 1 giờ công ạ.\n- Nếu người dùng hỏi **riêng về vi phạm về sớm**:\n    - Chỉ trả lời thông tin về sớm (có hay không, bao nhiêu phút, có bị trừ giờ công không).\n    - TUYỆT ĐỐI không nhắc đến việc đi muộn.\n    - Câu hỏi được tính là hỏi riêng về vi phạm về sớm:\n        - Tuần này tôi về sớm những hôm nào\n    - Ví dụ 1 (được miễn):\n        - Câu hỏi: \"Ngày 12/08 tôi có về sớm không?\"\n        - Phân tích: Người dùng hỏi riêng về về sớm. Giả sử thông tin: Ngày 12/08 về sớm 10 phút (trừ 0h).\n        - Trả lời: Dạ, ngày 12/08, anh/chị về sớm 10 phút, nhưng theo quy chế công ty, tháng này anh/chị vẫn trong số 5 lần vi phạm được phép nên không bị trừ giờ công ạ.\n    - Ví dụ 2 (bị trừ):\n        - Câu hỏi: \"Hôm qua tôi có về sớm không?\"\n        - Phân tích: Người dùng hỏi riêng về về sớm. Giả sử hôm qua (13/08) có vi phạm: về sớm 8 phút (trừ 1h).\n        - Trả lời: Dạ, hôm qua, ngày 13/08, anh/chị về sớm 8 phút và bị trừ 1 giờ công ạ.\n\n- Nếu người dùng hỏi **chung chung hoặc cả hai**:\n    - Trả lời đầy đủ cả đi muộn và về sớm, áp dụng các quy tắc đã nêu (tổng hợp khi có cả 2 trong cùng một ngày, quy chế 5 lần vi phạm/tháng, số giờ công bị trừ, v.v.).\n    - Ví dụ:\n        - Câu hỏi: \"Tuần trước tôi có vi phạm gì không?\"\n        - Phân tích: Người dùng hỏi về thông tin vi phạm nên được hiểu là cả việc đi muộn và về sớm vì vậy cần trả lời cả đi muộn và về sớm cho từng ngày vi phạm.\n        - Ví dụ thông tin:\n            - 13/08: đi muộn 14 phút, về sớm 8 phút → tổng 22 phút, trừ 1h\n            - 14/08: về sớm 8 phút (trừ 1h)\n            - 15/08: đi muộn 5 phút (trừ 1h)\n        - Trả lời:\n            - Dạ, tuần trước, từ 11/08 đến 17/08, anh/chị có các vi phạm như sau ạ:\n                - Ngày 13/08, anh/chị đi muộn 14 phút và về sớm 8 phút, tổng thời gian vi phạm là 22 phút, và bị trừ 1 giờ công\n                - Ngày 14/08, anh/chị không đi muộn nhưng về sớm 8 phút và bị trừ 1 giờ công\n                - Ngày 15/08, anh/chị đi muộn 5 phút nhưng không về sớm, và bị trừ 1 giờ công\n\n- Nếu **không phát hiện vi phạm nào**:\n    - Vẫn áp dụng format thời gian như trên nhưng với nội dung: *\"anh/chị đã đi đúng giờ và không có vi phạm gì đâu ạ.\"*\n    - Ví dụ:\n        - Dạ, hôm nay, ngày 11/08, anh/chị đã đi đúng giờ và không có vi phạm gì đâu ạ.\n        - Dạ, tuần trước, từ 04/08 đến 10/08, anh/chị đã đi đúng giờ và không có vi phạm gì đâu ạ.\n\n- **Lưu ý:**  \n    - Nếu người dùng hỏi thông tin về nhiều ngày vi phạm trong cùng một câu hỏi (ví dụ \"tuần trước tôi có vi phạm ngày nào không?\", ...), thì từng ngày vi phạm đều phải được liệt kê lần lượt, không gộp chung trừ khi điều này được đề cập đến trong câu hỏi.\n\n    - Nếu trong một ngày, **số giờ công bị trừ > 1** thì nghĩa là người dùng đã vượt quá số lần vi phạm được phép trong tháng. Nếu **số giờ công bị trừ = 0** thì nghĩa là lần vi phạm đó vẫn nằm trong số lần được miễn trong tháng, nên không bị trừ giờ công. Trong cả hai trường hợp, phải trả lời đúng theo hướng dẫn bên dưới, tuyệt đối không suy diễn hoặc bịa thêm thông tin.\n    \n    - Nếu số giờ công bị trừ = 0 (ví dụ: Ngày: 2025-08-13 - Vi phạm: đi muộn 14 phút và về sớm 8 phút (trừ 0h)) lần vi phạm được miễn, phải trả lời theo mẫu “... nhưng vẫn trong số 5 lần được phép nên không bị trừ giờ công ạ”.\n    - Nếu số giờ công bị trừ > 0 (ví dụ: Ngày: 2025-08-13 - Vi phạm: đi muộn 14 phút và về sớm 8 phút (trừ 1h)) lần vi phạm KHÔNG được miễn, phải trả lời theo mẫu “... và bị trừ X giờ công ạ”.\n\n\nLưu ý:\n- Dữ liệu ngữ cảnh có thể bao gồm nhiều thông tin hơn so với nội dung mà người dùng thực sự muốn hỏi.\n- Khi trả lời, CHỈ ĐƯỢC trích xuất đúng phần thông tin phù hợp với câu hỏi của người dùng và bỏ qua những thông tin thừa.\n    - Nếu user hỏi riêng về vi phạm đi muộn, chỉ trả lời thông tin đi muộn.\n    - Nếu user hỏi riêng về vi phạm về sớm, chỉ trả lời thông tin về sớm.\n    - Nếu user hỏi chung chung về vi phạm, thì trả lời cả đi muộn và về sớm.\n\n\nNgữ cảnh hiện tại:\n- Ngày hiện tại: {{ api_session.data.current_time }}\n- Chủ đề mà người dùng đang nhắc đến: {{ api_session.data.topic }}\n- Thông tin đang được người dùng hỏi đến:\n{{ processed_data }}\n\n\nCâu hỏi:\n{{ user_input }}",
+                                                                    "dataset_uuid": "",
+                                                                    "dataset_qa_uuid": "",
+                                                                    "rag_query": "",
+                                                                    "limit": "2",
+                                                                    "api_key": "",
+                                                                    "knowledge": "{{ knowledge_from_rag }}",
+                                                                    "knowledge_aware": false,
+                                                                    "chat_history_aware": true,
+                                                                    "human_input_aware": true,
+                                                                    "varReply": "bot_reply",
+                                                                    "temperature": "0.7",
+                                                                    "max_tokens": "1000",
+                                                                    "stop": "",
+                                                                    "stop_regex": "",
+                                                                    "pattern": "",
+                                                                    "json_mode": false,
+                                                                    "multimodal_mode": false,
+                                                                    "tools": "",
+                                                                    "agent_loop": false,
+                                                                    "llm_alt_model": "gpt-mini"
+                                                                  },
+                                                                  "name": "AI GPT-4o Generate Response"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "name": "Is data empty?"
+                                                          }
+                                                        ],
+                                                        "Thông tin vi phạm": [
+                                                          {
+                                                            "id": "2ec2ce155c34437464f38dea3ef4d8bf",
+                                                            "type": "botAPICall",
+                                                            "componentType": "task",
+                                                            "properties": {
+                                                              "api_response_var_name": "attendance_data",
+                                                              "api_url": "https://api.cmcts.cloud/api/attendance-bot/search/late",
+                                                              "api_body": "{{ query_data }}",
+                                                              "api_header": "{\n    \"Content-Type\": \"application/json\"\n}",
+                                                              "api_method": "POST"
+                                                            },
+                                                            "name": "Bot API Call"
+                                                          },
+                                                          {
+                                                            "id": "8b746ea8d6164320ecfdc6cd4ab94284",
+                                                            "type": "python",
+                                                            "componentType": "task",
+                                                            "properties": {
+                                                              "varName": "is_data_empty",
+                                                              "expression": "attendance_data = {{ attendance_data }}\n\ndef is_data_empty( attendance_data ):\n    if not attendance_data or \"data\" not in attendance_data or not attendance_data[\"data\"]:\n        return \"Yes\"\n    \n    return \"No\"\n\nprint( is_data_empty( attendance_data ) )\n"
+                                                            },
+                                                            "name": "Python"
+                                                          },
+                                                          {
+                                                            "id": "bd0f1b823cc30260bfbe292b270301e2",
+                                                            "type": "if",
+                                                            "componentType": "switch",
+                                                            "properties": {
+                                                              "condition": "is_data_empty == \"Yes\""
+                                                            },
+                                                            "branches": {
+                                                              "true": [
+                                                                {
+                                                                  "id": "3b46b299a47abeefe03dd245f0ff42d7",
+                                                                  "type": "botSendText",
+                                                                  "componentType": "task",
+                                                                  "properties": {
+                                                                    "text": "Rất tiếc, Attendance Bot chưa tìm thấy dữ liệu bạn yêu cầu. Nếu đây là sự cố, vui lòng liên hệ với phòng nhân sự để được hỗ trợ."
+                                                                  },
+                                                                  "name": "Bot Send Text"
+                                                                }
+                                                              ],
+                                                              "false": [
+                                                                {
+                                                                  "id": "1f907c8d235bdebfa0849a0b32a0d9a2",
+                                                                  "type": "python",
+                                                                  "componentType": "task",
+                                                                  "properties": {
+                                                                    "varName": "processed_data",
+                                                                    "expression": "attendance_data = {{ attendance_data }}\n\ndef process_data(attendance_data):\n    summary_parts = []\n\n    total_deduction_hours = 0\n    total_violation_days = 0\n    total_late_days = 0\n    total_late_minutes = 0\n    total_early_days = 0\n    total_early_minutes = 0\n\n    for record in attendance_data[\"data\"]:\n        checkin_violation = float( record.get(\"checkin_violation\", 0) )\n        checkout_violation = float( record.get(\"checkout_violation\", 0) )\n        deduction_hours = float( record.get(\"deduction_hours\", 0) )\n\n        if checkin_violation > 0 or checkout_violation > 0:\n            total_violation_days += 1\n\n        total_deduction_hours += deduction_hours\n        if checkin_violation > 0:\n            total_late_days += 1\n            total_late_minutes += checkin_violation\n        if checkout_violation > 0:\n            total_early_days += 1\n            total_early_minutes += checkout_violation\n\n    # Chuỗi tổng hợp\n    summary_header = (\n        f\"Tổng số ngày vi phạm bao gồm cả đi muộn và về sớm: {total_violation_days} ngày\\n\"\n        f\"Tổng số giờ công bị trừ: {total_deduction_hours}h\\n\"\n        f\"Tổng số ngày đi muộn: {total_late_days} (tổng {total_late_minutes} phút)\\n\"\n        f\"Tổng số ngày về sớm: {total_early_days} (tổng {total_early_minutes} phút)\\n\"\n    )\n    summary_parts.append(summary_header)\n\n    for index, record in enumerate(attendance_data[\"data\"]):\n        # Xác định trạng thái dựa trên tổng số vi phạm\n        total_violation = float( record.get(\"total_violation\", 0) )\n        if total_violation > 0:\n            # Tạo thông tin chi tiết về vi phạm\n            checkin_violation = float( record.get(\"checkin_violation\", 0) )\n            checkout_violation = float( record.get(\"checkout_violation\", 0) )\n            deduction_hours = float( record.get(\"deduction_hours\", 0) )\n            \n            # Xây dựng chuỗi mô tả vi phạm\n            violation_details = []\n            if checkin_violation > 0:\n                violation_details.append(f\"đi muộn {checkin_violation} phút\")\n            else:\n                violation_details.append(\"không đi muộn\")\n\n            if checkout_violation > 0:\n                violation_details.append(f\"về sớm {checkout_violation} phút\")\n            else:\n                violation_details.append(\"không về sớm\")\n\n            violation_text = \" và \".join(violation_details)\n            status_text = f\"Vi phạm: {violation_text} (trừ {deduction_hours}h)\"\n        else:\n            status_text = \"Không vi phạm (trừ 0h)\"\n        \n        # Tạo chuỗi tóm tắt cho từng ngày\n        summary_parts.append(f\"Ngày: {record.get('date', 'không có')} - {status_text}\")\n\n        # Thêm dòng trống giữa các bản ghi (trừ bản ghi cuối cùng)\n        if index < len(attendance_data[\"data\"]) - 1:\n            summary_parts.append(\"\")\n\n    final_summary = \"\\n\".join(summary_parts)\n    return final_summary\n\nprint( process_data( attendance_data ) )\n"
+                                                                  },
+                                                                  "name": "Python"
+                                                                },
+                                                                {
+                                                                  "id": "54d09e8bc5a2639620f97452be6a0cdc",
+                                                                  "type": "qna",
+                                                                  "componentType": "task",
+                                                                  "properties": {
+                                                                    "instruction": "Vai trò:\n- Bạn là trợ lý tên Minh Hiển, trợ lý ảo chuyên biệt hỗ trợ hỏi đáp chấm công. Bạn hãy luôn giao tiếp bằng ngôn ngữ mà Người dùng ưa thích và thích ứng với phong cách giao tiếp của Người dùng.\n- Bạn là chuyên gia giàu kiến thức về hệ thống quản lý chấm công, cung cấp hướng dẫn chuyên sâu về theo dõi thời gian làm việc. Bạn xuất sắc trong việc phân tích mô hình chấm công của người dùng, nhận diện các vấn đề tiềm ẩn và đưa ra các giải pháp hành động nhằm cải thiện quản lý thời gian.\n\n\nKĩ năng:\n- Trợ lý thành thạo trong việc xử lý các phép tính chấm công phức tạp, phân tích so sánh và tạo các báo cáo có ý nghĩa. Trợ lý luôn trả lời bằng ngôn ngữ mà Người dùng đang sử dụng, đồng thời điều chỉnh giọng điệu và mức độ chi tiết sao cho phù hợp với sở thích của Người dùng.\n\n\nGiọng điệu:\n- Hài hước và châm biếm đôi khi khó truyền tải qua văn bản, vì vậy hãy giữ nội dung rõ ràng, tránh gây hiểu lầm.\n- Ngay cả khi trò chuyện thân mật, bạn vẫn phải giữ mức độ chuyên nghiệp nhất định, đảm bảo tương tác lịch sự và tôn trọng\n\n\nCách xưng hô trong Tiếng Việt\n- Trong tiếng Việt, bạn luôn xưng là \"em\" trong mọi trường hợp.\n- Bạn gọi Người dùng bằng danh xưng lịch sự là \"anh\" nếu giới tính là nam, \"chị\" nếu giới tính là nữ, và nếu chưa xác định được giới tính thì gọi là \"anh/chị\".\n- Ví dụ\n    - Người dùng: \"Xin chào\"\n    - Phân tích: Người dùng nói \"xin chào\" nhưng không xác định được giới tính.\n    - Trợ lí ảo: \"Dạ, em có thể giúp gì cho anh/chị?\"\n    - Người dùng: \"Chào em, anh là Tùng, cho anh hỏi một chút.\"\n    - Phân tích: Người dùng xưng \"anh\" và giới thiệu tên là \"Tùng\", xác định giới tính là nam.\n    - Trợ lí ảo: \"Chào anh Tùng, em có thể giúp gì cho anh?\"\n\n\nNhiệm vụ:\n- Dựa vào nội dung câu hỏi của người dùng và các thông tin ngữ cảnh hiện tại bao gồm các thông tin đang được người dùng hỏi đến - thông tin truy vấn từ cơ sở dữ liệu, hãy trả lời câu hỏi của người dùng.\n\n\nCách trả lời:\n- Nếu câu trả lời chỉ liên quan đến **1 ngày**: \n    - Khi trả lời, luôn bắt đầu câu bằng: Dạ, [thời gian hoặc khoảng thời gian người dùng hỏi], anh/chị ...\n        - Trong đó:\n            - Không thêm tiền tố hay thông tin khác trước cụm \"Dạ,\" và không thay đổi format.\n            - Giữ nguyên cách xưng hô “anh/chị” sau dấu phẩy và kết thúc câu bằng \"ạ\" để thể hiện sự lễ phép.\n            - [thời gian hoặc khoảng thời gian người dùng hỏi] là phần được diễn giải từ câu hỏi, theo đúng logic nhận diện và tính toán (ví dụ: “ngày 15 tháng này”, “từ 2025-08-04 đến 2025-08-08”), nhưng khi hiển thị chỉ dùng định dạng ngày/tháng (không thêm năm) hoặc thứ + ngày/tháng (ví dụ \"10/08 (không có 2025)\" hoặc \"thứ 2 04/08\")\n    - Luôn nêu cả cụm tương đối và ngày/tháng cụ thể khi người dùng dùng từ như \"hôm nay\", \"hôm qua\", \"hôm trước\", \"ngày hôm trước\".\n        - Mẫu cho trường hợp một ngày:\n            - Dạ, hôm qua, ngày 10/08, anh/chị ... ạ\n            - Dạ, hôm nay, ngày 11/08, anh/chị ... ạ\n            - Dạ, ngày hôm trước, 09/08, anh/chị ... ạ\n        - Mẫu cho thứ:\n            - Dạ, thứ 3, 12/08, anh/chị ... ạ\n- Nếu câu trả lời liên quan đến **nhiều ngày**:  \n    - Mở đầu một lần với \"Dạ, ...\" để giới thiệu khoảng thời gian.  \n    - Sau đó xuống dòng, liệt kê các ngày theo dạng danh sách gọn gàng (bullet points hoặc dòng riêng).\n    - Không cần lặp lại cụm \"Dạ,\" ở đầu mỗi ngày.\n    - Ví dụ (dữ liệu trong câu trả lời không đúng, chỉ mang tính chất tham khảo):  \n        - Dạ, tuần vừa rồi anh/chị có các thời gian check in, out như sau ạ:\n            - 01/08: check in lúc 08:09, check out lúc 17:25\n            - 04/08: check in lúc 08:24, check out lúc 17:50\n            - 05/08: check in lúc 08:18, check out lúc 18:12\n\n\nLưu ý:\n- Dữ liệu ngữ cảnh có thể bao gồm nhiều thông tin hơn so với nội dung mà người dùng thực sự muốn hỏi.\n- Khi trả lời, CHỈ ĐƯỢC trích xuất đúng phần thông tin phù hợp với câu hỏi của người dùng và bỏ qua những thông tin thừa.\n    - Nếu user hỏi về ngày công, chỉ trả lời dữ liệu về ngày công.\n\n\nNgữ cảnh hiện tại:\n- Ngày hiện tại: {{ api_session.data.current_time }}\n- Chủ đề mà người dùng đang nhắc đến: {{ api_session.data.topic }}\n- Thông tin đang được người dùng hỏi đến:\n{{ processed_data }}\n\n\nCâu hỏi:\n{{ user_input }}",
+                                                                    "dataset_uuid": "",
+                                                                    "dataset_qa_uuid": "",
+                                                                    "rag_query": "",
+                                                                    "limit": "2",
+                                                                    "api_key": "",
+                                                                    "knowledge": "{{ knowledge_from_rag }}",
+                                                                    "knowledge_aware": false,
+                                                                    "chat_history_aware": true,
+                                                                    "human_input_aware": true,
+                                                                    "varReply": "bot_reply",
+                                                                    "temperature": "0.7",
+                                                                    "max_tokens": "1000",
+                                                                    "stop": "",
+                                                                    "stop_regex": "",
+                                                                    "pattern": "",
+                                                                    "json_mode": false,
+                                                                    "multimodal_mode": false,
+                                                                    "tools": "",
+                                                                    "agent_loop": false,
+                                                                    "llm_alt_model": "gpt-mini"
+                                                                  },
+                                                                  "name": "AI GPT-4o Generate Response"
+                                                                }
+                                                              ]
+                                                            },
+                                                            "name": "Is data empty?"
+                                                          }
+                                                        ]
+                                                      },
+                                                      "name": "Parallel"
+                                                    }
+                                                  ],
+                                                  "false": [
+                                                    {
+                                                      "id": "407443160896c46f7d2b5c6d01c16a0b",
+                                                      "type": "botSendText",
+                                                      "componentType": "task",
+                                                      "properties": {
+                                                        "text": "Bạn vui lòng cung cấp thêm thông tin cụ thể. Bạn muốn tra cứu thời gian check in/out, số ngày công, hay thông tin đi muộn để Attendance Bot hỗ trợ chính xác hơn."
+                                                      },
+                                                      "name": "Bot Send Text"
+                                                    }
+                                                  ]
+                                                },
+                                                "name": "Is topic identifiable?"
+                                              }
+                                            ],
+                                            "false": [
+                                              {
+                                                "id": "5dc2e348fe7fada35e10567acb65dd44",
+                                                "type": "botSendText",
+                                                "componentType": "task",
+                                                "properties": {
+                                                  "text": "Ngày đó rơi vào cuối tuần, công ty không làm việc nên sẽ không có dữ liệu chấm công."
+                                                },
+                                                "name": "Bot Send Text"
+                                              }
+                                            ]
+                                          },
+                                          "name": "Is it a day off?"
+                                        }
+                                      ],
+                                      "false": [
+                                        {
+                                          "id": "cb0596d9ef0fbcd964b727fe853c61e2",
+                                          "type": "botSendText",
+                                          "componentType": "task",
+                                          "properties": {
+                                            "text": "Bạn vui lòng cung cấp thời gian cụ thể để Attendance Bot hỗ trợ tra cứu chính xác."
+                                          },
+                                          "name": "Bot Send Text"
+                                        }
+                                      ]
+                                    },
+                                    "name": "Is time identifiable?"
+                                  },
+                                  {
+                                    "id": "fa022430fc983f1f2f2426b6978651ef",
+                                    "type": "clearTopic",
+                                    "componentType": "task",
+                                    "properties": {},
+                                    "name": "Clear Topic"
+                                  }
+                                ],
+                                "false": [
+                                  {
+                                    "id": "df4091dbcc69e9c0a7e4ca64d6db29e3",
+                                    "type": "recall",
+                                    "componentType": "task",
+                                    "properties": {
+                                      "max_loop": 30
+                                    },
+                                    "name": "Recall"
+                                  }
+                                ]
+                              },
+                              "name": "Is output a valid JSON?"
+                            }
+                          ],
+                          "false": [
+                            {
+                              "id": "f758ca4093d98e732fc61b7e813fafbe",
+                              "type": "recall",
+                              "componentType": "task",
+                              "properties": {
+                                "max_loop": ""
+                              },
+                              "name": "Recall"
+                            }
+                          ]
+                        },
+                        "name": "Is output a valid JSON?"
+                      }
+                    ],
+                    "false": [
+                      {
+                        "id": "c1ae37b5f91f9a4c2ac92aecba8cfd31",
+                        "type": "botSendText",
+                        "componentType": "task",
+                        "properties": {
+                          "text": "Xin lỗi, Attendance Bot chưa hiểu rõ ý của bạn. Bạn hãy đặt lại câu hỏi 1 cách rõ ràng và cụ thể hơn về thời gian và thông tin muốn tra cứu."
+                        },
+                        "name": "Bot Send Text"
+                      },
+                      {
+                        "id": "fdde1ee32f7bbfca3bdd3963a7db4c95",
+                        "type": "clearTopic",
+                        "componentType": "task",
+                        "properties": {},
+                        "name": "Clear Topic"
+                      }
+                    ]
+                  },
+                  "name": "Is it possible to rewrite user's input?"
+                }
+              ],
+              "false": [
+                {
+                  "id": "f645006ac60522e80025ae79aa81cbac",
+                  "type": "botSendText",
+                  "componentType": "task",
+                  "properties": {
+                    "text": "Attendance Bot không thể trả lời câu hỏi của bạn. Vui lòng liên hệ với phòng nhân sự để biết thêm thông tin."
+                  },
+                  "name": "Bot Send Text"
+                },
+                {
+                  "id": "bb37ebc104f44588741ec9f8b2c3337e",
+                  "type": "clearTopic",
+                  "componentType": "task",
+                  "properties": {},
+                  "name": "Clear Topic"
+                }
+              ]
+            },
+            "name": "Is self inquiry?"
+          }
+        ]
+      },
+      "name": "Flows Switch"
+    }
+  ],
+  "properties": {}
+}

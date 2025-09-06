@@ -1,2 +1,17 @@
-{"session_id": "29:1LZVQUxhyhMQA5VKBzO8OyD9wv6xrQaNNmO8nBd2BOEz4G2q6_jIBRlDoI-sLJt_uIyr-4k_xWym19eAgc5HdXQ", "data": {"time_query": [{"start_date": "2025-08-20", "end_date": "2025-08-20"}], "topic": "Thời gian Check-in / Check-out", "prev_question": "hi", "prev_answer": "Chào anh/chị 👋 Em là Minh Hiển — trợ lý ảo hỗ trợ tra cứu thông tin chấm công cho công ty. Em có thể giúp anh/chị tra cứu thời gian làm việc, trạng thái check-in/check-out. Ví dụ, anh/chị có thể hỏi: - Thời gian check in, check out hôm qua - Hôm qua tôi có đi muộn không? - Hôm trước tôi được tính bao nhiêu ngày công? - Tổng thời gian vi phạm của tôi hôm nay? Hôm nay anh/chị muốn tra cứu thông tin gì ạ?", "user_name": "Nguyen Duc Kien", "user_email": "ndkien.ts@cmc.com.vn", "current_time": "Thursday, 2025-08-21"}}
-
+{
+    "session_id": "29:1LZVQUxhyhMQA5VKBzO8OyD9wv6xrQaNNmO8nBd2BOEz4G2q6_jIBRlDoI-sLJt_uIyr-4k_xWym19eAgc5HdXQ",
+    "data": {
+        "time_query": [
+            {
+                "start_date": "2025-08-20",
+                "end_date": "2025-08-20"
+            }
+        ],
+        "topic": "Thời gian Check-in / Check-out",
+        "prev_question": "hi",
+        "prev_answer": "Chào anh/chị 👋 Em là Minh Hiển — trợ lý ảo hỗ trợ tra cứu thông tin chấm công cho công ty. Em có thể giúp anh/chị tra cứu thời gian làm việc, trạng thái check-in/check-out. Ví dụ, anh/chị có thể hỏi: - Thời gian check in, check out hôm qua - Hôm qua tôi có đi muộn không? - Hôm trước tôi được tính bao nhiêu ngày công? - Tổng thời gian vi phạm của tôi hôm nay? Hôm nay anh/chị muốn tra cứu thông tin gì ạ?",
+        "user_name": "Nguyen Duc Kien",
+        "user_email": "ndkien.ts@cmc.com.vn",
+        "current_time": "Thursday, 2025-08-21"
+    }
+}

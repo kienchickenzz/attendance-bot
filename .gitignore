@@ -10,6 +10,8 @@ rule_1.js
 # airflow
 airflow.db
 simple_auth_manager_passwords.json.generated
+airflow.db-shm
+airflow.db-wal
 
 # env
 .env

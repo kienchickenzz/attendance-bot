@@ -342,6 +342,8 @@ async def upsert_data_async():
         date_to_records = defaultdict( list )
         for record in raw_data:
             date_obj = datetime.strptime( record[ "first_in" ], "%Y-%m-%d %H:%M" ).date()
+            if date_obj.weekday() in ( 5, 6 ): # Bỏ qua nếu là thứ 7 (5) hoặc Chủ nhật (6)
+                continue
             date_to_records[ date_obj ].append( record )
 
         # Xử lý từng ngày một

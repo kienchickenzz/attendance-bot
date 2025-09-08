@@ -232,7 +232,7 @@ async def _batch_upsert_data(
         if batch_data[ "attendance_params" ]:
             attendance_upsert_query = """
                 INSERT INTO attendance (
-                    employee_id, date, raw_check_in, raw_check_out, raw_data_version, shift_start, shift_end, late_minutes, 
+                    employee_id, date, raw_check_in, raw_check_out, raw_data_version, shift_start, shift_end, late_minutes, early_minutes,
                     penalty_hours, is_leave, is_free_used, calculated_by, calculation_duration_ms, business_rules_version
                 ) VALUES %s
                 ON CONFLICT (employee_id, date) DO UPDATE SET
@@ -242,6 +242,7 @@ async def _batch_upsert_data(
                     shift_start = EXCLUDED.shift_start,
                     shift_end = EXCLUDED.shift_end,
                     late_minutes = EXCLUDED.late_minutes,
+                    early_minutes = EXCLUDED.early_minutes,
                     penalty_hours = EXCLUDED.penalty_hours,
                     is_holiday = EXCLUDED.is_holiday,
                     is_leave = EXCLUDED.is_leave,

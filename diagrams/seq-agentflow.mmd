@@ -1,0 +1,16 @@
+flowchart TD
+    
+    Input[Input] --> Router
+    Router(Router) --> SelfQueryHandler(SelfQueryHandler)
+    SelfQueryHandler --> SelfQueryResult{Is self Inquiry?}
+    
+    SelfQueryResult -->|Yes | QuestionRewriter(QuestionRewriter)
+    SelfQueryResult -->|No | Return1[Return]
+    
+    QuestionRewriter --> QuestionRewriterResult{Is it possible to rewrite question?}
+    QuestionRewriterResult -->|Yes | TimeQueryHandler
+    QuestionRewriterResult -->|No | Return2[Return]
+    
+    TimeQueryHandler(TimeQueryHandler) --> TopicHandler
+    TopicHandler(TopicHandler) --> Generator(Generator)
+    Generator --> Return3[Response]

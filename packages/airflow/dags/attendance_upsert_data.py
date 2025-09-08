@@ -232,7 +232,7 @@ async def _batch_upsert_data(
         if batch_data[ "attendance_params" ]:
             attendance_upsert_query = """
                 INSERT INTO attendance (
-                    employee_id, date, raw_check_in, raw_check_out, raw_data_version, shift_start, shift_end, late_minutes, 
+                    employee_id, date, raw_check_in, raw_check_out, raw_data_version, shift_start, shift_end, late_minutes, early_minutes,
                     penalty_hours, is_leave, is_free_used, calculated_by, calculation_duration_ms, business_rules_version
                 ) VALUES %s
                 ON CONFLICT (employee_id, date) DO UPDATE SET
@@ -242,6 +242,7 @@ async def _batch_upsert_data(
                     shift_start = EXCLUDED.shift_start,
                     shift_end = EXCLUDED.shift_end,
                     late_minutes = EXCLUDED.late_minutes,
+                    early_minutes = EXCLUDED.early_minutes,
                     penalty_hours = EXCLUDED.penalty_hours,
                     is_holiday = EXCLUDED.is_holiday,
                     is_leave = EXCLUDED.is_leave,
@@ -426,7 +427,8 @@ async def upsert_data_async():
                     shift_start_str = SHIFT_CONFIG[ shift_type ][ "check_in_reference" ]
                     shift_end_str = SHIFT_CONFIG[ shift_type ][ "check_out_reference" ]
                     
-                    total_violation_minutes = processed_record.get( "violation_minutes", 0 )
+                    morning_violation = processed_record.get( "morning_violation", 0 )
+                    afternoon_violation = processed_record.get( "afternoon_violation", 0 )
                     penalty_hours = processed_record.get( "deduction_hours", 0 )
                     
                     # End timing and compute duration in milliseconds
@@ -445,7 +447,8 @@ async def upsert_data_async():
                         1,                          # raw_data_version
                         shift_start_str,            # shift_start
                         shift_end_str,              # shift_end
-                        total_violation_minutes,    # late_minutes
+                        morning_violation,          # late_minutes
+                        afternoon_violation,        # early_minutes
                         penalty_hours,              # penalty_hours
                         shift_type != "normal",     # is_leave
                         is_free_used,               # is_free_used

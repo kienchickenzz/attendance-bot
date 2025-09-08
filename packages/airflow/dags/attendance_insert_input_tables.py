@@ -10,10 +10,10 @@ import logging
 # CONFIGURATION
 # ----------
 
-# Cách 1: Gán cụ thể ngày đầu tháng (theo định dạng yyyy-mm-01)
-# TARGET_MONTH = '2025-07-01'
-# Cách 2: Tự động lấy ngày đầu tháng hiện tại
-TARGET_MONTH = None  # Để None nếu muốn tự động lấy tháng hiện tại
+# Cách 1: Trigger MANUALLY 
+# TARGET_MONTH = '2025-07-01' # Gán cụ thể ngày đầu tháng (theo định dạng yyyy-mm-01)
+# Cách 2: Trigger AUTOMATICALLY
+TARGET_MONTH = None # Để None nếu muốn tự động lấy tháng hiện tại
 
 CONNECTION_ID = 'attendance'
  

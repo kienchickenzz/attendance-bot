@@ -25,9 +25,24 @@ from utils import process_daily_attendance
 from constants import SHIFT_CONFIG, FREE_PER_MONTH
 
 
+# ----------
+# CONFIGURATION
+# ----------
+
+# Cách 1: Trigger MANUALLY
+# START_DATE = '2025-08-01T00:00:00Z'
+# END_DATE = '2025-08-31T23:59:59Z'
+# Cách 2: Trigger AUTOMATICALLY
+START_DATE = None
+END_DATE = None
+
+if not START_DATE or not END_DATE:
+    today = datetime.utcnow().date()
+    START_DATE = today.strftime( "%Y-%m-%dT00:00:00Z" )
+    END_DATE = today.strftime( "%Y-%m-%dT23:59:59Z" )
+
+
 API_URL = 'https://ctsfaceid.cmcts.com.vn/api/timekeeping/short/tshn'
-START_DATE = '2025-08-01T00:00:00Z'
-END_DATE = '2025-08-31T23:59:59Z'
 FREE_PER_MONTH = 5
 CONNECTION_ID = "attendance"
 

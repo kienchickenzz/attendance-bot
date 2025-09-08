@@ -1,0 +1,1 @@
+Xin lỗi, Attendance Bot chưa hiểu rõ ý của bạn. Bạn hãy đặt lại câu hỏi 1 cách rõ ràng và cụ thể hơn về thời gian và thông tin muốn tra cứu.

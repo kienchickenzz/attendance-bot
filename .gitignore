@@ -3,7 +3,6 @@ cases/
 conductify_ai/
 flowise/
 workflows/
-prompts/
 
 rule_0.js
 rule_1.js

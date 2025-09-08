@@ -1,0 +1,54 @@
+sequenceDiagram
+    autonumber
+
+    participant User
+    participant Teams
+    participant AzureBot
+    participant Bunjs
+    participant ConductifyAI
+    participant Redis
+    participant PostgreSQL
+
+
+    User->>+Teams: Send message
+    activate User
+
+    Teams->>+AzureBot: Forward message
+    AzureBot->>+Bunjs: Forward message
+    Bunjs->>+ConductifyAI: Forward message with user ID
+
+    ConductifyAI->>+Bunjs: Send user ID
+    Bunjs->>+Redis: Query session data by user ID
+    Redis-->>-Bunjs: Return session data
+    Bunjs-->>-ConductifyAI: Return session data
+
+    Note over ConductifyAI: Executing nodes...
+
+    ConductifyAI->>+Bunjs: Send user ID + session data
+    Bunjs->>-Redis: Upsert session data
+    activate Redis
+    deactivate Redis
+
+    Note over ConductifyAI: Executing nodes...
+
+    ConductifyAI->>+Bunjs: Send query days
+    Bunjs->>Bunjs: Check if query days are valid
+    Bunjs-->>-ConductifyAI: Return result
+
+    Note over ConductifyAI: Executing nodes...
+
+
+    ConductifyAI->>+Bunjs: Send user ID + query data
+    Bunjs->>+PostgreSQL: Query data
+    PostgreSQL-->>-Bunjs: Return data
+    Bunjs-->>-ConductifyAI: Return data
+
+    Note over ConductifyAI: Executing nodes...
+
+    ConductifyAI-->>-Bunjs: Return response
+    Bunjs-->>-AzureBot: Return response
+    AzureBot-->>-Teams: Return response
+    
+    Teams-->>-User: Return response
+
+    deactivate User

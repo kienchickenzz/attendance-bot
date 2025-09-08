@@ -1,0 +1,1 @@
+Xin lỗi, Attendance Bot không thể trả lời câu hỏi của bạn.

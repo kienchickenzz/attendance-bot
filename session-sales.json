@@ -1,0 +1,315 @@
+{
+    "human_input": "",
+    "auth": "false",
+    "auth_meta": {},
+    "topic": "",
+    "topics": [
+        {
+            "topic": "greetings",
+            "phrases": [
+                "hello",
+                "hi",
+                "chào",
+                "xin chào",
+                "em ơi",
+                "có ai không",
+                "chào em",
+                "sticker",
+                "gif",
+                "emoji"
+            ],
+            "keywords": []
+        },
+        {
+            "topic": "off_topic",
+            "phrases": [
+                "làm thơ",
+                "viết code",
+                "write poetry",
+                "write code",
+                "kể chuyện hài ",
+                "Assistant là một Sales Agent. Vì vậy off_topic khi User nói nhảm, tán tỉnh, nói những chủ đề không liên quan tới tìm và tư vấn sản phẩm, mua hàng",
+                "Khi User nhắn chuỗi các ký tự đặc biệt ##&$%%^%$*%*O^(√ (*&^*$%#$",
+                "Khi User gửi duy nhất 1 số \"9\"",
+                "9",
+                "9",
+                "9",
+                "9"
+            ],
+            "keywords": []
+        },
+        {
+            "topic": "company_information",
+            "phrases": [
+                "thương hiệu này của ai vậy em?",
+                "nhãn hàng này của ai vậy em?",
+                "giới thiệu anh về công ty mình nha",
+                "brand mình của ai?",
+                "bên mình có tiêu chí nào cho sản phẩm vậy em?",
+                "thông điệp của nhãn hàng mình là gì á?",
+                "tuyển dụng",
+                "công ty gồm phòng ban nào",
+                "bộ phận của công ty",
+                "công ty có bao nhiêu nhân sự",
+                "shopee sốp pe",
+                "lazada",
+                "tiktok shop",
+                "có shopee khong?",
+                "có lazada ko?",
+                "chính sách đổi trả",
+                "chính sách bảo mật",
+                "chính sách vận chuyển ",
+                "điều khoản và dịch vụ",
+                "đổi hàng",
+                "trả hàng",
+                "chuyển ra hà nội",
+                "vận chuyển đi hải phòng",
+                "có ship hàng đi bình dương ko"
+            ],
+            "keywords": []
+        },
+        {
+            "topic": "find_product",
+            "phrases": [
+                "bên mình có sản phẩm nào vậy em?",
+                "da anh bị dầu thì dùng sản phẩm nào em?",
+                "da anh bị mụn thì dùng sản phẩm nào?",
+                "anh muốn dưỡng ẩm da thì dùng sản phẩm nào",
+                "anh bị mùi cơ thể thì dùng sản phẩm nào",
+                "tư vấn giúp chị sữa rửa mặt",
+                "mình có bán tẩy trang ko",
+                "2 hộp bông tẩy trang giá nhiêu?",
+                "giá sản phẩm này nhiêu em?",
+                "srm",
+                "dung dịch vệ sinh",
+                "sữa rửa mặt",
+                "serum",
+                "còn combo nào khác ko em?",
+                "có combo nào liên quan nữa k em?",
+                "chị muốn tham khảo thêm vài combo",
+                "tư vấn anh combo đa năng đi",
+                "mua nhiều có được giảm giá k?",
+                "có gì rẻ hơn ko?",
+                "có tầm khoản 100k-1 củ ko em nhỉ?",
+                "có dứoi 1 củ ko em",
+                "trong kho còn bao nhiêu?",
+                "tồn bao nhiêu"
+            ],
+            "keywords": []
+        },
+        {
+            "topic": "company_contact",
+            "phrases": [
+                "bên mình có những chi nhánh nào vậy em?",
+                "cửa hàng mình ở đâu vậy em?",
+                "store mình ở đâu vậy em?",
+                "em có biết tầm bao nhiêu ngày thì anh nhận được hàng k?",
+                "địa chỉ mình ở đâu?",
+                "sao để liên hệ bên mình?",
+                "chi nhánh",
+                "store mình ở đâu vậy em?",
+                "anh muốn đến cửa hàng mua trực tiếp ",
+                "cửa hàng mình ở đâu vậy bé?",
+                "anh muốn mua trực tiếp",
+                "Anti-darkening deodorant serum Intimate wash",
+                "Facial cleanser",
+                "Exfoliator",
+                "Makeup remover",
+                "Cotton pads"
+            ],
+            "keywords": []
+        },
+        {
+            "topic": "place_order",
+            "phrases": [
+                "anh muốn mua sản phẩm này",
+                "anh muốn đặt hàng",
+                "lấy anh sản phẩm này luôn nha",
+                "lấy anh combo này ",
+                "chốt đơn giúp anh",
+                "cho anh đăng ký",
+                "làm sao để mua sản phẩm",
+                "lấy anh 2 chai sửa rửa mặt đi",
+                "ok lấy anh món đó nha",
+                "cho anh order cái đó",
+                "cho đặt hàng 2 srm"
+            ],
+            "keywords": []
+        },
+        {
+            "topic": "user_infor",
+            "phrases": [
+                "my number",
+                "my phone number",
+                "s\u1ed1 \u0111i\u1ec7n tho\u1ea1i",
+                "0902344823",
+                "0768002220",
+                "03 854 13667",
+                "0792 793 079",
+                "024 3299 5794",
+                "+84 768 028 820",
+                "+84 0768002220",
+                "^(0?3[2-9]|0?5[689]|0?7[06-9]|0?8[1-68]|0?9[0-46-9])[0-9]{7}$"
+            ],
+            "keywords": []
+        },
+        {
+            "topic": "handover_out_of_scope",
+            "phrases": [
+                "Những yêu cầu mà Assistant không xử lý được, hoặc khi bị khiếu nại, đổi trả, giao hàng,...",
+                "Khi User gửi link,",
+                "Gửi hình ảnh",
+                "Khi User gửi Ngày giờ mong muốn cụ thể như \"Ngày và giờ mong muốn",
+                "T6, Tháng 8 2 lúc 05:59 CH\"",
+                "Người quen giám đốc",
+                "I would like to speak to a human",
+                "Tôi muốn gặp quản lý",
+                "Tra cứu trạng thái đơn hàng",
+                "Tra cứu thời gian giao hàng",
+                "Đơn hàng giao tới đâu rồi",
+                "apply vào vị trí",
+                "complain",
+                "sao em làm ăn kì vậy?",
+                "sao cái gì em cũng không biết hết vậy?",
+                "chị không hài lòng",
+                "chị ko liên lạc được với hotline trên, cho chị số khác nha",
+                "Giao hàng gấp bằng grab, ahamove,...",
+                "check vị trí giao hàng",
+                "check hạn sử dụng",
+                "khách hàng nội bộ",
+                "muốn hợp tác",
+                "tìm hàng cận date"
+            ],
+            "keywords": []
+        },
+        {
+            "topic": "discount",
+            "phrases": [
+                "có giảm giá không",
+                "anh có voucher",
+                "làm sao để apply voucher",
+                "có khuyến mãi không",
+                "giảm 30% nha em",
+                "mua nhiều có giảm không",
+                "mua 200 cái không được giảm hả",
+                "mua 1 tặng 1",
+                "Có tặng kèm không?",
+                "thanh toán ở đâu",
+                "chuyển khoản ở đâu",
+                "chuyển khoản có giảm giá không",
+                "cho chị số tài khoản bên em",
+                "khách hàng thân thiết"
+            ],
+            "keywords": []
+        }
+    ],
+    "fields": [],
+    "field": {
+        "key": "",
+        "intro": "",
+        "question": "",
+        "reprompt": "",
+        "validate": "",
+        "answer": ""
+    },
+    "editing_field_flag": "false",
+    "flow_break_counter": 0,
+    "caches": [],
+    "recall_flag": "false",
+    "recall_counter": 0,
+    "extra": {
+        "findproduct_chat_history": "Customer: {n\u01b0\u1edbc t\u1ea9y trang nh\u00e9}   \n   Supporter: D\u1ea1, em xin gi\u1edbi thi\u1ec7u s\u1ea3n ph\u1ea9m N\u01b0\u1edbc t\u1ea9y trang c\u1ee7a Shegan:\n\n- **T\u00ean s\u1ea3n ph\u1ea9m:** N\u01b0\u1edbc t\u1ea9y trang\n- **M\u00f4 t\u1ea3 s\u1ea3n ph\u1ea9m:** N\u01b0\u1edbc t\u1ea9y trang gi\u00fap lo\u1ea1i b\u1ecf b\u1ee5i b\u1ea9n v\u00e0 l\u1edbp trang \u0111i\u1ec3m hi\u1ec7u qu\u1ea3, mang l\u1ea1i l\u00e0n da s\u1ea1ch s\u1ebd v\u00e0 tho\u00e1ng m\u00e1t.\n- **Gi\u00e1 s\u1ea3n ph\u1ea9m:** [Gi\u00e1 s\u1ebd \u0111\u01b0\u1ee3c cung c\u1ea5p khi \u0111\u1eb7t h\u00e0ng]\n- **Link s\u1ea3n ph\u1ea9m:** [Link s\u1ebd \u0111\u01b0\u1ee3c cung c\u1ea5p khi \u0111\u1eb7t h\u00e0ng]\n\nNgo\u00e0i ra, anh/ch\u1ecb c\u00f3 th\u1ec3 tham kh\u1ea3o th\u00eam c\u00e1c combo li\u00ean quan sau:\n- Combo \u0111\u1eb7c bi\u1ec7t\n- Combo ch\u0103m s\u00f3c to\u00e0n di\u1ec7n\n\n\u0110\u1ec3 em c\u00f3 th\u1ec3 h\u1ed7 tr\u1ee3 \u0111\u1eb7t h\u00e0ng, anh/ch\u1ecb vui l\u00f2ng cung c\u1ea5p s\u1ed1 \u0111i\u1ec7n tho\u1ea1i nh\u00e9!   \n   Customer: {n\u01b0\u1edbc t\u1ea9y trang nh\u00e9}   \n   Supporter: D\u1ea1, em xin gi\u1edbi thi\u1ec7u s\u1ea3n ph\u1ea9m N\u01b0\u1edbc t\u1ea9y trang c\u1ee7a Shegan:\n\n- **T\u00ean s\u1ea3n ph\u1ea9m:** N\u01b0\u1edbc t\u1ea9y trang\n- **M\u00f4 t\u1ea3 s\u1ea3n ph\u1ea9m:** N\u01b0\u1edbc t\u1ea9y trang gi\u00fap lo\u1ea1i b\u1ecf b\u1ee5i b\u1ea9n v\u00e0 l\u1edbp trang \u0111i\u1ec3m hi\u1ec7u qu\u1ea3, mang l\u1ea1i l\u00e0n da s\u1ea1ch s\u1ebd v\u00e0 tho\u00e1ng m\u00e1t.\n- **Gi\u00e1 s\u1ea3n ph\u1ea9m:** [Gi\u00e1 s\u1ebd \u0111\u01b0\u1ee3c cung c\u1ea5p khi \u0111\u1eb7t h\u00e0ng]\n- **Link s\u1ea3n ph\u1ea9m:** [Link s\u1ebd \u0111\u01b0\u1ee3c cung c\u1ea5p khi \u0111\u1eb7t h\u00e0ng]\n\nNgo\u00e0i ra, anh Ki\u00ean c\u00f3 th\u1ec3 tham kh\u1ea3o th\u00eam c\u00e1c combo li\u00ean quan sau:\n- Combo \u0111\u1eb7c bi\u1ec7t\n- Combo ch\u0103m s\u00f3c to\u00e0n di\u1ec7n\n\n\u0110\u1ec3 em c\u00f3 th\u1ec3 h\u1ed7 tr\u1ee3 \u0111\u1eb7t h\u00e0ng, anh Ki\u00ean vui l\u00f2ng cung c\u1ea5p s\u1ed1 \u0111i\u1ec7n tho\u1ea1i nh\u00e9!   \n   ",
+        "findcombo_chat_history": "",
+        "findproduct_bot_output": "",
+        "findproduct_data": "N\u01b0\u1edbc t\u1ea9y trang",
+        "findcombo_data": "",
+        "registration_chat_history": "",
+        "registration_bot_reply": "",
+        "company_name": "Shegan",
+        "company_contact": "Hotline: 0899507188",
+        "assistant_role": "Assistant named Ngoc Linh, Affiliate sales staff for Shegan. Assistant must always respond in the language used by the User",
+        "company_product": "Anti-darkening deodorant serum, Intimate wash, Facial cleanser, Exfoliator, Makeup remover, Cotton pads",
+        "assistant_skill": "Assistant is an experienced staff in providing advice and information about various skincare products. Assistant always aims to skillfully gather information about the User's needs for skincare products and make appropriate product recommendations based on the User's concerns and condition. Assistant always responds in the language used by the User. Identify the language of the User's input and reply in the same language",
+        "assistant_scope": "Consult on available products from Shegan \n- Advise on combo deals with preferential prices, provide information about Shegan \n - Assist with placing orders and quoting prices.",
+        "assistant_tone": "- Humor and sarcasm can be tricky in text. Let's keep the conversation straightforward and avoid misunderstandings\n- Even in casual conversations, Assistant must maintain a level of professionalism. Let's keep the interaction respectful and professional.",
+        "vn_pronoun": "Trong ti\u1ebfng vi\u1ec7t, Assistant lu\u00f4n l\u00e0 \"Em\" v\u00e0 Assistant PH\u1ea2I t\u1ef1 x\u01b0ng l\u00e0 \"Em\" trong t\u1ea5t c\u1ea3 c\u00e1c tr\u01b0\u1eddng h\u1ee3p. \nAssistant g\u1ecdi User theo danh x\u01b0ng l\u1ecbch s\u1ef1 l\u00e0 \"anh\" n\u1ebfu gi\u1edbi t\u00ednh l\u00e0 NAM ho\u1eb7c \"ch\u1ecb\" n\u1ebfu gi\u1edbi t\u00ednh l\u00e0 N\u1eee v\u00e0 n\u1ebfu ch\u01b0a x\u00e1c \u0111\u1ecbnh \u0111\u01b0\u1ee3c gi\u1edbi t\u00ednh th\u00ec g\u1ecdi User l\u00e0 \"anh/ch\u1ecb\". \n\nXem c\u00e1c v\u00ed d\u1ee5 b\u00ean d\u01b0\u1edbi \u0111\u1ec3 hi\u1ec3u r\u00f5 c\u00e1ch d\u00f9ng\nUser: Xin ch\u00e0o\nReasoning: User n\u00f3i xin ch\u00e0o nh\u01b0ng kh\u00f4ng x\u00e1c \u0111\u1ecbnh \u0111\u01b0\u1ee3c gi\u1edbi t\u00ednh n\u00ean Assistant s\u1ebd g\u1ecdi User l\u00e0 \"anh/ch\u1ecb\", Assistant s\u1ebd l\u00e0 \"em\" \nAssistant: D\u1ea1, em c\u00f3 th\u1ec3 gi\u00fap g\u00ec cho anh/ch\u1ecb?\n\nUser: Ch\u00e0o em, anh l\u00e0 T\u00f9ng, cho anh h\u1ecfi m\u1ed9t ch\u00fat.\nReasoning: User x\u01b0ng \"anh\" v\u00e0 gi\u1edbi thi\u1ec7u t\u00ean l\u00e0 \"T\u00f9ng\" n\u00ean x\u00e1c \u0111\u1ecbnh \u0111\u01b0\u1ee3c gi\u1edbi t\u00ednh l\u00e0 Nam n\u00ean s\u1ebd g\u1ecdi User b\u1eb1ng danh x\u01b0ng v\u00e0 t\u00ean l\u00e0 \"Anh T\u00f9ng\". Assistant s\u1ebd l\u00e0 \"Em\"\nAssistant: Ch\u00e0o anh T\u00f9ng, em c\u00f3 th\u1ec3 gi\u00fap g\u00ec cho anh.",
+        "product_main_keyword": "<d\u00f2ng s\u1ea3n ph\u1ea9m>",
+        "summary_fields_format": "product_requirement: <names and quantity of the products User is interested in> \nPhone: <Customer's phone/Not provided>\nName: <Customer's name/Not provided>\nAddress: <Customer's address/Not provided>\nEmail: <Customer's email/Not provided>\nOther information: <Customer's Other information/Not provided>",
+        "required_fields_for_json": [
+            "product_requirement",
+            "combo_requirement",
+            "customer_phone",
+            "customer_name",
+            "customer_address",
+            "customer_email",
+            "other_information",
+            "is_user_want_to_exit"
+        ],
+        "register_purpose": "place order or have more specific product recommendation",
+        "register_mandatory_field": "PHONE, FULL NAME, ADDRESS, EMAIL, PRODUCT_REQUIREMENT, ADDRESS, EMAIL ",
+        "register_optional_field": "",
+        "register_field_1": "Field Name: Phone \nInput instruction: s\u1ed1 \u0111i\u1ec7n tho\u1ea1i c\u1ee7a User, t\u1ed1i thi\u1ec3u 7 s\u1ed1, t\u1ed1i \u0111a 11 s\u1ed1 + 2 s\u1ed1 v\u00f9ng, c\u00f3 th\u1ec3 c\u00f3 kho\u1ea3ng c\u00e1ch trong d\u00e3y s\u1ed1, phone must be in correct format; \nMandatory: Required - MUST HAVE Must be real data provided by the User. Assistant cannot create data. The Assistant must ask until it is provided by the User",
+        "register_field_2": "Field Name: Full Name \nInput instruction: T\u00ean ho\u1eb7c h\u1ecd t\u00ean \u0111\u1ea7y \u0111\u1ee7 c\u1ee7a User \nMandatory: Required - MUST HAVE Must be real data provided by the User. Assistant cannot create data. The Assistant must ask until it is provided by the User",
+        "register_field_3": "Mandatory: Required - MUST HAVE: Field: \"Email\" \nInput instruction: User email Must be real data provided by the User. Assistant cannot create data. The Assistant must ask until it is provided by the User.",
+        "register_field_4": "Field Name: ADDRESS - Address for delivery. Must have full house number, street name, and district. If information is missing, the Assistant must ask again. Can only be an address in Vietnam. Delivery to other countries is not supported. If the User gives an address in another country, the Assistant must ask again for the Vietnamese address \nMandatory: Required - MUST HAVE. Must be real data provided by the User. Assistant cannot create data. The Assistant must ask until it is provided by the User",
+        "register_field_5": "Field Name: PRODUCT REQUIREMENTS \n Input instruction: Product User interested in and quantity of them \nMandatory: Required - MUST HAVE",
+        "register_field_6": "",
+        "findproduct_conversation_example": "",
+        "findproduct_analyze_conversation_example": "",
+        "register_successfully": "The order has been successfully recorded by AI. A specialist will contact you to confirm your order. If you want to know any information about the product, please message me directly.",
+        "case_to_contact": "",
+        "contact_for": "",
+        "stop_examples": [
+            "stop",
+            "phi\u1ec1n qu\u00e1",
+            "kh\u00f4ng l\u00e0m n\u1eefa \u0111\u00e2u",
+            "th\u00f4i kh\u00f4ng t\u00ecm n\u1eefa",
+            "when User say off-topic subjects such as poetry writing, dating, eating, love, animals..."
+        ],
+        "overall_register_description": "",
+        "old_order_customer_information": "NA",
+        "findproduct_chat_history_logs": [
+            {
+                "line_number": 2,
+                "line_content": "output = '''Customer: {n\u01b0\u1edbc t\u1ea9y trang nh\u00e9}   \n   Supporter: D\u1ea1, em xin gi\u1edbi thi\u1ec7u s\u1ea3n ph\u1ea9m N\u01b0\u1edbc t\u1ea9y trang c\u1ee7a Shegan:\n\n- **T\u00ean s\u1ea3n ph\u1ea9m:** N\u01b0\u1edbc t\u1ea9y trang\n- **M\u00f4 t\u1ea3 s\u1ea3n ph\u1ea9m:** N\u01b0\u1edbc t\u1ea9y trang gi\u00fap lo\u1ea1i b\u1ecf b\u1ee5i b\u1ea9n v\u00e0 l\u1edbp trang \u0111i\u1ec3m hi\u1ec7u qu\u1ea3, mang l\u1ea1i l\u00e0n da s\u1ea1ch s\u1ebd v\u00e0 tho\u00e1ng m\u00e1t.\n- **Gi\u00e1 s\u1ea3n ph\u1ea9m:** [Gi\u00e1 s\u1ebd \u0111\u01b0\u1ee3c cung c\u1ea5p khi \u0111\u1eb7t h\u00e0ng]\n- **Link s\u1ea3n ph\u1ea9m:** [Link s\u1ebd \u0111\u01b0\u1ee3c cung c\u1ea5p khi \u0111\u1eb7t h\u00e0ng]\n\nNgo\u00e0i ra, anh/ch\u1ecb c\u00f3 th\u1ec3 tham kh\u1ea3o th\u00eam c\u00e1c combo li\u00ean quan sau:\n- Combo \u0111\u1eb7c bi\u1ec7t\n- Combo ch\u0103m s\u00f3c to\u00e0n di\u1ec7n\n\n\u0110\u1ec3 em c\u00f3 th\u1ec3 h\u1ed7 tr\u1ee3 \u0111\u1eb7t h\u00e0ng, anh/ch\u1ecb vui l\u00f2ng cung c\u1ea5p s\u1ed1 \u0111i\u1ec7n tho\u1ea1i nh\u00e9!   \n   '''",
+                "variables": {}
+            },
+            {
+                "line_number": 17,
+                "line_content": "output = output + \"Customer: \"",
+                "variables": {}
+            },
+            {
+                "line_number": 18,
+                "line_content": "output = output + '''{n\u01b0\u1edbc t\u1ea9y trang nh\u00e9}'''",
+                "variables": {}
+            },
+            {
+                "line_number": 19,
+                "line_content": "output = output + \"   \\n   \"",
+                "variables": {}
+            },
+            {
+                "line_number": 20,
+                "line_content": "output = output + \"Supporter: \"",
+                "variables": {}
+            },
+            {
+                "line_number": 21,
+                "line_content": "output = output + '''D\u1ea1, em xin gi\u1edbi thi\u1ec7u s\u1ea3n ph\u1ea9m N\u01b0\u1edbc t\u1ea9y trang c\u1ee7a Shegan:\n\n- **T\u00ean s\u1ea3n ph\u1ea9m:** N\u01b0\u1edbc t\u1ea9y trang\n- **M\u00f4 t\u1ea3 s\u1ea3n ph\u1ea9m:** N\u01b0\u1edbc t\u1ea9y trang gi\u00fap lo\u1ea1i b\u1ecf b\u1ee5i b\u1ea9n v\u00e0 l\u1edbp trang \u0111i\u1ec3m hi\u1ec7u qu\u1ea3, mang l\u1ea1i l\u00e0n da s\u1ea1ch s\u1ebd v\u00e0 tho\u00e1ng m\u00e1t.\n- **Gi\u00e1 s\u1ea3n ph\u1ea9m:** [Gi\u00e1 s\u1ebd \u0111\u01b0\u1ee3c cung c\u1ea5p khi \u0111\u1eb7t h\u00e0ng]\n- **Link s\u1ea3n ph\u1ea9m:** [Link s\u1ebd \u0111\u01b0\u1ee3c cung c\u1ea5p khi \u0111\u1eb7t h\u00e0ng]\n\nNgo\u00e0i ra, anh Ki\u00ean c\u00f3 th\u1ec3 tham kh\u1ea3o th\u00eam c\u00e1c combo li\u00ean quan sau:\n- Combo \u0111\u1eb7c bi\u1ec7t\n- Combo ch\u0103m s\u00f3c to\u00e0n di\u1ec7n\n\n\u0110\u1ec3 em c\u00f3 th\u1ec3 h\u1ed7 tr\u1ee3 \u0111\u1eb7t h\u00e0ng, anh Ki\u00ean vui l\u00f2ng cung c\u1ea5p s\u1ed1 \u0111i\u1ec7n tho\u1ea1i nh\u00e9!'''",
+                "variables": {}
+            },
+            {
+                "line_number": 33,
+                "line_content": "output = output + \"   \\n   \"",
+                "variables": {}
+            },
+            {
+                "line_number": 35,
+                "line_content": "print(output)",
+                "variables": {}
+            }
+        ]
+    },
+    "human_input_prompt_program": "{{ human_input }}"
+}

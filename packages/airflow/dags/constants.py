@@ -48,7 +48,7 @@ RULES = [
         "min": 361,
         "max": 480,
         "deduct": lambda free: 8
-    }
+    },
     {
         "min": 481,
         "max": 555,

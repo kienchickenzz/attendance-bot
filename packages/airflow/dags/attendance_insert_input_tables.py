@@ -1,9 +1,11 @@
 from airflow.providers.standard.operators.python import PythonOperator
 from airflow import DAG
 from airflow.providers.postgres.hooks.postgres import PostgresHook, DictCursor
+from pendulum import timezone
  
 import asyncio
 import logging
+from datetime import datetime
 
 
 # ----------
@@ -16,6 +18,8 @@ import logging
 TARGET_MONTH = None # Để None nếu muốn tự động lấy tháng hiện tại
 
 CONNECTION_ID = 'attendance'
+
+local_tz = timezone( "Asia/Ho_Chi_Minh" )
  
 
 async def insert_data_async():
@@ -54,6 +58,8 @@ def insert_data():
 with DAG(
     dag_id='attendance_insert_input_tables',
     description='',
+    schedule='0 0 20,22,24,26 * *', # chạy lúc 00:00 ngày 20, 22, 24, 26 hàng tháng
+    start_date=datetime( 2023, 1, 1, tzinfo=local_tz ),
     catchup=False,
     max_active_runs=1,
 ) as dag:

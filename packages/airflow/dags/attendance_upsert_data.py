@@ -1,6 +1,7 @@
 from airflow.operators.python import PythonOperator
 from airflow import DAG
 from airflow.providers.postgres.hooks.postgres import PostgresHook, DictCursor
+from pendulum import timezone
 
 import requests
 from datetime import datetime, date
@@ -45,6 +46,8 @@ if not START_DATE or not END_DATE:
 API_URL = 'https://ctsfaceid.cmcts.com.vn/api/timekeeping/short/tshn'
 FREE_PER_MONTH = 5
 CONNECTION_ID = "attendance"
+
+local_tz = timezone( "Asia/Ho_Chi_Minh" )
 
 
 def _call_api() -> list[ dict[ str, str ] ]:
@@ -339,9 +342,6 @@ async def upsert_data_async():
         date_to_records = defaultdict( list )
         for record in raw_data:
             date_obj = datetime.strptime( record[ "first_in" ], "%Y-%m-%d %H:%M" ).date()
-            if date_obj.weekday() in ( 5, 6 ): # Bỏ qua nếu là thứ 7 (5) hoặc Chủ nhật (6)
-                continue
-
             date_to_records[ date_obj ].append( record )
 
         # Xử lý từng ngày một
@@ -503,6 +503,8 @@ def upsert_data():
 with DAG(
     dag_id='attendance_upsert_data',
     description='ETL pipeline for attendance data',
+    schedule="0 6,9,12,15,18,21 * * *",
+    start_date=datetime( 2025, 9, 8, tzinfo=local_tz ),
     catchup=False,
     max_active_runs=1,
 ) as dag:

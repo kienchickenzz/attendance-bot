@@ -49,6 +49,11 @@ RULES = [
         "max": 480,
         "deduct": lambda free: 8
     }
+    {
+        "min": 481,
+        "max": 555,
+        "deduct": lambda free: 8
+    }
 ]
 
 FREE_PER_MONTH = 5

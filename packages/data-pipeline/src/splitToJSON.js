@@ -1,16 +1,15 @@
 import fs from 'fs'
 import path from 'path'
 
-function filterByDate( date, filePath ) {
+function filterByDate( targetEmail, filePath ) {
     try {
         const dataPath = path.join( __dirname, filePath )
         const rawData = fs.readFileSync( dataPath, 'utf8' ) 
         const data = JSON.parse( rawData )
         
         const filteredData = data.filter( item => {
-            if ( item.first_in ) {
-                const firstInDate = item.first_in.split( ' ' )[ 0 ]
-                return firstInDate === date
+            if ( item.email ) {
+                return item.email === targetEmail
             }
             return false
         } )
@@ -36,10 +35,10 @@ function saveFilteredData( filteredData, outputFileName ) {
     }
 }
 
-const filePath = '../data.json'
-const targetDate = '2025-08-21' 
-const targetFile = `filtered_${ targetDate }.json`
+const filePath = '../sample-data/data.json'
+const targetEmail = 'nvdat5@cmc.com.vn' 
+const targetFile = `filtered_${ targetEmail }.json`
 
-const dailyData = filterByDate( targetDate, filePath )
+const dailyData = filterByDate( targetEmail, filePath )
 const result = saveFilteredData( dailyData, targetFile )
 console.log( result )

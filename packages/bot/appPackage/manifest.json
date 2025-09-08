@@ -24,16 +24,16 @@
     "accentColor": "#FFFFFF",
     "bots": [
         {
-        "botId": "3a224124-18e9-4708-a000-1b2207262e11",
-        "scopes": [
-            "personal",
-            "team",
-            "groupChat"
-        ],
-        "isNotificationOnly": false,
-        "supportsCalling": false,
-        "supportsVideo": false,
-        "supportsFiles": false
+            "botId": "3a224124-18e9-4708-a000-1b2207262e11",
+            "scopes": [
+                "personal",
+                "team",
+                "groupChat"
+            ],
+            "isNotificationOnly": false,
+            "supportsCalling": false,
+            "supportsVideo": false,
+            "supportsFiles": false
         }
     ],
     "validDomains": []

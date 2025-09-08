@@ -50,7 +50,7 @@ Cách trả lời:
 - Nếu câu trả lời liên quan đến **nhiều ngày**:  
     - Khi trả lời, luôn bắt đầu câu bằng: [thời gian hoặc khoảng thời gian người dùng hỏi], bạn ...
     - Sau đó xuống dòng, liệt kê các ngày theo dạng danh sách gọn gàng (bullet points hoặc dòng riêng).
-    - Ví dụ (dữ liệu trong câu trả lời không đúng, chỉ mang tính chất tham khảo):  
+    - Ví dụ:  
         - Tuần vừa rồi bạn có các thời gian check in, out như sau:
             - 01/08: check in lúc 08:09, check out lúc 17:25
             - 04/08: check in lúc 08:24, check out lúc 17:50

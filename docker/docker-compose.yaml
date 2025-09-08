@@ -1,18 +1,18 @@
 services:
 
-    flowise:
-        image: flowise
-        container_name: flowise
-        restart: no
-        networks:
-        - bot-network
-        ports:
-        - "3000:3000"
-        volumes:
-        # host_path:container_path:options
-        - ./volumes/flowise-data:/root/.flowise:rw
-        extra_hosts:
-        - "host.docker.internal:host-gateway" 
+    # flowise:
+    #     image: flowise
+    #     container_name: flowise
+    #     restart: no
+    #     networks:
+    #     - bot-network
+    #     ports:
+    #     - "3000:3000"
+    #     volumes:
+    #     # host_path:container_path:options
+    #     - ./volumes/flowise-data:/root/.flowise:rw
+    #     extra_hosts:
+    #     - "host.docker.internal:host-gateway" 
 
     db:
         image: postgres:15-alpine

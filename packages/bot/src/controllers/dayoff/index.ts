@@ -4,7 +4,7 @@ import dayOffService from '../../services/dayoff'
 import { InternalError } from '../../errors/internal_error'
 import logger from '../../utils/logger'
 
-const checkDayOff = ( req: Request, res: Response, next: NextFunction ) => {
+const checkDayOff = async ( req: Request, res: Response, next: NextFunction ) => {
     try {
 
         if ( !req.body ) {
@@ -15,14 +15,6 @@ const checkDayOff = ( req: Request, res: Response, next: NextFunction ) => {
         }
 
         const request = req.body
-
-        // Validate user_email
-        if ( !request.user_email || request.user_email.trim() === '' ) {
-            throw new InternalError(
-                StatusCodes.BAD_REQUEST,
-                'user_email is required and cannot be empty'
-            )
-        }
 
         // Validate time_query
         if ( !request.time_query || !Array.isArray( request.time_query ) 
@@ -99,7 +91,7 @@ const checkDayOff = ( req: Request, res: Response, next: NextFunction ) => {
         }
 
         // Call service layer
-        const response = dayOffService.checkDayOff( request.time_query )
+        const response = await dayOffService.checkDayOff( request.time_query )
 
         res.json( response )
 

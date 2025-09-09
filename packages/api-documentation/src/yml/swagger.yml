@@ -2,6 +2,7 @@ tags:
     - name: Session
     - name: Search
     - name: DayOff
+    - name: Airflow
 
 paths:
     /session/upsert:
@@ -160,17 +161,17 @@ paths:
                                     items:
                                         type: object
                                         properties:
-                                            start_time:
+                                            start_date:
                                                 type: string
                                                 description: Start date in YYYY-MM-DD format
                                                 example: "2024-01-01"
-                                            end_time:
+                                            end_date:
                                                 type: string
                                                 description: End date in YYYY-MM-DD format
                                                 example: "2024-01-31"
                                         required:
-                                            - start_time
-                                            - end_time
+                                            - start_date
+                                            - end_date
                                     minItems: 1
                             required:
                                 - user_email
@@ -215,13 +216,13 @@ paths:
                 '500':
                     description: Internal server error
 
-    /search/late:
+    /search/violation:
         post:
             tags:
                 - Search
-            summary: Search late attendance records by time range
-            description: Search employee late attendance records within specified time periods
-            operationId: searchLate
+            summary: Search violation records by time range
+            description: Search employee violation records (late check-in, early check-out) within specified time periods
+            operationId: searchViolation
             requestBody:
                 required: true
                 content:
@@ -239,24 +240,24 @@ paths:
                                     items:
                                         type: object
                                         properties:
-                                            start_time:
+                                            start_date:
                                                 type: string
                                                 description: Start date in YYYY-MM-DD format
                                                 example: "2024-01-01"
-                                            end_time:
+                                            end_date:
                                                 type: string
                                                 description: End date in YYYY-MM-DD format
                                                 example: "2024-01-31"
                                         required:
-                                            - start_time
-                                            - end_time
+                                            - start_date
+                                            - end_date
                                     minItems: 1
                             required:
                                 - user_email
                                 - time_query
             responses:
                 '200':
-                    description: Late attendance records retrieved successfully
+                    description: Violation records retrieved successfully
                     content:
                         application/json:
                             schema:
@@ -271,10 +272,22 @@ paths:
                                                     type: string
                                                     description: Date in YYYY-MM-DD format
                                                     example: "2024-01-15"
-                                                is_late:
-                                                    type: boolean
-                                                    description: Whether the employee was late on this date
-                                                    example: true
+                                                checkin_violation:
+                                                    type: number
+                                                    description: Late check-in minutes
+                                                    example: 15
+                                                checkout_violation:
+                                                    type: number
+                                                    description: Early check-out minutes
+                                                    example: 10
+                                                total_violation:
+                                                    type: number
+                                                    description: Total violation minutes (checkin + checkout)
+                                                    example: 25
+                                                deduction_hours:
+                                                    type: number
+                                                    description: Hours deducted due to violations
+                                                    example: 0.5
                 '400':
                     description: Bad Request - Invalid input parameters
                     content:
@@ -314,17 +327,17 @@ paths:
                                     items:
                                         type: object
                                         properties:
-                                            start_time:
+                                            start_date:
                                                 type: string
                                                 description: Start date in YYYY-MM-DD format
                                                 example: "2024-01-01"
-                                            end_time:
+                                            end_date:
                                                 type: string
                                                 description: End date in YYYY-MM-DD format
                                                 example: "2024-01-31"
                                         required:
-                                            - start_time
-                                            - end_time
+                                            - start_date
+                                            - end_date
                                     minItems: 1
                             required:
                                 - user_email
@@ -346,10 +359,18 @@ paths:
                                                     type: string
                                                     description: Date in YYYY-MM-DD format
                                                     example: "2024-01-15"
-                                                attendance:
+                                                deductionHours:
                                                     type: number
-                                                    description: Attendance count for this date (as float)
-                                                    example: 1.0
+                                                    description: Hours deducted due to violations
+                                                    example: 0.5
+                                                actualHours:
+                                                    type: number
+                                                    description: Actual working hours after deductions
+                                                    example: 7.5
+                                                workingDays:
+                                                    type: number
+                                                    description: Working days calculated (actualHours / 8)
+                                                    example: 0.9375
                 '400':
                     description: Bad Request - Invalid input parameters
                     content:
@@ -379,10 +400,6 @@ paths:
                         schema:
                             type: object
                             properties:
-                                user_email:
-                                    type: string
-                                    description: Employee email address
-                                    example: "john.doe@example.com"
                                 time_query:
                                     type: array
                                     description: Array of time periods to check for day off
@@ -412,23 +429,10 @@ paths:
                             schema:
                                 type: object
                                 properties:
-                                    data:
-                                        type: array
-                                        items:
-                                            type: object
-                                            properties:
-                                                date:
-                                                    type: string
-                                                    description: Date in YYYY-MM-DD format
-                                                    example: "2024-01-15"
-                                                is_dayoff:
-                                                    type: boolean
-                                                    description: Whether this date is a day off (weekend or holiday)
-                                                    example: false
-                                                day_type:
-                                                    type: string
-                                                    description: Type of day (weekday, weekend, holiday)
-                                                    example: "weekday"
+                                    is_dayoff:
+                                        type: string
+                                        description: Whether this date range is a day off - can be "True", "False", or holiday name
+                                        example: "Tết Nguyên Đán"
                 '400':
                     description: Bad Request - Invalid input parameters
                     content:
@@ -441,6 +445,32 @@ paths:
                                         example: "user_email is required and cannot be empty"
                 '412':
                     description: Precondition Failed - Request body not provided
+                '500':
+                    description: Internal server error
+
+    /airflow/data:
+        post:
+            tags:
+                - Airflow
+            summary: Get filtered attendance data
+            description: Retrieve filtered attendance data from JSON files
+            operationId: getFilteredData
+            responses:
+                '200':
+                    description: Filtered data retrieved successfully
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    data:
+                                        type: array
+                                        description: Array of attendance data objects
+                                        items:
+                                            type: object
+                                            description: Individual attendance record
+                '404':
+                    description: Data file not found
                 '500':
                     description: Internal server error
 

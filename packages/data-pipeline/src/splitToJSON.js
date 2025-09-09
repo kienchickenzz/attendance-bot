@@ -36,7 +36,7 @@ function saveFilteredData( filteredData, outputFileName ) {
 }
 
 const filePath = '../sample-data/data.json'
-const targetEmail = 'nvdat5@cmc.com.vn' 
+const targetEmail = 'nvduong1@cmc.com.vn' 
 const targetFile = `filtered_${ targetEmail }.json`
 
 const dailyData = filterByDate( targetEmail, filePath )
